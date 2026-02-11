@@ -1,0 +1,535 @@
+# VBS / Hyper-V / Credential Guard 完全無効化
+
+## 背景
+
+- Windows11 Home editionにVMware workstation Pro 25H2をインストール時に、以下のように表示
+```
+「インストーラが、ホストでHyper-V または Device/Credential Guard が有効になっていることを検出しました。仮想マシンは、Windows Hypervisor Platform を使用 して起動されます。」
+```
+
+- 実際にはHyper-VはHome editionでは使えないが、Hypervisorを有効化してVBS、Memory Integrity、LSA保護をオンにしているため、上記メッセージがでる
+
+- これにより、以下の影響があるため、無効化を検討した
+	- パフォーマンス低下：VMwareがVT-xを直接使えず、Hyper-Vのハイパーバイザーを経由するため速度が落ちる（overhead）
+	- Nested Virtualizationの制限：VM内でさらに仮想化（VM内のVM）がうまくいかない場合がある
+	- 互換性の問題：一部のゲストOSやドライバが正しく動かないことがある
+	- デバッグが難しい：２層になっているため、問題の特定が複雑になる
+
+- マルウェア解析時は、==かならず有効化すること==
+- 
+
+## メリット、デメリット
+
+| 区分     | 項目                 | 詳細                                                                                      |
+| ------ | ------------------ | --------------------------------------------------------------------------------------- |
+| ❌デメリット | 無効化した機能            | VBS・Kernel隔離・Credential Guard・LSASS保護・HVCI・カーネル改ざん防止・Hyper-V仮想化隔離・Core Isolation・ドライバ保護 |
+|        | リスク：mimikatz       | パスワードダンプが容易になる                                                                          |
+|        | リスク：kernel exploit | SYSTEM権限の奪取が容易になる                                                                       |
+|        | リスク：rootkit        | 検知が困難になる                                                                                |
+|        | **まとめ**            | 侵入された後の耐性が弱くなる                                                                          |
+| ✅メリット  | パフォーマンス            | VMware速度 10〜30% 向上・nested virtualization可・VT-x競合なし・Docker/VM/解析が安定                      |
+|        | 研究用途               | カーネルドライバ開発・マルウェア解析・exploit検証・Red Team演習が可能                                              |
+|        | **まとめ**            | セキュリティ研究者向けの最適設定                                                                        |
+
+## 無効化手順
+
+ソース：[Windows 11 24h2 hsot - how to disable Virtual Based Security - VMware discussion](https://community.broadcom.com/vmware-cloud-foundation/discussion/windows-11-24h2-hsot-how-to-disable-virtual-based-security)
+
+cmd.exeを管理者権限で開き、以下を実行する
+
+1. Credential Guard をレジストリで無効化
+```cmd
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Lsa" /v LsaCfgFlags /t REG_DWORD /d 0 /f reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard" /v LsaCfgFlags /t REG_DWORD /d 0 /f
+```
+- → LSA保護停止
+- → Credential Guard無効化
+
+2. UEFIロック解除用 SecConfig 登録
+```cmd
+mountvol X: /s copy %WINDIR%\System32\SecConfig.efi X:\EFI\Microsoft\Boot\SecConfig.efi /Y
+
+bcdedit /create {0cb3b571-2f2e-4343-a879-d86a476d7215} /d "DebugTool" /application osloader
+bcdedit /set {0cb3b571-2f2e-4343-a879-d86a476d7215} path "\EFI\Microsoft\Boot\SecConfig.efi"
+bcdedit /set {bootmgr} bootsequence {0cb3b571-2f2e-4343-a879-d86a476d7215}
+bcdedit /set {0cb3b571-2f2e-4343-a879-d86a476d7215} loadoptions DISABLE-LSA-ISO
+bcdedit /set {0cb3b571-2f2e-4343-a879-d86a476d7215} device partition=X: mountvol X: /d
+```
+- → LSA/CGのUEFIロック解除
+
+3. VBSレジストリ削除
+```cmd
+reg delete "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard" /v EnableVirtualizationBasedSecurity /f
+reg delete "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard" /v RequirePlatformSecurityFeatures /f
+```
+- → VBS強制起動停止
+
+4. Hyper-V / VBS 完全停止
+```zsh
+bcdedit /set {0cb3b571-2f2e-4343-a879-d86a476d7215} loadoptions DISABLE-LSA-ISO,DISABLE-VBS
+bcdedit /set vsmlaunchtype off bcdedit /set hypervisorlaunchtype off
+```
+- → Windows Hypervisor無効
+- → VSM停止
+- → VMwareが直接VT-x使用可能
+
+5. コア分離OFF
+	- Windows セキュリティ  → デバイス セキュリティ    → コア分離 → すべてOFF
+
+6. Windows機能無効化
+```cmd
+optionalfeatures.exe
+```
+チェック解除（存在しかつ有効化されているとき）：
+- Hyper-V
+- 仮想マシンプラットフォーム
+- Windows Hypervisor Platform
+- WSL
+- Sandbox
+- → Hypervisor競合除去
+
+7. 再起動 → F3 → Enter
+
+8. PIN再設定し、Helloを再初期化
+
+9. 無効化できたかどうかを確認
+```powershell
+systeminfo
+...
+# 仮想化ベースのセキュリティ: 状態: 無効
+```
+
+## 切り戻し手順
+
+1. Hyper-V/VBS再有効化
+```cmd
+bcdedit /set hypervisorlaunchtype auto
+bcdedit /set vsmlaunchtype auto
+```
+
+2. Credential Guard再有効化
+```cmd
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Lsa" /v LsaCfgFlags /t REG_DWORD /d 2 /f
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard" /v LsaCfgFlags /t REG_DWORD /d 2 /f
+```
+
+3. VBS有効化
+```cmd
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard" /v EnableVirtualizationBasedSecurity /t REG_DWORD /d 1 /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard" /v RequirePlatformSecurityFeatures /t REG_DWORD /d 1 /f
+```
+
+4. DebugTool有効化
+```cmd
+bcdedit /delete {0cb3b571-2f2e-4343-a879-d86a476d7215}
+```
+
+5. Windows機能再有効化
+```cmd
+optionalfeatures.exe
+```
+チェックON：
+- Hyper-V
+- 仮想マシンプラットフォーム
+- Windows Hypervisor Platform
+- WSL（必要なら）
+- Sandbox
+
+5. コア分離ON
+	- Windows セキュリティ → コア分離 → すべてON
+
+6. 再起動
+
+---
+
+
+# ツールの機能
+
+## sublime text
+
+- 特徴
+	- 動作が非常に軽量で高速である
+	- 豊富なプラグインによって高度なカスタマイズが可能である
+	- クロスプラットフォーム（Mac、Windows、Linux）に対応している
+
+インストール
+```zsh
+sudo apt install sublime
+```
+
+拡張機能のインストール（e.g. ANSI escape：ANSIのカラーリングをそのまま表示可能）
+1. sublime text上で、Ctrl + Shift + Pを押し、入力バーに「install package control」と入力する
+	- →最下部のタブにインストール状況の進捗が表示される
+2. Sublime textを再起動する
+3. sublime text上で、Ctrl + Shift + Pを押し、「Package Control: Install Package」と入力
+4. 入力したいパッケージ名を入力（ここでは例としてANSI escapeをインストール）
+5. 右下のファイルタイプ(Plain Textを選択)
+![[Pasted image 20251101103833.png]]
+
+6. ANSIを選択する→ANSIが適用される
+	- ⚠️注意点：
+		- 一度閉じて再度開くと、色付けはなくなっている
+		- 文字コードをANSIとしているときは、読み取り専用になっているため、Plain textに戻して書き込む
+![[Pasted image 20251101103951.png]]
+
+
+---
+
+# 日本語入力
+
+表示は英語のまま、入力だけ日本語を使うようにしたい
+
+1. パッケージインストール
+```sh
+sudo apt update
+sudo apt install -y fcitx5 fcitx5-anthy
+```
+
+2. 入力メソッド環境変数の設定
+```sh
+mkdir -p ~/.config/environment.d
+cat << 'EOF' > ~/.config/environment.d/im.conf
+GTK_IM_MODULE=fcitx5
+QT_IM_MODULE=fcitx5
+XMODIFIERS=@im=fcitx5
+EOF
+```
+
+3. 再起動
+```sh
+reboot -h now
+```
+
+4. アプリケーションからFcitx5 Configurationを開き、Inputを以下の構成にする
+	- ⚠️:この際、ポップアップで"現在のレイアウトと違うようです"のような表示が出ると思うが、OKとする
+![[Pasted image 20260208163838.png]]
+
+5. いくつかのアプリケーションで日本語入力試行し、問題ないことを確認する
+	- 切り替えはCtrl + Space
+
+
+---
+
+# トラブルシューティング
+
+## 接続が安定しない
+
+### 背景
+
+- リバースシェルペイロードを実行しても、すぐに接続が切れる事象が発生
+- netcat(nc)を使っているときに発生
+
+### 対策
+
+- 一般的に、接続切断は、Staged payloadをnetcatリスナーで使用した場合にのみ起こるため、Stageless payloadにする
+	- [[5. AV Evasion：Shellcode#Staged / Stageless Payloads]]
+
+- ⭐️**mtu値を下げる** →代替これで解決する（ファイルダウンロードできない、などの事象も解消）
+```zsh
+sudo ifconfig tun0 mtu 1250
+```
+
+- あるいは、リバースシェルを獲得するのではなく、ユーザーを作成する
+	- ターゲット環境によっては、どうしても不安定になることがあるため
+```cmd
+net user [username] [password] /add
+net localgroup Administrators [username] /add
+```
+
+## クリップボード共有がうまくいかない
+
+- Kali Linuxのisoでインストールしていたところ、クリップボードがゲストとホストでうまく共有されない事象が発生
+- 原因：isoはVMWareがサポートするバージョンではないため
+- 解決策：
+	1. pre-builtのvmware用Kali Linuxをインストール
+	2. 「この仮想マシンをアップグレードする」からハードウェアの互換性を、17.5にアップデート
+
+## クリップボード共有がうまくいかないv2
+
+- ゲストからホストにコピペできない
+
+## 画面に黒帯が表示される
+
+- 原因：解像度の不一致
+- 解決策：
+	1. 設定で、ディスプレイは「モニタでホストの設定を使用」を選択
+	2. VMWareのプロパティ > 互換性 > 高DPI設定の変更 > 高DPIスケール設定の上書き > 「システム（拡張）」を選択
+
+- そのほかopen-vm-tools\*がインストールされていない可能性もあるが、これはpre-built版であれば問題なし
+
+
+## ゲストマシンから特定のサイトにアクセスできない
+
+### 背景
+
+- ゲストマシン(Kali）からwpscan.comにアクセスできない。そのため、`wpscan`でAPIトークンを指定してのスキャンができなかった。
+	- 試したこと：いくつかのブラウザやcurlでアクセスやTLSのバージョン指定やUser-Agentヘッダの変更を実施→アクセスできず
+
+- ホストマシンからは通常通りアクセスできた
+- ゲストマシンからでも、Torブラウザを使用すればアクセスできた
+- これにより、IPやISPかで遮断されていると推定
+
+### 対策
+
+- *ダイナミックポートフォワーディング*を使う。これは、特定のネットワークからのアクセスのみを許可されているサーバーに、クライアントの指定したポートを経由してアクセス出来るようにするもの
+
+1. ホストマシンのSSH設定を有効にする
+![[Pasted image 20250429121458.png | 400]]
+
+2. ゲストマシンから、SSHトンネリング(dynamicポートフォワーディング)を実施する
+```zsh
+ssh -D 9050 [host machine username]@[host machine IP]
+```
+- `-D 1080` は「ローカルポート1080をSOCKSプロキシとして使う」という意味
+
+3. 新たなプロンプトを開く（SSHトンネリングを実施したプロンプトは開いたまま）
+![[Pasted image 20250429121027.png]]
+
+4. Proxychains 設定のProxyListが意図された値になっているかを確認
+```c
+[ProxyList]
+# add proxy here ...
+# meanwile
+# defaults set to "tor"
+socks5  127.0.0.1 9050
+```
+（Listに記載のIP:Portが上から順番に経由されていく。いずれか1つでもオフラインだと動作しない。動作するようにしたいのであれば、同configファイルの`strict_chain`をコメントアウトし、`dynamic_chain`を有効化する）
+
+4. 🚨VPNアクセスが必要なら、ホストマシン側でopvn接続する。なぜなら、ポートフォワーディングによって、ゲスト（Kali）からではなく、ホストマシンから対象のサイトにアクセスするから。つまり、ゲスト(Kali)のopvn接続は一旦遮断する必要がある。
+	（ホストマシンで`/etc/hosts`の追記は不要）
+	（複数opvnクライアントの同時接続は不可）
+
+5. ProxyChainsを使ってコマンドを実行する
+```zsh
+proxychains wpscan --api-token xxx --url https://...
+```
+
+- [ ] 異なるマシンからopvn接続切り替えしていいのかどうかを確認
+
+---
+
+## ネットワーク通信できない
+
+1. ネットワークインターフェースを有効にする
+```
+sudo ip link set eth0 up
+```
+
+2. DHCPによるIPアドレスの取得をする
+```
+sudo dhclient eth0
+```
+
+---
+
+## 共有フォルダが使えない
+
+1. 共有フォルダの設定がうまくいっているか確認する
+```zsh
+vmware-hgfsclient
+```
+（仮想マシン>設定>オプション>共有フォルダで設定した結果が表示されたらok）
+
+2. ゲストOS(Kali)からマウントする
+```
+sudo mkdir /mnt/hgfs
+sudo vmhgfs-fuse .host:/ /mnt/hgfs -o subtype=vmhgfs-fuse,allow_other
+```
+- `/mnt/hgfs` : ここに、Desktopのフォルダを指定してもうまくいくが、後で設定を保持するときに2つ同じ名前のフォルダができる。そのため、/mntフォルダ配下に共有フォルダをおいたほうがいい。
+- 参考：[vmware docs](https://docs.vmware.com/jp/VMware-Workstation-Pro/17/com.vmware.ws.using.doc/GUID-AB5C80FE-9B8A-4899-8186-3DB8201B1758.html)
+
+3. 正常にマウント完了したか
+- File systemで、ステップ2で作成した共有フォルダが表示されていたらOK
+
+4. 設定を保持する
+```
+sudo nano /etc/fstab
+```
+```nano
+.host:/ /mnt/hgfs fuse.vmhgfs-fuse allow_other,auto_unmount,defaults 0 0
+```
+
+###### Caps LockとCtrlキーを入れ替えられない
+
+- windows sysinternalより、caps2ctrlをインストール（Kaliというより、windowsの話）
+
+###### VMが開けない
+
+①vmxファイルがある場合
+	VMの「仮想マシンを開く」から選択する
+
+②vmxファイルがない場合（VM立ち上げ時に自動で開いていたのに開かなくなった場合）
+	タスクバーのvmware fusionを右クリックすればリストにある
+
+
+###### ホストとVMの間でコピー＆ペーストができない
+
+- 
+
+
+
+---
+
+## Xfreerdpがうまく接続できない
+
+- mtuを下げる（デフォルト1,500）
+```zsh
+sudo ifconfig tun0 mtu 1200
+```
+
+- 環境変数ではなく、IPアドレス直指定する
+	- 確信なし
+```zsh
+⭕️xfreerdp3 /v:192.168....
+❌xfreerdp3 /v:$TargetIP
+```
+
+---
+
+# 便利機能
+
+## Kaliで Windows と同じ「Win + Ctrl + →」でワークスペース切替する方法
+
+### 目的
+
+- Windows 11 では  
+    `Win + Ctrl + →` で右のデスクトップへ移動できる
+- Logicool MX Master のジェスチャーがこのキー入力を送信している
+- **同じ操作を Kali (VMware上) でも使いたい**
+
+### 結論
+
+- Kali (Xfce) にも Windowsキーは存在する
+- Linuxでは **Windowsキー = Superキー** と呼ぶ
+- Superキーをワークスペース切替に割り当てればOK
+つまり：
+`Win + Ctrl + ←/→ ＝ Super + Ctrl + ←/→`
+として設定できる
+
+## 設定手順
+
+1. `Settings → Window Manager → Keyboard`
+2. `Switch to workspace left Switch to workspace right`
+3. ショートカットを割り当て
+	`Super + Ctrl + Left
+	`Super + Ctrl + Right`
+
+
+## 上部のメニューバー再表示
+
+- フルスクリーンにしたいが、上下配置のディスプレイで下にフルスクリーンで表示すると、メニューバーが開けない。
+- アンキャプチャのショートカット（デフォルトではCtrl+Alt）を押してから、通常のキーボードアクセラレータを使ってメニューを起動（例：Alt+Fでファイルメニューを表示、Alt+Eで編集メニューを表示など）
+
+---
+
+# Windowsの挙動
+
+- 上下にノートパソコンとディスプレイを配置しているとき、Macbookのように、上のディスプレイで複数デスクトップを切り替えようとすると、下に配置しているKali Linuxまで消えてしまう
+	- →仮想デスクトップ
+
+
+---
+
+# 基本機能
+
+- [[PEN-103]]
+
+## スナップショットを撮る方法
+
+- スナップショット：撮影時点での簡易バックアップのようなもので、何かシステムに変更を加える前に取っておくと、すぐに復旧できる。
+	- （バックアップと違うのは、バックアップがデータを保存しておくことに対し、スナップショットは状態を保存しておく）
+
+1. 仮想マシンのスナップショットから、「スナップショット」を選択
+![[Pasted image 20250427112256.png]]
+
+2. 左上の📷マークでスナップショットを撮影。💾マークで、選択したスナップショットの状態に切り戻す。🗑️でスナップショットを削除する。
+	画面では、「テスト」がスナップショットで、この「テスト」から現在の状態が派生していることを表している
+
+![[Pasted image 20250427112347.png]]
+
+## ダウンロードしたツールをコマンドで実施する方法
+
+1. ツールをサイトからダウンロードする（例：kerbrute-amdxxx)
+2. `/usr/local/bin`に移動する
+```zsh
+sudo mv /Downloads/kerbrute-xxx /usr/local/bin
+```
+3. 名前を変える
+```zsh
+cd /usr/local/bin
+mv kerbrute-xxx kerbrute
+```
+4. 実行権限を付与
+```zsh
+sudo chmod +x kerbrute
+```
+5. 環境変数を確認し、ダウンロードしたツールの格納ディレクトリが環境変数に無ければパスを追加する(`/usr/local/bin`はすでにある)
+```zsh
+echo $PATH
+#/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games
+```
+
+## ⭐️システム全体のバックアップを取得・復元する方法
+
+- どのディスクをバックアップするかを調べる（diskとあるものがバックアップ対象）
+```zsh
+lsblk
+```
+![[Pasted image 20250125193534.png | 300]]
+
+- バックアップを作成
+```zsh
+sudo dd if=/dev/[バックアップ対象] of=[file path(mnt先がいい)]backup.img bs=4M status=progress
+```
+
+- 復元する（もしマシンが起動すらしなくなったら、同じisoイメージで再度構築してから）
+```zsh
+sudo dd if=[file path(mnt先がいい)]backup.img of=/dev/sdX bs=4M status=progress
+```
+
+## Debianパッケージでツールのインストール
+
+- apt：依存関係を考慮してくれる
+```zsh
+sudo apt install [debファイル]
+```
+
+- dpkg：依存関係を考慮しないため問題が起きやすい
+```zsh
+sudo dpkg -i [debファイル]
+```
+
+## インストールしたパッケージが正当なものか検証
+
+- 公式のサイトからチェックサムをコピーする（提供していないところもある）
+- チェックサムとインストールしたパッケージを一つのファイルに書き込み、検証する
+```zsh
+cd ~/Downloads
+echo "[checksum] [package]" > sha256sum_nessus
+sha256sum -c sha256sum_nessus
+# [package]: OK
+```
+
+---
+
+# 設定項目
+
+- [x] vmwareのprebuild版を使用
+- [x] メモリは12GB
+- [x] ストレージは120GB
+- [x] OSはDebian 10.x
+- [x] ディスプレイ設定はそのまま
+- [x] -vmwareの環境設定より、
+	- [x] hot keyをctrl + alt→ ctrl + shift + altに変更することで、kaliでのctrl + altと競合しないようにする
+	- [x] 入力のゲーミング用をオフにする
+- [x] ゲストのdisplayより、倍率を1.75倍に設定
+- [x] ゲストの`sudo gparted`でディスクサイズを120GBに変更
+- [x] キーボードをjapaneseに変更
+- [x] Firefox ESRは削除し、FireFoxをインストールする。Firefoxにはキーボードショートカットキー割り当て機能があり、emacsキーバインドと競合するものを押し間違えないように、ショートカットキーを消して置ける。
+- [x] firefoxにfoxy proxy、wapplyzer, DeepLの拡張機能をダウンロード
+- [x] Kaliに共有フォルダを設定
+- [x] sublime text, Bloodhound, kerbrute, penelope, Burp Suite,autorecon,rustscan,flameshotをインストール
+	- [x] sublimeはkey bindingの編集
+- [x] [[#Kaliで Windows と同じ「Win + Ctrl + →」でワークスペース切替する方法]]を設定
+	- [x] 追加で、"Move window to left/right workspace"を、shift + win + ctrl + →/←と設定
+- [x] rockyou.txt.gzをgzipでアンジップ
+- [x] [[#日本語入力]]を有効にする
