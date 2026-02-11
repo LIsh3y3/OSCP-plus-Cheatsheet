@@ -24,3 +24,6 @@ echo $TargetIP
 - モバイル端末の動機は、[GitSync](https://viscouspotenti.al/posts/gitsync-all-devices-tutorial)を使う
 - test
 test
+
+g
+agaggagagag
