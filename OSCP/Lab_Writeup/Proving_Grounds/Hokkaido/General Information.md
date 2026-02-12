@@ -1,7 +1,10 @@
 # Host Information
 
 ```zsh
-
+Windows Server 2022 Build 20348
+```
+```sh
+hokkaido-aerospace.com
 ```
 
 ---
