@@ -284,7 +284,7 @@ impacket-smbclient <domain>/<username>:<password>@<TargetIP/host> -k -no-pass
 
 ```zsh
 # 接続
-smbclient -W <domain> -U '<username>' \\\\<TargetIP | host>\\<share>
+smbclient -W <domain> -U '<username>' \\\\<TargetIP>\\<share>
 # ファイル名のフィルターを解除（すべて対象に）
 smb:> mask ""
 # ディレクトリを再帰的に処理

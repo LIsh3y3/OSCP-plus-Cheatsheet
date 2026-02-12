@@ -1,9 +1,9 @@
 # Credentials
 
 ```zsh
-info@hokkaido-aerospace.com:info
-administrator@hokkaido-aerospace.com
-discovery@hokkaido-aerospace.com
+info:info
+administrator
+discovery:Start123!
 Angela.Davies # tier zero
 Annette.Buckley
 Anthony.Anderson
