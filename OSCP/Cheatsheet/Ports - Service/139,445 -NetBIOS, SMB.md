@@ -304,6 +304,7 @@ smb:> mget *
 mkdir <mount_dir>
 sudo mount -t cifs //<TargetIP>/<share_name> <mound_dir>/ -o username=<username>,password=<pw>
 cd <mount_dir>
+# マウント解除：sudo umount -l mount_point
 ```
 
 具体例
