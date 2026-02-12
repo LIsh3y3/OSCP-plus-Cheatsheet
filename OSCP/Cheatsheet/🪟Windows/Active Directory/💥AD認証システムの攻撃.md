@@ -140,7 +140,7 @@ powershell -ep bypass
 - ドメインユーザーを侵害していて、RDP、SSH、もしくはPowerShell Remoting接続できている場合にWindowsmマシン上から実行
 
 1. Rubeusをダウンロードし、ターゲットマシンに転送する
-	- 🔗[Compiled Binaries Rubeus.exe - GitHub](https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/blob/master/Rubeus.exe)
+	- [Compiled Binaries Rubeus.exe - GitHub](https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/blob/master/Rubeus.exe)
 	- [[ファイル操作、ユーティリティ#ファイルの転送]]
 
 2. AS-REP Roastingの実行
