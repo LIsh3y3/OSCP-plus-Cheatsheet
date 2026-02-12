@@ -123,9 +123,9 @@ EXEC sp_helprolemember;
 
 現在のセッションで利用可能なデータベース一覧を表示
 ```sql
--- デフォルトDB： master, tempdb, model,msdb
 SELECT name FROM sys.databases;
 ```
+- デフォルトDB： master, tempdb, model,msdb
 
 現在のDBの確認
 ```sql
