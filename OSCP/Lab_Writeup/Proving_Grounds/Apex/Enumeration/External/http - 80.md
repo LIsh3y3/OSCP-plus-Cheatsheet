@@ -11,6 +11,8 @@ PORT   STATE SERVICE REASON  VERSION
 
 # Whatweb
 
+- Apacheを使っている
+- ユーザー名の一覧と思われるリストを入手
 ```zsh
 ┌──(koshi㉿kali)-[~/ProvingGrounds/Apex]
 └─$ whatweb -v -a3 --log-verbose WebEnum/whatweb_80.txt http://$TargetIP                                        
@@ -89,8 +91,6 @@ HTTP Headers:
         Content-Length: 4777
         Connection: close
         Content-Type: text/html
-
-
 ```
 
 ---
