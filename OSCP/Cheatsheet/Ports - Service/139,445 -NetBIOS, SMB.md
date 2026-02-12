@@ -167,7 +167,8 @@ enum4linux -u guest -aMld $TargetIP | tee enum4linux.log
 
 #### 補足
 
-- `enum4linux -w [WORKGROUP] ...` でワークグループ指定が必要な場合有り（`smbmap -vH` で取得可能）。
+- `enum4linux -w [WORKGROUP] ...` でワークグループ指定が必要な場合有り（`smbmap -vH` で取得可能）
+- `Known Usernames`：一般的なユーザー名というだけで、ターゲットに存在するとは限らない
 
 ---
 
