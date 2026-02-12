@@ -63,6 +63,7 @@ SELECT * FROM fn_my_permissions(NULL, 'SERVER');
 -- DBレベル(現在のDBにおける権限)
 SELECT * FROM fn_my_permissions(NULL, 'DATABASE');
 ```
+- ねらい目の権限：
 
 現在のユーザーがImpersonate（なりすまし）可能なユーザーの確認
 ```sql
@@ -71,7 +72,7 @@ SELECT distinct b.name FROM sys.server_permissions a INNER JOIN sys.server_princ
 - ↓別のユーザーに成りすましてアクセス権を取得できる
 ```sql
 EXECUTE AS LOGIN = '<impersonate_username>';
--- 成否確認：SELECT suser_name();
+-- 成否確認：SELECT SYSTEM_USER;
 ```
 
 全ユーザー列挙
