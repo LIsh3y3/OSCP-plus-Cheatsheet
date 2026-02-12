@@ -7,7 +7,7 @@ PORT   STATE SERVICE REASON  VERSION
 
 ---
 
-# Enumeration
+# Enumeration -> nothing
 
 ```sh
 impacket-rpcdump hokkaido-aerospace.com@192.168.151.40 | tee rpcdump.log
