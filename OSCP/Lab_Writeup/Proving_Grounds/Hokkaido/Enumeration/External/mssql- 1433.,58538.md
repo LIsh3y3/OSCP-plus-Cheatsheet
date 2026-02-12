@@ -42,6 +42,7 @@ PORT   STATE SERVICE REASON  VERSION
 
 # Enumeration
 
+- discoveryで接続し、hrappdになりすましてデーターベース
 
 ---
 
