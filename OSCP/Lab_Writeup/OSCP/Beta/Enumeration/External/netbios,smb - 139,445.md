@@ -175,7 +175,6 @@ SMB         192.168.115.111 445    OSCP             [+] oscp\sasha:Voltaic1992
 
 # group
 netexec smb $TargetIP -u sasha -p 'Voltaic1992' --group
-
 ```
 
 - backup?
@@ -211,3 +210,5 @@ SMB         192.168.115.111 445    OSCP             [+] oscp\sasha:Voltaic1992
 # Screenshot
 
 ![[Pasted image 20260110190036.png]]
+
+```
