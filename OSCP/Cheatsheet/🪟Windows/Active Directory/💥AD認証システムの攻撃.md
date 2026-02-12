@@ -155,6 +155,7 @@ powershell -ep bypass
 
 - 内部へRDPもしくはSSH接続できていないときに攻撃者のマシンから実行
 - ❌FWなどの影響で失敗することがあるため、認証情報がわかっているならRubeusを使う
+- 💡他攻撃手法：[[389,636,3268 - LDAP#💥AS-REPRoasting]]
 
 1. AS-REP Roastingの実行
 ```zsh
@@ -215,6 +216,7 @@ impacket-GetNPUsers -dc-ip <DC_IP> -request -outputfile <outputfile> <domain>/ -
 - ❌Impacketだけではアカウントの種別がユーザーかそれ以外かがわからず、[[#Kerberoastingの仕組み]]の「使用に適したシチュエーション」であるかどうかが判別つかない
 - ❌FWなどの影響で失敗することがある
 - →==可能な限りRubeusを使用==
+- 💡他攻撃手法：[[389,636,3268 - LDAP#💥Kerberoasting]]
 
 1. kerberoast実行
 ```zsh
