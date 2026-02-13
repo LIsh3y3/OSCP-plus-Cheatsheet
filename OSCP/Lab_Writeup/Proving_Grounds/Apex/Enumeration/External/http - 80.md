@@ -157,8 +157,11 @@ Finished
 	- Invalid username or password
 - OpenEMRの認証情報は、ケースセンシティブ
 
-## sourece
+## source
 
+## Documents -> nothing
+
+- pdfファイルがあったが、公式ドキュメントのようで、`exiftool`しても特に何も情報なし
 
 ## thums -> nothing
 
@@ -181,6 +184,10 @@ Finished
 
 - openemr
 ![[Pasted image 20260213121816.png]]
+
+- openemrリクエストキャプチャ：
+	- OpenEMR と PHPSESSIONID という Cookie がある
+![[Pasted image 20260213123229.png]]
 
 - filemanager
 ![[Pasted image 20260213121412.png]]
