@@ -100,7 +100,34 @@ HTTP Headers:
 errorが多ければ`-t 64`も試す
 
 ```zsh
-
+┌──(koshi㉿kali)-[~/ProvingGrounds/Apex]
+└─$ gobuster dir -u http://$TargetIP/ -r -k -w /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt -t 100 -o WebEnum/gobuster_80.txt -x 'html,htm,txt,sh,php,cgi,jsp,pl,py,pdf' -s 200,301,302 -b "" 
+===============================================================
+Gobuster v3.8
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:               http://192.168.154.145/
+[+] Method:            GET
+[+] Threads:           100
+[+] Wordlist:          /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt
+[+] Status codes:      301,302,200
+[+] User Agent:        gobuster/3.8
+[+] Extensions:        py,pdf,htm,sh,php,html,txt,cgi,jsp,pl
+[+] Follow Redirect:   true
+[+] Timeout:           10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/index.html           (Status: 200) [Size: 28957]
+/assets               (Status: 200) [Size: 1500]
+/.                    (Status: 200) [Size: 28957]
+/source               (Status: 200) [Size: 1138]
+/thumbs               (Status: 200) [Size: 1336]
+/filemanager          (Status: 200) [Size: 26348]
+Progress: 693968 / 693968 (100.00%)
+===============================================================                                                                                             
+Finished                                                                                                                                                    
+===============================================================  
 ```
 
 ---
