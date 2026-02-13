@@ -12,6 +12,7 @@
 ## 流れ
 
 1. 動作確認のため、`/etc/passwd`を検出する
+	- Windowsの場合: `C:\windows\system32\drivers\etc\hosts`
 2. 有効なペイロード(トラバーサルシーケンス)がわかったら、閲覧したいファイルを検出する
 
 💡Tips：`/etc/passwd`は検出できて`/home/carlos/secret`が検出できない場合は、WAFをバイパスするためにHV: `urlencode_all`する。↓例
