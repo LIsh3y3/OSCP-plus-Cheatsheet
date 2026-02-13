@@ -147,6 +147,12 @@ Finished
 - ソースコードに特に気になる情報はない
 - 
 
+## openemr
+
+>無料のオープンソース電子カルテ（EMR）およびクリニック管理システム
+
+- ログインページあり
+
 ## sourece
 
 
@@ -163,6 +169,12 @@ Finished
 
 - index
 ![[Pasted image 20260213121107.png]]
+
+- indexページ Dotorセクション
+![[Pasted image 20260213121713.png]]
+
+- openemr
+![[Pasted image 20260213121816.png]]
 
 - filemanager
 ![[Pasted image 20260213121412.png]]

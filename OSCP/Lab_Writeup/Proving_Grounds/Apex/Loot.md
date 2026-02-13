@@ -2,12 +2,6 @@
 
 ```zsh
 awilliam
-contact
-jamanda
-jsarah
-wwalter
-awilliam
-contact
 jamanda
 jsarah
 wwalter
