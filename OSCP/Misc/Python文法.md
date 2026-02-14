@@ -4,8 +4,42 @@
 
 # Mainについて
 
+## main関数の定義
 
+- すべての関数を定義してから、mainでプログラムを実行する
+- そのため、mainの定義は一番最後になっている
+- ↓具体例
+```python
+import requests
+import sys
 
+def usage():
+	if len(sys.argv) != 4:
+		print("Usage: python3 exploit.py [URL]")
+		sys.exit(0)
+
+def copy_cut(url, session_cookie, file_name):
+	headers = {'Cookie': session_cookie,
+	'Content-Type': 'application/x-www-form-urlencoded'}
+	url_copy = "%s/filemanager/ajax_calls.php?action=copy_cut" % (url)
+	r = requests.post(
+	url_copy, data="sub_action=copy&path=../../../../../../.."+file_name,headers=headers)
+	return r.status_code
+
+def main(): # ← 最後に定義
+	usage()
+	url = sys.argv[1]
+...
+
+if __name__ == "__main__":
+	main()
+```
+
+## `__name__` とは？
+
+Pythonでは、実行されているモジュールには `__name__` という特殊変数が自動で入る
+- 直接実行された場合 → `"__main__"`    
+- 他のファイルから `import` された場合  → `__name__ == ファイル名（拡張子なし）`
 
 ---
 
