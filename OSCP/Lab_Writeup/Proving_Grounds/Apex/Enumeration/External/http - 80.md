@@ -132,6 +132,13 @@ Finished
 
 ## openemr配下のスキャン
 
+- feroxbusterでスキャンしたところ、大量の200が
+```sh
+┌──(koshi㉿kali)-[~/ProvingGrounds/Apex]
+└─$ feroxbuster -u http://$TargetIP/openemr/ -r -k -w /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt --auto-tune -o WebEnum/feroxbuster_80_openemr.txt -x 'html,txt,php,cgi,pdf' -s 200,301,302 -b "" 
+```
+
+- 以下のページから、バージョン4.0ではないかと推測
 
 
 ---
