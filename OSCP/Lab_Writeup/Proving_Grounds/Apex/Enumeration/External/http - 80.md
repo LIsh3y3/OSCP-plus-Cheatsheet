@@ -157,6 +157,18 @@ Finished
 	- Invalid username or password
 - OpenEMRの認証情報は、ケースセンシティブ
 
+### 試行済み認証情報
+
+==アカウントロックはかからない==
+
+- ユーザー名小文字：ユーザー名小文字
+- admin:pass（デフォルト認証情報）
+- admin:admin
+- メアド：ユーザー名小文字
+- Last name: Last name
+
+- 並行して入手済みユーザー名小文字と
+
 ## source -> nothing
 
 - 中にDocumentsとIMagesフォルダがあり、Documentsフォルダにpdfファイルがあったが、公式ドキュメントのようで、`exiftool`しても特に何も情報なし
