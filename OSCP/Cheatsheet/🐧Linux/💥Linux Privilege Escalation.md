@@ -74,7 +74,8 @@ chmod +x <(同じ名前)file.sh>
 - LinPEASの結果の`Systemd Information`に以下のように表示されることがある
 ![[Pasted image 20260214172732.png]]
 
-- このとき、
+- 使用しているサービス(systemd)によって実行されるコマンドが相対パスで指定されている場合は、[[#Cron w/ PATH変数]]と同じ原理で攻撃できる
+	- ※ただし、LinPEASは誤って引数もコマンドと解釈して検知することがある（上記画像で、`apache2.service: Uses relative path 'start'`と表示があるが、`start`は引数
 
 ---
 ---
