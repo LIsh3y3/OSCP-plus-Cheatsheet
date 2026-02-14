@@ -135,6 +135,10 @@ strings Not Found
 
 - apacheがrootによって起動され、その後はwww-dataによって動作することは普通
 - Apacheは起動時のみrootが必要
+```sh
+root      1402  0.0  1.5 492324 15232 ?        Ss   00:04   0:00 /usr/sbin/apache2 -k start
+www-data  1418  0.0  2.6 500920 26296 ?        S    00:04   0:00 /usr/sbin/apache2 -k start
+```
 
 ---
 
