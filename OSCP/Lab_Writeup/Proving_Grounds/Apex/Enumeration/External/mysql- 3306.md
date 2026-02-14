@@ -18,6 +18,10 @@ PORT   STATE SERVICE REASON  VERSION
 
 # Enumeration
 
+- sqlconf.phpで入手した認証情報とデータベース情報（openemr）を利用して機密情報を入手できないか検証
+
+
+
 
 ---
 
