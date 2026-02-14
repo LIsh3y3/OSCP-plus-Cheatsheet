@@ -40,6 +40,7 @@ admin:thedoctor
 
 ## proof.txt
 
+![[Pasted image 20260214184445.png]]
 ```zsh
-
+7ea3c4d530d4ac256a8e7ad2fd410b5b
 ```

