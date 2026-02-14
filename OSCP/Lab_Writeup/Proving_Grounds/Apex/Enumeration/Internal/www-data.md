@@ -153,6 +153,10 @@ www-data  1418  0.0  2.6 500920 26296 ?        S    00:04   0:00 /usr/sbin/apach
 
 - madadmは、LinuxでRAIDを構築する正規のプログラム
 
+```sh
+www-data@APEX:/$ crontab -l
+no crontab for www-data
+```
 
 ---
 
