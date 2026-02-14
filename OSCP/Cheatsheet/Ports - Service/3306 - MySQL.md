@@ -253,3 +253,5 @@ FLUSH PRIVILEGES;
 -- 削除はDROP USER '<username>'@'%';
 ```
 - `@'%'`を指定しないと、デフォルトで `@'localhost'`になり、リモート接続できない
+
+---
