@@ -132,6 +132,8 @@ Finished
 
 ## openemr配下のスキャン
 
+目的は、機密情報やバージョン情報がないかどうかを探すこと
+
 - feroxbusterでスキャンしたところ、大量の200が
 ```sh
 ┌──(koshi㉿kali)-[~/ProvingGrounds/Apex]
@@ -139,7 +141,15 @@ Finished
 ```
 
 - 以下のページから、バージョン4.0ではないかと推測
+	- ドキュメントのバージョンなだけな可能性もある
+![[Pasted image 20260214111222.png]]
 
+- ほとんどのphpファイルは、以下のエラーメッセージが表示
+![[Pasted image 20260214111308.png]]
+
+- 気になるファイル
+	- config/config.yaml -.>nothing
+	- config/services.yml -> nothing
 
 ---
 
