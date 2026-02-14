@@ -1,0 +1,3 @@
+Responsive FilemangerのPath Traversalの脆弱性をエクスプロイトするPoCに軽微な変更を加え、OpenEMRというOSSからSQLの認証情報を抽出。
+リモートでMySQLに接続し、OpenEMRの認証情報ハッシュをダンプし、クラック。
+OpenEMRのRCE (Authenticate)
