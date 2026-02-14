@@ -181,7 +181,7 @@ no crontab for www-data
 
 ---
 
-## システムデーモン
+## システムデーモン -> 特になし
 
 - pspyでは特に何も見つけられず
 ```sh
@@ -199,6 +199,11 @@ no crontab for www-data
 
 ## 興味深い情報
 
+- 以下出力が膨大（なのでpasswordに絞っている）
+	- →だが、それでも出力が膨大
+```sh
+grep -EiR "password" --include=\*.{txt,ini,cfg,conf,config,cnf,xml,git,yml,php} . 2>/dev/null  
+```
 
 ---
 
