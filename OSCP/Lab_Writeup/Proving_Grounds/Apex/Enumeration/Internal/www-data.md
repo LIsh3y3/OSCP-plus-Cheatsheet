@@ -107,8 +107,8 @@ pgsql.allow_persistent = On
 ══════════════════════╣ Files with Interesting Permissions ╠══════════════════════                                                                                                                                                                                                                                          
                       ╚════════════════════════════════════╝                                                                                                                                                                                                                                                                
 ╔══════════╣ SUID - Check easy privesc, exploits and write perms
-╚ https://book.hacktricks.wiki/en/linux-hardening/privilege-escalation/index.html#sudo-and-suid                                                                                                                                                                                                                             
-strings Not Found                                                                                                                                                                                                                                                                                                           
+╚ https://book.hacktricks.wiki/en/linux-hardening/privilege-escalation/index.html#sudo-and-suid                                                                
+strings Not Found                                                                 
 -rwsr-xr-x 1 root root 99K Nov 22  2018 /usr/lib/x86_64-linux-gnu/lxc/lxc-user-nic                                                                                                                                                                                                                                          
 -rwsr-xr-x 1 root root 10K Mar 28  2017 /usr/lib/eject/dmcrypt-get-device
 -rwsr-xr-x 1 root root 111K Feb  2  2021 /usr/lib/snapd/snap-confine  --->  Ubuntu_snapd<2.37_dirty_sock_Local_Privilege_Escalation(CVE-2019-7304)
@@ -131,6 +131,7 @@ strings Not Found
 -rwsr-xr-x 1 root root 43K Sep 16  2020 /bin/mount  --->  Apple_Mac_OSX(Lion)_Kernel_xnu-1699.32.7_except_xnu-1699.24.8
 -rwsr-xr-x 1 root root 63K Jun 28  2019 /bin/ping
 -rwsr-xr-x 1 root root 44K Mar 22  2019 /bin/su
+                                
 
 ```
 
