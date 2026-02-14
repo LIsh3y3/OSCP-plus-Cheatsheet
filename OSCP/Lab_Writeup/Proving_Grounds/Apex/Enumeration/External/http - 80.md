@@ -157,7 +157,7 @@ Finished
 	- Invalid username or password
 - OpenEMRの認証情報は、ケースセンシティブ
 
-### 試行済み認証情報
+### 試行済み認証情報 -> ログイン失敗
 
 ==アカウントロックはかからない==
 
@@ -170,6 +170,9 @@ Finished
 - 並行して入手済みユーザー名小文字と簡単なパスワードでブルートフォースはできなさそう。
 ```sh
 hydra -L possible_usernames.txt -P /usr/share/wordlists/fasttrack.txt $TargetIP http-post-form "/openemr/interface/main/main_screen.php?auth=login&site=default:new_login_session_management=1&authProvider=Default&authUser=^USER^&clearPass=^PASS^&languageChoice=1:S=302" 
+...
+1 of 1 target completed, 0 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-02-14 10:13:00
 ```
 
 ## source -> nothing
