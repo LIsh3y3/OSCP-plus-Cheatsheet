@@ -1,4 +1,5 @@
 すこし理解に時間がかかった文法をまとめる。
+公開エクスプロイトのほとんどがPythonであるため、Pythonの理解を深める必要がある。
 
 ---
 
@@ -40,6 +41,42 @@ if __name__ == "__main__":
 Pythonでは、実行されているモジュールには `__name__` という特殊変数が自動で入る
 - 直接実行された場合 → `"__main__"`    
 - 他のファイルから `import` された場合  → `__name__ == ファイル名（拡張子なし）`
+
+### `__name__`の具体例
+
+1. test_module.pyを定義
+```python
+print("このファイルの __name__:", __name__)
+
+def hello():
+    print("Hello!")
+
+if __name__ == "__main__":
+    print("直接実行されました")
+```
+
+2. 直接実行
+```python
+python3 test_module.py
+# このファイルの __name__: __main__
+# Hello!
+# 直接実行されました
+```
+
+3. main.pyを定義
+```python
+import test_module # test_module.pyをモジュールとしてインポート
+
+print("main.pyの __name__:", __name__)
+```
+
+4. main.pyを実行して、test_module.pyをモジュールとして実行
+```python
+python3 main.py
+# このファイルの __name__: test_module
+# Hello!
+# main.pyの __name__ : __test_module__
+```
 
 ---
 
