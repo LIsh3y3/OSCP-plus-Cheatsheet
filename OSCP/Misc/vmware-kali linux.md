@@ -518,4 +518,4 @@ sha256sum -c sha256sum_nessus
 	- [x] 追加で、"Move window to left/right workspace"を、shift + win + ctrl + →/←と設定
 - [x] rockyou.txt.gzをgzipでアンジップ
 - [x] [[#日本語入力]]を有効にする
-- [ ] sublime textにANSI Escaping, 
+- [x] sublime textにANSI Escaping, Markdown Extended, MarkdownEditingを入れる
