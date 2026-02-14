@@ -19,8 +19,11 @@ PORT   STATE SERVICE REASON  VERSION
 # Enumeration
 
 - sqlconf.phpで入手した認証情報とデータベース情報（openemr）を利用して機密情報を入手できないか検証
+```sh
+┌──(koshi㉿kali)-[~/ProvingGrounds/Apex/Payloads]
+└─$ mysql -u openemr -h $TargetIP -p --skip-ssl
 
-
+```
 
 
 ---
