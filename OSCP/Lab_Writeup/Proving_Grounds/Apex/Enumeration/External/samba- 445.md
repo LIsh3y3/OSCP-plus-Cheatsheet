@@ -30,7 +30,33 @@ Unable to connect with SMB1 -- no workgroup available
 
 ### smbmap
 
+```sh
+# 基本列挙（Null Session / ゲスト確認）
+smbmap -H $TargetIP
 
+[+] IP: 192.168.227.145:445     Name: 192.168.227.145           Status: NULL Session
+        Disk                                                    Permissions     Comment
+        ----                                                    -----------     -------
+        print$                                                  NO ACCESS       Printer Drivers
+        docs                                                    READ ONLY       Documents
+        IPC$                                                    NO ACCESS       IPC Service (APEX server (Samba, Ubuntu))
+[*] Closed 1 connections    
+```
+
+### docs共有へのアクセス -> nothing
+
+```sh
+mkdir mount_point
+sudo mount -t cifs //$TargetIP/docs mount_point/
+cd mount_point
+```
+
+- webサイトからもアクセスできる情報
+```sh
+┌──(koshi㉿kali)-[~/ProvingGrounds/Apex/mount_point]
+└─$ ls
+'OpenEMR Features.pdf'  'OpenEMR Success Stories.pdf'
+```
 
 ---
 
