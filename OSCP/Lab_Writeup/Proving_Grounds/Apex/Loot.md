@@ -33,6 +33,7 @@ admin:thedoctor
 
 ## local.txt
 
+![[Pasted image 20260214171333.png]]
 ```zsh
 
 ```
