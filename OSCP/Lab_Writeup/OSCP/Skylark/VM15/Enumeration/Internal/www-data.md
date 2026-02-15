@@ -437,7 +437,22 @@ Starting gobuster in directory enumeration mode
 
 # Froxlor
 
+>Froxlor（フロクサー）は、SysCPから派生したオープンソースの無料Webホスティング・コントロールパネル
+
 - netstatでポート60002が以下のようになっていた
 ```sh
+www-data@milan:/tmp$ netstat -ano | grep 60002
+tcp6       0      0 :::60002                :::*                    LISTEN      off (0.00/0/0)
+```
+
+- [[#トンネリング]]して、60002にアクセス
+- foxlorのログイン画面が表示
+![[Pasted image 20260215143704.png]]
+
+## LinPEASでfroxlor関連の情報
+
+- 大量（"froxlor" というキーワードに 245 件マッチ）
+```sh
+╔══════════╣ Interesting writable files owned by me or writable by everyone (not in Home) (max 200)
 
 ```
