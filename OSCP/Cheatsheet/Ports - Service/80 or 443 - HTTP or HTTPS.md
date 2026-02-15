@@ -35,7 +35,7 @@ FeroxBuster：[[🦝FeroxBuster]]
 ulimit -n 8192
 
 # 再帰スキャン
-feroxbuster -u http://<TargetIP>:<Port>/ --depth <num> -r -k -w  /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt --auto-tune -s 200,301,302　-o WebEnum/feroxbuster.txt -x '<extensions>'
+feroxbuster -u http://<TargetIP>:<Port>/ --depth <num> -r -k -w  /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt --auto-tune -s 200,301,302 -o WebEnum/feroxbuster.txt -x '<extensions>'
 ```
 
 ## 脆弱性のスキャン
