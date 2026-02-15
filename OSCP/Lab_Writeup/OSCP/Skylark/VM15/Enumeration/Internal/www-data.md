@@ -592,4 +592,6 @@ hydra -l admin -P /usr/share/wordlists/fasttrack.txt 127.0.0.1 -s 60002 http-pos
 ```
 - →成功も失敗も302でリダイレクトされるっぽいので無理
 
-- 他を列挙してみる
+- いったん、Exploit-DBにあるエクスプロイトで、認証が必要なもの以外すべて試す
+- それでもだめなら、Linux Exploit Suggesterを試す
+- それでもだめなら、ほかのVMを列挙する
