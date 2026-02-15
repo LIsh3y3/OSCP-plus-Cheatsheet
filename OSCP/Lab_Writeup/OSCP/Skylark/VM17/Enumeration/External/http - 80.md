@@ -22,7 +22,9 @@ PORT   STATE SERVICE REASON  VERSION
 errorが多ければ`-t 64`も試す
 
 ```zsh
-
+gobuster dir -u http://$TargetIP/ -r w /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt -t 100 -o WebEnum/gobuster 80.txt -x 'html,ht m, txt, sh, php, cgi, asp, aspx, jsp, pl, py, pdf -s 200,301,302 -b ""
+...
+/. 200
 ```
 
 ---

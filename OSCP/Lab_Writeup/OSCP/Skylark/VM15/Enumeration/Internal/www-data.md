@@ -531,6 +531,10 @@ admin:S1mplerCloud
 froxlor:froxlor
 oscuser:7NVLVTDGJ38HM2TQ
 froxlor:7NVLVTDGJ38HM2TQ
+milan:7NVLVTDGJ38HM2TQ
+sarah:7NVLVTDGJ38HM2TQ
+administartor:7NVLVTDGJ38HM2TQ
+admin:7NVLVTDGJ38HM2TQ
 ```
 
 ![[Pasted image 20260215143704.png]]
@@ -548,8 +552,8 @@ www-data@milan:/var/www/html/froxlor$ python3 /tmp/eviltree.py -r . -i -v -x ".{
 ### gobuster -> nothing
 
 - Gobusterを実施し、200と返るものを確認
-
-
+- すべてアクセスしたが特に何かわかるものではない
+![[Pasted image 20260215174204.png]]
 
 ## LinPEASでfroxlor関連の情報
 
