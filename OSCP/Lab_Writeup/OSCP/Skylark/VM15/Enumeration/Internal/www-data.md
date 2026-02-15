@@ -303,33 +303,45 @@ MariaDB [(none)]> SELECT version();
 
 - 認証情報がないか探す
 	- osCommerceのユーザー名なだけの可能性あり
+	- `http://milan:60001/docs/database_schema.pdf`にアクセスし、passwordで検索かけたところ、`administrators`、`customers`、`customers_info`(password_reset_key)でヒットした
+	- `customers`、`customers_infoはEmtpy set
 ```sql
 Database changed
 MariaDB [oscdb]> SHOW TABLES;
 +---------------------------------------------+
 | Tables_in_oscdb                             |
 +---------------------------------------------+
-| action_recorder                             |
-| address_book                                |
-| address_format                              |
+...
 | administrators                              |
 ...
-custo
-| zones                                       |
+customers
+...
 | zones_to_geo_zones                          |
 +---------------------------------------------+
 50 rows in set (0.000 sec)
 
 MariaDB [oscdb]> SELECT * FROM administrators;
-+----+-----------+------------------------------------+                                                                                                     
-| id | user_name | user_password                      |                                                                                                     
-+----+-----------+------------------------------------+                                                                                                     
-|  1 | admin     | $P$DVNsEBdq7PQdr7GR65xbL0pas6caWx0 |                                                                                                     
++----+-----------+------------------------------------+                       
+| id | user_name | user_password                      |                       
++----+-----------+------------------------------------+                       
+|  1 | admin     | $P$DVNsEBdq7PQdr7GR65xbL0pas6caWx0 |                       
 +----+-----------+------------------------------------+                                                                                                     
 1 row in set (0.001 sec)                                                      
 ```
 
 - 一応クラック
+	- <u>30分以上かかったので、おそらくこのadminパスワードは使わない</u>
 ```sh
+┌──(koshi㉿kali)-[~/PEN-200/Skylark/VM15]
+└─$ john --wordlist=/usr/share/wordlists/rockyou.txt oscdb_admin.hash 
+```
 
+- mysqlのパスワードで`su`できるかどうかを確認→失敗
+```sh
+www-data@milan:/home/milan$ su milan
+Password: 
+su: Authentication failure
+www-data@milan:/home/milan$ su sarah
+Password: 
+su: Authentication failure
 ```
