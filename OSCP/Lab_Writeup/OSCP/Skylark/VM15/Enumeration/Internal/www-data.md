@@ -97,6 +97,17 @@ var/www/html/froxlor/lib/Froxlor/Database/Database.php
 /var/www/html/oscommerce/catalog/install/includes/configure.php:  define('DB_SERVER_USERNAME', '');
 ```
 
+## LinEnum
+
+### 結果抽出
+
+```sh
+/var/www/html/froxlor
+-rwxr-xr-x  1 www-data www-data 2.2K Oct 10  2021 .travis.yml
+
+```
+
+
 ---
 ---
 
