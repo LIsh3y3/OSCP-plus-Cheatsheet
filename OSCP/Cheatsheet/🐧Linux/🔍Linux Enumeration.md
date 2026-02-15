@@ -595,9 +595,14 @@ ls -la ~/.ssh/
 grep -EiR "pass(word)?|pwd|credential" --include=\*.{txt,ini,cfg,conf,config,xml,ps1,git,yml,php} . 2>/dev/null  
 ```
 ```zsh
-# wget https://raw.githubusercontent.com/t3l3machus/eviltree/refs/heads/main/eviltree.py
+# eviltree.pyのダウンロード
+wget https://raw.githubusercontent.com/t3l3machus/eviltree/refs/heads/main/eviltree.py
+
+# 正規表現
 python3 eviltree.py -r <dir> -i -v -x ".{0,3}passw.{0,3}[=]{1}.{0,18}"
-# キーワードベース：python3 eviltree.py -r <dir> -i -v -k passw,db_,admin,account,user,token,pwd
+
+# キーワードベース
+python3 eviltree.py -r <dir> -i -v -k passw,db_,admin,account,user,token,pwd
 ```
 - `-i`：Interesiting only
 - `-v`：どのキーワードがマッチしたか表示
