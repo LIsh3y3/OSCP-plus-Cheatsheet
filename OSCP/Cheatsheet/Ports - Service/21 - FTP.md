@@ -164,3 +164,6 @@ ftp> put shell.php
 - "29 Entering Extended Passive Mode (|||10092|) 150 Opening BINARY mode data connection for xxx (2590 bytes)."と出力されて止まる
 	- →VPNのパケット制限がかかっている可能性があるため、`sudo ifconfig tun0 mtu 1200`としてからダウンロード
 	- →FWで遮断されている可能性があるため、`passive on`としてからダウンロード
+
+- lftpで接続後、`ls`とすると"
+	- ログイン後、`set ssl:verify-certificate no`とする
