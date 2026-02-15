@@ -669,3 +669,27 @@ hydra -l admin -P /usr/share/wordlists/fasttrack.txt 127.0.0.1 -s 60002 http-pos
 
 - それでもだめなら、もう一度このwww-dataを丁寧に列挙していく
 
+- 以下にSQLの認証情報があった
+```sh
+www-data@milan:/var/www/html/froxlor$ cd lib
+www-data@milan:/var/www/html/froxlor/lib$ ls
+Froxlor  ajax.php  configfiles  formfields  init.php  navigation  tables.inc.php  userdata.inc.php  version.inc.php
+www-data@milan:/var/www/html/froxlor/lib$ cat userdata.inc.php 
+<?php
+// automatically generated userdata.inc.php for Froxlor
+$sql['host']='127.0.0.1';
+$sql['user']='froxlor';
+$sql['password']='J5EPKLGEA7LR4ZV2';
+$sql['db']='froxlor';
+$sql['ssl']['caFile']='';
+$sql['ssl']['verifyServerCertificate']='0';
+$sql_root[0]['caption']='Default';
+$sql_root[0]['host']='127.0.0.1';
+$sql_root[0]['user']='root';
+$sql_root[0]['password']='7NVLVTDGJ38HM2TQ';
+$sql_root[0]['ssl']['caFile']='';
+$sql_root[0]['ssl']['verifyServerCertificate']='0';
+// enable debugging to browser in case of SQL errors
+$sql['debug'] = false;
+
+```

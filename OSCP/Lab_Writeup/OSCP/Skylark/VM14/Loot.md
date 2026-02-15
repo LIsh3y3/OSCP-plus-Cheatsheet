@@ -17,6 +17,10 @@ umbracoAdmin@tokyo07.jp
 
 # VM15のDBパスワード
 oscuser:7NVLVTDGJ38HM2TQ
+
+# VM15のDB認証情報
+froxlor:J5EPKLGEA7LR4ZV2
+root:7NVLVTDGJ38HM2TQ
 ```
 
 ---
