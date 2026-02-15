@@ -73,6 +73,17 @@ chmod +x linpeas.sh
 tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      -   
 tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -     
 
+══╣ Polkit Binary
+Pkexec binary found at: /usr/bin/pkexec                    
+Pkexec binary has SUID bit set!
+-rwsr-xr-x 1 root root 31032 Feb 21  2022 /usr/bin/pkexec
+pkexec version 0.105
+
+╔══════════╣ All users & groups
+
+uid=1000(milan) gid=1000(milan04) groups=1000(milan04),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),120(lpadmin),131(lxd),132(sambashare)
+
+
 ```
 
 ---
