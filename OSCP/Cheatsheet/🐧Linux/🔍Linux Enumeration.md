@@ -556,6 +556,8 @@ find / -type f \( -perm -2000 \) -exec ls -la {} \; 2>/dev/null
 	- そのまま**ダイレクトに**LatMovやPrivEscにつなげる
 	- 発見した認証情報をもとに、新たなパスワードリストを作成してブルートフォースを実施する[[Password Attack]]
 
+- 💡Googleで、`<service> where is [database] password stored`と検索するのもよい手段
+
 ## 機密情報の列挙コマンド
 
 環境変数の確認
