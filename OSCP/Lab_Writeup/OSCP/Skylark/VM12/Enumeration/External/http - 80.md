@@ -2,12 +2,12 @@
 
 ```
 PORT   STATE SERVICE REASON  VERSION
-53/tcp open  domain? syn-ack
-|_dns-nsec3-enum: Can't determine domain for host 10.10.11.174; use dns-nsec3-enum.domains script arg.
-|_dns-nsec-enum: Can't determine domain for host 10.10.11.174; use dns-nsec-enum.domains script arg.
-
-Host script results:
-|_dns-brute: Can't guess domain of "10.10.11.174"; use dns-brute.domain script argument.
+80/tcp   open  http          Microsoft IIS httpd 10.0
+|_http-title: Home page - Skylark Partner Portal
+| http-auth: 
+| HTTP/1.1 401 Unauthorized\x0D
+|_  Basic realm=SKYLARK
+|_http-server-header: Microsoft-IIS/10.0
 ```
 
 ---
