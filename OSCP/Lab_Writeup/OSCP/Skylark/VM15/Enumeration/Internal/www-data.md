@@ -623,3 +623,8 @@ hydra -l admin -P /usr/share/wordlists/fasttrack.txt 127.0.0.1 -s 60002 http-pos
 	- →列挙する
 
 - それでもだめなら、もう一度このwww-dataを丁寧に列挙していく
+
+#### XSS
+
+- https://0xdf.gitlab.io/2025/01/11/htb-sightless.html
+- ここには、XSSの脆弱性を利用して、新しいアカウントを作れる、とある
