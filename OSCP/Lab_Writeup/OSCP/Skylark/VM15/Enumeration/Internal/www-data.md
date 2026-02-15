@@ -697,5 +697,39 @@ $sql['debug'] = false;
 - 認証成功
 	- rootでもfroxlorとしても成功できる
 ```sh
+www-data@milan:/var/www/html/froxlor/lib$ mysql -u root -p7NVLVTDGJ38HM2TQ
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 68
+Server version: 10.3.34-MariaDB-0ubuntu0.20.04.1 Ubuntu 20.04
 
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| froxlor            |
+| information_schema |
+| mysql              |
+| oscdb              |
+| performance_schema |
++--------------------+
+5 rows in set (0.003 sec)
 ```
+
+- CronJobs
+```sql
++----+---------------------+--------------+---------------------------------------+------------+----------+----------+-------------------+                                                                                                                                                                                  
+| id | module              | cronfile     | cronclass                             | lastrun    | interval | isactive | desc_lng_key      |                                                                                                                                                                                  
++----+---------------------+--------------+---------------------------------------+------------+----------+----------+-------------------+                                                                                                                                                                                  
+|  1 | froxlor/core        | tasks        | \Froxlor\Cron\System\TasksCron        | 1771165801 | 5 MINUTE |        1 | cron_tasks        |                                                                                                                                                                                  
+|  2 | froxlor/core        | traffic      | \Froxlor\Cron\Traffic\TrafficCron     | 1668920402 | 1 DAY    |        1 | cron_traffic      |                                                                                                                                                                                  
+|  3 | froxlor/reports     | usage_report | \Froxlor\Cron\Traffic\ReportsCron     | 1668920701 | 1 DAY    |        1 | cron_usage_report |                                                                                                                                                                                  
+|  4 | froxlor/core        | mailboxsize  | \Froxlor\Cron\System\MailboxsizeCron  | 1670238001 | 6 HOUR   |        1 | cron_mailboxsize  |                                                                                                                                                                                  
+|  5 | froxlor/letsencrypt | letsencrypt  | \Froxlor\Cron\Http\LetsEncrypt\AcmeSh |          0 | 5 MINUTE |        0 | cron_letsencrypt  |                                                                                                                                                                                  
+|  6 | froxlor/backup      | backup       | \Froxlor\Cron\System\BackupCron       | 1668921001 | 1 DAY    |        1 | cron_backup       |  
+```
+
+- panel_adminsとftp_usersテーブルにそれぞれパスワードハッシュがあった
