@@ -612,3 +612,5 @@ hydra -l admin -P /usr/share/wordlists/fasttrack.txt 127.0.0.1 -s 60002 http-pos
 
 - それでもだめなら、ほかのVMを列挙する
 	- →列挙する
+
+- それでもだめなら、もう一度このwww-dataを丁寧に列挙していく
