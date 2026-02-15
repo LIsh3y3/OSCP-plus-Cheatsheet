@@ -281,7 +281,16 @@ strings Not Found
 ```sh
 ./pspy64 -p -i 1000
 ```
+- →特になし
+```sh
+systemctl list-units --type=service
+```
+- →特になし
 
+```sh
+systemctl list-unit-files --type=service
+```
+- →特になし
 
 ---
 
