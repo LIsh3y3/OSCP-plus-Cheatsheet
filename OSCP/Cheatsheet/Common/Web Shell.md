@@ -489,4 +489,28 @@ $output = implode("\n", $arr);
 
 # トラブルシュート
 
-- 
+## リスナーでinvalid shellもしくは接続がこない
+
+- 考えられる原因：
+	- FWのルールで遮断
+	- ターゲットでツールが使えない
+	- PHPの設定 (`phpinfo()`)で `disable_functions` に `exec` などの Web shell 実行に必要な関数が禁じられている
+
+- FWのルールで遮断されていたら、そもそもinvalid shellとならない
+
+- pingが通るか、ポート80への通信が可能かを確認する
+```sh
+# 攻撃者
+sudo tcpdump -i tun0
+# ターゲット
+ping -c3 <attacker_ip> 
+
+# 攻撃者
+echo test > test.txt
+sudo python -m http.server 80
+
+# ターゲット
+wget <attacker_ip>/test.txt
+```
+
+- `busybox nc`を使う
