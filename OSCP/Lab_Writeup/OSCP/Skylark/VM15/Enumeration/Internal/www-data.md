@@ -304,7 +304,7 @@ strings Not Found
 │   │       ├── applications [error accessing dir]
 │   │       ├── evolution [error accessing dir]
 │   │       ├── flatpak
-│   │       │   └── db
+│   │       │   └── db # fileなし
 │   │       ├── gnome-settings-daemon
 │   │       ├── gnome-shell [error accessing dir]
 │   │       ├── gvfs-metadata [error accessing dir]
@@ -340,7 +340,7 @@ strings Not Found
             └── tracker
                 └── data
 ```
-- `./local/share/tracker/data`はアクセス
+- `./local/share/tracker/data`はアクセスできないファイルがある
 
 ---
 
@@ -521,6 +521,10 @@ froxlor:7NVLVTDGJ38HM2TQ
 
 ![[Pasted image 20260215143704.png]]
 
+- ディレクトリ探索
+```sh
+
+```
 
 ### 気になる情報
 

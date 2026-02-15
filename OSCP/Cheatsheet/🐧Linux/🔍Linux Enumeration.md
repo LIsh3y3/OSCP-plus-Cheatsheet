@@ -595,7 +595,7 @@ python3 laZagne.py all.py all -oN <output_file>
 ```
 ```zsh
 # wget https://raw.githubusercontent.com/t3l3machus/eviltree/refs/heads/main/eviltree.py
-python3 eviltree.py -r <dir> -i -k passw,db_,admin,account,user,token,pwd
+python3 eviltree.py -r <dir> -i -v -k passw,db_,admin,account,user,token,pwd
 ```
 ```zsh
 # 拡張子はターゲットシステムに応じて追記する（cnf等）
