@@ -602,6 +602,6 @@ hydra -l admin -P /usr/share/wordlists/fasttrack.txt 127.0.0.1 -s 60002 http-pos
 
 - それでもだめなら、Linux Exploit Suggesterを試す
 	- PwnKitは使えない
-	- DirtyPipe
+	- DirtyPipeはGLIBCのバージョンが古くて使えない
 
 - それでもだめなら、ほかのVMを列挙する
