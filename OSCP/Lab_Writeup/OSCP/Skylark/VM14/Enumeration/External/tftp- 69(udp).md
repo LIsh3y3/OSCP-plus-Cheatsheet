@@ -1,5 +1,8 @@
 >TFTP（Trivial File Transfer Protocol）は、最もシンプルなファイル転送プロトコルの一つです。UDPポート69番で動作し、ユーザー認証や暗号化を必要とせずにファイル転送が可能です。TFTPのシンプルさは、VoIP端末などのデバイスへの設定ファイルやROMイメージの展開といった内部ネットワーク操作に有効ですが、同時に深刻なセキュリティリスクも招きます。
 
+- 参考
+	- https://hackviser.com/tactics/pentesting/services/tftp
+
 # Nmap
 
 ```zsh
@@ -143,6 +146,18 @@ idkey=proxy_config_TyhsjEkUSFxpkxA
 publish_expires=0
 nat_policy_ref=x9Q58Jqg3ZDHHP6
 conference_factory_uri=sip:conference-factory@sip.linphone.org
+
+```
+
+### sip_327.cfg
+
+```sh
+┌──(koshi㉿kali)-[~/PEN-200/Skylark/VM14]
+└─$ cat sip_327.cfg
+<?xml version="1.0"?>
+<options>
+  <general>
+    <account>Z834263d721f12beb302b8b2</account>
 
 ```
 
