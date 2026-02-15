@@ -521,9 +521,9 @@ froxlor:7NVLVTDGJ38HM2TQ
 
 ![[Pasted image 20260215143704.png]]
 
-- ディレクトリ探索
+- ディレクトリ探索し、パスワードにマッチするものを探す
 ```sh
-
+www-data@milan:/var/www/html/froxlor$ python3 /tmp/eviltree.py -r . -i -v -x ".{0,3}passw.{0,3}[=]{1}.{0,18}"
 ```
 
 ### 気になる情報

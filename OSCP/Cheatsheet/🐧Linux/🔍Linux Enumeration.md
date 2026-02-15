@@ -588,20 +588,20 @@ ls -la ~/.ssh/
 ```
 - →秘密鍵があった場合：[[💥Linux Privilege Escalation#Misc]]
 
-中身に認証情報の記載があるファイルを探す ([Lazagne](https://github.com/AlessandroZ/LaZagne)、[EvilTree](https://github.com/t3l3machus/eviltree)）
-```zsh
-# git clone -> pip3 install -r requirements.txt
-python3 laZagne.py all.py all -oN <output_file>
-```
-```zsh
-# wget https://raw.githubusercontent.com/t3l3machus/eviltree/refs/heads/main/eviltree.py
-python3 eviltree.py -r <dir> -i -v -k passw,db_,admin,account,user,token,pwd
-```
+中身に認証情報の記載があるファイルを探す ([EvilTree](https://github.com/t3l3machus/eviltree)）
+	🚨gzやzipファイル等の圧縮ファイルの中身は読み取れないことに留意する（機密情報が圧縮ファイルにある可能性）
 ```zsh
 # 拡張子はターゲットシステムに応じて追記する（cnf等）
 grep -EiR "pass(word)?|pwd|credential" --include=\*.{txt,ini,cfg,conf,config,xml,ps1,git,yml,php} . 2>/dev/null  
 ```
-- 🚨gzやzipファイル等の圧縮ファイルの中身は読み取れないことに留意する（機密情報が圧縮ファイルにある可能性）
+```zsh
+# wget https://raw.githubusercontent.com/t3l3machus/eviltree/refs/heads/main/eviltree.py
+python3 eviltree.py -r <dir> -i -v -x ".{0,3}passw.{0,3}[=]{1}.{0,18}"
+# キーワードベース：python3 eviltree.py -r <dir> -i -v -k passw,db_,admin,account,user,token,pwd
+```
+- `-i`：Interesiting only
+- `-v`：どのキーワードがマッチしたか表示
+- `-x ".{0,3}passw.{0,3}[=]{1}.{0,18}"`：`passw` を含み、その近くに `=` があり、右側に値っぽいものがあるのを抽出
 
 認証情報の記載があるバイナリを探す
 ```zsh
