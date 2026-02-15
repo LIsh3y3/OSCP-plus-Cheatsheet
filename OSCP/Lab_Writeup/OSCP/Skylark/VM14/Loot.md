@@ -5,6 +5,7 @@ ftp_jp:~be<3@6fe1Z:2e8 # from backup.cfg (umbraco web app用)
 l.nguyen:ChangeMePlease__XMPPTest
 j.jameson:ChangeMePlease__XMPPTest
 j.jones:ChangeMePlease__XMPPTest
+reynolds:bj1ZzWEmJd870YHMsV+NdfsTuce+zsQRyvb7e5fIgY8= # testing.com
 ```
 
 ---

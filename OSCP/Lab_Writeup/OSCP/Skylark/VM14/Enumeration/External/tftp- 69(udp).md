@@ -159,7 +159,17 @@ conference_factory_uri=sip:conference-factory@sip.linphone.org
   <general>
     <account>Z834263d721f12beb302b8b2</account>
 
+...
+      <ident>Z834263d721f12beb302b8b2</ident>
+      <name>reynolds@testing.com</name>
+      <save_username>true</save_username>
+      <username>reynolds</username>
+      <save_password>true</save_password>
+      <password>bj1ZzWEmJd870YHMsV+NdfsTuce+zsQRyvb7e5fIgY8=
+</password>
 ```
+- これはhash値ではない
+- `reynolds@testing.com`と検索しても出てこないので、認証情報化と思う
 
 
 ---
