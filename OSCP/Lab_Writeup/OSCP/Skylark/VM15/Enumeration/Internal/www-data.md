@@ -73,36 +73,15 @@ chmod +x linpeas.sh
 tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      -   
 tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -     
 
-══╣ Polkit Binary
-Pkexec binary found at: /usr/bin/pkexec                    
-Pkexec binary has SUID bit set!
--rwsr-xr-x 1 root root 31032 Feb 21  2022 /usr/bin/pkexec
-pkexec version 0.105
-
 # milanの権限高い
 ╔══════════╣ All users & groups
 
 uid=1000(milan) gid=1000(milan04) groups=1000(milan04),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),120(lpadmin),131(lxd),132(sambashare)
 
-# DBの認証情報がないか？
-╔══════════╣ Analyzing MariaDB Files (limit 70)
--rw-r--r-- 1 root root 869 Feb 17  2022 /etc/mysql/mariadb.cnf   
-
-╔══════════╣ Analyzing Backup Manager Files (limit 70)
-
--rwxr-xr-x 1 www-data www-data 7036 Aug 18  2017 /var/www/html/oscommerce/catalog/admin/includes/functions/database.php
-
 # Froxlor については任意の書き込みが可能
 ╔══════════╣ Interesting writable files owned by me or writable by everyone (not in Home) (max 200)
 ╚ https://book.hacktricks.wiki/en/linux-hardening/privilege-escalation/index.html#writable-files       
 var/www/html/froxlor/lib/Froxlor/Database/Database.php
-
-╔══════════╣ Backup folders
-/var/www/html/oscommerce/catalog/admin/backups
-
-╔══════════╣ Backup files (limited 100)
-
--rwxr-xr-x 1 www-data www-data 21903 Aug 18  2017 /var/www/html/oscommerce/catalog/admin/backup.php
 
 # DBのパスワードらしきものを発見
 ╔══════════╣ Searching passwords in config PHP files
@@ -132,6 +111,21 @@ var/www/html/froxlor/lib/Froxlor/Database/Database.php
 
 ## システム情報
 
+- PwnKitは使えない
+```sh
+www-data@milan:/home/milan$ hostnamectl
+   Static hostname: milan
+         Icon name: computer-vm
+           Chassis: vm
+        Machine ID: 486dfe9556a64225a27a333a8ee9d4d3
+           Boot ID: 2068944e73904d519faeb8a94a50e81d
+    Virtualization: vmware
+  Operating System: Ubuntu 20.04.5 LTS
+            Kernel: Linux 5.15.0-52-generic
+      Architecture: x86-64
+www-data@milan:/home/milan$ dpkg -s policykit-1 | grep Version
+Version: 0.105-26ubuntu1.3
+```
 
 ---
 
