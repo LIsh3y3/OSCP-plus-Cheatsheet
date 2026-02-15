@@ -545,9 +545,10 @@ www-data@milan:/var/www/html/froxlor$ python3 /tmp/eviltree.py -r . -i -v -x ".{
 - https://qiita.com/kk0128/items/d7c6298a68995ad53c8f
 	- pspyを実行しても、froxlorと思われるプロセスは見当たらない
 
-### gobuster
+### gobuster -> nothing
 
 - Gobusterを実施し、200と返るものを確認
+
 
 
 ## LinPEASでfroxlor関連の情報
@@ -603,5 +604,6 @@ hydra -l admin -P /usr/share/wordlists/fasttrack.txt 127.0.0.1 -s 60002 http-pos
 - それでもだめなら、Linux Exploit Suggesterを試す
 	- PwnKitは使えない
 	- DirtyPipeはGLIBCのバージョンが古くて使えない
+	- sudo Baron Sameditもパッチ済み
 
 - それでもだめなら、ほかのVMを列挙する
