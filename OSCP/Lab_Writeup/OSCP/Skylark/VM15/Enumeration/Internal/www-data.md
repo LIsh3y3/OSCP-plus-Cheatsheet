@@ -387,7 +387,7 @@ chmod +x chisel_1.11.3_linux_amd64
 
 ---
 
-# CUPS
+# CUPS -> nothing
 
 >CUPS（カップス、以前の名称はCommon UNIX Printing System）とはUnix系オペレーティングシステム (OS) 用のモジュール化された印刷システムである。
 
@@ -404,6 +404,40 @@ root        1921  0.0  0.6 178396 12352 ?        Ssl  21:14   0:00 /usr/sbin/cup
 
 - 念のためGobusterでスキャンしてみる
 	- 拡張子が違うばあいでも、それを許容するため、200が多い
+```sh
+┌──(koshi㉿kali)-[~/PEN-200/Skylark/VM15]
+└─$ gobuster dir -u http://127.0.0.1:631/ -r -k -w /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt -t 100 -o WebEnum/gobuster_cups_631.txt -x 'html,txt,sh,php,pdf' -s 200,301,302 -b "" --exclude-length 4609 
+===============================================================
+Gobuster v3.8
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:               http://127.0.0.1:631/
+[+] Method:            GET
+[+] Threads:           100
+[+] Wordlist:          /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt
+[+] Status codes:      301,302,200
+[+] Exclude Length:    4609
+[+] User Agent:        gobuster/3.8
+[+] Extensions:        php,pdf,html,txt,sh
+[+] Follow Redirect:   true
+[+] Timeout:           10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/index.html           (Status: 200) [Size: 2295]
+/help                 (Status: 200) [Size: 3165]
+/classes.txt          (Status: 200) [Size: 2047]
+/classes.sh           (Status: 200) [Size: 2047]
+/classes              (Status: 200) [Size: 2047]
+/classes.pdf          (Status: 200) [Size: 2047]
+
+```
+
+---
+
+# Froxlor
+
+- netstatでポート60002が以下のようになっていた
 ```sh
 
 ```
