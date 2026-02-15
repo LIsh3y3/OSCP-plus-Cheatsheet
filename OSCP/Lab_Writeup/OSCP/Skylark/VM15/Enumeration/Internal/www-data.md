@@ -387,3 +387,12 @@ chmod +x chisel_1.11.3_linux_amd64
 # CUPS
 
 >CUPS（カップス、以前の名称はCommon UNIX Printing System）とはUnix系オペレーティングシステム (OS) 用のモジュール化された印刷システムである。
+
+
+- LinPEASのCUPS関連の結果
+```sh
+╔══════════╣ Running processes (cleaned)
+root        1915  0.0  0.4  28972  9276 ?        Ss   21:14   0:00 /usr/sbin/cupsd -l
+root        1921  0.0  0.6 178396 12352 ?        Ssl  21:14   0:00 /usr/sbin/cups-browsed
+```
+- →rootの権限で動作している
