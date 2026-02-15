@@ -34,6 +34,7 @@ oscuser:7NVLVTDGJ38HM2TQ # VM15のDBパスワード
 
 ## proof.txt
 
+![[Pasted image 20260216002115.png]]
 ```zsh
-
+cb304068234ac18e3ab415d68cede84f
 ```
