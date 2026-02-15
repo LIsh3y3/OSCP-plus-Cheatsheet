@@ -12,7 +12,14 @@ PORT   STATE SERVICE REASON  VERSION
 # Enumeration
 
 ```sh
-nmap -n -Pn -sU -p69 -sV --script tftp-enum $TargetIP
+$ nmap -n -Pn -sU -p69 -sV --script tftp-enum $TargetIP
+PORT STATE SERVICE VERSION 
+69/udp open tftp Netkit tftpd or atftpd 
+ tftp-enum 
+   backup.cfg
+   sip-confg
+   sip.cfg
+   sip_327.cfg
 ```
 
 ---
