@@ -42,7 +42,7 @@ errorが多ければ`-t 64`も試す
 The proxy moz-proxy://localhost:8080 is requesting a username and password. The site says: “SKYLARK LEGACY”
 ```
 
-- 以下でBasic認証施行を実施
+- 以下でBasic認証施行を実施するも失敗
 ```
 SKYLARK:LEGACY
 skylark:skylark
