@@ -134,7 +134,16 @@ Version: 0.105-26ubuntu1.3
 
 ## ネットワーク
 
-- Pivot には使えない
+- 他インターフェースがないので、Pivot には使えない
+
+- サービス
+```sh
+...
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      off (0.00/0/0)
+...
+tcp6       0      0 :::60002                :::*                    LISTEN      off (0.00/0/0)
+...
+```
 
 ---
 
@@ -321,11 +330,19 @@ MariaDB [oscdb]> SELECT * FROM administrators;
 1 row in set (0.001 sec)                                                      
 ```
 
-- 一応クラック
+- 一応クラックするも、失敗
 	- <u>30分以上かかったので、おそらくこのadminパスワードは使わない</u>
 ```sh
 ┌──(koshi㉿kali)-[~/PEN-200/Skylark/VM15]
 └─$ john --wordlist=/usr/share/wordlists/rockyou.txt oscdb_admin.hash 
+...
+0g 0:00:00:46 4.13% (ETA: 13:31:39) 0g/s 14785p/s 14785c/s 14785C/s chambery..celos
+...
+Session completed. 
+
+┌──(koshi㉿kali)-[~/PEN-200/Skylark/VM15]
+└─$ john --show oscdb_admin.hash 
+0 password hashes cracked, 1 left
 ```
 
 - mysqlのパスワードで`su`できるかどうかを確認→失敗
