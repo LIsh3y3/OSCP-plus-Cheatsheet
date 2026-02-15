@@ -588,5 +588,8 @@ drwxr-xr-x 134 root root 12288 Dec  7  2022 ..
 
 - パスワードを探すのは難しそうなので、パスワードスプレーを実施する
 ```sh
-
+hydra -l admin -P /usr/share/wordlists/fasttrack.txt 127.0.0.1 -s 60002 http-post-form '/index.php:script=&qrystr= &loginname=^USER^&password=^PASS^&lanquage=profile&send=send:F=again!
 ```
+- →成功も失敗も302でリダイレクトされるっぽいので無理
+
+- 他を列挙してみる
