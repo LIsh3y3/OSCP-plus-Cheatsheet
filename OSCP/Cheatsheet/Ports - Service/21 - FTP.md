@@ -46,7 +46,7 @@ ftp <TargetIP> [Port]
 ```zsh
 lftp <TargetIP> -u <username> [-p <port>]
 ```
-- ftpの拡張版で使いやすく、可視性も良いため、基本は==これを使う==（`ls -la`も可能）
+- ftpの拡張版で使いやすく、可視性も良いため、基本は==これを使う==（`ls -la`も可能なときがある）
 
 Webブラウザ経由
 ```url
@@ -165,5 +165,5 @@ ftp> put shell.php
 	- →VPNのパケット制限がかかっている可能性があるため、`sudo ifconfig tun0 mtu 1200`としてからダウンロード
 	- →FWで遮断されている可能性があるため、`passive on`としてからダウンロード
 
-- lftpで接続後、`ls`とすると"
+- lftpで接続後、`ls`とすると"Certificate verification: The certificate is NOT trusted. "と表示されてディレクトリが列挙できない
 	- ログイン後、`set ssl:verify-certificate no`とする
