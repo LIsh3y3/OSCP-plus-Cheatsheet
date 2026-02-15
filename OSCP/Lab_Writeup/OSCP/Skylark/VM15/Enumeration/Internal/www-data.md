@@ -280,8 +280,67 @@ strings Not Found
 
 ### /homeディレクトリ
 
-
-
+```sh
+/home/
+├── milan
+│   ├── .bashrc
+│   ├── .profile
+│   ├── .cache [error accessing dir]
+│   ├── .config
+│   │   ├── dconf [error accessing dir]
+│   │   ├── enchant [error accessing dir]
+│   │   ├── evolution [error accessing dir]
+│   │   ├── gedit
+│   │   ├── gnome-session [error accessing dir]
+│   │   ├── goa-1.0
+│   │   ├── gtk-3.0 [error accessing dir]
+│   │   ├── ibus [error accessing dir]
+│   │   ├── nautilus
+│   │   ├── pulse [error accessing dir]
+│   │   └── update-notifier [error accessing dir]
+│   ├── .gnupg [error accessing dir]
+│   ├── .local
+│   │   └── share
+│   │       ├── applications [error accessing dir]
+│   │       ├── evolution [error accessing dir]
+│   │       ├── flatpak
+│   │       │   └── db
+│   │       ├── gnome-settings-daemon
+│   │       ├── gnome-shell [error accessing dir]
+│   │       ├── gvfs-metadata [error accessing dir]
+│   │       ├── ibus-table
+│   │       ├── icc
+│   │       ├── keyrings [error accessing dir]
+│   │       ├── nano [error accessing dir]
+│   │       ├── sounds [error accessing dir]
+│   │       ├── tracker
+│   │       │   └── data
+│   │       └── xorg [error accessing dir]
+│   ├── .ssh [error accessing dir]
+│   ├── Desktop
+│   ├── Documents
+│   ├── Downloads
+│   ├── Music
+│   ├── Pictures
+│   ├── Public
+│   ├── Templates
+│   └── Videos
+└── sarah
+    ├── .bashrc
+    ├── .profile
+    ├── .cache
+    │   ├── gstreamer-1.0
+    │   └── tracker
+    ├── .config
+    │   ├── goa-1.0
+    │   └── pulse [error accessing dir]
+    └── .local
+        └── share
+            ├── gvfs-metadata [error accessing dir]
+            └── tracker
+                └── data
+```
+- `./local/share/tracker/data`はアクセス
 
 ---
 
