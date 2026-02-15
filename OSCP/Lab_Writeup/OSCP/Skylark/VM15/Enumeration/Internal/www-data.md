@@ -354,3 +354,10 @@ www-data@milan:/home/milan$ su sarah
 Password: 
 su: Authentication failure
 ```
+
+---
+
+# トンネリング
+
+- GLIBCが古いため、ligoloはつかえず
+- chiselを使う
