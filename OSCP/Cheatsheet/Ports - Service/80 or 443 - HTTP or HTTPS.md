@@ -21,7 +21,7 @@ whatweb -v -a3 --log-verbose WebEnum/whatweb.txt http://<TargetIP>
 
 - [ ] `-s`や`-b`でフィルタするのを当たり前にする？
 
-Gobuster：[[👻Gobuster#ディレクトリ・ファイル列挙コマンド]]
+Gobuster：[[👻Gobuster]]
 ```zsh
 # ファイルアクセスエラー回避のため、同時に開けるファイルの最大数を調整
 ulimit -n 8192
