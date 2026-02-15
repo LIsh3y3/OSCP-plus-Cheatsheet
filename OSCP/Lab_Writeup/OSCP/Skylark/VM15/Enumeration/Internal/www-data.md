@@ -264,6 +264,9 @@ strings Not Found
 
 ## システムデーモン
 
+```sh
+./pspy64 -p -i 1000
+```
 
 
 ---
