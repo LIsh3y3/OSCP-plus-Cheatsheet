@@ -1,7 +1,7 @@
 # Credentials
 
 ```zsh
-
+ftp_jp:
 ```
 
 ---

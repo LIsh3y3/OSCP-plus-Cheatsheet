@@ -11,6 +11,7 @@ PORT   STATE SERVICE REASON  VERSION
 
 # Enumeration
 
+- ファイルがいくつか見つかったので、tftpでアクセスし、ファイルをダウンロードした
 ```sh
 $ nmap -n -Pn -sU -p69 -sV --script tftp-enum $TargetIP
 PORT STATE SERVICE VERSION 
@@ -21,6 +22,29 @@ PORT STATE SERVICE VERSION
    sip.cfg
    sip_327.cfg
 ```
+
+- backup.cfg
+```sh
+┌──(koshi㉿kali)-[~/PEN-200/Skylark/VM14]
+└─$ cat backup.cfg                         
+FTP credentials for umbraco web application upgrade:
+
+ftp_jp
+~be<3@6fe1Z:2e8
+```
+
+- sip-confg
+```sh
+┌──(koshi㉿kali)-[~/PEN-200/Skylark/VM14]
+└─$ cat sip-confg 
+# Properties common for all protocols
+net.java.sip.communicator.service.protocol.DTMF_METHOD=AUTO_DTMF
+net.java.sip.communicator.service.protocol.DTMF_MINIMAL_TONE_DURATION=70
+# SIP specific properties
+net.java.sip.communicator.service.protocol.sip.SERVER_PORT=5060
+...
+```
+
 
 ---
 
