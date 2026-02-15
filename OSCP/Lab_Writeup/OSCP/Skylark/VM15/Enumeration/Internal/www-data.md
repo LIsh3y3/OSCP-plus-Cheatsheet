@@ -499,4 +499,6 @@ drwxr-xr-x 134 root root 12288 Dec  7  2022 ..
 - /var/www/html/froxlor配下に、Ivanのphp web shellを置き、トンネリング経由でアクセス
 	- → www-data としてリバースシェルを獲得しただけ。
 	- webサービスそのものは、rootが動かしているわけではない。
-	- 
+
+- /var/www/html/froxlor配下にあるphpファイルに認証なしでアクセスしてみる
+	- →失敗
