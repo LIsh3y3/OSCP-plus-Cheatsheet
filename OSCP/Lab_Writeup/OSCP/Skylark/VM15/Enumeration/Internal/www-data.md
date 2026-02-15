@@ -302,3 +302,34 @@ MariaDB [(none)]> SELECT version();
 ```
 
 - 認証情報がないか探す
+	- osCommerceのユーザー名なだけの可能性あり
+```sql
+Database changed
+MariaDB [oscdb]> SHOW TABLES;
++---------------------------------------------+
+| Tables_in_oscdb                             |
++---------------------------------------------+
+| action_recorder                             |
+| address_book                                |
+| address_format                              |
+| administrators                              |
+...
+custo
+| zones                                       |
+| zones_to_geo_zones                          |
++---------------------------------------------+
+50 rows in set (0.000 sec)
+
+MariaDB [oscdb]> SELECT * FROM administrators;
++----+-----------+------------------------------------+                                                                                                     
+| id | user_name | user_password                      |                                                                                                     
++----+-----------+------------------------------------+                                                                                                     
+|  1 | admin     | $P$DVNsEBdq7PQdr7GR65xbL0pas6caWx0 |                                                                                                     
++----+-----------+------------------------------------+                                                                                                     
+1 row in set (0.001 sec)                                                      
+```
+
+- 一応クラック
+```sh
+
+```
