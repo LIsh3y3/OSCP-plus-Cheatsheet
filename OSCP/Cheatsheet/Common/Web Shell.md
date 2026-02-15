@@ -487,26 +487,7 @@ $output = implode("\n", $arr);
 
 ---
 
-# トラブルシュート
-
-## リスナーでinvalid shellもしくは接続がこない
-
-- 考えられる原因：
-	- FWのルールで遮断
-	- ターゲットでツールが使えない
-	- PHPの設定 (`phpinfo()`)で `disable_functions` に `exec` などの Web shell 実行に必要な関数が禁じられている
-
-- FWのルールで遮断されていたら、そもそもinvalid shellとならない
-
-- pingが通るか、ポート80への通信が可能かを確認する
-```sh
-
-
-
-```
-
-- `busybox nc`を使う
-
+# トラブルシューティング
 
 ## リスナーで invalid shell / 接続が来ない場合の切り分け
 
@@ -570,23 +551,5 @@ wget <attacker_ip>/test.txt
 	- `popen`
 	- `proc_open`
 
-- 実行できないときは、[]
+- 実行できないときは、攻撃ベクターを[[#File読み取り]]に切り替える
 
-## 切り分けの指針まとめ
-
-1. **tcpdump に何か来ているか**
-    
-    - 来ない → ネットワーク問題
-        
-2. **ping / wget が成功するか**
-    
-    - 失敗 → FW / ルーティング
-        
-3. **invalid shell が出るか**
-    
-    - 出る → 実行環境 or シェル形式の問題
-        
-4. **phpinfo の disable_functions**
-    
-    - 含まれている → Web shell 不可
-        
