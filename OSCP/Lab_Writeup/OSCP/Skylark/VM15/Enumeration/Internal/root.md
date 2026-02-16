@@ -23,11 +23,7 @@ passwd_milan  passwd_root_VM15  passwd_sarah  shadow  shadow_milan  shadow_root_
 └─$ unshadow passwd_root_VM15 shadow_root_VM15 > root_VM15_unshadow.txt
 ```
 
-- 3分まって解析できなかったら、次の解析をし、すべて無理だったらこれはベクターではない
-```sh
-
-```
-
+- 3分まって解析できなかったら、次の解析をし、すべて無理だったらこれはベクターではない→無理だったので、VM18の列挙に移行
 
 ---
 
