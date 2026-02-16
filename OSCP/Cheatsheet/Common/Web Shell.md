@@ -437,11 +437,12 @@ Current Dir: <%= Directory.GetCurrentDirectory() %><br>
 #### DLL アップロードによる RCE
 
 - ASP.NET は `/bin` の DLL を自動ロードするため、webrootにある`/bin`のDLL を上書きできれば、DLL hijacking が可能
+- 具体的には、Umbraco (cms) で FTP によるバージョンアップグレードを実施するようにしている Web サイトは、これで侵害できる
 
 #### 認証バイパス
 
 - IIS / ASP.NET の設定評価ルールとして、子ディレクトリの web.config は親の web.config を継承し、追加ルールとして評価される
-- つまり、親ディレクトリが認証で保護されていても、子ディレクトリに認証を不要とするweb.config を置けば、アクセスが可能になる
+- 子ディレクトリで親の web.config をclear（無効に）したうえで認証を不要とするweb.config を置けば、アクセスが可能になる
 ```xml
 <?親?>
 <authorization>
@@ -453,6 +454,7 @@ Current Dir: <%= Directory.GetCurrentDirectory() %><br>
 ```xml
 <?子?>
 <authorization>
+  <clear />
 　<allow users="*" />
 </authorization>
 ```
