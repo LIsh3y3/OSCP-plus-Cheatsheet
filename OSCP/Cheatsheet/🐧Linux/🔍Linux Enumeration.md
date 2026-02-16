@@ -48,7 +48,7 @@ LinEnum
 wget https://raw.githubusercontent.com/rebootuser/LinEnum/refs/heads/master/LinEnum.sh
 
 # 実行
-./LinEnum.sh -k password -r linenum.out -e /tmp/
+./LinEnum.sh -k password -r linenum.out -e /tmp/ -t
 ```
 
 ### 補足：結果の見方
