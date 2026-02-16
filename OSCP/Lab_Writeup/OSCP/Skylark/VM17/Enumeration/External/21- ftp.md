@@ -9,9 +9,19 @@ PORT   STATE SERVICE REASON  VERSION
 
 # Enumeration
 
-- 以下の認証情報は使えない
+- 以下の認証情報は使えない（Permission deniedとなる）
 ```
-
+reynolds
+l.nguyen
+j.jameson
+j.jones
+ftp_jp
+```
+- VM15で見つけたftpユーザーっぽい名前もPermission denied
+```sh
+flybike
+letsfly
+Skylark
 ```
 
 ---
