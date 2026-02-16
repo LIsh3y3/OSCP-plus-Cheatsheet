@@ -60,4 +60,5 @@ reynolds@testing.com:bj1ZzWEmJd870YHMsV+NdfsTuce+zsQRyvb7e5fIgY8=
 # Screenshot
 
 - index
+	- localhost 8080で何か動いてそう
 ![[Pasted image 20260215102128.png]]

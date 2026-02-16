@@ -39,6 +39,8 @@ ftp_jp
 
 ### sip-confg
 
+以下、どれもターゲットはWindowsと思われる（バックスラッシュを使ってる）
+
 - Javaの音声伝達プロトコル sip communicator serviceのファイルっぽい
 - UDP 5060もしくは5061で動作してるっぽい？
 ```sh
