@@ -368,7 +368,7 @@ echo "Public key added successfully!";
 ### 基礎知識
 
 - ASPとASP.NETは異なるもの
-- ASPのアプリケーションは、/bin/
+- ASPのアプリケーションは、/bin
 
 
 ### 基本 Web Shell
