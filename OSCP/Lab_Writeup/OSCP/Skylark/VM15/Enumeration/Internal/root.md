@@ -8,7 +8,19 @@ root@milan:/etc# scp passwd koshi@192.168.45.249:/home/koshi/PEN-200/Skylark/VM1
 ```
 
 ```sh
-unshadow passwd shadow > unshadow.txt
+┌──(koshi㉿kali)-[~/PEN-200/Skylark/VM15/Unshadows]
+└─$ ls
+passwd_milan  passwd_root_VM15  passwd_sarah  shadow  shadow_milan  shadow_root_VM15  shadow_sarah
+
+┌──(koshi㉿kali)-[~/PEN-200/Skylark/VM15/Unshadows]
+└─$ unshadow passwd_milan shadow_milan > milan_unshadow.txt
+    
+┌──(koshi㉿kali)-[~/PEN-200/Skylark/VM15/Unshadows]
+└─$ unshadow passwd_sarah shadow_sarah > sarah_unshadow.txt
+
+┌──(koshi㉿kali)-[~/PEN-200/Skylark/VM15/Unshadows]
+└─$ unshadow passwd_root_VM15 shadow_root_VM15 > root_VM15_unshadow.txt
+
 ```
 
 
