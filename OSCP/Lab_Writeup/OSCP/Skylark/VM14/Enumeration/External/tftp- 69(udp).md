@@ -38,6 +38,7 @@ ftp_jp
 ```
 
 ### sip-confg
+
 - Javaの音声伝達プロトコル sip communicator serviceのファイルっぽい
 - UDP 5060もしくは5061で動作してるっぽい？
 ```sh
@@ -53,7 +54,7 @@ net.java.sip.communicator.service.protocol.sip.SERVER_PORT=5060
 
 ### sip.cfg
 
-
+- 同じく、音声伝達のあぷrの設定ファイルの様子
 ```sh
 ┌──(koshi㉿kali)-[~/PEN-200/Skylark/VM14]
 └─$ cat sip.cfg  
