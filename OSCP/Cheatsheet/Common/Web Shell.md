@@ -434,13 +434,6 @@ Current Dir: <%= Directory.GetCurrentDirectory() %><br>
 	- asmx
 - 拡張子は、[[⚡️File upload vuln#サーバ設定の上書きによるバイパス]]で変更できる可能性がある
 
-#### DLL アップロードによる RCE
-
-- ASP.NET は `/bin` の DLL を自動ロードするため、webrootにある`/bin`のDLL を<u>上書き</u>できれば、DLL hijacking が可能
-- 具体的には、Umbraco (cms) で FTP によるバージョンアップグレードを実施するようにしている Web サイトは、これで侵害できる
-- [[💥Windows Privilege Escalation#Service Exploits - DLL Hijacking]]と同じく、ProcMonでロードされる DLL を確認のうえ上書きすること
-	- ⚠️間違っても `Microsoft.`系の DLLは上書きしないこと
-
 #### 認証バイパス
 
 - IIS / ASP.NET の設定評価ルールとして、子ディレクトリの web.config は親の web.config を継承し、追加ルールとして評価される
