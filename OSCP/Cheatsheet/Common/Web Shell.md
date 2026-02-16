@@ -368,7 +368,7 @@ echo "Public key added successfully!";
 ### 基礎知識
 
 - ASPとASP.NETは異なるもので、ASPはインタプリタ方式の旧技術（.asp）、ASP.NETは.NETフレームワーク上で動作するコンパイル方式の高速な後継技術（.aspx）
-	- 
+- 
 - ASP.NETのアプリケーションは、`/bin` 配下の `publish` にローンチされる（Web shell ペイロードをアップロードするときに必要な知識）
 
 ### 基本 Web Shell
