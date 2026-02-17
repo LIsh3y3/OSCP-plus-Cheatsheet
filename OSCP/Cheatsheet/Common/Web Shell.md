@@ -367,6 +367,54 @@ echo "Public key added successfully!";
 
 ### 基礎知識
 
+#### ASP と ASP.NET の違い
+
+- Classic ASP(エーエスピー): 1990年代の旧技術。拡張子は `.asp`。VBScriptで動く。
+- ASP.NET: 後継技術。拡張子は `.aspx`。コンパイル方式で高速。現在は「旧世代」と「新世代」に分かれる。
+
+#### ASP.NET の 3 つの世代
+
+3. **ASP.NET Framework (4.8以前)**:
+    
+    - **レガシー。** Windows専用。IISと密結合。
+        
+    - Webルート: `C:\inetpub\wwwroot` に直接 `.aspx` を置く。
+        
+4. **ASP.NET Core (1.0 ~ 3.1)**:
+    
+    - **新世代。** Linuxでも動くように作り直されたもの。
+        
+5. **ASP.NET (5 / 6 / 7 / 8 / 9)**:
+    
+    - **最新。** 「Core」という名前が取れたが、中身はCoreの進化系。
+        
+#### Webディレクトリ構造の知識
+
+ターゲットのFTPを覗いた際、以下の構造が見えたら「新世代のASP.NET」であると判断できる。
+
+### 開発・ビルド時のパス
+
+通常は以下の階層に公開用ファイルが生成される
+```sh
+# 具体例：/umbraco/bin/Debug/net6.0/publish
+<プロジェクト名>/bin/[Debug | Release]/<.NETバージョン>/publish/
+```
+- publish フォルダ: 実際にWebサーバに公開すべきファイルがまとまっている場所
+
+
+## 4. 判別テクニック
+
+- **HTTPヘッダ**: `X-Powered-By: ASP.NET` があればASP.NET確定。
+    
+- **拡張子**: URLに `.aspx` があれば「旧Framework」の可能性が高い。なければ「Core以降」の可能性。
+    
+- **FTP**: `net6.0` などのフォルダや `appsettings.json` があれば「Core以降」確定。
+
+
+
+
+### 基礎知識
+
 - ASPとASP.NETは異なるもので、ASPはインタプリタ方式の旧技術（.asp）、ASP.NETは.NETフレームワーク上で動作するコンパイル方式の高速な後継技術（.aspx）
 
 #### ASPクラシック
