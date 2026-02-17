@@ -367,169 +367,61 @@ echo "Public key added successfully!";
 
 ### 基礎知識
 
-#### 根本的な違い：ASP vs ASP.NET
-
-- Classic ASP
-    - 古い技術で、拡張子は `.asp`。
-        
-    - 方式: インタプリタ方式（1行ずつ実行するため低速）。
-        
-    - 言語: VBScript, JScript。Windows Server 2000 / IIS 5.0 時代の遺物。
-        
-- ASP.NET
-    
-    - 主流。拡張子は `.aspx`。
-        
-    - 方式: コンパイル方式（事前に機械語に翻訳されるため高速）。
-        
-    - 言語: C#, VB.NET。
-
->[! TIP] Hoge
->test
->test
-
-
-
----
-
-### 2. ASP.NET の世代別比較表
-
-「ASP.NET」という名前でも、中身は大きく3つの世代に分かれます。
-
-|世代|名称|特徴|主な Web ルート|
-|---|---|---|---|
-|旧世代|ASP.NET Framework (~4.8)|レガシー。Windows専用。IISと密結合。|`C:\inetpub\wwwroot`|
-|新世代|ASP.NET Core (1.0~3.1)|モダン。Linux等でも動作（クロスプラットフォーム）。|`.../publish/wwwroot`|
-|最新|.NET (5 / 6 / 7 / 8 / 9)|Coreの名前が取れたが、中身はCoreの進化系。|`.../publish/wwwroot`|
-
-> [!TIP]
-> 
-> Umbraco CMS の場合：バージョン9以降は ASP.NET Core (.NET 5/6+) に移行しています。FTPで `net6.0` などのフォルダが見えたら、それは最新世代（Core系）であることを示します。
-
----
-
-### 3. IIS の「サイト振り分け」の仕組み（vhosts）
-
-同じサーバー（IP）なのに、アクセス方法で内容が変わる理由は、IISの「バインド設定（Host Header）」にあります。
-
-- IPアドレスでアクセス：IISが「デフォルトサイト」と判断し、`C:\inetpub\wwwroot`（初期画面）を表示する。
-    
-- ドメイン名でアクセス：IISが「あ、これは `skylark.jp` 用のサイトだ」と判断し、設定された特定のディレクトリ（Umbracoのフォルダなど）を読みに行く。
-    
-
-【ペンテストの教訓】
-
-IPアドレスでファイルをアップロードして見えていても、ドメイン経由で見えない場合は、「IISが参照している Web ルートが別にある」ことを意味します。
-
----
-
-### 4. ディレクトリ構造と Web Shell の設置場所
-
-ASP.NET Core (5+) では、開発時のパスがそのままサーバーに残っていることがあり、これが攻撃のヒントになります。
-
-#### 典型的な「漏洩している」ディレクトリ構造
-
-`/umbraco/bin/Debug/net6.0/publish/wwwroot/`
-
-- bin/Debug/net6.0/：本来はサーバーに置くべきではない、開発・デバッグ用の名残。
-    
-- publish/：公開用にビルドされたファイルがまとまっているフォルダ。
-    
-- wwwroot/：ここが真の Web ルート。画像、CSS、そして Web Shell（`.aspx`）をここに置かない限り、ブラウザから実行することはできない。
-    
-
----
-
-### 5. ターゲットの特定（判別テクニック）
-
-`whatweb` などで詳細が分からない場合、以下の要素を組み合わせて判断します。
-
-- HTTPレスポンスヘッダ:
-    
-    - `X-Powered-By: ASP.NET`：ASP.NET が動いている証拠。
-        
-    - `X-AspNet-Version`: これがあれば旧世代（Framework）。なければ新世代（Core系）の可能性。
-        
-- URLの拡張子:
-    
-    - `.aspx` あり：旧世代（Framework）の作法。
-        
-    - なし：新世代（Core系）のルーティング機能。
-        
-- FTP内のファイル:
-    
-    - `web.config` のみ：旧世代。
-        
-    - `appsettings.json` や `*.dll` が大量にある：新世代（Core系）。
-
-
-### 基礎知識
-
 #### ASP と ASP.NET の違い
 
-- Classic ASP(エーエスピー): 1990年代の旧技術。拡張子は `.asp`。VBScriptで動く。
-- ASP.NET: 後継技術。拡張子は `.aspx`。コンパイル方式で高速。現在は「旧世代」と「新世代」に分かれる。
+- Classic ASP
+    - 古い技術で、拡張子は `.asp`
+    - 方式: インタプリタ方式（1行ずつ実行するため低速）
+    - 言語: VBScript, JScript。Windows Server 2000 / IIS 5.0 時代の遺物
 
-#### ASP.NET の 3 つの世代
+- ASP.NET
+    - 現在の**主流**で、拡張子は `.aspx`
+    - 方式: コンパイル方式（事前に機械語に翻訳されるため高速）
+    - 言語: C#, VB.NET
 
-3. **ASP.NET Framework (4.8以前)**:
-    
-    - **レガシー。** Windows専用。IISと密結合。
-        
-    - Webルート: `C:\inetpub\wwwroot` に直接 `.aspx` を置く。
-        
-4. **ASP.NET Core (1.0 ~ 3.1)**:
-    
-    - **新世代。** Linuxでも動くように作り直されたもの。
-        
-5. **ASP.NET (5 / 6 / 7 / 8 / 9)**:
-    
-    - **最新。** 「Core」という名前が取れたが、中身はCoreの進化系。
-        
-#### Webディレクトリ構造の知識
+#### ASP.NET の世代別比較表
 
-通常は以下の階層に公開用ファイルが生成される
+「ASP.NET」という名前でも、中身は大きく3つの世代に分かれる
+
+| 世代  | 名称                               | 特徴                           | 主な Web ルート            |
+| --- | -------------------------------- | ---------------------------- | --------------------- |
+| 旧世代 | ASP.NET Framework (~4.8)         | レガシー。Windows専用。IISと密結合。      | `C:\inetpub\wwwroot`  |
+| 新世代 | ASP.NET Core (1.0~3.1)           | モダン。Linux等でも動作（クロスプラットフォーム）。 | `.../publish/wwwroot` |
+| 最新  | .NET (5 / 6 / 7 / 8 / 9) (5+が総称) | Coreの名前が取れたが、中身はCoreの進化系。    | `.../publish/wwwroot` |
+
+#### IIS の「サイト振り分け」の仕組み（vhosts）
+
+同じサーバー（IP）なのに、アクセス方法で内容が変わる理由は、IISの「バインド設定（Host Header）」にある。（←特定方法は？ドメイン情報のある一般的なファイル名は？）
+
+- IPでアクセス：IISが「デフォルトサイト」と判断し、`C:\inetpub\wwwroot`（初期画面）を表示する
+- ドメインでアクセス：IISがホスト名と紐付けられた特定のディレクトリを読みに行く
+- `applicationHost.config`や`C:\Windows\System32\drivers\etc\hosts`で確認
+
+#### ディレクトリ構造と Web Shell の設置場所
+
+ASP.NET Core (5+) では、開発時のパスがそのままサーバーに残っていることがあり、これが攻撃のヒントになる。
+
+ASP.NET framework（旧）を除き、通常は以下の階層に公開用ファイルが生成される
 ```sh
 # 具体例：/umbraco/bin/Debug/net6.0/publish
 <プロジェクト名>/bin/[Debug | Release]/<.NETバージョン>/publish/
 ```
 - publish フォルダ: 実際にWebサーバに公開すべきファイルがまとまっている場所
-- Web サイトをローンチするとき、publish ディレクトリを公開する
+- Web サイトをローンチするときは、コンパイルしたファイルを保存してある publish ディレクトリを公開する
 
+#### ターゲットのASPバージョン特定
 
-## 4. 判別テクニック
+`whatweb` などで詳細が分からない場合、以下の要素を組み合わせて判断する。
 
-- **HTTPヘッダ**: `X-Powered-By: ASP.NET` があればASP.NET確定。
-    
-- **拡張子**: URLに `.aspx` があれば「旧Framework」の可能性が高い。なければ「Core以降」の可能性。
-    
-- **FTP**: `net6.0` などのフォルダや `appsettings.json` があれば「Core以降」確定。
-
-
-
-
-### 基礎知識
-
-- ASPとASP.NETは異なるもので、ASPはインタプリタ方式の旧技術（.asp）、ASP.NETは.NETフレームワーク上で動作するコンパイル方式の高速な後継技術（.aspx）
-
-#### ASPクラシック
-
-- ASPは、区別のため「クラシックASP」と呼ばれる
-- 以下の環境の動作をサポートしている
-	- Windows Server 2000
-	- IIS バージョン5.0
-	- VB Script
-	- JScript
-- 古いのでいまはASP.NETが主流
-
-#### ASP.NET
-
-- ASP.NETは、以下の3種類ある
-	- ASP.NET: レガシー
-	- ASP.NET Core : ASP.NETのクラウド用
-	- ASP.NET 5: ASP.NETの最新版
-
-- ASP.NETのアプリケーションは、==/bin 配下の publish ディレクトリにローンチ==される
+- HTTPレスポンスヘッダ:
+    - `X-Powered-By: ASP.NET`：ASP.NET が動いている証拠
+    - `X-AspNet-Version`: これがあれば旧世代（Framework）、なければ新世代（Core系）の可能性
+- URLの拡張子:
+    - `.aspx` あり：旧世代（Framework）の作法
+    - なし：新世代（Core系）のルーティング機能
+- ファイル構成:
+    - `web.config` のみ：旧世代（framework）
+    - `appsettings.json` や `*.dll` が大量にある：新世代（Core系）
 
 ### 基本 Web Shell
 
