@@ -395,6 +395,7 @@ echo "Public key added successfully!";
 
 - IPでアクセス：IISが「デフォルトサイト」と判断し、`C:\inetpub\wwwroot`（初期画面）を表示する
 - ドメインでアクセス：IISがホスト名と紐付けられた特定のディレクトリを読みに行く
+- 
 
 #### ディレクトリ構造と Web Shell の設置場所
 
@@ -419,7 +420,7 @@ ASP.NET framework（旧）を除き、通常は以下の階層に公開用ファ
     - `.aspx` あり：旧世代（Framework）の作法
     - なし：新世代（Core系）のルーティング機能
 - ファイル構成:
-    - `web.config` のみ：旧世代（frameworkのみ）
+    - `web.config` のみ：旧世代（framework）
     - `appsettings.json` や `*.dll` が大量にある：新世代（Core系）
 
 ### 基本 Web Shell
