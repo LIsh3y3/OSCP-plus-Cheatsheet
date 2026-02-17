@@ -370,41 +370,24 @@ echo "Public key added successfully!";
 #### 根本的な違い：ASP vs ASP.NET
 
 - Classic ASP
-    - 古い技術で、拡張子は `.asp`。
-        
-    - 方式: インタプリタ方式（1行ずつ実行するため低速）。
-        
-    - 言語: VBScript, JScript。Windows Server 2000 / IIS 5.0 時代の遺物。
-        
+    - 古い技術で、拡張子は `.asp`
+    - 方式: インタプリタ方式（1行ずつ実行するため低速）
+    - 言語: VBScript, JScript。Windows Server 2000 / IIS 5.0 時代の遺物
+
 - ASP.NET
-    
-    - 主流。拡張子は `.aspx`。
-        
-    - 方式: コンパイル方式（事前に機械語に翻訳されるため高速）。
-        
-    - 言語: C#, VB.NET。
+    - 現在の主流で、拡張子は `.aspx`
+    - 方式: コンパイル方式（事前に機械語に翻訳されるため高速）
+    - 言語: C#, VB.NET
 
->[! TIP]
->test
->test
+#### ASP.NET の世代別比較表
 
+「ASP.NET」という名前でも、中身は大きく3つの世代に分かれる
 
-
----
-
-### 2. ASP.NET の世代別比較表
-
-「ASP.NET」という名前でも、中身は大きく3つの世代に分かれます。
-
-|世代|名称|特徴|主な Web ルート|
-|---|---|---|---|
-|旧世代|ASP.NET Framework (~4.8)|レガシー。Windows専用。IISと密結合。|`C:\inetpub\wwwroot`|
-|新世代|ASP.NET Core (1.0~3.1)|モダン。Linux等でも動作（クロスプラットフォーム）。|`.../publish/wwwroot`|
-|最新|.NET (5 / 6 / 7 / 8 / 9)|Coreの名前が取れたが、中身はCoreの進化系。|`.../publish/wwwroot`|
-
-> [!TIP]
-> 
-> Umbraco CMS の場合：バージョン9以降は ASP.NET Core (.NET 5/6+) に移行しています。FTPで `net6.0` などのフォルダが見えたら、それは最新世代（Core系）であることを示します。
+| 世代  | 名称                       | 特徴                           | 主な Web ルート            |
+| --- | ------------------------ | ---------------------------- | --------------------- |
+| 旧世代 | ASP.NET Framework (~4.8) | レガシー。Windows専用。IISと密結合。      | `C:\inetpub\wwwroot`  |
+| 新世代 | ASP.NET Core (1.0~3.1)   | モダン。Linux等でも動作（クロスプラットフォーム）。 | `.../publish/wwwroot` |
+| 最新  | .NET (5 / 6 / 7 / 8 / 9) | Coreの名前が取れたが、中身はCoreの進化系。    | `.../publish/wwwroot` |
 
 ---
 
