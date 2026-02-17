@@ -386,7 +386,7 @@ echo "Public key added successfully!";
 	- ASP.NET Core : ASP.NETのクラウド用
 	- ASP.NET 5: ASP.NETの最新版
 
-- ASP.NETのアプリケーションは、==`/bin` 配下の `publish` にローンチ==される（Web shell ペイロードをアップロードするときに必要な知識）
+- ASP.NETのアプリケーションは、==/bin 配下の publish ディレクトリにローンチ==される（Web shell ペイロードをアップロードするときに必要な知識）
 
 ### 基本 Web Shell
 
