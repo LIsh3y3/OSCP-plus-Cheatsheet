@@ -395,7 +395,7 @@ echo "Public key added successfully!";
 
 - IPでアクセス：IISが「デフォルトサイト」と判断し、`C:\inetpub\wwwroot`（初期画面）を表示する
 - ドメインでアクセス：IISがホスト名と紐付けられた特定のディレクトリを読みに行く
-- 
+- `applicationHost.config`や
 
 #### ディレクトリ構造と Web Shell の設置場所
 
