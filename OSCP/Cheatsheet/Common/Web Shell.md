@@ -385,24 +385,21 @@ echo "Public key added successfully!";
 
 | 世代  | 名称                               | 特徴                           | 主な Web ルート            | 拡張子     |
 | --- | -------------------------------- | ---------------------------- | --------------------- | ------- |
-| 旧世代 | ASP.NET Framework (~4.8)         | レガシー。Windows専用。IISと密結合。      | `C:\inetpub\wwwroot`  | `.aspx` |
+| 旧世代 | **ASP.NET Framework (~4.8)**     | レガシー。Windows専用。IISと密結合。      | `C:\inetpub\wwwroot`  | `.aspx` |
 | 新世代 | ASP.NET Core (1.0~3.1)           | モダン。Linux等でも動作（クロスプラットフォーム）。 | `.../publish/wwwroot` | なし      |
 | 最新  | .NET (5 / 6 / 7 / 8 / 9) (5+が総称) | Coreの名前が取れたが、中身はCoreの進化系。    | `.../publish/wwwroot` | なし      |
 
 #### ディレクトリ構造と Web Shell の設置場所
 
-- ASP.NET Frameworkは、`.aspx`ファイルが動作するため、Web Shellのアップロード先として有効
+- ASP.NET Frameworkは、`.aspx`ファイルが動作するため、==Web Shellのアップロード先として有効==
 
-- ASP.NET Core以降は、通常は以下の階層に公開用ファイルが生成されるが、aspxファイルは動作しないため無効
-	- アップロードしたaspxファイルはアクセスできないが、.txtファイルなどのファイル形式ならアクセス可能という場合、ASP.NET Core以降と推定できる
+- ASP.NET Core以降は、通常は以下の階層に公開用ファイルが生成されるが、<u>aspxファイルは動作しないため無効</u>
+	- たとえばアップロードした aspx ファイルにはアクセスできないが、.txtファイルなどのファイル形式ならアクセス可能という場合、ASP.NET Core以降と推定できる
 ```sh
 # 具体例：/umbraco/bin/Debug/net6.0/publish
 <プロジェクト名>/bin/[Debug | Release]/<.NETバージョン>/publish/
 ```
 - publish フォルダ: 実際にWebサーバに公開すべきファイルがまとまっている場所
-
->[!TIP] 
->これがWeb shell アップロード先として使われる
 
 #### ターゲットのASPバージョン特定
 

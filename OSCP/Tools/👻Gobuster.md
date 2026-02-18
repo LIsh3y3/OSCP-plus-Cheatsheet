@@ -89,10 +89,23 @@ gobuster dns -d <Target_domain> -i --wildcard -w /usr/share/seclists/Discovery/D
 
 - バーチャルホスト（1つのサーバー上で複数のドメインを運用）を発見する
 - 一部のサーバーでは、異なるバーチャルホストごとに異なるコンテンツが配置されているため、追加の攻撃対象を発見できる
-- 使用ワードリスト：/usr/share/seclists/Discovery/DNS/
-
+- 使用ワードリスト：`/usr/share/seclists/Discovery/DNS/`
 ```zsh
 gobuster vhost -u http://<TargetIP|Domain>:<Port>/> -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt
+```
+
+>[!TIP]
+>ディレクトリ構成を閲覧でき、以下のようにiisstart.htmと他のサービスのディレクトリ (umbracoなど) が同じ階層にあれば、vhostの可能性大
+
+```
+229 Entering Extended Passive Mode (|||63995|)
+150 Starting data transfer.
+drwxrwxrwx 1 ftp ftp               0 Nov 30  2022 aspnet_client
+-rw-rw-rw- 1 ftp ftp            2919 Feb 18 14:07 cmdexec.aspx
+-rw-rw-rw- 1 ftp ftp             703 Nov 29  2022 iisstart.htm
+-rw-rw-rw- 1 ftp ftp           99710 Nov 29  2022 iisstart.png
+-rw-rw-rw- 1 ftp ftp              74 Dec 01  2022 security.txt
+drwxrwxrwx 1 ftp ftp               0 Nov 29  2022 umbraco
 ```
 
 ## 補足：バーチャルホストとは
