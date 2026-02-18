@@ -112,6 +112,14 @@ gobuster vhost -u http://<TargetIP|Domain>:<Port>/> -w /usr/share/seclists/Disco
 </VirtualHost>
 ```
 
+
+同じサーバー（IP）なのに、アクセス方法で内容が変わる理由は、IISの「バインド設定（Host Header）」にある。
+
+- `applicationHost.config`や`C:\Windows\System32\drivers\etc\hosts`で設定を確認できる
+- IPでアクセス：IISが「デフォルトサイト」と判断し、`C:\inetpub\wwwroot`（初期画面）を表示する
+- ドメインでアクセス：IISがホスト名と紐付けられた特定のディレクトリを読みに行く
+
+
 ---
 
 # Error
