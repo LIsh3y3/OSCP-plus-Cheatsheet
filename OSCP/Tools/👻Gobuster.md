@@ -114,7 +114,10 @@ gobuster vhost -u http://<TargetIP|Domain>:<Port>/> -w /usr/share/seclists/Disco
 
 - 設定ファイルの基本的な場所：
 	- Apache： /etc/apache2/sites-available/xxxx.conf
-	- IIS：%SystemRoot%\System32\inetsrv\config\applicationHost.config
+	- IIS：
+		- %SystemRoot%\System32\inetsrv\config\applicationHost.config
+		- web.config
+		- appsettings.jsonなそ
 
 ---
 
