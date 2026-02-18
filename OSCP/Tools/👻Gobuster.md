@@ -95,6 +95,27 @@ gobuster dns -d <Target_domain> -i --wildcard -w /usr/share/seclists/Discovery/D
 gobuster vhost -u http://<TargetIP|Domain>:<Port>/> -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt
 ```
 
+## 補足：バーチャルホストとは
+
+リクエスト内容によって、アクセス先を変更させるぎじゅつ
+```xml
+<VirtualHost *:80>
+    DocumentRoot /var/www/html/umbraco/
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerName skylark.jp
+    DocumentRoot /var/www/html/
+</VirtualHost>
+```
+
+If you browse http://ip/, it'll show you /var/www/html/umbraco/index.php page.
+2) IIS default web pages (Available only by browsing skylark.jp)
+
+
+When you browse http://skylark.jp/, it'll redirect you to /var/www/html/index.php
+Does it make sense now? 🙂
+
 ---
 
 # Error

