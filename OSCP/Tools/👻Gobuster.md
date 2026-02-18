@@ -97,7 +97,7 @@ gobuster vhost -u http://<TargetIP|Domain>:<Port>/> -w /usr/share/seclists/Disco
 
 ## 補足：バーチャルホストとは
 
-- 1 台のマシン上で (company1.com と company2.com のような) 二つ以上のウェブサイトを扱う運用方法のこと
+- 1 台のマシン上で (company1.com と company2.com のような) 2つ以上のウェブサイトを扱う運用方法のこと
 - 以下 Apache 例の場合 (/etc/apache2/sites-available/xxxx.conf)：
 	- IPアドレスでアクセス → /var/www/html/umbraco のindexが表示
 	- skylark.jpでアクセス →/var/www/html のindexが表示
