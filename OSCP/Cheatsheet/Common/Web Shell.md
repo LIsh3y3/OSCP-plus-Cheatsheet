@@ -372,7 +372,7 @@ echo "Public key added successfully!";
 - Classic ASP
     - 古い技術で、拡張子は `.asp`
     - 方式: インタプリタ方式（1行ずつ実行するため低速）
-    - 言語: VBScript, JScript。Windows Server 2000 / IIS 5.0 時代の遺物
+    - 言語: VBScript, JScript（Windows Server 2000 / IIS 5.0 時代）
 
 - ASP.NET
     - 現在の**主流**で、拡張子は `.aspx`
@@ -388,14 +388,6 @@ echo "Public key added successfully!";
 | 旧世代 | ASP.NET Framework (~4.8)         | レガシー。Windows専用。IISと密結合。      | `C:\inetpub\wwwroot`  |
 | 新世代 | ASP.NET Core (1.0~3.1)           | モダン。Linux等でも動作（クロスプラットフォーム）。 | `.../publish/wwwroot` |
 | 最新  | .NET (5 / 6 / 7 / 8 / 9) (5+が総称) | Coreの名前が取れたが、中身はCoreの進化系。    | `.../publish/wwwroot` |
-
-#### IIS の「サイト振り分け」の仕組み（vhosts）
-
-同じサーバー（IP）なのに、アクセス方法で内容が変わる理由は、IISの「バインド設定（Host Header）」にある。
-
-- `applicationHost.config`や`C:\Windows\System32\drivers\etc\hosts`で設定を確認できる
-- IPでアクセス：IISが「デフォルトサイト」と判断し、`C:\inetpub\wwwroot`（初期画面）を表示する
-- ドメインでアクセス：IISがホスト名と紐付けられた特定のディレクトリを読みに行く
 
 #### ディレクトリ構造と Web Shell の設置場所
 
