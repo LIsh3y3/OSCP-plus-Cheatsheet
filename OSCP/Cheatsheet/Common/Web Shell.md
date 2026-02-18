@@ -375,7 +375,7 @@ echo "Public key added successfully!";
     - 言語: VBScript, JScript（Windows Server 2000 / IIS 5.0 時代）
 
 - ASP.NET
-    - 現在の**主流**で、旧verのASP.NETの拡張子は `.aspx`（新しいASP.NETには拡張子がない）
+    - 現在の**主流**で、ASP.NET < 4.9 の拡張子は `.aspx`（新しいASP.NETには拡張子がない）
     - 方式: コンパイル方式
     - 言語: C#, VB.NET
 
