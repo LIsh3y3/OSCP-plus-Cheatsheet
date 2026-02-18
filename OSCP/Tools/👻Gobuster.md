@@ -105,6 +105,8 @@ drwxrwxrwx 1 ftp ftp               0 Nov 30  2022 aspnet_client
 drwxrwxrwx 1 ftp ftp               0 Nov 29  2022 umbraco
 ```
 
+- vhost の選択として、リクエスト URL がIPアドレスかドメイン名かで変わることがあるので、`/etc/hosts`に**名前解決登録すること**
+
 ## 補足：バーチャルホストとは
 
 - 1 台のマシン上で (company1.com と company2.com のような) 2つ以上の Web サイトを扱う運用方法のこと
