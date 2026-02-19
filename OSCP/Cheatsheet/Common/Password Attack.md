@@ -339,7 +339,7 @@ Local Group Memberships [*Administrators以外]
  - シェルを獲得できずコード実行ができない場合でも、Windowsサーバーへファイルアップロードが可能なWebアプリケーションを発見したとき
 
 - SMBサーバーにファイルアップロードが可能なとき
-	- （参考：[Proving Grounds Practice write-up - Vault](https://medium.com/@Dpsypher/proving-grounds-practice-vault-158516460860)）
+	- 参考：[Proving Grounds Practice write-up - Vault](https://medium.com/@Dpsypher/proving-grounds-practice-vault-158516460860)
 
 
 ### Net-NTLMv2クラッキング概要
