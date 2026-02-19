@@ -111,6 +111,11 @@ PS C:\> ls
 	SQL2022
 ```
 
+- sqlへのアクセス試行
+```powershell
+sqlcmd -U sa -P DeathMarchPac1942 -l 30
+```
+
 
 ---
 
@@ -161,7 +166,7 @@ strings -e l 売上を分析する.exe # 特になし
 
 #### home
 
-- 
+- iisユーザーはPermission denied
 
 
 ---
