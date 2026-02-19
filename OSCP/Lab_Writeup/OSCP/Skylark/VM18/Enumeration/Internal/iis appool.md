@@ -115,6 +115,36 @@ PS C:\> ls
 ```powershell
 sqlcmd -U sa -P DeathMarchPac1942 -l 30
 ```
+- →非インタラクティブシェルなので、以下のようにコマンドを都度実行する必要があり
+
+#### MSSQL
+
+```sql
+c:\windows\system32\inetsrv>sqlcmd -U sa -P DeathMarchPac1942 -30 -Q "SELECT name FROM sys.databases;"
+sqlcmd -U sa -P DeathMarchPac1942 -30 -Q "SELECT name FROM sys.databases;"
+Sqlcmd: '-30': Unexpected argument. Enter '-?' for help.
+
+c:\windows\system32\inetsrv>sqlcmd -U sa -P DeathMarchPac1942 -l 30 -Q "SELECT name FROM sys.databases;"
+sqlcmd -U sa -P DeathMarchPac1942 -l 30 -Q "SELECT name FROM sys.databases;"
+name                                                                                                                            
+--------------------------------------------------------------------------------------------------------------------------------
+master                                                                                                                          
+tempdb                                                                                                                          
+model                                                                                                                           
+msdb                                                                                                                            
+umbraco                                                                                                                         
+
+(5 rows affected)
+
+c:\windows\system32\inetsrv>sqlcmd -U sa -P DeathMarchPac1942 -l 30 -Q "SELECT distinct b.name FROM sys.server_permissions a INNER JOIN sys.server_principals b ON a.grantor_principal_id = b.principal_id WHERE a.permission_name = 'IMPERSONATE';"
+sqlcmd -U sa -P DeathMarchPac1942 -l 30 -Q "SELECT distinct b.name FROM sys.server_permissions a INNER JOIN sys.server_principals b ON a.grantor_principal_id = b.principal_id WHERE a.permission_name = 'IMPERSONATE';"
+name                                                                                                                            
+--------------------------------------------------------------------------------------------------------------------------------
+
+(0 rows affected)
+
+```
+
 
 
 ---
@@ -136,6 +166,25 @@ sqlcmd -U sa -P DeathMarchPac1942 -l 30
 
 ### サービス
 
+- Spoolerは止まっている
+```powershell
+NT SERVICE\SQLSERVERAGENT                                                                                                       
+
+(5 rows affected)
+
+c:\windows\system32\inetsrv>sc query Spooler
+sc query Spooler
+
+SERVICE_NAME: Spooler 
+        TYPE               : 110  WIN32_OWN_PROCESS  (interactive)
+        STATE              : 1  STOPPED 
+        WIN32_EXIT_CODE    : 1077  (0x435)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x0
+        WAIT_HINT          : 0x0
+
+c:\windows\system32\inetsrv>
+```
 
 ---
 
