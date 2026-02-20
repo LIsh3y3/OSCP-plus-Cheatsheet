@@ -76,6 +76,9 @@ http <squid_IP> 3128
 http <squid_IP> 3128 <username> <password>
 ```
 
+>[!WARNING] 注意
+> proxychains.confの デフォルト設定である socks4 127.0.0.1 9050は コメントアウトすること
+
 proxychainsからnmapを実行（`-sT`を使うこと）
 ```sh
 ports=$(proxychains nmap -sT <TargetIP> -p- -n --min-rate=1000 | grep '^[0-9]' | awk -F'/' '{print $1}' | tr '\n' ',' | sed 's/,$//')
@@ -83,8 +86,8 @@ ports=$(proxychains nmap -sT <TargetIP> -p- -n --min-rate=1000 | grep '^[0-9]' |
 proxychains nmap -sT <TargetIP> -p $ports -n -A -sV -oN Nmap/scan_via_proxy.nmap
 ```
 
->[!WARNING] 注意
-> proxychains.confの socks4 127.0.0.1 9050は コメントアウトすること
+>[!TIP]
+>アクセスできる内部NW インターフェースを探し当てるため、[[Nmap Live Host Discovery]]を実施する
 
 ### SPOSE Scanner
 
