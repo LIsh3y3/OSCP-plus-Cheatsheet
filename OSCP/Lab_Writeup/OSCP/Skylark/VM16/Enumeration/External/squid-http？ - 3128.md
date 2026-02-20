@@ -101,6 +101,11 @@ Nmap done: 4 IP addresses (4 hosts up) scanned in 225.75 seconds
                                                                    
 ```
 
+- 実際にブラウザでアクセスしたら、sipXcomというのが表示された
+- これは、[[tftp- 69(udp)]]で入手した認証情報を使ってログイン試行する
+- 
+
+
 ---
 
 # Screenshot
@@ -108,3 +113,6 @@ Nmap done: 4 IP addresses (4 hosts up) scanned in 225.75 seconds
 - index
 	- localhost 8080で何か動いてそう
 ![[Pasted image 20260215102128.png]]
+
+- sipXcom
+![[Pasted image 20260220201445.png]]

@@ -87,7 +87,7 @@ proxychains nmap -sT <TargetIP> -p $ports -n -A -sV -oN Nmap/scan_via_proxy.nmap
 ```
 
 >[!TIP]
->アクセスできる内部NW インターフェースを探し当てるため、[[Nmap Live Host Discovery]]を実施する
+>アクセスできる内部NW インターフェースを探し当てるため、[[Nmap Live Host Discovery]]を実施する（ただし、たとえばHTTPがopenになっていてもブラウザでアクセスできないことがあるので、実際にアクセスできるかどうかは確認が必要）
 
 ### SPOSE Scanner
 
