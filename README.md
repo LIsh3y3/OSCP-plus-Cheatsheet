@@ -24,3 +24,10 @@ echo $TargetIP
 
 - モバイル端末の動機は、[GitSync](https://viscouspotenti.al/posts/gitsync-all-devices-tutorial)を使う
 	- GitSyncとObsidian Gitの併用は競合の原因となるので、.gitignoreに、./obsidian/plugin/を追加したうえで、AndroidはGitSyncで、Windows/MacはObsidian.gitで管理
+
+---
+
+# Todo
+
+- [ ] AttackerIP、TargetIPを、attacker_IP、target_IPに変える（snakeにする）
+- [ ] pwとしているのを、passwordに変更する
