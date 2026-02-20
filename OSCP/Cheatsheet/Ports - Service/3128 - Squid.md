@@ -77,7 +77,9 @@ proxychainsからnmapを実行（`-sT`を使うこと）
 ```sh
 proxychains nmap -sT -n -p- -T4 localhost
 
-ports=$(proxynmap localhost -p- --min-rate=1000 | grep '^[0-9]' | awk -F'/' '{print $1}' | tr '\n' ',' | sed 's/,$//')
+ports=$(proxychains nmap -sT localhost -p- -n --min-rate=1000 | grep '^[0-9]' | awk -F'/' '{print $1}' | tr '\n' ',' | sed 's/,$//')
+
+proxychains nmap -sT localhost -p $ports -n -A -sV -oN Nmap/scan_via_proxy
 ```
 
 ### SPOSE Scanner
