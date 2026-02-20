@@ -414,7 +414,6 @@ ps <search_word> -ErrorAction SilentlyContinue | Watch-Command -Difference -Cont
 [[💥Windows Privilege Escalation#Serviceを利用したPrivEsc]]
 
 実行中のサービス一覧を列挙
-	(特定のサービスに絞るには、`Where-Object {$_.Name -like '[service名]'`)
 ```powershell
 # cmd.exeの場合：sc query [service] ・ sc qc [service]
 Get-CimInstance -ClassName Win32_Service |
@@ -442,7 +441,7 @@ wmic service get Name, PathName, StartName |  findstr /i /v "C:\Windows\\" | fin
 ```powershell
 Get-WmiObject win32_service | Select-Object Name, PathName, StartName | Where-Object { $_.PathName -notmatch 'C:\\Windows\\' -and $_.PathName -notmatch '"' }
 ```
-- ⚠️出力のPathNameが空白なのはアクセス権限がないため
+- ⚠️出力のPathNameが空白となるものは、アクセス権限がない
 
 ### 💡Tips：サービス列挙がpermisison deniedで実行できないとき
 
