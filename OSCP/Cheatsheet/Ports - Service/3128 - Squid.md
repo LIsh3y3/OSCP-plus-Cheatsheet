@@ -31,8 +31,8 @@ curl --proxy http://<squid_IP>:3128 http://<TargetIP>
 
 FirefoxのFoxyProxy等でSquidのIPとポート3128を指定する。  
 認証が必要な場合はユーザー名・パスワードも設定する。
-
-
+![[Pasted image 20260220180016.png]]
+$$FoxyProxy設定例$$
 
 ---
 
