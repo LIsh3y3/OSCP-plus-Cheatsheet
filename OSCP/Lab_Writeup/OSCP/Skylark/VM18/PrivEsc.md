@@ -38,7 +38,7 @@ C:\Windows\system32>
 ## DevService
 
 - Unquoted Serviceなので、[[💥Windows Privilege Escalation#Service Exploits - Unquoted Service Path]]を使う
-- 自分のグループ（BUILTIN\Users）は、`C:\Skylark\Development Binaries 01`にデータの追記、かきこ
+- 自分のグループ（BUILTIN\Users）は、`C:\Skylark\Development Binaries 01`にデータの追記、書き込みが可能
 
 
 
