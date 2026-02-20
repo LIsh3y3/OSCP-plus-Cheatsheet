@@ -10,13 +10,12 @@
 
 # Squidが使われているときの出力
 
-```
+nmap結果でポート3128が`http-proxy`として検出された場合、Squidが動いている可能性が高い。  
+また、ポート80が開いているにもかかわらず直接アクセスすると`403 Forbidden`が返る場合、プロキシ経由でのアクセスが必要なサインである。
+```sh
 PORT     STATE  SERVICE    VERSION
 3128/tcp open   http-proxy Squid http proxy 4.11
 ```
-
-nmap結果でポート3128が`http-proxy`として検出された場合、Squidが動いている可能性が高い。  
-また、ポート80が開いているにもかかわらず直接アクセスすると`403 Forbidden`が返る場合、プロキシ経由でのアクセスが必要なサインである。
 
 ---
 
@@ -96,20 +95,7 @@ dirb http://<TargetIP>/path -p <squid_IP>:3128
 
 Nikto
 ```zsh
-# プロキシなし
-nikto -h <TargetIP>
-
-# プロキシ経由
 nikto -h <TargetIP> -useproxy http://<squid_IP>:3128
-```
-
-sqlmap
-```zsh
-# プロキシなし
-sqlmap -u "http://<TargetIP>/sqli/Less-1/?id=1" --dbs
-
-# プロキシ経由
-sqlmap -u "http://<TargetIP>/sqli/Less-1/?id=1" --dbs --proxy http://<squid_IP>:3128
 ```
 
 WPScan
