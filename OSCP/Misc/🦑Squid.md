@@ -4,8 +4,7 @@
 - HTTP, FTP, DNS, SSL/TLS/HTTPSのプロキシ・キャッシュ機能を持つ
 - SOCKSプロトコルは非対応（Privoxyと組み合わせることで対応可能）
 - プロキシ経由で内部ネットワークへのアクセスが可能なため、**内部ポートスキャンの踏み台**として悪用されることがある
-- デフォルトポート
-    - HTTP Proxy: 3128
+- デフォルトポート： HTTP Proxy 3128
 
 ---
 
@@ -31,7 +30,7 @@ curl --proxy http://<squid_IP>:3128 http://<TargetIP>
 
 ## ブラウザ（FoxyProxy等）でプロキシ設定
 
-FirefoxのFoxyProxy等でプロキシサーバIPとポート3128を指定する。  
+FirefoxのFoxyProxy等でSquidのIPとポート3128を指定する。  
 認証が必要な場合はユーザー名・パスワードも設定する。
 
 ---
@@ -51,7 +50,6 @@ curl -I http://<TargetIP>:3128
 ```zsh
 curl --proxy http://<squid_IP>:3128 http://<TargetIP>
 ```
-
 - 200が返れば匿名アクセスが有効
 - 407が返ればプロキシ認証が必要
 
