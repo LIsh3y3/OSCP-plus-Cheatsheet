@@ -1,5 +1,5 @@
 >[!TIP]
->パスワードクラックに使用する wordlsit は rockyou.txt もしくは fasttrack.txt
+>パスワードクラックに使用する wordlsit は fasttrack.txt の後、rockyou.txt
 
 # ✂️JtR vs 🐈‍⬛Hashcat比較表
 
@@ -17,33 +17,11 @@
 
 # ✂️John the Ripper 
 
-## JtRのバージョンについて
-
-- 多くのディストリビューションがあるが、その中でもJumboバージョンが人気
-	- ssh2jonhなどのツールを備えていることや、対応ハッシュタイプが多いなどの違いがある
-	- Kali LinuxにプリインストールされているものはJumbo版
-    
-- Windowsの場合：
-	- 64bit版 → [https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win64.zip](https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win64.zip)
-	- 32bit版 → [https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win32.zip](https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win32.zip)
-
----
-
 ## Cracking Basic Hash
 
 ### wordlistモード
 
-wordlistモード ＝ 指定したワードリストでクラッキングする
-
-hashアルゴリズムが分からない場合は：
-
-- hashアルゴリズム指定なしでも、自動で識別してくれる
-	- ⚠不正確な結果につながる可能性があるため、[[#Hashの識別]]を実施するのがベスト
-```zsh
-john --wordlist=<wordlist> <hash_file>
-```
-
-hashアルゴリズムが分かっている場合は：
+wordlistモード ： 指定したワードリストでクラッキングする
 
 1. 使用可能なフォーマットの検索
 ```zsh
@@ -56,6 +34,13 @@ john --list=formats | grep -iF <keyword>
 ```zsh
 john --format=<format> --wordlist=<wordlist> <hash_file>
 ```
+
+- hashアルゴリズム指定なしでも、自動で識別してくれるが、
+	- ⚠不正確な結果につながる可能性があるため、[[#Hashの識別]]を実施するのがベスト
+```zsh
+john --wordlist=<wordlist> <hash_file>
+```
+
 
 ### Single Crack モード
 
