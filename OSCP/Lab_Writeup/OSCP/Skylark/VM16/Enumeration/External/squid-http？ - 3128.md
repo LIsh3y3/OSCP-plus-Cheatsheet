@@ -69,6 +69,36 @@ http 192.168.141.224 3128 ext_acc DoNotShare!SkyLarkLegacyInternal2008
 [proxychains] DLL init: proxychains-ng 4.17
 [proxychains] DLL init: proxychains-ng 4.17
 Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-20 20:05 JST
+Nmap scan report for 172.16.141.30
+Host is up (0.17s latency).
+Not shown: 998 filtered tcp ports (no-response)
+PORT    STATE SERVICE
+80/tcp  open  http
+443/tcp open  https
+
+Nmap scan report for 172.16.141.31
+Host is up (0.050s latency).
+Not shown: 996 filtered tcp ports (no-response), 2 filtered tcp ports (host-unreach)
+PORT    STATE SERVICE
+80/tcp  open  http
+443/tcp open  https
+
+Nmap scan report for 172.16.141.32
+Host is up (0.067s latency).
+Not shown: 992 filtered tcp ports (no-response), 6 filtered tcp ports (host-unreach)
+PORT    STATE SERVICE
+80/tcp  open  http
+443/tcp open  https
+
+Nmap scan report for 172.16.141.33
+Host is up (0.26s latency).
+Not shown: 998 filtered tcp ports (no-response)
+PORT    STATE SERVICE
+80/tcp  open  http
+443/tcp open  https
+
+Nmap done: 4 IP addresses (4 hosts up) scanned in 225.75 seconds
+                                                                   
 ```
 
 ---
