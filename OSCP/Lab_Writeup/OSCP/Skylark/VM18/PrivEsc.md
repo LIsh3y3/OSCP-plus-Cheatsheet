@@ -25,3 +25,8 @@ C:\Windows\system32>
 
 - mssqlもSeImpersonatePrivilegeをもっているがSigmaPotatoとPrintSpooferは失敗する
 	- →なぜ？
+
+---
+
+==discord==みた
+
