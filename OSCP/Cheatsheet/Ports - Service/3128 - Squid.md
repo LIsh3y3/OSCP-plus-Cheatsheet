@@ -79,6 +79,8 @@ proxychains nmap -sT -n -p- localhost
 
 ### SPOSE Scanner
 
+認証なしのときのみ使用可能
+
 [spose.py](https://github.com/aancw/spose)を使ったSquid経由のポートスキャン
 ```zsh
 python3 spose.py --proxy http://<squid_IP>:3128 --target <squid_IP>
