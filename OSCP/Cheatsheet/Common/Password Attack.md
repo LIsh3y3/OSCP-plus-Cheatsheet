@@ -385,6 +385,11 @@ $$filenameパラメタの値を攻撃者のIPを指すUNCパスに変更$$
 
 4. [[#Password Crackingメソドロジー]]の２以降へ
 
+#### Responder のトラブルシューティング
+
+- `Error starting UDP server on port 5355` もしくは `Error starting UDP server on port 5353`と表示されるのに、`netstat`で当該ポート番号が確認できない
+	- →Kali を再起動してから再度 Responder を起動
+
 ---
 
 ## Net-NTLMv2のリレーアタック
