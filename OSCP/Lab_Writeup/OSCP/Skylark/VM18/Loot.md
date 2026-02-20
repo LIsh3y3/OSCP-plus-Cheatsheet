@@ -37,7 +37,8 @@ sa:DeathMarchPac1942
 ## uncracked
 
 ```zsh
-
+# vm18 Administrator
+90ebcd7b7e2b6be22a05ceb0bf486944
 ```
 
 ## cracked
