@@ -19,6 +19,9 @@ PORT     STATE  SERVICE    VERSION
 
 ---
 
+>[!NOTE]
+>以下、squid_IP はSquidが動作しているIPを指し、TargetIP 
+
 # 接続
 
 ## curlでプロキシ経由アクセス
@@ -75,9 +78,9 @@ http <squid_IP> 3128 <username> <password>
 
 proxychainsからnmapを実行（`-sT`を使うこと）
 ```sh
-ports=$(proxychains nmap -sT localhost -p- -n --min-rate=1000 | grep '^[0-9]' | awk -F'/' '{print $1}' | tr '\n' ',' | sed 's/,$//')
+ports=$(proxychains nmap -sT <TargetIP> -p- -n --min-rate=1000 | grep '^[0-9]' | awk -F'/' '{print $1}' | tr '\n' ',' | sed 's/,$//')
 
-proxychains nmap -sT localhost -p $ports -n -A -sV -oN Nmap/scan_via_proxy.nmap
+proxychains nmap -sT <TargetIP> -p $ports -n -A -sV -oN Nmap/scan_via_proxy.nmap
 ```
 
 >[!WARNING] 注意
@@ -89,7 +92,7 @@ proxychains nmap -sT localhost -p $ports -n -A -sV -oN Nmap/scan_via_proxy.nmap
 
 [spose.py](https://github.com/aancw/spose)を使ったSquid経由のポートスキャン
 ```zsh
-python3 spose.py --proxy http://<squid_IP>:3128 --target <squid_IP>
+python3 spose.py --proxy http://<squid_IP>:3128 --target <TargetIP>
 ```
 - 関連ノート：[[コンパイル・ビルド#Python Package Management (pip)]]
 
