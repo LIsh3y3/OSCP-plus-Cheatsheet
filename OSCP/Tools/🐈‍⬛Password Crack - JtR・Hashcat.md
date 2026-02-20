@@ -35,19 +35,17 @@ john --list=formats | grep -iF <keyword>
 john --format=<format> --wordlist=<wordlist> <hash_file>
 ```
 
-- hashアルゴリズム指定なしでも、自動で識別してくれるが、
-	- ⚠不正確な結果につながる可能性があるため、[[#Hashの識別]]を実施するのがベスト
+- 補足：hashアルゴリズム指定なしでも、自動でハッシュタイプを識別してくれるが、不正確な結果につながる可能性があるため、[[#Hashの識別]]を実施する方がよい
 ```zsh
 john --wordlist=<wordlist> <hash_file>
 ```
-
 
 ### Single Crack モード
 
 - Single Crackモード：ユーザー名から得られる情報を使って、ユーザー名に含まれる文字や数字を少し変えたもの(※)を元値としてクラッキングを試行する
 	- (※) *Word mangling*という
 
-GECOSフィールド（`/etc/shadow`のような形式）を利用し、候補を生成の上、クラック試行
+GECOSフィールドを利用し候補を生成のうえクラック
 ```zsh
 # 例：john --single --format=sha512crypt shadow_has_homedir
 john --single --format=<format> <file>
