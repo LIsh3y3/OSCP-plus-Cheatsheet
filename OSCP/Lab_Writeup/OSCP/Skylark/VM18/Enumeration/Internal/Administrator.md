@@ -1,3 +1,17 @@
+# j_local
+
+- DesktopにPasswords.kdbxファイルがあったため、
+
+---
+
+# mimikatz
+
+
+
+
+
+---
+
 # Local
 
 ## Auto w/ [Seatbelt](https://github.com/GhostPack/Seatbelt)

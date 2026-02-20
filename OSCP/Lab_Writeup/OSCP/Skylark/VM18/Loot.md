@@ -54,8 +54,9 @@ sa:DeathMarchPac1942
 
 ## local.txt
 
+![[Pasted image 20260220153131.png]]
 ```zsh
-
+b04bfcebd1945493dc61dee82fba8c00
 ```
 
 ## proof.txt
