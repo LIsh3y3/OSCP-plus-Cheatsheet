@@ -310,11 +310,8 @@ ps <search_word> -ErrorAction SilentlyContinue | Watch-Command -Difference -Cont
 	- 1：最初のユーザーログオンセッションであり、一般ユーザーのプロセスが実行される
 	- 2以降：追加のユーザーログオンセッション
 
->[!TIPS]
->
-
-- 💡サービス、スケジュールタスクで編集可能なファイルが実行されていない場合は、プロセスを疑う
-	- →💥プロセスのSIが「0」、かつファイルをペイロードで上書きできれば、権限昇格につながる可能性がある
+>[!TIP]
+>サービス、スケジュールタスクで編集可能なファイルが実行されていない場合は、プロセスを疑う　→ プロセスのSIが「0」、かつファイルをペイロードで上書きできれば、権限昇格につながる可能性がある
 
 ---
 
@@ -322,7 +319,7 @@ ps <search_word> -ErrorAction SilentlyContinue | Watch-Command -Difference -Cont
 
 ## 目的
 
-- 権限昇格（Privilege Escalation）に利用可能な Windows サービスを特定する  
+- 権限昇格に利用可能な Windows サービスを特定する  
 	- 高権限（LocalSystem / 管理者権限）で実行されているサービス 
 	- サービスバイナリや設定が一般ユーザーにより変更可能なもの  
 	- Unquoted Service Path や非標準ディレクトリ実行のサービス

