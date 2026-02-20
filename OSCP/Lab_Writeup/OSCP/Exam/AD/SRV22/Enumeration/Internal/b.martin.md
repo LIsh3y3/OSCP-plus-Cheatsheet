@@ -1,3 +1,8 @@
+💡`tasks.vbs` にパスワードが平文で存在
+```vbscript
+strCopy = "SqueakyRedDesk111"
+```
+
 # 接続
 
 evil-winrm
