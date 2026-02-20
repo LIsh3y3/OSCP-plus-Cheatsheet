@@ -179,12 +179,9 @@ table_name
 umbracoUserGroup2App                                                          
 umbracoUserStartNode                                                          
 ...
-umbracoKeyValue                                                               
-...
 umbracoUserLogin                                                
 umbracoConsent                                                                
 umbracoAudit                                                                  
-cmsMember                                                                     
 cmsMember2MemberGroup                                                         
 
 umbracoLogViewerQuery                                                                                                           
@@ -201,7 +198,7 @@ umbracoUserGroup2NodePermission
 ```
 
 - 認証情報を探していく
-	- 
+	- 調べた限り、umbracoのパスワードをクラックするのは難しいとのこと
 ```powershell
 
 ```
