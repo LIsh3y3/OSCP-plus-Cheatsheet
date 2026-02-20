@@ -1,6 +1,7 @@
 # j_local
 
 - DesktopにPasswords.kdbxファイルがあったため、`keepass2john`でクラック試行
+	- →すぐにはできず
 
 
 ---
