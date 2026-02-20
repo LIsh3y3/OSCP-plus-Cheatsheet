@@ -62,7 +62,7 @@ curl --proxy http://<squid_IP>:3128 http://<TargetIP>
 
 ### proxychainsを使う方法
 
-`/etc/proxychains.conf`の末尾に以下を追記
+`/etc/proxychains4.conf`の末尾に以下を追記
 ```
 http <squid_IP> 3128
 ```
