@@ -63,18 +63,21 @@ curl --proxy http://<squid_IP>:3128 http://<TargetIP>
 ### proxychainsを使う方法
 
 `/etc/proxychains4.conf`の末尾に以下を追記
-```
+```sh
+# socks4 	127.0.0.1 9050 <- コメントアウトすること
 http <squid_IP> 3128
 ```
 
 認証が必要な場合は末尾にユーザー名・パスワードも追記
-```
+```sh
 http <squid_IP> 3128 <username> <password>
 ```
 
 proxychainsからnmapを実行（`-sT`を使うこと）
-```zsh
-proxychains nmap -sT -n -p- localhost
+```sh
+proxychains nmap -sT -n -p- -T4 localhost
+
+ports=$(proxynmap localhost -p- --min-rate=1000 | grep '^[0-9]' | awk -F'/' '{print $1}' | tr '\n' ',' | sed 's/,$//')
 ```
 
 ### SPOSE Scanner
