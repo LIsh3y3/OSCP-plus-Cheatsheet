@@ -97,4 +97,6 @@ Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Services\* |
 
 # VM10
 
-1. VM19にchiselでトンネリングのうえ、VM10にポートスキャンしたところ、telnetがおーぷ
+1. VM19にchiselでトンネリングのうえ、VM10にポートスキャンしたところ、telnetがオープン
+
+2. telnetに接続し、rootとするとそのまま権限昇格した
