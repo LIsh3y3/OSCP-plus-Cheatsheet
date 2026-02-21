@@ -1,5 +1,6 @@
 
 - 5432がローカルで動作しているため、postgresqlでアクセス
+- ~/backend/defaultsのconfi
 
 
 ---

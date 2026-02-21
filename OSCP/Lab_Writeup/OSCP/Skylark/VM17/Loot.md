@@ -43,6 +43,9 @@ desktop:Deskt0pTermin4L
 
 # on 30
 legacy:I_Miss_Windows3.1
+
+# on 225 for db
+postgres:EAZT5EMULA75F8MC
 ```
 
 ---
