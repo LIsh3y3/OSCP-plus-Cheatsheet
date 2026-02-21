@@ -29,11 +29,6 @@ nmap -n -Pn -sU -p69 -sV --script tftp-enum $TargetIP
 
 1. FTPが動作している、かつ、ほかのポートでUmbracoが動作していたため、[[#VM14]]で入手した認証情報でFTPログインしたところ、以下のような構成であった
 ```sh
-331 Please, specify the password.
-Password: 
-230 Login successful.
-Remote system type is UNIX.
-Using binary mode to transfer files.
 ftp> ls
 229 Entering Extended Passive Mode (|||63862|)
 150 Starting data transfer.
@@ -42,6 +37,6 @@ drwxrwxrwx 1 ftp ftp               0 Nov 30  2022 aspnet_client
 -rw-rw-rw- 1 ftp ftp           99710 Nov 29  2022 iisstart.png
 -rw-rw-rw- 1 ftp ftp              74 Dec 01  2022 security.txt
 drwxrwxrwx 1 ftp ftp               0 Nov 29  2022 umbraco
-226 Operation successful
-ftp> 
 ```
+
+2. iisstart.htm (iisのデフォルトページ) と umbracoの２つがあり、
