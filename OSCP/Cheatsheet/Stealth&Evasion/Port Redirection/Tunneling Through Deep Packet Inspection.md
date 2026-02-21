@@ -80,9 +80,8 @@ chisel client <attacker_IP>:<バインドポート> R:<dest_port>:<dest_IP>:<des
 7. 目的の操作をする
 ```sh
 # Nmap
-sudo proxychains nmap -sT --top-ports=20 -Pn -n [DestIP]
+sudo proxychains nmap -sT -p- -Pn -n <TargetIP>
 ```
-- Proxychainsを使ってコマンドを実行する場合：[[Port Redirection & SSH Port Forwarding#SSH Remote Dynamic Port Forwarding]]のステップ6以降
 - SOCK経由のSSHアクセスの場合：[[22 - SSH#SSHをSOCKSプロキシ経由で動かす]]
 
 >[!WARNING] 注意
