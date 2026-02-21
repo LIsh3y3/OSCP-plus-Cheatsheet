@@ -21,8 +21,7 @@ echo "root" | nc -vn <TargetIP> 79
 
 ```zsh
 finger @<TargetIP>          # システム上の全ユーザー一覧
-finger admin@<TargetIP>     # 特定ユーザーの詳細情報
-finger <username>@<TargetIP>
+finger <username>@<TargetIP> # 特定ユーザーの詳細情報
 ```
 
 ---
