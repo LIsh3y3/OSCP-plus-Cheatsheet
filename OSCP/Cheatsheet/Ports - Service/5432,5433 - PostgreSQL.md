@@ -237,14 +237,14 @@ DO $$DECLARE cmd text;BEGIN
 >[!NOTE]
 PostgreSQL は権限を制限しているため、これでrootになれるわけではない。PostgreSQL 内で最高の権限はスーパーユーザー。
 
-CREATEROLE 特権による昇格
+CREATEROLE 権限による昇格
 ```sql
 -- 自身を特権グループに所属させる
 GRANT pg_execute_server_program TO <username>;
 GRANT pg_read_server_files TO <username>;
 GRANT pg_write_server_files TO <username>;
 
--- 他の非スーパーユーザーのパスワード変更
+-- スーパーユーザーであれば他の非スーパーユーザーのパスワード変更が可能
 ALTER USER user_name WITH PASSWORD '<new_password>';
 ```
 
