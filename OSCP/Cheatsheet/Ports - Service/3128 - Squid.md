@@ -91,6 +91,7 @@ proxychains nmap -sT -Pn <TargetIP> -p $ports -n -A -sV -oN Nmap/scan_via_proxy.
 >[!WARNING] 注意
 > - proxychains.confの デフォルト設定である `socks4 127.0.0.1 9050` は コメントアウトすること
 > - プロキシ（Squid/SOCKS）は UDP・ ICMP（ping）を通さないため、nmapがホストを「Down」と誤認するのを防ぐ目的で `TCP Connect Scan (-sT)` と `-Pn`が必須
+> - squidはアプリケーション層までのアクセスが可能であるため、FTPやHTTPなどのプロトコルしかスキャンできないうえ、ACLでアクセスできるサービスを制限している可能性があるので、**squid経由のポートスキャンは信頼性が低い**
 
 ### SPOSE Scanner
 
