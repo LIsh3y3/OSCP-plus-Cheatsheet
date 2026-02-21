@@ -100,3 +100,10 @@ Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Services\* |
 1. VM19にchiselでトンネリングのうえ、VM10にポートスキャンしたところ、telnetがオープン
 
 2. telnetに接続し、rootとするとそのまま権限昇格した
+
+---
+
+# VM17
+
+1. nginxのみしか動作していないように見えて、FeroxBusterでスキャンしたらUploadディレクトリを発見
+	- **反省**：FeroxBusterで403を見逃すと、表面上はアクセスできなくても、深いパスであればアクセスできるこ
