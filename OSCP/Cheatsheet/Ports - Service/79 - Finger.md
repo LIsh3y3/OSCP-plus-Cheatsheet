@@ -13,7 +13,7 @@
 
 ```zsh
 nc -vn <TargetIP> 79
-nmap -sV -p 79 --script=banner <TargetIP>
+sudo nmap -sV -p 79 --script=banner <TargetIP>
 ```
 確認すべき情報：
 - OSバージョン
