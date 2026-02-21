@@ -85,3 +85,6 @@ Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Services\* |
 
 ---
 
+# VM19
+
+1. VM16でsquidが動作していた、かつ、VM16のため、FoxyProxyとproxychainsに登録のうえ、内部NW側のインターフェース
