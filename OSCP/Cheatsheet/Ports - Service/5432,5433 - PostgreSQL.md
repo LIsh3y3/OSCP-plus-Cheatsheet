@@ -234,6 +234,7 @@ DO $$DECLARE cmd text;BEGIN
 
 ## Privilege Escalation
 
+>[!NOTE]
 PostgreSQL は権限を制限しているため、これでrootになれるわけではない。PostgreSQL 内で最高の権限はスーパーユーザー。
 
 CREATEROLE 特権による昇格
