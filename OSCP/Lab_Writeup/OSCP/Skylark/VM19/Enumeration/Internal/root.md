@@ -112,6 +112,7 @@ postgres: autovacuum worker process openfire
 ```
 
 - tcpdumpしたところ、30からの認証情報を発見
+	- pbxサーバーという、ホスト名から、これがUDPパケットを絶えず送信している、と想定する（**ホスト名から役割を推測すること**）
 
 ---
 
