@@ -53,7 +53,7 @@ password for user postgres: # ← www-dataで発見した認証情報
 root
 ```
 
-- /var/www/defaultでさっきまでつ
+- /var/www/defaultでさっきまで閲覧できなかったファイルが閲覧でき、そこで認証情報を入手
 
 
 ### 実行結果抽出
