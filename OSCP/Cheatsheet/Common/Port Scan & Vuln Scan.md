@@ -330,11 +330,8 @@ nmap --script=vuln $TargetIP nmap --script=http-put --script-args http-put.url='
 
 ---
 
-## 🔗 参考リンク
+## 参考リンク
 
 - [Nmap公式チートシート](https://www.stationx.net/nmap-cheat-sheet/)
 - [NSEスクリプト一覧](https://nmap.org/nsedoc/)
 - Nmap公式マニュアル
-- 自分のノート：
-	- [[PortScanの原理]] 
-	- [[特殊なNmap Scan]]
