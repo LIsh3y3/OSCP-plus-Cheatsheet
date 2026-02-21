@@ -39,4 +39,4 @@ drwxrwxrwx 1 ftp ftp               0 Nov 30  2022 aspnet_client
 drwxrwxrwx 1 ftp ftp               0 Nov 29  2022 umbraco
 ```
 
-2. iisstart.htm (iisのデフォルトページ) と umbracoの２つがあり、
+2. iisstart.htm (iisのデフォルトページ) と umbracoの２つがあり、かつ、`/etc/hosts`に以下のように登録してそれぞれFQDNとTLD+1でアクセスしたところ、umbracoとIISに振り分けられたので、[[👻Gobuster#]]
