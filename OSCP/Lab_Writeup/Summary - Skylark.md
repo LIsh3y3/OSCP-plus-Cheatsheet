@@ -91,4 +91,10 @@ Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Services\* |
 
 2. [[#VM14]]のTFTPDで発見したsipXcomの認証情報を使いログイン
 
-3. [[脆弱性リスト#SipXcom RCE・PE（CVE-2023-25355・CVE-2023-25356）]]を使い、
+3. [[脆弱性リスト#SipXcom RCE・PE（CVE-2023-25355・CVE-2023-25356）]]を使い、権限昇格
+
+---
+
+# VM10
+
+1. VM19にchiselでトンネリングのうえ、VM10にポートスキャンしたところ、telnetがおーぷ
