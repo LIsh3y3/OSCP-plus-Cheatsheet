@@ -164,4 +164,10 @@ PORT   STATE SERVICE REASON  VERSION
 |_  http/1.1
 ```
 
-2. 入手した
+2. `/etc/hosts`にFQDNを登録のえ、入手した`.rdp` ファイルでアクセス（RDPではなく、"RemoteAPP"の場合は、`.rdp`ファイルを入手し、接続
+```sh
+xfreerdp <.rdp_file> /d:<domain> /u:<username>
+```
+- [リモートアプリ VS RDP: どう違う？ - AnyViewer](https://www.anyviewer.com/jp/how-to/remoteapp-vs-rdp-2578.html)
+
+4
