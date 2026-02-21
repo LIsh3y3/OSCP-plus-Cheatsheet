@@ -11,7 +11,7 @@ $$立ち上げ画面$$
 2. フィルタ設定は任意で、Manage Capture Filtersから事前にキャプチャ対象を絞り込むことも可能
 3. 解析済みPCAPファイルを開くには、File > Openから選択
 4. キャプチャ後、パケットを右クリックしてFollow > TCP Streamで通信内容を時系列で閲覧。
-5. "Find packet"機能でキーワード検索も可能。
+5. "Find packet"機能でキーワード検索も可能
 ![[Pasted image 20230515151532.png]]
 $$文字列：passwordの検索$$
 
@@ -44,13 +44,13 @@ $$タブ$$
 
 ## パケットの色の意味（色別の概要）
 
+色設定は View > Coloring Rules で確認・編集可能。
+
 - 黒：エラーまたは問題のある通信（例：再送など）
 - 赤：RSTや不正な通信（nmapスキャンの兆候）
 - 青：HTTPなどのアプリケーション層
 - 緑：DNSなどのレスポンス系
 - 薄紫：TCPハンドシェイクなど
-
-色設定は View > Coloring Rules で確認・編集可能。
 
 ---
 
@@ -62,7 +62,7 @@ $$タブ$$
 - MAC floods
 - ARP poisoning
 
-パケット数が膨大になるため、ディスク容量と処理能力の確保が必要。サンプルキャプチャで事前テスト推奨。
+パケット数が膨大になるため、ディスク容量と処理能力の確保が必要。
 
 ## フィルタの使い方
 
@@ -83,7 +83,7 @@ $$タブ$$
 
 # パケットの構造解析
 
-パケットはOSI参照モデルに基づいて表示される：
+パケットはOSI参照モデルに基づいて表示される。
 
 1. Frame（物理層）
 2. Ethernet II（データリンク層）：MACアドレス
@@ -123,7 +123,7 @@ $$ICMPリクエストのキャプチャ$$
 
 - 通常：SYN、ACK、FINなどで通信確立や終了を表現
 - nmapスキャン時：RST, ACKで赤く表示：[[#パケットの色の意味（色別の概要）]]
-- sequence numberとacknowledgment numberをチェック。
+- sequence numberとacknowledgment numberをチェック
 - acknowledgment numberが0ならポートが閉じている
 - Edit > Preferences > Protocols > TCP > relative sequence number をオフで実番号が見える
 
