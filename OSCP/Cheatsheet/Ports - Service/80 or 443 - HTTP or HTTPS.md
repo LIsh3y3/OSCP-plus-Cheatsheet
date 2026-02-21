@@ -36,7 +36,7 @@ ulimit -n 8192
 feroxbuster -u http://<TargetIP>:<Port>/ --depth <num> -r -k -w  /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt --auto-tune -o WebEnum/feroxbuster.txt -x '<extensions>'
 ```
 
->[!WARNING]
+>[!WARNING] 注意
 >レスポンスのステータスを絞ることは、表層が403で内部は200のようなパスを見逃すことにつながる
 
 ## 脆弱性のスキャン
