@@ -19,21 +19,22 @@ nmap -sV -p 79 --script=banner <TargetIP>
 - OSバージョン
 - Fingerデーモンのバージョン（古い実装はRCEに脆弱な場合あり）
 
-```zsh
-echo "<s>" | nc -vn <TargetIP> 79
-```
-
----
-
-
 ---
 
 # Enumeration
 
 fingerコマンドによるユーザー列挙
 ```zsh
-finger @<TargetIP>           # ユーザー一覧
-finger <username>@<TargetIP> # 特定ユーザーの情報
+# ユーザー一覧
+finger @<TargetIP>
+
+# 特定ユーザーの情報
+finger <username>@<TargetIP>
+```
+
+fingerコマンド代替
+```zsh
+echo "<username>" | nc -vn <TargetIP> 79
 ```
 
 finger-user-enum.pl（PentestMonkey）
