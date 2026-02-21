@@ -87,4 +87,8 @@ Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Services\* |
 
 # VM19
 
-1. VM16でsquidが動作していた、かつ、VM16のため、FoxyProxyとproxychainsに登録のうえ、内部NW側のインターフェース
+1. VM16でsquidが動作していた、かつ、VM16のWebサービスで172.16のインターフェースを持つことを示唆する出力があったため、FoxyProxyとproxychainsに登録のうえ、内部NW側のインターフェースにアクセスしたところ、sipXcomを発見
+
+2. [[#VM14]]のTFTPDで発見したsipXcomの認証情報を使いログイン
+
+3. [[脆弱性リスト#SipXcom RCE・PE（CVE-2023-25355・CVE-2023-25356）]]を使い、
