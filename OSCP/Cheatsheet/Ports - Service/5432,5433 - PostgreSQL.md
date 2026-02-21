@@ -31,7 +31,7 @@ psql -h <host> -p <port> -U <username> -W <password> -d <database>
 
 DB・テーブル情報の確認
 ```sql
--- データベース一覧
+-- データベース一覧 (postgres, template0, template1はデフォ)
 \list
 SELECT datname FROM pg_database;
 
