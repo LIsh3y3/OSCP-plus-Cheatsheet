@@ -1,7 +1,7 @@
 # Credentials
 
 ```zsh
- # umbraco web app VM18用
+  # umbraco web app VM18用
 ftp_jp:~be<3@6fe1Z:2e8
 
 # linphoneというVoIPツールのパスワードっぽい
@@ -43,6 +43,12 @@ desktop:Deskt0pTermin4L
 
 # on 30
 legacy:I_Miss_Windows3.1
+
+# on 225 for db
+postgres:EAZT5EMULA75F8MC
+
+# vm13 rdp
+SKYLARK\kiosk:XEwUS^9R2Gwt8O914
 ```
 
 ---
