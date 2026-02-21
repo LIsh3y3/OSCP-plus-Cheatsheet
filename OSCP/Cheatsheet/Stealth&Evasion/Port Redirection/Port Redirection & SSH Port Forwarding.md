@@ -209,8 +209,8 @@ tcp_connect_time_out 8000
 ```
 	↓
 ```zsh
-tcp_read_time_out 4000
-tcp_connect_time_out 2000
+tcp_read_time_out 1200
+tcp_connect_time_out 800
 ```
 
 ---

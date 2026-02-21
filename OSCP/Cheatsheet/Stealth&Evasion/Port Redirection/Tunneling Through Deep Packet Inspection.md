@@ -83,6 +83,17 @@ chisel client <attacker_IP>:<バインドポート> R:<dest_port>:<dest_IP>:<des
 sudo proxychains nmap -sT -p- -Pn -n <TargetIP> [2>/dev/null]
 ```
 - SOCK経由のSSHアクセスの場合：[[22 - SSH#SSHをSOCKSプロキシ経由で動かす]]
+- `proxychains nmap`の速度が遅い場合は、Proxychainsの設定で以下の２つの値を小さくする
+```zsh
+# Some timeouts in milliseconds
+tcp_read_time_out 15000
+tcp_connect_time_out 8000
+```
+↓
+```zsh
+tcp_read_time_out 1200
+tcp_connect_time_out 800
+```
 
 >[!WARNING] 注意
 >- socksを使うときは `/etc/proxychains4.con`に`socks5 127.0.0.1 1080`の設定を入れること
