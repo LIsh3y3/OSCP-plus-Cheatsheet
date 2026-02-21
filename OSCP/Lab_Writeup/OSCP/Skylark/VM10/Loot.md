@@ -67,12 +67,6 @@ legacy:I_Miss_Windows3.1
 
 ※IPアドレスの出力→フラグの出力のキャプチャ必要
 
-## local.txt
-
-```zsh
-
-```
-
 ## proof.txt
 
 ```zsh
