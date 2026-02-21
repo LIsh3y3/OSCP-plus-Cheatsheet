@@ -17,6 +17,8 @@ PORT   STATE SERVICE REASON  VERSION
 
 # Enumeration
 
+- usermanualでRDWebというブラウザのパスと、RDWebのパスワードを入手したので、それでRemoteApp接続
+- 
 
 
 ---
