@@ -44,4 +44,4 @@ drwxrwxrwx 1 ftp ftp               0 Nov 29  2022 umbraco
 192.168.1.20 tokyo07.skylark.com skylark.com
 ```
 
-3. umba
+3. umbracoは`/bin/Debug/net6.0/publish`があり、Net 6+の比較的あたら（[[Web Shell#ASP / ASP.NET (IIS)]]）
