@@ -76,7 +76,7 @@ http <squid_IP> 3128
 http <squid_IP> 3128 <username> <password>
 ```
 
-proxychainsからnmapを実行（`-sT`を使うこと）
+proxychainsからnmapを実行
 ```sh
 # 全ポートスキャン
 ports=$(proxychains nmap -sT -Pn <TargetIP> -p- -n --min-rate=1000 | grep '^[0-9]' | awk -F'/' '{print $1}' | tr '\n' ',' | sed 's/,$//')
@@ -89,7 +89,7 @@ proxychains nmap -sT -Pn <TargetIP> -p $ports -n -A -sV -oN Nmap/scan_via_proxy.
 >アクセスできる内部NW インターフェースを探し当てるため、[[Nmap Live Host Discovery]]を実施する（ただし、たとえばHTTPがopenになっていてもブラウザでアクセスできないことがあるので、実際にアクセスできるかどうかは確認が必要）
 
 >[!WARNING] 注意
-> - proxychains.confの デフォルト設定である socks4 127.0.0.1 9050は コメントアウトすること
+> - proxychains.confの デフォルト設定である `socks4 127.0.0.1 9050` は コメントアウトすること
 > - プロキシ（Squid/SOCKS）は UDP・ ICMP（ping）を通さないため、nmapがホストを「Down」と誤認するのを防ぐ目的で `TCP Connect Scan (-sT)` と `-Pn`が必須
 
 ### SPOSE Scanner
