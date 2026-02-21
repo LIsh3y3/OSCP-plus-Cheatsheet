@@ -80,4 +80,8 @@ Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Services\* |
   Select PSChildName, ImagePath, ObjectName
 ```
 
-6. Administrator に権限昇格後、C:\Users\j_local\Desktop にpasswords.
+6. Administrator に権限昇格後、C:\Users\j_local\Desktop にpasswords.kdbxがあったため、keepass2johnでクラックし、squidの認証情報を入手
+	- **反省**：パスワードのクラックは、fasttrack→rockyouの流れ
+
+---
+
