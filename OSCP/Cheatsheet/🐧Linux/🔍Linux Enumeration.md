@@ -649,11 +649,12 @@ find / -type f \( -perm 440 -o -perm 640 -o -perm 660 \) 2>/dev/null
 - デーモンにより定期的に一瞬だけ実行されるプロセスも見逃さない
 
 通信上やり取りされているパスワードをキャプチャする
-	⚠️root権限が必要なので、権限昇格後かつ他マシンと通信しているかのうせいがあｒ
 ```zsh
 # 具体例：sudo tcpdump -i lo -A | grep "pass"
-sudo tcpdump -i lo -A | grep "[keyword]"
+sudo tcpdump -i <intarface> -A -w output.pcap
 ```
+>[!TIP]
+>root権限が必要なので、他マシンと通信している可能性がある場合は、権限昇格後に必ず実行し、[[🦈Wireshark]]を使って分析
 
 起動しているデーモンの状態を確認
 　（サービス≒デーモン）
