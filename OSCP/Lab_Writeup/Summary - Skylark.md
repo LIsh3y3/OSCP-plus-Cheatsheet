@@ -135,4 +135,9 @@ password for user postgres: # ← www-dataで発見した認証情報
 root
 ```
 
--
+7. rootでWebアプリのUpload ディレクトリにアクセスすると、
+
+---
+
+# VM13
+
