@@ -41,7 +41,7 @@ SELECT datname FROM pg_database;
 -- テーブル一覧
 \d
 
--- ユーザーロールの確認
+-- 💡ユーザーロールの確認
 \du+
 
 -- 現在のユーザー
