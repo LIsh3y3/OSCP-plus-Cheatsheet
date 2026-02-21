@@ -48,7 +48,7 @@ legacy:I_Miss_Windows3.1
 postgres:EAZT5EMULA75F8MC
 
 # vm13 rdp
-
+SKYLARK\kiosk:XEwUS^9R2Gwt8O914
 ```
 
 ---

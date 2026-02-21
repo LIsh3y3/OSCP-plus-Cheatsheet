@@ -53,6 +53,8 @@ password for user postgres: # ← www-dataで発見した認証情報
 root
 ```
 
+- /var/www/defaultでさっきまでつ
+
 
 ### 実行結果抽出
 
