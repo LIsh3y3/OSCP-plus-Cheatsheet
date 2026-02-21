@@ -112,4 +112,6 @@ Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Services\* |
 
 3. FeroxBusterでUploadsディレクトリが403になっていたため、`Uploads/<payload>`にアクセスしてリバースシェルをトリガーし、www-data として初期アクセス
 
-4. FeroxBusterでconfig.phpにアクセスできることを確認していたので（
+4. FeroxBusterでconfig.phpにアクセスできることを確認していたので（ブラウザでは解釈され実行されるので中身は確認できなかった）、ファイルの中身を確認すると`postgres`ユーザーの認証情報を入手した
+
+5. postgres ユーザーとして接続し、スーパーユーザーであったため、
