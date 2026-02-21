@@ -68,7 +68,7 @@ legacy:I_Miss_Windows3.1
 ※IPアドレスの出力→フラグの出力のキャプチャ必要
 
 ## proof.txt
-
+![[Pasted image 20260221165005.png]]
 ```zsh
-
+efdfab1d9714c290039a58b7952eba4b
 ```
