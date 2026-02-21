@@ -110,4 +110,6 @@ Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Services\* |
 
 2. PDFファイルしか受け付けないホワイトリスト型の防御であったため、[[⚡️File upload vuln#Magic Number フィルタ]]でPDFファイルとしてPHPファイルを詐称のうえ、アップロード
 
-3. FeroxBusterでUploadsディレクトリが403になっていたため、`Uploads/<payload>`にアクセスして
+3. FeroxBusterでUploadsディレクトリが403になっていたため、`Uploads/<payload>`にアクセスしてリバースシェルをトリガーし、www-data として初期アクセス
+
+4. FeroxBusterでconfig.phpにアクセスできることを確認していたので（
