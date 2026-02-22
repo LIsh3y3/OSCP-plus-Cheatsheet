@@ -354,6 +354,20 @@ krbtgt         kadmin/changepw
 - cmdkeyなし
 - `env`なし
 - powershell history: なし（自分がやったコマンドだけ）
+```powershell
+PS C:\Program Files\PackageManagement> cmdkey /list
+
+Currently stored credentials:
+
+    Target: Domain:interactive=SRV22\jenkins
+    Type: Domain Password
+    User: SRV22\jenkins
+
+    Target: Domain:interactive=SRV22\Administrator
+    Type: Domain Password
+    User: SRV22\Administrator
+```
+
 
 ## 興味深い情報
 
