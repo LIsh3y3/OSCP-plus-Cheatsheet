@@ -236,3 +236,9 @@ SMB         172.16.104.202  445    SRV22            [-] oscp.exam\W.BYRD@OSCP.EX
 SMB         172.16.104.202  445    SRV22            [-] oscp.exam\IUSR@OSCP.EXAM:CarHammerChip964 STATUS_LOGON_FAILURE 
 
 ```
+
+---
+
+# 列挙
+
+- 
