@@ -135,10 +135,10 @@ Starting gobuster in directory enumeration mode
 ===============================================================
 
 
-/login                (Status: 200) [Size: 6265]
-/admin                (Status: 200) [Size: 6265]
+/login                (Status: 200) [Size: 6265]#←loginページ
+/admin                (Status: 200) [Size: 6265]#←loginページ
 /wp-content           (Status: 200) [Size: 0]
-/wp-admin             (Status: 200) [Size: 6265]
+/wp-admin             (Status: 200) [Size: 6265]#←loginページ
 /index.php            (Status: 200) [Size: 33221]
 /feed                 (Status: 200) [Size: 1934]
 /contact              (Status: 200) [Size: 27237]
@@ -305,7 +305,7 @@ Starting gobuster in directory enumeration mode
 
 ---
 
-# WPScan
+# WPScan(長文注意)
 
 ```sh
 $ wpscan --url http://$TargetIP --no-banner --enumerate p,t --plugins-detection aggressive -o WebEnum/wpscan --api-token svP1khwitgUTmxDwLDuZZRTDg6ms875XmsU8MZVLqYs
