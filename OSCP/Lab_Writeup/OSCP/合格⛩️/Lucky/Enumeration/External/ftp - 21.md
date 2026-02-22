@@ -51,3 +51,5 @@ PORT   STATE SERVICE REASON  VERSION
 
 
 ![[Pasted image 20260222200501.png]]
+
+![[Pasted image 20260222200759.png]]
