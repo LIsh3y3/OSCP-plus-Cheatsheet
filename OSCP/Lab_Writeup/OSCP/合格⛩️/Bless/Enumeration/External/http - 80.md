@@ -9,7 +9,7 @@ PORT   STATE SERVICE REASON  VERSION
 
 ---
 
-# Whatweb
+# Whatweb -> nothing
 
 ```zsh
 WhatWeb report for http://192.168.104.110
