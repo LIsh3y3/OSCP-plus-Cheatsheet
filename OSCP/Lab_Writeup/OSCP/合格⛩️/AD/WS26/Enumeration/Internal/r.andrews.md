@@ -313,7 +313,7 @@ cmdkey ->なし
 
 ```powershell
 $NewPassword = ConvertTo-SecureString "Password123" -AsPlainText -Force
-Set-DomainUserPassword -Identity "<Target_UserDN>" -AccountPassword $NewPassword
+Set-DomainUserPassword -Identity "CN=g.jarvis,CN=Users,DC=oscp,DC=exam" -AccountPassword $NewPassword
 ```
 
 
