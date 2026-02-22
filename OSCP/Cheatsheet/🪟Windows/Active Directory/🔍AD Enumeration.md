@@ -438,8 +438,8 @@ Find-DomainShare
 2. 現在のユーザーがアクセス可能なDomain共有に絞って列挙する（PowerView）
 ```powershell
 Find-DomainShare -CheckShareAccess
-	```
-		↓出力例
+```
+	↓出力例
 ```powershell
 Name           Type Remark                 ComputerName
 ----           ---- ------                 ------------
