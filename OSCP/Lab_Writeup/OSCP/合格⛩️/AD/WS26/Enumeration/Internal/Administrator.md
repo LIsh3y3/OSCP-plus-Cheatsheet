@@ -244,3 +244,5 @@ SMB         172.16.104.202  445    SRV22            [-] oscp.exam\IUSR@OSCP.EXAM
 - PowerShell Historyにパスワードを発見
 `b.martin@oscp.exam:BusyWorkerDay777`
 ![[Pasted image 20260222190305.png]]
+
+- 見つけたパスワードを他ユーザーにもすぷれーしみｔ
