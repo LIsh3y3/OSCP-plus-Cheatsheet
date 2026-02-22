@@ -130,7 +130,7 @@ Microsoft Edge                                                     111.0.1661.41
 ...
 ```
 
-- [[http - 8080]]で見つけた脆弱性を権限昇格に使える
+- [[OSCP/Lab_Writeup/OSCP/合格⛩️/Happy/Enumeration/External/http - 8080]]で見つけた脆弱性を権限昇格に使える
 
 ---
 

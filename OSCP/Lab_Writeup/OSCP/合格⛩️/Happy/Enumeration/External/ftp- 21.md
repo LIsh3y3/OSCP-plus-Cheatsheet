@@ -51,7 +51,7 @@ DIALECT = MSSQL
 ```
 6FE0F539CA79E03BECB4D9BDF6413F7EC48C4AC3956BCA79ECB4EB60906BB4A1E1B0F539EB60E03BAAFECA79B734B398
 ```
-- [[http - 8080#Weak Password Encryption]]でクラックできる？
+- [[OSCP/Lab_Writeup/OSCP/合格⛩️/Happy/Enumeration/External/http - 8080#Weak Password Encryption]]でクラックできる？
 
 ## Misc
 
