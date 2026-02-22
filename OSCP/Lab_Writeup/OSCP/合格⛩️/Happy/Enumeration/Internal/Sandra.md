@@ -128,6 +128,7 @@ Microsoft Edge                                                     111.0.1661.41
 
 ### 実行中のプロセス
 
+- WebServerForAdminというのが気になる
 ```sh
 *Evil-WinRM* PS C:\Program Files\AhsayCBS> # 除外ワードは,"<term>"で追加可能
 ps | Where-Object -Property ProcessName -notin "svchost"
@@ -179,6 +180,50 @@ Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
 
 ```
 
+- リアルタイムにプロセス監視するも特になし
+```sh
+*Evil-WinRM* PS C:\Users\Sandra> powershell -ep bypass -c 'import-module .\Watch-Command.ps1;ps -ErrorAction SilentlyContinue | Watch-Command -Difference -Continuous -Seconds 30'
+
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
+-------  ------    -----      -----     ------     --  -- -----------
+    136       9     3392       9504       0.03   2708   0 conhost
+   1070      26    63928      68204       1.00   3380   0 powershell
+   2043       0      196        140                 4   0 System
+   1213      24     6424      15068               712   0 lsass
+   1037      25    69976      75764       1.31   3380   0 powershell
+    341      12     2260      10452              5864   0 SearchProtocolHost
+   1318      17     8076      16760               804   0 svchost
+    867      15     4648      10544               924   0 svchost
+    235      10     2028       6648               976   0 svchost
+    211       9     1912       6136              1272   0 svchost
+    213      14    60440      61252              1400   0 svchost
+    260      12     2536       7288              1924   0 svchost
+    422      17    12936      21680              2604   0 svchost
+    326      17    22336      26816              2736   0 svchost
+    748      84    70396      57676              4560   0 svchost
+   2046       0      196        140                 4   0 System
+    373      17    10652      19856              4032   0 WmiPrvSE
+   2086      34    75300      98876       4.02   3900   0 wsmprovhost
+   1383      33    67364      87980       1.27   6016   0 wsmprovhost
+   1214      24     6492      15084               712   0 lsass
+    606      81   197528     114428              2444   0 MsMpEng
+   1279      24    69912      75736       1.66   3380   0 powershell
+    627      11     5008       9600               660   0 services
+   1319      17     8076      16760               804   0 svchost
+    236      10     2028       6648               976   0 svchost
+    427      32     9160      15876              2112   0 svchost
+    171       9     1908       6832              2120   0 svchost
+    399      16    12272      21228              2604   0 svchost
+    327      17    22516      26996              2736   0 svchost
+    129      10     6408      12632              3532   0 svchost
+    728      84    70396      57676              4560   0 svchost
+    224      13     2532       9900              5340   0 svchost
+    552      29     9784      17920              5516   0 svchost
+   2049       0      196        140                 4   0 System
+    414      24    10368      18620              2996   0 vmtoolsd
+    799      34    75364      98916       4.09   3900   0 wsmprovhost
+   1447      33    67380      87996       1.27   6016   0 wsmprovhost
+```
 
 
 ---
