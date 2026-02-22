@@ -188,4 +188,5 @@ HTTP Headers:
 
 # Screenshot
 
-
+- index
+![[Pasted image 20260222131928.png]]
