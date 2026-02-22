@@ -187,7 +187,7 @@ HTTP Headers:
 
 ## index（/cbs/Logon.do）
 
-- デフォルト認証情報である `system:system` でログイン試行するも失敗（ちなみにFTPで入手した情報も
+- デフォルト認証情報である `system:system` でログイン試行するも失敗（ちなみにFTPで入手した情報も失敗）
 
 - ログイン失敗の出力には２つあり、存在するユーザーは違うレスポンスが返る
 ```
@@ -197,6 +197,17 @@ No such user ! Please try again. Access denied
 Server is stopped. Please contact your service provider. Access denied 
 ```
 → *User Enumeration* が可能
+
+
+---
+
+# Exploit
+
+## User Enumeration
+
+```sh
+hydra -L <username> -P <wordlist> $TargetIP http-post-form "/<url残り>:<クエリ文字列>:F=<Failure_Message>" 
+```
 
 ---
 
