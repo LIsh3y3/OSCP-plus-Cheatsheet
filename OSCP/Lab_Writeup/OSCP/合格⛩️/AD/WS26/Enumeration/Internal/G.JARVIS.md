@@ -74,6 +74,7 @@ cp \\192.168.49.104\share\winPEASx64.exe .
 ```powershell
 get-item "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" # 特になし
 
+# propertyなしなので、たぶんアクセス不可？
 get-item "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
 
 Name                           Property
@@ -87,6 +88,9 @@ IE40
 IE4Data
 IE5BAKEX
 IEData
+
+# object not found
+get-item "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*"
 
 ```
 
