@@ -1,4 +1,8 @@
-# Argus surveilance DVR
+# Argus surveilance DVR DLL hijacking
+
+- [Argus Surveillance DVR 4.0.0.0 - Privilege Escalation](https://www.exploit-db.com/exploits/45312)
+
+- アプリケーションディレクトリは書き込み可能なので、これが怪しい
 
 # Argus surveilance dvr unquoted P.E -> Program Filesが書き込み不可なので失敗
 
