@@ -9,8 +9,8 @@
 - [x] JENKINSなどのCI/CDのエクスプロイト技法について学ぶ
 - [x] 全てにおいて、複数の手段を用意する
 - [x] Obsidian gitのpullを3分間隔に変更する
-- [ ] 試験前にVMのスナップショットをとっておくこと
-- [ ] oscpの合格⛩️
+- [x] 試験前にVMのスナップショットをとっておくこと
+- [x] oscpの合格⛩️
 - [ ] obsidian git の auto commit , push ,pull の時間を長くする（順番はcommit > pull > push）、show status bar をonにする
 
 
