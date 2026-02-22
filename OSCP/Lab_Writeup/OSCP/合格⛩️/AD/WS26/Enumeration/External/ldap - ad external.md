@@ -3,7 +3,7 @@
 ## ldapdomaindump
 
 ```powershell
-ldapdomaindump -u '<username>' -p '<pw>' -o '<output_dir>' <TargetIP>
+$ ldapdomaindump -u 'OSCP.EXAM\g.jarvis' -p 'Password123' -o 'ldapdomaindump.out' 192.168.104.206
 ```
 
 
