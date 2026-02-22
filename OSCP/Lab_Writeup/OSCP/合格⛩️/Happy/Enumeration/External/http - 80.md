@@ -203,7 +203,7 @@ Server is stopped. Please contact your service provider. Access denied
 
 # Exploit
 
-- バージョンやこのシステム用のえくすぷろ
+- バージョンやこのシステム用のエクスプロイトはなさそう
 
 ## User Enumeration
 
