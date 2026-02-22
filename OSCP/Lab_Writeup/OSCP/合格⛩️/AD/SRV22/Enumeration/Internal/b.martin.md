@@ -154,11 +154,6 @@ PS C:\Program Files\Microsoft SQL Server> Get-CimInstance -ClassName Win32_Servi
 
 Name                          StartName                 PathName
 ----                          ---------                 --------
-AzureAttestService            LocalSystem               C:\Windows\system32\svchost.exe -k AzureAttestService
-BrokerInfrastructure          LocalSystem               C:\Windows\system32\svchost.exe -k DcomLaunch -p
-CertPropSvc                   LocalSystem               C:\Windows\system32\svchost.exe -k netsvcs
-COMSysApp                     LocalSystem               C:\Windows\system32\dllhost.exe /Processid:{02D4B3F1-FD88-11D1-960D-00805FC79235}
-DcomLaunch                    LocalSystem               C:\Windows\system32\svchost.exe -k DcomLaunch -p
 DiagTrack                     LocalSystem               C:\Windows\System32\svchost.exe -k utcsvc -p
 DsmSvc                        LocalSystem               C:\Windows\system32\svchost.exe -k netsvcs -p
 DsSvc                         LocalSystem               C:\Windows\System32\svchost.exe -k LocalSystemNetworkRestricted -p
@@ -205,11 +200,7 @@ VMTools                       LocalSystem               "C:\Program Files\VMware
 WdiSystemHost                 LocalSystem               C:\Windows\System32\svchost.exe -k LocalSystemNetworkRestricted -p
 Winmgmt                       localSystem               C:\Windows\system32\svchost.exe -k netsvcs -p
 WpnService                    LocalSystem               C:\Windows\system32\svchost.exe -k netsvcs -p
-CDPUserSvc_13ac89                                       C:\Windows\system32\svchost.exe -k UnistackSvcGroup
-PimIndexMaintenanceSvc_13ac89                           C:\Windows\system32\svchost.exe -k UnistackSvcGroup
-UnistoreSvc_13ac89                                      C:\Windows\System32\svchost.exe -k UnistackSvcGroup
-UserDataSvc_13ac89                                      C:\Windows\system32\svchost.exe -k UnistackSvcGroup
-WpnUserService_13ac89                                   C:\Windows\system32\svchost.exe -k UnistackSvcGroup
+CDPUserSvc_13ac89                                       
 ```
 
 - ちなみにjenkinsディレクトリにアクセスはできない
