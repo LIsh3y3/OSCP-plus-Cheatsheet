@@ -45,6 +45,14 @@ DIALECT = MSSQL
 - `strings`および`strings -e l`で列挙すｒも読み取り可能な文字列はなし
 - そのほかpngも特になし
 
+## DVRParams.ini
+
+- Argusのパスワードらしきものを発見
+```
+6FE0F539CA79E03BECB4D9BDF6413F7EC48C4AC3956BCA79ECB4EB60906BB4A1E1B0F539EB60E03BAAFECA79B734B398
+```
+- @@
+
 ## Misc
 
 - `ls -la` としたらMyMusicやMyVideoがあったので、何かのユーザーのホームディレクトリと想定
