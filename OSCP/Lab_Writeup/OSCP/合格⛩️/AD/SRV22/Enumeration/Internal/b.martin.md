@@ -204,6 +204,34 @@ CDPUserSvc_13ac89
 ```
 
 - ちなみにjenkinsディレクトリにアクセスはできない
+```powershell
+dir C:\
+```
+
+
+```powershell
+PS C:\Program Files\Microsoft SQL Server> Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Services\* |
+>>   Where-Object {
+>>     $_.ObjectName -and
+>>     $_.ObjectName -notmatch 'LocalService|NetworkService' -and
+>>     $_.ImagePath -and
+>>     $_.ImagePath -notmatch '^"?C:\\Windows\\'
+>>     # unquoted service path?
+>>     # $_.PathName -notmatch '"'
+>>   } |
+>>   Select PSChildName, ImagePath, ObjectName
+
+PSChildName    ImagePath                                                                                          ObjectName
+-----------    ---------                                                                                          ----------
+Jenkins        "C:\Program Files\Jenkins\jenkins.exe"                                                             .\jenkins
+MSSQLSERVER    "C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Binn\sqlservr.exe" -sMSSQLSERVER  NT Service\MSSQLSERVER
+Sense          "C:\Program Files\Windows Defender Advanced Threat Protection\MsSense.exe"                         LocalSystem
+SQLSERVERAGENT "C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Binn\SQLAGENT.EXE" -i MSSQLSERVER NT Service\SQLSERVERAGENT
+SQLTELEMETRY   "C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Binn\sqlceip.exe" -Service        NT Service\SQLTELEMETRY
+SQLWriter      "C:\Program Files\Microsoft SQL Server\90\Shared\sqlwriter.exe"                                    LocalSystem
+VGAuthService  "C:\Program Files\VMware\VMware Tools\VMware VGAuth\VGAuthService.exe"                             LocalSystem
+VMTools        "C:\Program Files\VMware\VMware Tools\vmtoolsd.exe"                                                LocalSystem
+```
 
 ---
 
