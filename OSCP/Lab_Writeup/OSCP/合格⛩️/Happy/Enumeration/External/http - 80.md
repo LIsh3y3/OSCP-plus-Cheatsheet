@@ -205,6 +205,7 @@ Server is stopped. Please contact your service provider. Access denied
 
 ## User Enumeration
 
+いったん後回し
 ```sh
 hydra -L <username> -P <wordlist> $TargetIP http-post-form "/<url残り>:<クエリ文字列>:F=<Failure_Message>" 
 ```
