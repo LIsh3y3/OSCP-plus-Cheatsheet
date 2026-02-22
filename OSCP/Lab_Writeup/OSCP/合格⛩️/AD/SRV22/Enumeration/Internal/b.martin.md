@@ -476,6 +476,13 @@ PS C:\Program Files\Microsoft SQL Server>
 
 - ポート指定して実行するも失敗
 ```powershell
+PS C:\Program Files\Microsoft SQL Server> sqlcmd -S 127.0.0.1,1434 -E
+sqlcmd : Sqlcmd: Error: Microsoft ODBC Driver 17 for SQL Server : Login failed for user 'OSCP\b.martin'..
+At line:1 char:1
++ sqlcmd -S 127.0.0.1,1434 -E
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Sqlcmd: Error: ...SCP\b.martin'..:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
 
 ```
 
