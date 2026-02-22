@@ -634,8 +634,6 @@ jenkinsのconfigに直接はアクセスできないか
 `# Cドライブ全体から "password" という文字列を含むファイルを再帰的に検索
 
 
-⇨もしアクセスできたら、`java -jar jenkins-cli.jar -s http://172.16.104.202:8080/ -http help "@"`
-
 
 
 ## WinPEAS結果の見方
