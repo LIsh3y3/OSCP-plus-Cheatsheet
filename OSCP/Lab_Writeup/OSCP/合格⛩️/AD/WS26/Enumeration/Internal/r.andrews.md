@@ -103,6 +103,19 @@ cp \\192.168.49.104\share\winPEASx64.exe .
 ---
 ---
 
+# Credential harvesting
+
+## powershell history
+
+```powershell
+Get-History # 特になし
+
+```
+
+
+
+---
+
 # AD
 
 - AS-REP roastable、Kerberoastableは両方存在しない
