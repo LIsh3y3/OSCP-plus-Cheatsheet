@@ -358,6 +358,12 @@ cmdkey ->なし
 # AD
 
 - AS-REP roastable、Kerberoastableは両方存在しない
+- Domain共有の列挙
+```powershell
+
+```
+
+## G.JARVISへの横展開
 
 - r.andrewsは、G.Jarvisに"AllExtendedRights"をもつため、パスワード変更が可能
 	- また、G.JARVISは、WS26にRemote Managerの権限をもつ
@@ -394,7 +400,6 @@ $Cred = New-Object System.Management.Automation.PSCredential('OSCP.EXAM\r.andrew
 
 Add-DomainGroupMember -Identity 'CN=Remote Desktop Users,CN=Builtin,DC=oscp,DC=exam' -Members 'CN=g.jarvis,CN=Users,DC=oscp,DC=exam' -Credential $Cred
 ```
-
 
 
 ---
