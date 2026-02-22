@@ -245,7 +245,10 @@ SMB         172.16.104.202  445    SRV22            [-] oscp.exam\IUSR@OSCP.EXAM
 `b.martin@oscp.exam:BusyWorkerDay777`
 ![[Pasted image 20260222190305.png]]
 
-- 見つけたパスワードを他ユーザーにもスプレーしてみる
-```sh
+---
+
+# WinPEAS 結果
+
+```powershell
 
 ```
