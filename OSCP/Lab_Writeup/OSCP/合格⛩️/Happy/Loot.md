@@ -40,6 +40,7 @@ a47a1a066872d0307a913199c9ff90ea
 
 ## proof.txt
 
+![[Pasted image 20260222160701.png]]
 ```zsh
 
 ```
