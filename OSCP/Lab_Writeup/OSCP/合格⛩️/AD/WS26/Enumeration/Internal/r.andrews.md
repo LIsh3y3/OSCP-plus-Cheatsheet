@@ -393,9 +393,57 @@ C$       2147483648 Default share       WS26.oscp.exam
 
 ### SYSVOL
 
+```powershell
+PS C:\Users\Public> ls \\DC20.oscp.exam\sysvol
 
 
-### NETLOGON
+    Directory: \\DC20.oscp.exam\sysvol
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----l         10/9/2024  11:21 AM                oscp.exam
+
+
+PS C:\Users\Public> ls \\DC20.oscp.exam\sysvol\oscp.exam
+
+
+    Directory: \\DC20.oscp.exam\sysvol\oscp.exam
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----         10/9/2024  11:31 AM                Policies
+d-----         10/9/2024  11:21 AM                scripts
+
+
+PS C:\Users\Public> ls \\DC20.oscp.exam\sysvol\oscp.exam\Policies
+
+
+    Directory: \\DC20.oscp.exam\sysvol\oscp.exam\Policies
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----         10/9/2024  11:31 AM                {15DBA1A6-9352-4857-A726-250511B9C528}
+d-----         10/9/2024  11:31 AM                {18B8F74A-2AA5-4FB9-A69F-7F362AA9FB96}
+d-----         10/9/2024  11:31 AM                {26FD9D29-21AB-425D-9346-69B242077F99}
+d-----         10/9/2024  11:21 AM                {31B2F340-016D-11D2-945F-00C04FB984F9}
+d-----         10/9/2024  11:31 AM                {3C32C10F-1BF8-45DB-8A78-7A91E2B82B06}
+d-----         10/9/2024  11:31 AM                {6A3D702F-AAC4-474B-89F6-10B7D3C20248}
+d-----         10/9/2024  11:21 AM                {6AC1786C-016F-11D2-945F-00C04fB984F9}
+d-----         10/9/2024  11:31 AM                {A8CF2A8F-AB92-4167-9E04-62FC66C27EAE}
+
+
+PS C:\Users\Public> ls \\DC20.oscp.exam\sysvol\oscp.exam\scripts
+PS C:\Users\Public>
+```
+
+### NETLOGON -> nothing
+
+```powerhsll
+PS C:\Users\Public> ls \\DC20.oscp.exam\netlogon
+```
 
 ### ADMIN$
 
@@ -404,6 +452,10 @@ C$       2147483648 Default share       WS26.oscp.exam
 ```
 
 ### C$
+
+```powershell
+
+```
 
 
 ## G.JARVISへの横展開
