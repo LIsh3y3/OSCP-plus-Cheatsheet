@@ -190,6 +190,11 @@ UserDataSvc_29ccec                        C:\Windows\system32\svchost.exe -k Uni
 WpnUserService_29ccec                     C:\Windows\system32\svchost.exe -k UnistackSvcGroup
 ```
 
+- PowerUpでの列挙
+```powershell
+
+```
+
 
 ---
 
