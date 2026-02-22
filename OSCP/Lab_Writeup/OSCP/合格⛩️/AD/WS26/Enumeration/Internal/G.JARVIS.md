@@ -96,6 +96,8 @@ get-item "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*"
 
 #### C:\Windows\Panther
 
+- これは先ほどのr.andrewsユーザーも閲覧可能
+- unattend.xmlは、Sensitive 
 ```powershell
 *Evil-WinRM* PS C:\Windows\Panther> dir
 
@@ -129,6 +131,15 @@ d-----         10/9/2024   2:44 PM                UnattendGC
 -a----          5/6/2022  10:18 PM         756904 _s_640C.tmp
 
 ```
+
+- unattend.xml
+```powershell
+ <Name>Admin</Name>
+                                                <Group>Administrators</Group>
+                                                <Password>*SENSITIVE*DATA*DELETED*</Password>
+
+```
+
 
 ---
 
