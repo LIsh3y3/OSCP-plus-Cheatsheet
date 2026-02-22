@@ -287,6 +287,10 @@ $header="HostName","TaskName","NextRunTime","Status","LogonMode","LastRunTime","
 schtasks /query /fo csv /nh /v | ConvertFrom-Csv -Header $header | select -uniq TaskName,NextRunTime,ScheduleType,Status,TaskToRun,RunAsUser | Where-Object {$_.RunAsUser -ne $env:UserName -and $_.TaskToRun -notlike "%windir%*" -and $_.TaskToRun -ne "COM handler" -and $_.TaskToRun -notlike "%systemroot%*" -and $_.TaskToRun -notlike "C:\Windows\*" -and $_.TaskName -notlike "\Microsoft\Windows\*"}
 ```
 
+```powershell
+Get-ModifiableScheduledTaskFile
+```
+
 ---
 
 ### 興味深い情報
