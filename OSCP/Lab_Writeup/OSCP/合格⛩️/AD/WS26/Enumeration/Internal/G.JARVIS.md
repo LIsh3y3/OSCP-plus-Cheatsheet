@@ -94,6 +94,41 @@ get-item "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*"
 
 ```
 
+#### C:\Windows\Panther
+
+```powershell
+*Evil-WinRM* PS C:\Windows\Panther> dir
+
+
+    Directory: C:\Windows\Panther
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----         10/9/2024   2:48 PM                actionqueue
+d-----         10/9/2024  11:15 AM                FastCleanup
+d-----         10/9/2024   2:44 PM                setup.exe
+d-----         10/9/2024   2:44 PM                UnattendGC
+-a----         10/9/2024   3:43 PM          19719 cbs.log
+-a----         10/9/2024   3:43 PM          22600 cbs_intl.log
+-a----         10/9/2024   3:43 PM          18455 cbs_unattend.log
+-a----         10/9/2024   3:44 PM             68 Contents0.dir
+-a----         10/9/2024   2:47 PM             68 Contents1.dir
+-a----         10/9/2024   2:44 PM            886 DDACLSys.log
+-a----         10/9/2024   2:47 PM           6976 diagerr.xml
+-a----         10/9/2024   2:47 PM          26383 diagwrn.xml
+-a----         10/9/2024   3:44 PM          29028 MainQueueOnline0.que
+-a----         10/9/2024   2:47 PM          27672 MainQueueOnline1.que
+-a----        11/11/2024  10:49 AM         679936 setup.etl
+-a----         10/9/2024   2:50 PM         677436 setupact.log
+-a----         10/9/2024   2:47 PM            577 setuperr.log
+-a----         10/9/2024   2:47 PM         110848 setupinfo
+-a----         10/9/2024   2:48 PM           4548 unattend.xml
+-a----          7/3/2024  11:35 PM        1119728 _s_5E5D.tmp
+-a----          5/6/2022  10:18 PM         601224 _s_617B.tmp
+-a----          5/6/2022  10:18 PM         756904 _s_640C.tmp
+
+```
 
 ---
 
@@ -117,6 +152,121 @@ get-item "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*"
 #### C:\Windows
 
 ```powershell
+Evil-WinRM* PS C:\Windows> dir
+
+
+    Directory: C:\Windows
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        10/10/2024   7:39 PM                appcompat
+d-----         10/9/2024  12:32 PM                apppatch
+d-----         2/21/2026   7:25 PM                AppReadiness
+d-r---         10/9/2024  11:15 AM                assembly
+d-----         10/9/2024  12:32 PM                bcastdvr
+d-----          7/3/2024  11:43 PM                Boot
+d-----          5/6/2022  10:24 PM                Branding
+d-----          7/3/2024  11:43 PM                BrowserCore
+d-----         10/9/2024  12:15 PM                CbsTemp
+d-----          5/7/2022  12:41 AM                Containers
+d-----         10/9/2024   2:50 PM                CSC
+d-----          5/6/2022  10:24 PM                Cursors
+d-----         10/9/2024  11:36 AM                debug
+d-----          5/6/2022  10:42 PM                diagnostics
+d-----          7/3/2024  11:43 PM                DiagTrack
+d-----          5/7/2022  12:30 AM                DigitalLocker
+d---s-          5/6/2022  10:24 PM                Downloaded Program Files
+d-----          7/3/2024  11:43 PM                en-US
+d-r-s-         10/9/2024  12:32 PM                Fonts
+d-----          7/3/2024  11:43 PM                Globalization
+d-----          5/7/2022  12:30 AM                Help
+d-----          5/6/2022  10:42 PM                IdentityCRL
+d-----         10/9/2024  12:32 PM                IME
+d-r---         2/21/2026   7:03 PM                ImmersiveControlPanel
+d-----          7/3/2024  11:43 PM                InboxApps
+d-----        11/11/2024  10:58 AM                INF
+d-----          5/6/2022  10:42 PM                InputMethod
+d-----          5/6/2022  10:24 PM                L2Schemas
+d-----          5/6/2022  10:24 PM                LiveKernelReports
+d-----        10/29/2024  12:55 AM                Logs
+d-----          5/6/2022  10:42 PM                Media
+d-r---         2/21/2026   7:02 PM                Microsoft.NET
+d-----          5/6/2022  10:24 PM                Migration
+d-----          5/6/2022  10:24 PM                ModemLogs
+d-----          5/7/2022  12:31 AM                OCR
+d-r---          5/6/2022  10:24 PM                Offline Web Pages
+d-----         10/9/2024  11:15 AM                Panther
+d-----          5/6/2022  10:24 PM                Performance
+d-----          5/6/2022  10:42 PM                PLA
+d-----         10/9/2024  12:32 PM                PolicyDefinitions
+d-----         2/21/2026  11:53 PM                Prefetch
+d-r---         2/21/2026   7:19 PM                PrintDialog
+d-----         10/9/2024  12:32 PM                Provisioning
+d-----        11/11/2024  10:49 AM                Registration
+d-----          5/7/2022  12:39 AM                RemotePackages
+d-----          5/6/2022  10:24 PM                rescache
+d-----          5/6/2022  10:42 PM                Resources
+d-----          5/6/2022  10:24 PM                SchCache
+d-----          5/7/2022  12:39 AM                schemas
+d-----         10/9/2024  11:41 AM                security
+d-----         10/9/2024   2:44 PM                ServiceProfiles
+d-----         2/21/2026   7:03 PM                ServiceState
+d-----         10/9/2024  12:32 PM                servicing
+d-----          5/6/2022  10:28 PM                Setup
+d-----         10/9/2024  12:32 PM                ShellComponents
+d-----         10/9/2024  12:32 PM                ShellExperiences
+d-----          5/6/2022  10:42 PM                SKB
+d-----         10/9/2024   3:19 PM                SoftwareDistribution
+d-----          5/6/2022  10:24 PM                Speech
+d-----          5/6/2022  10:24 PM                Speech_OneCore
+d-----          5/6/2022  10:24 PM                System
+d-----        11/11/2024  10:58 AM                System32
+d-----         10/9/2024  12:32 PM                SystemApps
+d-----         10/9/2024  12:33 PM                SystemResources
+d-----         2/21/2026   8:38 PM                SystemTemp
+d-----         10/9/2024  12:33 PM                SysWOW64
+d-----          5/6/2022  10:24 PM                TAPI
+d-----         10/9/2024   2:44 PM                Tasks
+d-----         2/21/2026   7:21 PM                Temp
+d-----          5/6/2022  10:24 PM                tracing
+d-----          5/6/2022  10:25 PM                twain_32
+d-----         10/9/2024  12:33 PM                UUS
+d-----          5/6/2022  10:24 PM                Vss
+d-----          5/6/2022  10:24 PM                WaaS
+d-----          5/6/2022  10:42 PM                Web
+d-----         2/21/2026   7:23 PM                WinSxS
+d-----         10/9/2024  12:33 PM                WUModels
+-a----         10/9/2024  12:08 PM         122880 bfsvc.exe
+-a--s-        11/11/2024  10:51 AM          67584 bootstat.dat
+-a----          5/6/2022  10:21 PM          24895 CloudEdition.xml
+-a----         10/9/2024   2:47 PM           2327 DtcInstall.log
+-a----          5/6/2022  10:21 PM          24895 Education.xml
+-a----          5/6/2022  10:21 PM          24935 Enterprise.xml
+-a----         10/9/2024  12:08 PM        5596280 explorer.exe
+-a----          7/3/2024  11:37 PM        1089536 HelpPane.exe
+-a----          5/6/2022  10:20 PM          36864 hh.exe
+-a----          5/6/2022  10:21 PM          24895 IoTEnterprise.xml
+-a----         10/9/2024   2:44 PM           1378 lsasetup.log
+-a----          5/6/2022  10:19 PM          43131 mib.bin
+-a----          7/3/2024  11:38 PM         360448 notepad.exe
+-a----         10/9/2024  11:27 AM           1268 PFRO.log
+-a----          5/6/2022  10:21 PM          24935 Professional.xml
+-a----          5/6/2022  10:21 PM          24895 ProfessionalCountrySpecific.xml
+-a----          5/6/2022  10:21 PM          24895 ProfessionalEducation.xml
+-a----          5/6/2022  10:21 PM          24895 ProfessionalSingleLanguage.xml
+-a----          5/6/2022  10:21 PM          24895 ProfessionalWorkstation.xml
+-a----         10/9/2024  12:11 PM         598016 regedit.exe
+-a----          5/6/2022  10:21 PM          24895 ServerRdsh.xml
+-a----         10/9/2024   2:44 PM              0 setuperr.log
+-a----          7/3/2024  11:33 PM         192512 splwow64.exe
+-a----          5/6/2022  10:22 PM            219 system.ini
+-a----         10/9/2024  12:11 PM          69120 twain_32.dll
+-a----          5/6/2022  10:22 PM             92 win.ini
+-a----         2/21/2026   7:58 PM            276 WindowsUpdate.log
+-a----          5/6/2022  10:20 PM          12288 winhlp32.exe
+-a----          5/7/2022  12:39 AM         316640 WMSysPr9.prx
+-a----          5/6/2022   1:16 PM          28672 write.exe
 
 ```
 
