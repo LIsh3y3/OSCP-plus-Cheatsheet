@@ -17,6 +17,21 @@ PORT   STATE SERVICE REASON  VERSION
 # Whatweb
 
 ```zsh
+┌──(koshi㉿kali)-[~/Exam/Happy]
+└─$ whatweb -v -a3 --log-verbose WebEnum/whatweb_443.txt http://$TargetIP:443
+WhatWeb report for http://192.168.104.111:443
+Status    : 400 Bad Request
+Title     : <None>
+IP        : 192.168.104.111
+Country   : RESERVED, ZZ
+
+Summary   : 
+
+Detected Plugins:
+HTTP Headers:
+        HTTP/1.1 400 
+        Content-Type: text/plain;charset=ISO-8859-1
+        Connection: close
 
 ```
 
