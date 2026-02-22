@@ -102,7 +102,7 @@ Mandatory Label\Medium Mandatory Level Label            S-1-16-8192
 
 ### ネットワーク
 
-- 
+- ftpであったdb.devのポートは動作していなさそう
 
 
 ---
