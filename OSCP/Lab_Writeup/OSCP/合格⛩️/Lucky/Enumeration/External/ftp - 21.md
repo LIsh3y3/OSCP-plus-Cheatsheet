@@ -33,9 +33,10 @@ PORT   STATE SERVICE REASON  VERSION
 - ダウンロードしたすべてのファイルを閲覧してみる
 	- すべてPDFファイル
 
-- 2d5e...
+- 2d5e...と438...
 	- 「Staedtler 」という実際にある会社のパンフレットっぽい
-- 
+- 77cfe070...
+	- AuditorzRusというかい
 
 
 ---
