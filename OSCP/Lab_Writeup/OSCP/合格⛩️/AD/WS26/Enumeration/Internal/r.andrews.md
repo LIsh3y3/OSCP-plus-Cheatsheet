@@ -389,6 +389,10 @@ ADMIN$   2147483648 Remote Admin        WS26.oscp.exam
 C$       2147483648 Default share       WS26.oscp.exam
 ```
 
+- それぞれのshareにアクセス
+```po
+```
+
 ## G.JARVISへの横展開
 
 - r.andrewsは、G.Jarvisに"AllExtendedRights"をもつため、パスワード変更が可能
