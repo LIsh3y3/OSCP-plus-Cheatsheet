@@ -35,9 +35,14 @@ PORT   STATE SERVICE REASON  VERSION
 
 - 2d5e...と438...
 	- 「Staedtler 」という実際にある会社のパンフレットっぽい
-- **77cfe070...**
-	- AuditorzRusという会社（多分このターゲット）の年間レポートっぽい
-	- パスワードが古く脆弱なので変えてくださいね、というレポート
+
+## 7cfe070...
+
+- AuditorzRusという会社（多分このターゲット）の年間レポートっぽい
+- パスワードが古く脆弱なので変えてくださいね、というレポート
+- 
+
+
 
 
 ---
@@ -45,3 +50,4 @@ PORT   STATE SERVICE REASON  VERSION
 # Screenshot
 
 
+![[Pasted image 20260222200501.png]]
