@@ -111,51 +111,7 @@ get-item "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*"
 
 ```
 
-#### C:\Windows\Panther
 
-- これは先ほどのr.andrewsユーザーも閲覧可能
-- unattend.xmlは、Sensitive 
-```powershell
-*Evil-WinRM* PS C:\Windows\Panther> dir
-
-
-    Directory: C:\Windows\Panther
-
-
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
-d-----         10/9/2024   2:48 PM                actionqueue
-d-----         10/9/2024  11:15 AM                FastCleanup
-d-----         10/9/2024   2:44 PM                setup.exe
-d-----         10/9/2024   2:44 PM                UnattendGC
--a----         10/9/2024   3:43 PM          19719 cbs.log
--a----         10/9/2024   3:43 PM          22600 cbs_intl.log
--a----         10/9/2024   3:43 PM          18455 cbs_unattend.log
--a----         10/9/2024   3:44 PM             68 Contents0.dir
--a----         10/9/2024   2:47 PM             68 Contents1.dir
--a----         10/9/2024   2:44 PM            886 DDACLSys.log
--a----         10/9/2024   2:47 PM           6976 diagerr.xml
--a----         10/9/2024   2:47 PM          26383 diagwrn.xml
--a----         10/9/2024   3:44 PM          29028 MainQueueOnline0.que
--a----         10/9/2024   2:47 PM          27672 MainQueueOnline1.que
--a----        11/11/2024  10:49 AM         679936 setup.etl
--a----         10/9/2024   2:50 PM         677436 setupact.log
--a----         10/9/2024   2:47 PM            577 setuperr.log
--a----         10/9/2024   2:47 PM         110848 setupinfo
--a----         10/9/2024   2:48 PM           4548 unattend.xml
--a----          7/3/2024  11:35 PM        1119728 _s_5E5D.tmp
--a----          5/6/2022  10:18 PM         601224 _s_617B.tmp
--a----          5/6/2022  10:18 PM         756904 _s_640C.tmp
-
-```
-
-- unattend.xml
-```xml
- <Name>Admin</Name>
-   <Group>Administrators</Group>
-	<Password>*SENSITIVE*DATA*DELETED*</Password>
-
-```
 
 
 ---
