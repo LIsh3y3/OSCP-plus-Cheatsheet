@@ -18,3 +18,22 @@ cbssvcX64.exe BUILTIN\Users:(I)(F)
 Successfully processed 1 files; Failed processing 0 files
 *
 ```
+
+- しかも、Sandra には再起動権限があるため、サービスを上書き、リロードが可能
+```powershell
+*Evil-WinRM* PS C:\Program Files\AhsayCBS\bin> whoami /priv
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                          State
+============================= ==================================== =======
+SeShutdownPrivilege           Shut down the system                 Enabled
+SeChangeNotifyPrivilege       Bypass traverse checking             Enabled
+SeRemoteShutdownPrivilege     Force shutdown from a remote system  Enabled
+SeUndockPrivilege             Remove computer from docking station Enabled
+SeIncreaseWorkingSetPrivilege Increase a process working set       Enabled
+SeTimeZonePrivilege           Change the time zone                 Enabled
+*Evil-WinRM* PS C:\Program Files\AhsayCBS\bin> 
+```
+
