@@ -13,6 +13,15 @@ PORT   STATE SERVICE REASON  VERSION
 
 # Enumeration
 
+---
+
+# Exploit
+
+- 認証施行
+```sh
+
+
+```
 
 ---
 
