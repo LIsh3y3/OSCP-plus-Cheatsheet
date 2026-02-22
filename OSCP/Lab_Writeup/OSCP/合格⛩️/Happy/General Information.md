@@ -150,13 +150,56 @@ PORT      STATE SERVICE       VERSION
 ### udp scan
 
 ```
-
+PORT      STATE         SERVICE       VERSION
+21/tcp    open          ftp           Microsoft ftpd
+80/tcp    open          http          Samsung AllShare httpd
+135/tcp   open          msrpc         Microsoft Windows RPC
+139/tcp   open          netbios-ssn   Microsoft Windows netbios-ssn
+443/tcp   open          ssl/http      Apache Tomcat 8.5.34
+445/tcp   open          microsoft-ds?
+5357/tcp  open          http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+8080/tcp  open          http-proxy
+8443/tcp  open          http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+123/udp   open|filtered ntp
+137/udp   open|filtered netbios-ns
+138/udp   open|filtered netbios-dgm
+500/udp   open|filtered isakmp
+999/udp   open|filtered applix
+1027/udp  open|filtered unknown
+1701/udp  open|filtered L2TP
+1900/udp  open|filtered upnp
+2222/udp  open|filtered msantipiracy
+3456/udp  open|filtered IISrpc-or-vat
+3703/udp  open|filtered adobeserver-3
+4500/udp  open|filtered nat-t-ike
+5353/udp  open|filtered zeroconf
+10000/udp open|filtered ndmp
 ```
 
 ## Rustscan
 
 ```
-
+PORT      STATE SERVICE REASON          VERSION
+21/tcp    open  ftp     syn-ack ttl 127 Microsoft ftpd
+| ftp-syst: 
+|_  SYST: Windows_NT
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+| 02-23-22  08:13AM                  145 .env
+| 02-23-22  08:13AM                 2056 Acq.dll
+| 02-24-22  06:24AM                 4868 DVRParams.ini
+| 02-23-22  08:13AM                35996 Manifest.dll
+| 02-23-22  08:13AM                20455 program.exe
+| 02-23-22  08:15AM                40229 verisign.png
+|_02-23-22  08:14AM                11446 wab.dll
+80/tcp    open  http    syn-ack ttl 127 Samsung AllShare httpd
+|_http-title: Did not follow redirect to https://192.168.104.111/cbs/Logon.do
+| http-methods: 
+|_  Supported Methods: GET HEAD POST
+5357/tcp  open  http    syn-ack ttl 127 Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Service Unavailable
+49664/tcp open  msrpc   syn-ack ttl 127 Microsoft Windows RPC
+...
 ```
 
 
