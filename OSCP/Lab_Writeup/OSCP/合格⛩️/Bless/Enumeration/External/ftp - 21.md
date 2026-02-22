@@ -24,6 +24,7 @@ PORT   STATE SERVICE REASON  VERSION
 # Enumeration
 
 - Anonymous Login 許可
+- ログインしても何も見つからず。
 
 ---
 
