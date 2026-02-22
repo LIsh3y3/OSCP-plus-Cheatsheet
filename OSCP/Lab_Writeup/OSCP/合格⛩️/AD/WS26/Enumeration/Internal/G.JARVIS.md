@@ -298,7 +298,7 @@ d-----         10/9/2024  12:33 PM                WUModels
 
 
 
-#### Snaffler　（出力大）
+#### Snaffler　-> 失敗
 
 ```powershell
 .\Snaffler.exe -s -o \\192.168.49.104\share\shaffler.out
