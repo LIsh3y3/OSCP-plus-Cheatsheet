@@ -17,10 +17,22 @@
 
 PSChildName                   ImagePath                                                                               ObjectName
 -----------                   ---------                                                                               ----------
-Files\AhsayCBS\bin\cbssvcX64.exe                                             .\Sandra
+...
 ARGUSSURVEILLANCEDVR_WATCHDOG C:\Program Files\Argus Surveillance DVR\DVRWatchdog.exe                                 LocalSystem
+...
 ```
 
+```powershell
+  =================================================================================================
+
+    Argus Surveillance DVR Watchdog(PY Software - Argus Surveillance DVR Watchdog)[C:\Program Files\Argus Surveillance DVR\DVRWatchdog.exe] - Autoload - No quotes and Space detected
+    File Permissions: Users [Allow: AllAccess]
+    Possible DLL Hijacking in binary folder: C:\Program Files\Argus Surveillance DVR (Users [Allow: AllAccess])
+    This program monitors and automatically reboots Argus Surveillance DVR if it's locked-up.
+   =================================================================================================
+```
+
+- 
 
 
 # cbssvcX64.exe の上書き -> sandra になる
