@@ -243,8 +243,33 @@ Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
 
 ### サービス
 
+- ARGUSSURVEIILANCEDVR_WATCHDOGがLocalSystemで実行されている
 ```powershell
+*Evil-WinRM* PS C:\Program Files\Argus Surveillance DVR> Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Services\* |
+  Where-Object {
+    $_.ObjectName -and
+    $_.ObjectName -notmatch 'LocalService|NetworkService' -and
+    $_.ImagePath -and
+    $_.ImagePath -notmatch '^"?C:\\Windows\\'
+    # unquoted service path用
+    # $_.PathName -notmatch '"'
+  } |
+  Select PSChildName, ImagePath, ObjectName
 
+PSChildName                   ImagePath                                                                               ObjectName
+-----------                   ---------                                                                               ----------
+ahsaycbs                      C:\Program Files\AhsayCBS\bin\cbssvcX64.exe                                             .\Sandra
+ARGUSSURVEILLANCEDVR_WATCHDOG C:\Program Files\Argus Surveillance DVR\DVRWatchdog.exe                                 LocalSystem
+edgeupdate                    "C:\Program Files (x86)\Microsoft\EdgeUpdate\MicrosoftEdgeUpdate.exe" /svc              LocalSystem
+edgeupdatem                   "C:\Program Files (x86)\Microsoft\EdgeUpdate\MicrosoftEdgeUpdate.exe" /medsvc           LocalSystem
+MicrosoftEdgeElevationService "C:\Program Files (x86)\Microsoft\Edge\Application\111.0.1661.41\elevation_service.exe" LocalSystem
+OBNfsServer                   C:\Program Files\AhsayCBS NFS\bin\nfsX64.exe                                            LocalSystem
+Sense                         "C:\Program Files\Windows Defender Advanced Threat Protection\MsSense.exe"              LocalSystem
+uhssvc                        "C:\Program Files\Microsoft Update Health Tools\uhssvc.exe"                             LocalSystem
+VGAuthService                 "C:\Program Files\VMware\VMware Tools\VMware VGAuth\VGAuthService.exe"                  LocalSystem
+VMTools                       "C:\Program Files\VMware\VMware Tools\vmtoolsd.exe"                                     LocalSystem
+WinDefend                     "C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.2301.6-0\MsMpEng.exe"          LocalSystem
+WUDFRd                        \SystemRoot\System32\drivers\WUDFRd.sys                                                 \Driver\..
 ```
 
 
