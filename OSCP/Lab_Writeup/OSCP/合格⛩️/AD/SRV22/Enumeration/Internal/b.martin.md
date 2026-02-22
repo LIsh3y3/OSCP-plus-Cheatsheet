@@ -17,6 +17,10 @@ cp \\192.168.49.104\share\Seatbelt.exe .
 .\Seatbelt.exe -group=all | Tee-Object -FilePath \\192.168.49.104\share\seatbelt_result.txt
 ```
 
+```powershell
+.\Seatbelt.exe -group=all | Tee-Object -FilePath \\172.16.104.206\Transfer\seatbelt_result.txt
+```
+
 ### 実行結果抽出
 
 ```powershell
