@@ -292,6 +292,7 @@ Get-ModifiableScheduledTaskFile
 ```
 
 ---
+# AD
 
 ### domain共有
 
@@ -314,6 +315,11 @@ C$       2147483648 Default share       SRV22.oscp.exam
 Transfer          0                     WS26.oscp.exam
 ```
 
+### SPN
+
+```powershell
+Get-NetUser -SPN | select samaccountname,serviceprincipalname
+```
 
 ---
 
