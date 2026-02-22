@@ -872,6 +872,12 @@ administrator
 
 ---
 
+# 認証施行
+
+- `@Administrator`なら、
+
+---
+
 # Screenshot
 
 
