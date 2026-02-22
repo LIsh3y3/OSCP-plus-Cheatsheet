@@ -325,7 +325,9 @@ PS C:\Program Files\Microsoft SQL Server>
 
 # Credential harvesting
 
-- cmdkey
+- cmdkeyなし
+- `env`なし
+- 
 
 
 ---
