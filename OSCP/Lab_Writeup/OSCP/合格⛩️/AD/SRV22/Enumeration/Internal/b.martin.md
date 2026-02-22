@@ -539,9 +539,9 @@ usage: Sqlcmd            [-U login id]          [-P password]
   [-G use Azure Active Directory for authentication]
 ```
 
-- リモートから実行してみる
+- リモートから実行してみる、と思ったけどローカルサービスなのでやめとく
 ```powershell
-impacket-mssqlclient OSCP.EXAM/b.martin@$TargetIP|domain> -port <port> -windows-auth
+impacket-mssqlclient OSCP.EXAM/b.martin@ -port <port> -windows-auth
 
 ```
 
