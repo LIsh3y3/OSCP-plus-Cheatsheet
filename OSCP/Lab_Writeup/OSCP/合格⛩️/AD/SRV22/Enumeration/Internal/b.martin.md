@@ -302,6 +302,18 @@ copy \\172.16.104.206\Transfer\powerview.ps1 .
 Find-DomainShare -CheckShareAccess
 ```
 
+```powershell
+PS C:\Users\b.martin> Find-DomainShare -CheckShareAccess
+
+Name           Type Remark              ComputerName
+----           ---- ------              ------------
+NETLOGON          0 Logon server share  DC20.oscp.exam
+SYSVOL            0 Logon server share  DC20.oscp.exam
+ADMIN$   2147483648 Remote Admin        SRV22.oscp.exam
+C$       2147483648 Default share       SRV22.oscp.exam
+Transfer          0                     WS26.oscp.exam
+```
+
 ---
 
 
