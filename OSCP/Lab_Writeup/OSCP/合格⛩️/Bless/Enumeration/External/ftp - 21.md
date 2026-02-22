@@ -25,6 +25,7 @@ PORT   STATE SERVICE REASON  VERSION
 
 - Anonymous Login 許可
 - ログインしても何も見つからず。
+- 書き込みも不可
 
 ---
 
