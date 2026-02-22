@@ -122,7 +122,13 @@ errorが多ければ`-t 64`も試す
 # Enumeration
 
 - 静的なページ（jsでロード）されている
-- usernameの候補とみられるリストを発見したが、ユーザーメインお
+- usernameの候補とみられるリストを発見したが、ユーザー名の形式がわからない
+```
+John Deo
+Mike Timobbs
+Remo Silvaus
+Niscal Deon
+```
 
 ---
 
