@@ -241,4 +241,5 @@ SMB         172.16.104.202  445    SRV22            [-] oscp.exam\IUSR@OSCP.EXAM
 
 # 列挙
 
-- 
+- PowerShell Historyにパスワードを発見
+
