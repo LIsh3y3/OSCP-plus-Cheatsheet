@@ -16,6 +16,11 @@ L0ckD0wn2020
 Million2
 aaron431
 !Password-Reset0000
+# from smb
+sarah
+nick
+paul
+linda
 ```
 
 ---
