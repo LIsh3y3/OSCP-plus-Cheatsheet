@@ -1,7 +1,8 @@
 # Credentials
 
 ```zsh
-# from ftp env MySQL(local) creds（ポート
+# from ftp env MySQL(local) creds（開発用が7500、公開用が7600のポートで動作しているみたい）
+Sandra:Nj82@1Waqk90$
 
 ```
 
