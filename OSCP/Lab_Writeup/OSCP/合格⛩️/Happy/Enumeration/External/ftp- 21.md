@@ -47,7 +47,7 @@ DIALECT = MSSQL
 
 ## Misc
 
-- `ls -la` としたらMyMusicやMyVideoがあったので、ｄ
+- `ls -la` としたらMyMusicやMyVideoがあったので、何かのユーザーのホームディレクトリと想定
 
 ---
 
