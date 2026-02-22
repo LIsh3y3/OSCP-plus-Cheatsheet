@@ -103,17 +103,20 @@ dir ~\Downloads
 
 ---
 
-### 実行中のプロセス
+### 実行中のプロセス 
+
+```powershell
+# 除外ワードは,"<term>"で追加可能
+ps | Where-Object -Property ProcessName -notin "svchost"
+
+# 除外ワードは,"<term>"で追加可能
+ps | Where-Object -Property ProcessName -notin "svchost"
+```
 
 
 ---
 
-### PowerShellログ
-
-
----
-
-### サービス
+### サービス -> nothing 
 
 ```powershell
 PS C:\> # cmd.exeの場合：sc query [service]  sc qc [service]
