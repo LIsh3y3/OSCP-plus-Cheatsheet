@@ -327,8 +327,16 @@ wpscan --url http://$TargetIP --no-banner --enumerate p,t --plugins-detection ag
 
 ## wp-login.php
 
-- 以下の認証情報で試行
-
+- 以下のユーザー名で試行
+```sh
+lee@auditorzr.us
+sam@auditorzr.us
+simon@auditorzr.us
+lee
+sam
+simon
+```
+- emailのとき："
 
 ---
 
