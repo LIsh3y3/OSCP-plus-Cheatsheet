@@ -313,11 +313,6 @@ ADMIN$   2147483648 Remote Admin        SRV22.oscp.exam
 C$       2147483648 Default share       SRV22.oscp.exam
 Transfer          0                     WS26.oscp.exam
 ```
-- これらの中身はすでに確認済みだけど何もないよ
-```powershell
-ls \\172.16.104.202\ADMIN$
-```
-
 
 
 ---
@@ -540,6 +535,105 @@ usage: Sqlcmd            [-U login id]          [-P password]
 ```powershell
 copy \\172.16.104.206\Transfer\Snaffler.exe .
 .\Snaffler.exe -s -o snaffler.out
+```
+```powershell
+PS C:\Users\b.martin> .\Snaffler.exe -s -o snaffler.out
+ .::::::.:::.    :::.  :::.    .-:::::'.-:::::':::    .,:::::: :::::::..
+;;;`    ``;;;;,  `;;;  ;;`;;   ;;;'''' ;;;'''' ;;;    ;;;;'''' ;;;;``;;;;
+'[==/[[[[, [[[[[. '[[ ,[[ '[[, [[[,,== [[[,,== [[[     [[cccc   [[[,/[[['
+  '''    $ $$$ 'Y$c$$c$$$cc$$$c`$$$'`` `$$$'`` $$'     $$""   $$$$$$c
+ 88b    dP 888    Y88 888   888,888     888   o88oo,.__888oo,__ 888b '88bo,
+  'YMmMY'  MMM     YM YMM   ''` 'MM,    'MM,  ''''YUMMM''''YUMMMMMMM   'W'
+                         by l0ss and Sh3r4 - github.com/SnaffCon/Snaffler
+
+
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:36Z [Info] Parsing args...
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:36Z [Info] Parsed args successfully.
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:36Z [Info] Invoking DFS Discovery because no ComputerTargets or PathTargets were specified
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:36Z [Info] Getting DFS paths from AD.
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:36Z [Info] Found 0 DFS Shares in 0 namespaces.
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:36Z [Info] Invoking full domain computer discovery.
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:36Z [Info] Getting computers from AD.
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:36Z [Info] Got 3 computers from AD.
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:36Z [Info] Starting to look for readable shares...
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:36Z [Info] Created all sharefinder tasks.
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:37Z [Share] {Green}<\\DC20.oscp.exam\NETLOGON>(R) Logon server share
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:37Z [Share] {Green}<\\DC20.oscp.exam\SYSVOL>(R) Logon server share
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:37Z [Share] {Black}<\\SRV22.oscp.exam\ADMIN$>()
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:37Z [Share] {Green}<\\SRV22.oscp.exam\ADMIN$>(R) Remote Admin
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:37Z [Share] {Black}<\\SRV22.oscp.exam\C$>()
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:37Z [Share] {Green}<\\SRV22.oscp.exam\C$>(R) Default share
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:37Z [Share] {Green}<\\WS26.oscp.exam\Transfer>(R)
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:43Z [File] {Red}<KeepPsCredentials|R|-SecureString|752.2kB|2026-02-22 15:14:18Z>(\\WS26.oscp.exam\Transfer\powerview.ps1) \n"C:\\Windows\\example\.ini"\ \|\ Get-IniContent\ -OutputObject\n\nOutputs\ the\ \.ini\ details\ as\ a\ proper\ nested\ PSObject\.\n\n\.EXAMPLE\n\n"C:\\Windows\\example\.ini"\ \|\ Get-IniContent\n\n\.EXAMPLE\n\n\$SecPassword\ =\ ConvertTo-SecureString\ 'Password123!'\ -AsPlainText\ -Force\n\$Cred\ =\ New-Object\ System\.Management\.Automation\.PSCredential\('TESTLAB\\dfm\.a',\ \$SecPassword\)\nGet-IniContent\ -Path\ \\\\PRIMARY\.testlab\.local\\C\$\\Temp\\GptTmp
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:43Z [File] {Red}<KeepCmdCredentials|R|passwo?r?d\s*=\s*[\'\"][^\'\"]....|586.5kB|2026-02-22 14:59:08Z>(\\WS26.oscp.exam\Transfer\PowerUp.ps1) ing\[]]\n\ \ \ \ \ \ \ \ \[ValidateNotNullOrEmpty\(\)]\n\ \ \ \ \ \ \ \ \$Name,\n\n\ \ \ \ \ \ \ \ \[ValidateNotNullOrEmpty\(\)]\n\ \ \ \ \ \ \ \ \[String]\n\ \ \ \ \ \ \ \ \$UserName\ =\ 'john',\n\n\ \ \ \ \ \ \ \ \[ValidateNotNullOrEmpty\(\)]\n\ \ \ \ \ \ \ \ \[String]\n\ \ \ \ \ \ \ \ \$Password\ =\ 'Password123!',\n\n\ \ \ \ \ \ \ \ \[ValidateNotNullOrEmpty\(\)]\n\ \ \ \ \ \ \ \ \[String]\n\ \ \ \ \ \ \ \ \$LocalGroup\ =\ 'Administrators',\n\n\ \ \ \ \ \ \ \ \[Management\.Automation\.PSCredential]\n\ \ \ \ \ \ \ \ \[Management\.Automation\.Cre
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:43Z [File] {Red}<KeepPassOrKeyInCode|R|passw?o?r?d\s*=\s*[\'\"][^\'\"]....|586.5kB|2026-02-22 14:59:08Z>(\\WS26.oscp.exam\Transfer\PowerUp.ps1) ing\[]]\n\ \ \ \ \ \ \ \ \[ValidateNotNullOrEmpty\(\)]\n\ \ \ \ \ \ \ \ \$Name,\n\n\ \ \ \ \ \ \ \ \[ValidateNotNullOrEmpty\(\)]\n\ \ \ \ \ \ \ \ \[String]\n\ \ \ \ \ \ \ \ \$UserName\ =\ 'john',\n\n\ \ \ \ \ \ \ \ \[ValidateNotNullOrEmpty\(\)]\n\ \ \ \ \ \ \ \ \[String]\n\ \ \ \ \ \ \ \ \$Password\ =\ 'Password123!',\n\n\ \ \ \ \ \ \ \ \[ValidateNotNullOrEmpty\(\)]\n\ \ \ \ \ \ \ \ \[String]\n\ \ \ \ \ \ \ \ \$LocalGroup\ =\ 'Administrators',\n\n\ \ \ \ \ \ \ \ \[Management\.Automation\.PSCredential]\n\ \ \ \ \ \ \ \ \[Management\.Automation\.Cre
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:48Z [File] {Yellow}<KeepDeployImageByExtension|R|^\.wim$|26.9MB|2019-09-07 00:29:27Z>(\\SRV22.oscp.exam\ADMIN$\Containers\serviced\WindowsDefenderApplicationGuard.wim) .wim
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:48Z [File] {Red}<KeepCmdCredentials|R|passwo?r?d\s*=\s*[\'\"][^\'\"]....|586.5kB|2026-02-22 14:59:08Z>(\\SRV22.oscp.exam\C$\Users\b.martin\PowerUp.ps1) ing\[]]\n\ \ \ \ \ \ \ \ \[ValidateNotNullOrEmpty\(\)]\n\ \ \ \ \ \ \ \ \$Name,\n\n\ \ \ \ \ \ \ \ \[ValidateNotNullOrEmpty\(\)]\n\ \ \ \ \ \ \ \ \[String]\n\ \ \ \ \ \ \ \ \$UserName\ =\ 'john',\n\n\ \ \ \ \ \ \ \ \[ValidateNotNullOrEmpty\(\)]\n\ \ \ \ \ \ \ \ \[String]\n\ \ \ \ \ \ \ \ \$Password\ =\ 'Password123!',\n\n\ \ \ \ \ \ \ \ \[ValidateNotNullOrEmpty\(\)]\n\ \ \ \ \ \ \ \ \[String]\n\ \ \ \ \ \ \ \ \$LocalGroup\ =\ 'Administrators',\n\n\ \ \ \ \ \ \ \ \[Management\.Automation\.PSCredential]\n\ \ \ \ \ \ \ \ \[Management\.Automation\.Cre
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:48Z [File] {Red}<KeepPassOrKeyInCode|R|passw?o?r?d\s*=\s*[\'\"][^\'\"]....|586.5kB|2026-02-22 14:59:08Z>(\\SRV22.oscp.exam\C$\Users\b.martin\PowerUp.ps1) ing\[]]\n\ \ \ \ \ \ \ \ \[ValidateNotNullOrEmpty\(\)]\n\ \ \ \ \ \ \ \ \$Name,\n\n\ \ \ \ \ \ \ \ \[ValidateNotNullOrEmpty\(\)]\n\ \ \ \ \ \ \ \ \[String]\n\ \ \ \ \ \ \ \ \$UserName\ =\ 'john',\n\n\ \ \ \ \ \ \ \ \[ValidateNotNullOrEmpty\(\)]\n\ \ \ \ \ \ \ \ \[String]\n\ \ \ \ \ \ \ \ \$Password\ =\ 'Password123!',\n\n\ \ \ \ \ \ \ \ \[ValidateNotNullOrEmpty\(\)]\n\ \ \ \ \ \ \ \ \[String]\n\ \ \ \ \ \ \ \ \$LocalGroup\ =\ 'Administrators',\n\n\ \ \ \ \ \ \ \ \[Management\.Automation\.PSCredential]\n\ \ \ \ \ \ \ \ \[Management\.Automation\.Cre
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:52Z [File] {Red}<KeepPassOrKeyInCode|R|[\s]+-passw?o?r?d?|13.5kB|2018-09-15 07:12:54Z>(\\SRV22.oscp.exam\ADMIN$\diagnostics\scheduled\Maintenance\CL_Utility.ps1) \ \ \ \ \ \ \{\r\n\ \ \ \ \ \ \ \ \ \ \ \ return\ Environment\.GetFolderPath\(Environment\.SpecialFolder\.DesktopDirectory\);\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ }\r\n"@\r\n\r\n\ \ \ \ \$type\ =\ Add-Type\ -MemberDefinition\ \$methodDefinition\ -Name\ "DesktopPath"\ -PassThru\r\n\r\n\ \ \ \ return\ \$type::GetDesktopPath\r\n}\r\n\r\n\#\ Function\ to\ get\ startup\ path\r\nfunction\ Get-StartupPath\(\)\r\n\{\r\n\$methodDefinition\ =\ @"\r\n\ \ \ \ public\ static\ string\ GetStartupPath\r\n\ \ \ \ \{\r\n\ \ \ \ \ \ \ \ get\r
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:53Z [File] {Red}<KeepPassOrKeyInCode|R|[\s]+-passw?o?r?d?|11.4kB|2018-09-15 07:12:54Z>(\\SRV22.oscp.exam\ADMIN$\diagnostics\system\Audio\MF_AudioDiagnostic.ps1) e\ static\ extern\ int\ GetSystemMetrics\(int\ Index\);\r\n\r\n\t\tpublic\ static\ bool\ Remote\(\)\ \{\r\n\t\t\treturn\ \(0\ !=\ GetSystemMetrics\(SM_REMOTESESSION\)\);\r\n\t\t}\r\n\t}\r\n}\r\n"@\r\n\t\$type\ =\ Add-Type\ -TypeDefinition\ \$sourceCode\ -PassThru\r\n\r\n\treturn\ \$type::Remote\(\)\r\n}\r\n\r\nfunction\ ispostbackOnWin\(\$packName\)\r\n\{\r\n<\#\r\n\tDESCRIPTION\r\n\t\ \ ispostbackOnWin\ check\ whether\ package\ is\ postback\.\r\n\r\n\tARGUMENTS:\r\n\t\ \ packName\ :\ String\ value\ c
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:53Z [File] {Red}<KeepPassOrKeyInCode|R|[\s]+-passw?o?r?d?|218.7kB|2018-09-15 07:12:54Z>(\\SRV22.oscp.exam\ADMIN$\diagnostics\system\Audio\CL_Utility.ps1) ce\ =\ \(Get-WmiObject\ -query\ "select\ \*\ from\ win32_baseService\ where\ Name='Audiosrv'"\)\r\n\tif\(\$audioService\.State\ -ne\ "Running"\)\r\n\t\{\r\n\t\tSet-Service\ Audiosrv\ -StartupType\ Automatic\r\n\t\tStart-Service\ Audiosrv\ -PassThru\ -ErrorAction\ SilentlyContinue\r\n\t}\r\n}\r\n\r\nFunction\ Stop-AudioService\(\)\r\n\{\r\n\t<\#\r\n\ \ \ \ \ \ \ \ \.DESCRIPTION\r\n\ \ \ \ \ \ \ \ \ \ \ Function\ to\ stop\ Audio\ service\ forcefully\ \r\n\ \ \ \ \ \ \ \ \.PARAMETER\ \r\n\t\t\tNone\r\n\ \ \ \
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:53Z [File] {Red}<KeepPassOrKeyInCode|R|[\s]+-passw?o?r?d?|6.6kB|2018-09-15 07:12:54Z>(\\SRV22.oscp.exam\ADMIN$\diagnostics\system\Audio\RS_NotDefault.ps1) ero\)\)\r\n\ \ \ \ \ \ \ \ \ \ \ \ \{\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ false;\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ \ \ \ \ return\ true;\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ }\r\n"@\ \r\n\r\n\ \ \ \ \$ProcessHandle\ =\ \(Get-Process\ -id\ \$pid\)\.Handle\r\n\t\$type\ =\ Add-Type\ \$definition\ -PassThru\r\n\ttry\r\n\t\{\r\n\t\t\#\ Enable\ SeTakeOwnershipPrivilege\r\n\t\t\$type\[0]::EnablePrivilege\(\$processHandle,\ 'SeTakeOwnershipPrivilege'\)\r\n\r\n\t\t\$key\ =\ \[Microsoft\.Win32\.Registry]::LocalMachine\.OpenSubKey\(\$regP
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:53Z [File] {Red}<KeepPassOrKeyInCode|R|[\s]+-passw?o?r?d?|16.5kB|2018-09-15 07:12:54Z>(\\SRV22.oscp.exam\ADMIN$\diagnostics\system\PCW\TS_ProgramCompatibilityWizard.ps1) \ \ \ \ \ \ \ return\ String\.Empty;\r\n\ \ \ \ }\r\n\r\n\ \ \ \ public\ static\ String\ EscapePath\(String\ Path\)\r\n\ \ \ \ \{\r\n\ \ \ \ \ \ \ \ return\ Path\.Replace\("\$",\ "`\$"\);\r\n\ \ \ \ }\r\n}\r\n"@\r\n\r\n\$type\ =\ Add-Type\ -TypeDefinition\ \$typeDefinition\ -PassThru\ -IgnoreWarnings\r\n\$type3\ =\ Add-Type\ -TypeDefinition\ \$typeDefinition3\ -PassThru\ \ -IgnoreWarnings\r\n\r\n\#\ Function\ to\ convert\ to\ WQL\ path\r\nfunction\ ConvertTo-WQLPath\(\[string]\$wqlPath\ =\ \$\(throw\ "N
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:53Z [File] {Red}<KeepPassOrKeyInCode|R|[\s]+-passw?o?r?d?|49.1kB|2018-09-15 07:12:54Z>(\\SRV22.oscp.exam\ADMIN$\diagnostics\system\PCW\RS_ProgramCompatibilityWizard.ps1) ript\ will\ replace\ this\ keyword\ with\ build\.arch\.\r\n\ \ \ \ return\ \("amd64"\ -eq\ "arm64"\);\r\n}\r\n\r\n\#\ This\ block\ of\ code\ sets\ up\ the\ manual\ troubleshooting\ portion\.\r\n\#\r\n\r\nAdd-Type\ -TypeDefinition\ \$typeDefinition\ -PassThru\ -IgnoreWarnings\r\n\r\n\$targetPath\ =\ \[WerUtil]::EscapePath\(\$targetPath\)\r\n\r\nif\(\$targetPath\ -eq\ \$null\)\r\n\{\r\n\ \ \ \ throw\ \$CompatibilityStrings\.Throw_INVALID_PATH\r\n}\r\n\r\n\#\ Initialize\r\n\r\nset-variable\ ve
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:53Z [File] {Red}<KeepPassOrKeyInCode|R|[\s]+-passw?o?r?d?|28.9kB|2018-09-15 07:12:55Z>(\\SRV22.oscp.exam\ADMIN$\diagnostics\system\Printer\CL_Utility.ps1) PWStr\)]\r\n\ \ \ \ \ \ \ \ public\ string\ pConfigFile;\r\n\ \ \ \ }\r\n"@\r\n\r\n\ \ \ \ \$winSpoolType\ =\ Add-Type\ -MemberDefinition\ \$winSpoolDefinition\ -Name\ "winSpoolCL"\ -UsingNamespace\ "System\.Reflection","System\.Diagnostics"\ -PassThru\r\n\ \ \ \ return\ \$winSpoolType\r\n}\r\n\r\n\#\r\n\#\ Get\ the\ printer\ status\r\n\#\r\nfunction\ GetPrinterStatus\(\[string]\$printerName\)\r\n\{\r\n\ \ \ \ \#\r\n\ \ \ \ \#\ the\ function\ return\ value\r\n\ \ \ \ \#\r\n\ \ \ \ \[int]\$printStatus\ =\ 0\r
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:53Z [File] {Red}<KeepPassOrKeyInCode|R|[\s]+-passw?o?r?d?|2kB|2018-09-15 07:12:55Z>(\\SRV22.oscp.exam\ADMIN$\diagnostics\system\Printer\RS_SpoolerCrashing.ps1) \(UnmanagedType\.Bool\)]\ bool\ bMachine\);\r\n"@\r\n\r\n\$RefreshPolicyType\ =\ Add-Type\ -MemberDefinition\ \$RefreshPolicyDefinition\ -Name\ "RefreshPolicyType"\ -UsingNamespace\ "System\.Reflection","System\.Diagnostics"\ -PassThru\r\n\r\n\[bool]\$return\ =\ \$RefreshPolicyType::RefreshPolicy\(\$true\)\r\n\[int]\$errorCode\ =\ \[System\.Runtime\.InteropServices\.Marshal]::GetLastWin32Error\(\)\r\nif\(-not\ \$return\)\r\n\{\r\n\ \ \ \ WriteFileAPIExceptionR
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:53Z [File] {Red}<KeepPassOrKeyInCode|R|[\s]+-passw?o?r?d?|20.1kB|2018-09-15 07:12:40Z>(\\SRV22.oscp.exam\ADMIN$\diagnostics\system\Search\CL_Utility.ps1) \r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ throw\ new\ System\.ComponentModel\.Win32Exception\(error\);\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ }\r\n"@\r\n\r\n\ \ \ \ \(Add-Type\ -TypeDefinition\ \$typeDefinition\ -PassThru\)\[0]::SetRestorePrivilege\(\)\r\n}\r\n\r\n\[uint32]\$GENERIC_ALL\ =\ 0x10000000L\r\n\[uint32]\$GENERIC_READ\ =\ 0x80000000L\r\n\[uint32]\$GENERIC_WRITE\ =\ 0x40000000L\r\n\[uint32]\$GENERIC_EXECUTE\ =\ 0x20000000L\r\n\r\n\#\ F
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:53Z [File] {Red}<KeepPassOrKeyInCode|R|[\s]+-passw?o?r?d?|94.6kB|2018-09-15 07:12:54Z>(\\SRV22.oscp.exam\ADMIN$\diagnostics\system\speech\CL_Utilities.ps1) c\ extern\ int\ GetSystemMetrics\(int\ Index\);\r\n\r\n\t\t\tpublic\ static\ bool\ IsRemote\(\)\ \{\r\n\t\t\t\treturn\ \(0\ !=\ GetSystemMetrics\(SM_REMOTESESSION\)\);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n"@\r\n\t\$type\ =\ Add-Type\ -TypeDefinition\ \$sourceCode\ -PassThru\r\n\r\n\treturn\ \$type::IsRemote\(\)\r\n}\r\n\r\nfunction\ Get-AudioCapturingDevices\r\n\{\r\n\t<\#\r\n\t\tDESCRIPTION:\r\n\t\tLists\ all\ the\ recording\ devices\ available\ on\ the\ localhost\ with\ their\ details\.\r\n\r\n\t\tARGUMENT
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:54Z [File] {Yellow}<KeepDeployImageByExtension|R|^\.wim$|26.9MB|2019-09-07 00:29:27Z>(\\SRV22.oscp.exam\C$\Windows\Containers\serviced\WindowsDefenderApplicationGuard.wim) .wim
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:55Z [File] {Green}<KeepNameContainsGreen|R|credential|95.5kB|2024-10-09 20:48:44Z>(\\SRV22.oscp.exam\ADMIN$\assembly\NativeImages_v4.0.30319_64\Microsoft.D05895ce3#\e64153cbadb88c482b8ca22c20a6ec87\Microsoft.DataTransfer.CredentialService.DataContracts.ni.dll) Microsoft.DataTransfer.CredentialService.DataContracts.ni.dll
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:55Z [File] {Green}<KeepNameContainsGreen|R|credential|55.5kB|2024-10-09 20:48:43Z>(\\SRV22.oscp.exam\ADMIN$\assembly\NativeImages_v4.0.30319_64\Microsoft.D2c7a270c#\f122510411709459d22533c0ae56a7d7\Microsoft.DataTransfer.PayloadCredentialProtection.ni.dll) Microsoft.DataTransfer.PayloadCredentialProtection.ni.dll
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:55Z [File] {Green}<KeepNameContainsGreen|R|credential|1.4kB|2024-10-09 20:48:43Z>(\\SRV22.oscp.exam\ADMIN$\assembly\NativeImages_v4.0.30319_64\Microsoft.D2c7a270c#\f122510411709459d22533c0ae56a7d7\Microsoft.DataTransfer.PayloadCredentialProtection.ni.dll.aux) Microsoft.DataTransfer.PayloadCredentialProtection.ni.dll.aux
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:55Z [File] {Green}<KeepNameContainsGreen|R|credential|812B|2024-10-09 20:48:44Z>(\\SRV22.oscp.exam\ADMIN$\assembly\NativeImages_v4.0.30319_64\Microsoft.D05895ce3#\e64153cbadb88c482b8ca22c20a6ec87\Microsoft.DataTransfer.CredentialService.DataContracts.ni.dll.aux) Microsoft.DataTransfer.CredentialService.DataContracts.ni.dll.aux
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:56Z [File] {Red}<KeepPassOrKeyInCode|R|[\s]+-passw?o?r?d?|4.9kB|2018-09-15 09:10:30Z>(\\SRV22.oscp.exam\C$\ProgramData\Microsoft\AppV\Setup\OfficeIntegrator.ps1) ow\ have\ all\ the\ data\ to\ execute\ integrator\.exe\ to\ migrate\ the\ license\.\ Execute\ the\ program\ now\.\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$integratorProcess\ =\ Start-Process\ \$integratorFileFullName\ \$integratorArguments\ -Passthru\ -Wait\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ \(\$integratorProcess\.ExitCode\ -eq\ 0\)\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$migrationSuccessful\ =\ \$true\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:56Z [File] {Green}<KeepNameContainsGreen|R|credential|3.3kB|2018-09-15 07:13:55Z>(\\SRV22.oscp.exam\C$\ProgramData\Microsoft\UEV\InboxTemplates\RoamingCredentialSettings.xml) RoamingCredentialSettings.xml
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:57Z [File] {Yellow}<KeepDatabaseByExtension|R|^\.mdf$|40MB|2019-09-24 22:09:14Z>(\\SRV22.oscp.exam\C$\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Binn\mssqlsystemresource.mdf) .mdf
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:57Z [File] {Red}<KeepPassOrKeyInCode|R|[\s]+-passw?o?r?d?|4.9kB|2018-09-15 09:10:30Z>(\\SRV22.oscp.exam\C$\Users\All Users\Microsoft\AppV\Setup\OfficeIntegrator.ps1) ow\ have\ all\ the\ data\ to\ execute\ integrator\.exe\ to\ migrate\ the\ license\.\ Execute\ the\ program\ now\.\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$integratorProcess\ =\ Start-Process\ \$integratorFileFullName\ \$integratorArguments\ -Passthru\ -Wait\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ \(\$integratorProcess\.ExitCode\ -eq\ 0\)\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$migrationSuccessful\ =\ \$true\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:57Z [File] {Green}<KeepNameContainsGreen|R|credential|3.3kB|2018-09-15 07:13:55Z>(\\SRV22.oscp.exam\C$\Users\All Users\Microsoft\UEV\InboxTemplates\RoamingCredentialSettings.xml) RoamingCredentialSettings.xml
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:58Z [File] {Green}<KeepNameContainsGreen|R|credential|53.3kB|2019-09-24 21:21:12Z>(\\SRV22.oscp.exam\C$\Program Files\Microsoft SQL Server\150\DTS\Extensions\Common\Microsoft.DataTransfer.CredentialService.DataContracts.dll) Microsoft.DataTransfer.CredentialService.DataContracts.dll
+[OSCP\b.martin@SRV22] 2026-02-22 15:15:58Z [File] {Green}<KeepNameContainsGreen|R|credential|35.3kB|2019-09-24 21:21:12Z>(\\SRV22.oscp.exam\C$\Program Files\Microsoft SQL Server\150\DTS\Extensions\Common\Microsoft.DataTransfer.PayloadCredentialProtection.dll) Microsoft.DataTransfer.PayloadCredentialProtection.dll
+[OSCP\b.martin@SRV22] 2026-02-22 15:16:01Z [File] {Red}<KeepPassOrKeyInCode|R|[\s]+-passw?o?r?d?|892.7kB|2019-09-24 21:26:10Z>(\\SRV22.oscp.exam\C$\Program Files (x86)\Microsoft SQL Server\150\Tools\PowerShell\Modules\SQLPS\en\Microsoft.SqlServer.Management.PSSnapins.dll-Help.xml) es=""><maml:name>NewPassword</maml:name><maml:description><maml:para>Specifies\ a\ new\ password\ for\ a\ SQL\ Server\ Authentication\ login\ ID\.\ Invoke-Sqlcmd\ changes\ the\ password\ and\ then\ exits\.\ -Username\ and\ -Password\ must\ also\ be\ specified,\ with\ -Password\ specifying\ the\ current\ password\ for\ the\ login\.\r\n</maml:para></maml:description><command:parameterValue\ required="true"\ variableLength="false">String</
+[OSCP\b.martin@SRV22] 2026-02-22 15:20:36Z [Info] Status Update:
+ShareFinder Tasks Completed: 0
+ShareFinder Tasks Remaining: 3
+ShareFinder Tasks Running: 3
+TreeWalker Tasks Completed: 6901
+TreeWalker Tasks Remaining: 20
+TreeWalker Tasks Running: 20
+FileScanner Tasks Completed: 12826
+FileScanner Tasks Remaining: 20
+FileScanner Tasks Running: 20
+82.8MB RAM in use.
+
+ShareScanner queue finished, rebalancing workload.
+Insufficient FileScanner queue size, rebalancing workload.
+Max ShareFinder Threads: 0
+Max TreeWalker Threads: 21
+Max FileScanner Threads: 39
+Been Snafflin' for 00:05:00.0181043 and we ain't done yet...
+
+[OSCP\b.martin@SRV22] 2026-02-22 15:20:36Z [Info] Status Update:
+ShareFinder Tasks Completed: 3
+ShareFinder Tasks Remaining: 0
+ShareFinder Tasks Running: 0
+TreeWalker Tasks Completed: 6921
+TreeWalker Tasks Remaining: 0
+TreeWalker Tasks Running: 0
+FileScanner Tasks Completed: 12846
+FileScanner Tasks Remaining: 0
+FileScanner Tasks Running: 0
+82.8MB RAM in use.
+
+Insufficient FileScanner queue size, rebalancing workload.
+Max ShareFinder Threads: 0
+Max TreeWalker Threads: 22
+Max FileScanner Threads: 38
+Been Snafflin' for 00:05:00.0181043 and we ain't done yet...
+
+[OSCP\b.martin@SRV22] 2026-02-22 15:20:36Z [Info] Finished at 2/22/2026 7:20:36 AM
+[OSCP\b.martin@SRV22] 2026-02-22 15:20:36Z [Info] Snafflin' took 00:05:00.0181043
+Snaffler out.
+I snaffled 'til the snafflin was done.
 ```
 
 ---
