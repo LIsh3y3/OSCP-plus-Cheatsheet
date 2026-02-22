@@ -325,6 +325,11 @@ samaccountname serviceprincipalname
 krbtgt         kadmin/changepw
 ```
 
+### Groupの探索
+
+- Travel agencyってなんだ？
+- 
+
 ---
 
 
