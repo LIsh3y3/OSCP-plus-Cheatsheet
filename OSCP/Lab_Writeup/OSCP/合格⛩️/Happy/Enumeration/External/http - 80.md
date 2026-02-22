@@ -187,16 +187,16 @@ HTTP Headers:
 
 ## index（/cbs/Logon.do）
 
-- デフォルト認証情報である `system:system` でログイン試行するも失敗
+- デフォルト認証情報である `system:system` でログイン試行するも失敗（ちなみにFTPで入手した情報も
 
-- ログイン失敗の出力には２つある
+- ログイン失敗の出力には２つあり、存在するユーザーは違うレスポンスが返る
 ```
 No such user ! Please try again. Access denied 
 ```
 ```
-
+Server is stopped. Please contact your service provider. Access denied 
 ```
-
+→ *User Enumeration* が可能
 
 ---
 
