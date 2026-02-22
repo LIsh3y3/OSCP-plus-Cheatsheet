@@ -43,6 +43,11 @@ DIALECT = MSSQL
 ## program.exe -> nothing
 
 - `strings`および`strings -e l`で列挙すｒも読み取り可能な文字列はなし
+- そのほかpngも特になし
+
+## Misc
+
+- `ls -la` としたらMyMusicやMyVideoがあったので、ｄ
 
 ---
 
