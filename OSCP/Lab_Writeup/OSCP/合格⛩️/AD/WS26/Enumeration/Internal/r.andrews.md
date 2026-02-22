@@ -190,9 +190,12 @@ UserDataSvc_29ccec                        C:\Windows\system32\svchost.exe -k Uni
 WpnUserService_29ccec                     C:\Windows\system32\svchost.exe -k UnistackSvcGroup
 ```
 
-- PowerUpでの列挙
+- PowerUpでの列挙 -> 特になsい
 ```powershell
-
+powershell -ep bypass
+import-module .\PowerUp.ps1
+Get-ModifiableService
+Get-ModifiableServiceFile
 ```
 
 
