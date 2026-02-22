@@ -74,6 +74,7 @@ Jenkins CLI
 ```powershell
 C:\Windows\System32\config\systemprofile\AppData\Local\Jenkins\.jenkins\secrets\initialAdminPassword
 ```
+→configがaccess denied
 
 ## 共有の列挙
 

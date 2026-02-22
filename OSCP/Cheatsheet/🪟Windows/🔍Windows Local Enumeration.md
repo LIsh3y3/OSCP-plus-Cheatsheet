@@ -625,17 +625,6 @@ Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | S
 
 ---
 
-前回試験で。。。
-
-grep -rni "Password" C:\ 2>$null 特に C:\Program Files\Jenkins や、管理者が作業しそうな C:\Users\Administrator\Documents（もしアクセスできれば）、あるいは C:\Windows\Temp を重点的に
-jenkinsのweb uiにログインできないか再度試行
-jenkinsのconfigに直接はアクセスできないか
-
-`# Cドライブ全体から "password" という文字列を含むファイルを再帰的に検索
-
-
-
-
 ## WinPEAS結果の見方
 
 前提：
