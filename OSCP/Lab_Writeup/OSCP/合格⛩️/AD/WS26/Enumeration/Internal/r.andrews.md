@@ -319,7 +319,9 @@ Set-DomainUserPassword -Identity "CN=g.jarvis,CN=Users,DC=oscp,DC=exam" -Account
 
 - グループにも追加しておく
 ```powershell
-Add-ADGroupMember -Identity "<ターゲットグループオブジェクト名>" -Members "<target_user>"
+Add-ADGroupMember -Identity "CN=Remote Desktop Users,CN=Builtin,DC=oscp,DC=exam" -Members "CN=g.jarvis,CN=Users,DC=oscp,DC=exam"
+
+Get-ADGroupMember -Identity "CN=Remote Desktop Users,CN=Builtin,DC=oscp,DC=exam"
 ```
 
 - パスワード変更に成功
