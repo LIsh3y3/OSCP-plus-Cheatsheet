@@ -187,7 +187,16 @@ HTTP Headers:
 
 ## index（/cbs/Logon.do）
 
-- デフォルト認証情報である `system:system` 
+- デフォルト認証情報である `system:system` でログイン試行するも失敗
+
+- ログイン失敗の出力には２つある
+```
+No such user ! Please try again. Access denied 
+```
+```
+
+```
+
 
 ---
 
