@@ -121,3 +121,7 @@ d-----         2/23/2022  10:47 AM                WinX86
 ```powershell
 net stop ahsaycbs
 ```
+
+```
+Get-CimInstance -ClassName win32_service | Select Name, StartMode | Where-Object {$_.Name -like 'ahsaycbs'}
+```
