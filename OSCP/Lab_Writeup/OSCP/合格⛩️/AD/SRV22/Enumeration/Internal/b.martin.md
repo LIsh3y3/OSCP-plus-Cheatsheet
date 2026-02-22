@@ -140,8 +140,6 @@ VMware Tools                                                       12.1.0.202196
 
 ---
 
-### PowerShellログ
-
 
 ---
 
@@ -323,6 +321,13 @@ PS C:\Program Files\Microsoft SQL Server>
 ```
 
 ---
+---
+
+# Credential harvesting
+
+- cmdkey
+
+
 ---
 
 # WinPEAS結果抽出（長文注意）
