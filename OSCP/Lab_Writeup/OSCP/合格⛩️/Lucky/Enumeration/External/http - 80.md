@@ -140,7 +140,7 @@ Starting gobuster in directory enumeration mode
 /wp-content           (Status: 200) [Size: 0]
 /wp-admin             (Status: 200) [Size: 6265]#←loginページ
 /index.php            (Status: 200) [Size: 33221]
-/feed                 (Status: 200) [Size: 1934]#←ファイルのだうんｒ
+/feed                 (Status: 200) [Size: 1934]#←feedファイルのダウンロード
 /contact              (Status: 200) [Size: 27237]
 /rss                  (Status: 200) [Size: 1934]
 /blog                 (Status: 200) [Size: 27313]
