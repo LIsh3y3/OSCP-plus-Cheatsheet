@@ -315,6 +315,10 @@ C$       2147483648 Default share       SRV22.oscp.exam
 Transfer          0                     WS26.oscp.exam
 ```
 
+```powershell
+ls \\SRV22.oscp.exam\C$
+```
+
 ### SPN
 
 ```powershell
