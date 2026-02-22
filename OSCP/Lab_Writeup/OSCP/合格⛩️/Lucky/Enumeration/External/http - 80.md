@@ -732,7 +732,117 @@ Interesting Finding(s):
 # WPScanユーザー列挙
 
 ```sh
-wpscan --url http://$TargetIP/ --enumerate u
+                                                                                                                                                            
+┌──(koshi㉿kali)-[~/Exam/Lucky]
+└─$ wpscan --url http://$TargetIP/ --enumerate u
+_______________________________________________________________
+         __          _______   _____
+         \ \        / /  __ \ / ____|
+          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®
+           \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \
+            \  /\  /  | |     ____) | (__| (_| | | | |
+             \/  \/   |_|    |_____/ \___|\__,_|_| |_|
+
+         WordPress Security Scanner by the WPScan Team
+                         Version 3.8.28
+       Sponsored by Automattic - https://automattic.com/
+       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart
+_______________________________________________________________
+
+[+] URL: http://192.168.104.112/ [192.168.104.112]
+[+] Started: Sun Feb 22 21:27:01 2026
+
+Interesting Finding(s):
+
+[+] Headers
+ | Interesting Entry: Server: Apache/2.4.41 (Ubuntu)
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+
+[+] robots.txt found: http://192.168.104.112/robots.txt
+ | Interesting Entries:
+ |  - /wp-admin/
+ |  - /wp-admin/admin-ajax.php
+ | Found By: Robots Txt (Aggressive Detection)
+ | Confidence: 100%
+
+[+] XML-RPC seems to be enabled: http://192.168.104.112/xmlrpc.php
+ | Found By: Link Tag (Passive Detection)
+ | Confidence: 100%
+ | Confirmed By: Direct Access (Aggressive Detection), 100% confidence
+ | References:
+ |  - http://codex.wordpress.org/XML-RPC_Pingback_API
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/
+ |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/
+
+[+] WordPress readme found: http://192.168.104.112/readme.html
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+
+[+] The external WP-Cron seems to be enabled: http://192.168.104.112/wp-cron.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 60%
+ | References:
+ |  - https://www.iplocation.net/defend-wordpress-from-ddos
+ |  - https://github.com/wpscanteam/wpscan/issues/1299
+
+[+] WordPress version 6.0.2 identified (Insecure, released on 2022-08-30).
+ | Found By: Rss Generator (Passive Detection)
+ |  - http://192.168.104.112/feed/, <generator>https://wordpress.org/?v=6.0.2</generator>
+ |  - http://192.168.104.112/comments/feed/, <generator>https://wordpress.org/?v=6.0.2</generator>
+
+[+] WordPress theme in use: pencil
+ | Location: http://192.168.104.112/wp-content/themes/pencil/
+ | Last Updated: 2024-09-13T00:00:00.000Z
+ | Readme: http://192.168.104.112/wp-content/themes/pencil/readme.txt
+ | [!] The version is out of date, the latest version is 1.7.2
+ | Style URL: http://192.168.104.112/wp-content/themes/pencil/style.css?ver=1.6.2
+ | Style Name: Pencil
+ | Style URI: https://blogonyourown.com/themes/pencil/
+ | Description: Pencil is an amazing Simply & Clean WordPress Blog / Magazine Theme. It’s elegant and modern theme p...
+ | Author: BlogOnYourOwn.com
+ | Author URI: https://blogonyourown.com
+ |
+ | Found By: Css Style In Homepage (Passive Detection)
+ | Confirmed By: Css Style In 404 Page (Passive Detection)
+ |
+ | Version: 1.6.2 (80% confidence)
+ | Found By: Style (Passive Detection)
+ |  - http://192.168.104.112/wp-content/themes/pencil/style.css?ver=1.6.2, Match: 'Version: 1.6.2'
+
+[+] Enumerating Users (via Passive and Aggressive Methods)
+ Brute Forcing Author IDs - Time: 00:00:01 <==============================================================================> (10 / 10) 100.00% Time: 00:00:01
+
+[i] User(s) Identified:
+
+[+] @Administrator
+ | Found By: Rss Generator (Passive Detection)
+ | Confirmed By:
+ |  Rss Generator (Aggressive Detection)
+ |  Login Error Messages (Aggressive Detection)
+
+[+] administrator
+ | Found By: Wp Json Api (Aggressive Detection)
+ |  - http://192.168.104.112/wp-json/wp/v2/users/?per_page=100&page=1
+ | Confirmed By:
+ |  Oembed API - Author URL (Aggressive Detection)
+ |   - http://192.168.104.112/wp-json/oembed/1.0/embed?url=http://192.168.104.112/&format=json
+ |  Author Sitemap (Aggressive Detection)
+ |   - http://192.168.104.112/wp-sitemap-users-1.xml
+ |  Author Id Brute Forcing - Author Pattern (Aggressive Detection)
+
+[!] No WPScan API Token given, as a result vulnerability data has not been output.
+[!] You can get a free API token with 25 daily requests by registering at https://wpscan.com/register
+
+[+] Finished: Sun Feb 22 21:27:15 2026
+[+] Requests Done: 51
+[+] Cached Requests: 8
+[+] Data Sent: 13.36 KB
+[+] Data Received: 365.562 KB
+[+] Memory used: 181.234 MB
+[+] Elapsed time: 00:00:14
 ```
 # Nikto
 
