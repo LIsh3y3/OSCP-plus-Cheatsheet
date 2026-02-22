@@ -874,7 +874,19 @@ administrator
 
 # 認証施行
 
-- `@Administrator`なら、"Error: The password you entered for the username @Administrator is incorrect. Lost your password?"と表示される
+- `@Administrator`なら、"Error: The password you entered for the username @Administrator is incorrect. Lost your password?"と表示されるので、intruderを使って以下の認証情報で試行
+```
+Passw0rd
+password@1
+Password1234
+Qwerty7
+Covid19
+c0r0n@
+L0ckD0wn2020
+Million2
+aaron431
+!Password-Reset0000
+```
 
 ---
 
