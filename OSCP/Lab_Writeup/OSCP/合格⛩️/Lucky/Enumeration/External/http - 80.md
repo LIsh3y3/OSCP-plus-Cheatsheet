@@ -308,6 +308,9 @@ Starting gobuster in directory enumeration mode
 
 # WPScan
 
+```sh
+
+```
 
 
 ---
