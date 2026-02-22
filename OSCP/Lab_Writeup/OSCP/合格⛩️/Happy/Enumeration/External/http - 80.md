@@ -183,6 +183,8 @@ HTTP Headers:
 
 # Enumeration
 
+>AhsayCBSは、高度なクラウド/ローカルバックアップソフトウェア
+
 
 ---
 
