@@ -95,7 +95,17 @@ HTTP Headers:
 errorが多ければ`-t 64`も試す
 
 ```zsh
+┌──(koshi㉿kali)-[~/Exam/Bless]
+└─$ gobuster dir -u http://$TargetIP:/ -r -k -w /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt -t 100 -o WebEnum/gobuster.txt -x 'html,htm,txt,sh,php,cgi,asp,aspx,jsp,pl,py,pdf'
 
+...
+/images               (Status: 200) [Size: 2718]
+/index.html           (Status: 200) [Size: 33304]
+/js                   (Status: 200) [Size: 3032]
+/css                  (Status: 200) [Size: 1992]
+/.                    (Status: 200) [Size: 33304]
+/fonts                (Status: 200) [Size: 2849]
+/readme.txt           (Status: 200) [Size: 1644]
 ```
 
 ---
