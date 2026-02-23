@@ -33,7 +33,7 @@
 ```
 
 ## proof.txt
-
+![[Pasted image 20260223103432.png]]
 ```zsh
 
 ```
