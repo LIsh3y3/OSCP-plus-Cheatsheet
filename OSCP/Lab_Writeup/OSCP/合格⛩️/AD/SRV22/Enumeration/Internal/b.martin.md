@@ -1,5 +1,11 @@
 # 試行錯誤の結果
 
+```sh
+PS C:\Users\b.martin> sqlcmd -E -S 127.0.0.1
+1> SELECT USER_NAME();
+2>
+```
+
 ## sqlログイン
 
 - ローカルから
