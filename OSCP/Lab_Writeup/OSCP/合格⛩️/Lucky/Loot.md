@@ -54,6 +54,7 @@ joe
 5a284b8ce32d31fc3666041cc1c03a98
 ```
 
+![[Pasted image 20260223104223.png]]
 ## proof.txt
 
 ```zsh
