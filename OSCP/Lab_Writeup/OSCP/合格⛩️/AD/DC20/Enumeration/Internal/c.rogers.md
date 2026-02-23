@@ -18,6 +18,7 @@ oscp\c.rogers
 ```
 ![[Pasted image 20260223100654.png]]
 
+![[Pasted image 20260224030829.png]]
 
 - AdminのがAccess denied だけど
 ```powershell
