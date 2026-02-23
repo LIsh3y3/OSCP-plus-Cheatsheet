@@ -33,3 +33,5 @@ dir
 *Evil-WinRM* PS C:\> dir
 
 ```
+
+- ファイルも転送できない
