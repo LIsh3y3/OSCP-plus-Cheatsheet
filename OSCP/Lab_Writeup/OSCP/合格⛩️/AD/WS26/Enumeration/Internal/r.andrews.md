@@ -378,6 +378,7 @@ cmdkey ->なし
 
 - AS-REP roastable、Kerberoastableは両方存在しない
 
+![[Pasted image 20260223175841.png]]
 ## Domain共有の列挙
 
 ```powershell
