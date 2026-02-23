@@ -47,7 +47,65 @@ At line:1 char:1
 
 - リモートから
 ```sh
+┌──(koshi㉿kali)-[~/Exam/AD/SRV]
+└─$ impacket-mssqlclient jenkins@172.16.104.202 -port 1433 -windows-auth
+Impacket v0.13.0.dev0 - Copyright Fortra, LLC and its affiliated companies 
 
+Password:
+Traceback (most recent call last):
+  File "/usr/share/doc/python3-impacket/examples/mssqlclient.py", line 91, in <module>
+    ms_sql.connect()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3/dist-packages/impacket/tds.py", line 558, in connect
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+TimeoutError: [Errno 110] Connection timed out
+                                                                                                                                                            
+┌──(koshi㉿kali)-[~/Exam/AD/SRV]
+└─$ impacket-mssqlclient b.martin@172.16.104.202 -port 1433 -windows-auth
+Impacket v0.13.0.dev0 - Copyright Fortra, LLC and its affiliated companies 
+
+Password:
+Traceback (most recent call last):
+  File "/usr/share/doc/python3-impacket/examples/mssqlclient.py", line 91, in <module>
+    ms_sql.connect()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3/dist-packages/impacket/tds.py", line 558, in connect
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+TimeoutError: [Errno 110] Connection timed out
+                                                                                                                                                            
+┌──(koshi㉿kali)-[~/Exam/AD/SRV]
+└─$ impacket-mssqlclient jenkins@172.16.104.202 -port 1433 -windows-auth
+Impacket v0.13.0.dev0 - Copyright Fortra, LLC and its affiliated companies 
+
+Password:
+Traceback (most recent call last):
+  File "/usr/share/doc/python3-impacket/examples/mssqlclient.py", line 91, in <module>
+    ms_sql.connect()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3/dist-packages/impacket/tds.py", line 558, in connect
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+TimeoutError: [Errno 110] Connection timed out
+                                                                                                                                                            
+┌──(koshi㉿kali)-[~/Exam/AD/SRV]
+└─$ impacket-mssqlclient jenkins@172.16.104.202 -port 1433              
+Impacket v0.13.0.dev0 - Copyright Fortra, LLC and its affiliated companies 
+
+Password:
+Traceback (most recent call last):
+  File "/usr/share/doc/python3-impacket/examples/mssqlclient.py", line 91, in <module>
+    ms_sql.connect()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3/dist-packages/impacket/tds.py", line 558, in connect
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+TimeoutError: [Errno 110] Connection timed out
+                                                                                                                                                            
+┌──(koshi㉿kali)-[~/Exam/AD/SRV]
+└─$ impacket-mssqlclient b.martin@172.16.104.202 -port 1433              
+Impacket v0.13.0.dev0 - Copyright Fortra, LLC and its affiliated companies 
 ```
 
 ## パスワード探索
