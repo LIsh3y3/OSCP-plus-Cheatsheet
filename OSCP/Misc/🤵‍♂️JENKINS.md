@@ -273,9 +273,6 @@ hydra -l admin -P /usr/share/wordlists/rockyou.txt \
 
 # OSCP第１回受験JENKINS環境
 
-Jenkins のディレクトリやバイナリに b.martin の書き込み権限があるか確認
-icacls "C:\Program Files\Jenkins"
-icacls "C:\Program Files\Jenkins\jenkins.exe"
 
 DCにそのままアクセスできないか試行する？
 

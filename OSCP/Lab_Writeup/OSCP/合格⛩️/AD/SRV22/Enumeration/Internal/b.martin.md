@@ -140,6 +140,12 @@ C:\Windows\System32\config\systemprofile\AppData\Local\Jenkins\.jenkins\secrets\
 ```
 →configがaccess denied
 
+```powershell
+# Jenkins のディレクトリやバイナリに b.martin の書き込み権限があるか確認
+icacls "C:\Program Files\Jenkins"
+icacls "C:\Program Files\Jenkins\jenkins.exe"
+```
+
 ## 共有の列挙
 
 ```powershell
