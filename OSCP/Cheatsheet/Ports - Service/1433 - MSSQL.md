@@ -29,11 +29,10 @@ sqlcmd [-S <TargetIP|domain>] -U <username> -P <pw> -l 30
 # 非インタラクティブモード
 sqlcmd [-S <TargetIP|domain>] -U <username> -P <pw> -l 30 -Q "<SQL_query>"
 ```
-- ローカルの場合は`-S`は`127.0.0.1`
+- ローカルの場合は`-S`はつけない、もしくは `-S 127.0.0.1`とする
 
 >[!WARNING] 注意
->WinRM/リバースシェルなど非インタラクティブシェルのとき、Windows認証で他ユーザーとしてログオンしたいのであれば、[[Tunneling Through Deep Packet Inspection]]と組み合わせて、`impacket`でアクセスしないと失敗する
-- 💡RDP/SSH接続であれば、`runas`で対象ユーザーとしてcmdを実行し、`sqlcmd -E`でWindows認証のログオン可能
+>WinRM/リバースシェルなど非インタラクティブシェルのとき、Windows認証で他ユーザーとしてログオンしたいのであれば、[[Tunneling Through Deep Packet Inspection]]と組み合わせて、`impacket`でアクセスしないと失敗する → RDP/SSH接続であれば、`runas`で対象ユーザーとしてcmdを実行し、`sqlcmd -E`でWindows認証のログオン可能
 
 ---
 ---
