@@ -49,8 +49,9 @@ joe
 
 ## local.txt
 
+![[Pasted image 20260223103822.png]]
 ```zsh
-
+5a284b8ce32d31fc3666041cc1c03a98
 ```
 
 ## proof.txt
