@@ -17,3 +17,19 @@ oscp\c.rogers
 
 ```
 ![[Pasted image 20260223100654.png]]
+
+
+- AdminのがAccess denied だけど
+```powershell
+*Evil-WinRM* PS C:\Users\Administrator\Desktop> type proof.txt
+Access to the path 'C:\Users\Administrator\Desktop\proof.txt' is denied.
+At line:1 char:1
++ type proof.txt
++ ~~~~~~~~~~~~~~
+    + CategoryInfo          : PermissionDenied: (C:\Users\Administrator\Desktop\proof.txt:String) [Get-Content], UnauthorizedAccessException
+    + FullyQualifiedErrorId : GetContentReaderUnauthorizedAccessError,Microsoft.PowerShell.Commands.GetContentCommand
+*Evil-WinRM* PS C:\Users\Administrator\Desktop> cd /
+dir
+*Evil-WinRM* PS C:\> dir
+
+```
