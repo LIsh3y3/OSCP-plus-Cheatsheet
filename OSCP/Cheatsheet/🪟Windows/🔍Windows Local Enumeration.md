@@ -23,7 +23,7 @@
 理由は、複数のツールでスキャンすることで、異なる結果や見逃しに気付くことができるから。
 また、必ず手動でのスキャンを実施する。
 
-Seatbelt
+[Seatbelt]
 ```zsh
 # Attacker
 mkdir share
