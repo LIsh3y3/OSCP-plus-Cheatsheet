@@ -281,8 +281,9 @@ ps -id <PID> | Select-Object Path
 
 リアルタイムにプロセスの状況を確認（[Watch-Command.ps1](https://github.com/markwragg/PowerShell-Watch/blob/master/Watch/Public/Watch-Command.ps1)）
 ```powershell
-# kaliにwatch-command.ps1をインストールして転送する必要がある
+# kaliにwatch-command.ps1をインストールして転送したうえでインポートする
 import-module .\Watch-Command.ps1
+
 # 実行時のプロセスとの差分のみを30秒間隔で表示する
 ps <search_word> -ErrorAction SilentlyContinue | Watch-Command -Difference -Continuous -Seconds 30
 ```
@@ -290,9 +291,9 @@ ps <search_word> -ErrorAction SilentlyContinue | Watch-Command -Difference -Cont
 	- 0： システムサービス、バックグラウンドプロセスが実行される特別なセッションであり、**高権限の可能性が高い**
 	- 1：最初のユーザーログオンセッションであり、一般ユーザーのプロセスが実行される
 	- 2以降：追加のユーザーログオンセッション
-
 >[!TIP]
->サービス、スケジュールタスクで編集可能なファイルが実行されていない場合は、プロセスを疑う　→ プロセスのSIが「0」、かつファイルをペイロードで上書きできれば、権限昇格につながる可能性がある
+>- サービス、スケジュールタスクで編集可能なファイルが実行されていない場合は、プロセスを疑う
+>	- → プロセスのSIが「0」、かつファイルをペイロードで上書きできれば、権限昇格につながる可能性がある
 
 ---
 
@@ -300,7 +301,7 @@ ps <search_word> -ErrorAction SilentlyContinue | Watch-Command -Difference -Cont
 
 ## 目的
 
-- 権限昇格に利用可能な Windows サービスを特定する  
+- 権限昇格に利用可能である以下のWindows サービスを特定する  
 	- 高権限（LocalSystem / 管理者権限）で実行されているサービス 
 	- サービスバイナリや設定が一般ユーザーにより変更可能なもの  
 	- Unquoted Service Path や非標準ディレクトリ実行のサービス
