@@ -235,14 +235,6 @@ $paths = @(
 "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*","HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*","HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*")
 Get-ItemProperty -Path $paths -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName } | Select-Object DisplayName, DisplayVersion, InstallLocation | Sort-Object DisplayName
 ```
-	↓
-```
-DisplayName                 DisplayVersion   InstallLocation   
------------                 --------------   ---------------     
-7-Zip 21.07 (x64)           21.07            C:\Program Files\7-Zip\
-FileZilla 3.63.1            3.63.1           C:\FileZilla\FileZilla FTP Client
-KeePass Password Safe       2.51.1   
-```
 - →パスワードマネージャーを使っている場合は、クラックへ：[[Password Attack]]
 - →設定ファイルに含まれる認証情報列挙へ：[[#ファイルに含まれる認証情報の列挙]]
 
