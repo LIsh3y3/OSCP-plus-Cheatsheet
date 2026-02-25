@@ -301,7 +301,7 @@ ps <search_word> -ErrorAction SilentlyContinue | Watch-Command -Difference -Cont
 
 ## 目的
 
-- 権限昇格に利用可能である以下のWindows サービスを特定する  
+- 以下の条件を満たした権限昇格に利用可能Windows サービスを特定する  
 	- 高権限（LocalSystem / 管理者権限）で実行されているサービス 
 	- サービスバイナリや設定が一般ユーザーにより変更可能なもの  
 	- Unquoted Service Path や非標準ディレクトリ実行のサービス
