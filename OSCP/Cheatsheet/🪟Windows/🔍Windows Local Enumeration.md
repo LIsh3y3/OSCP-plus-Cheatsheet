@@ -150,7 +150,8 @@ reg query "HKLM\HARDWARE\DESCRIPTION\System\CentralProcessor\0" /v Identifier
 
 インストールされたセキュリティパッチを確認する
 ```powershell
-Get-CimInstance -Class win32_quickfixengineering | Where-Object { $_.Description -eq "Security Update" }
+Get-CimInstance -Class win32_quickfixengineering | 
+Where-Object { $_.Description -eq "Security Update" }
 ```
 - 💥インストールされたセキュリティパッチをメモし、ターゲットのOSを[Microsoft Security Response Center](https://msrc.microsoft.com/update-guide/deployments)のページで検索し、未修正の脆弱性を明らかにする
 	- 日付範囲は１年のみ選択可能
