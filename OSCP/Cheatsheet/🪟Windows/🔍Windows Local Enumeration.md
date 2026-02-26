@@ -597,7 +597,7 @@ Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | S
 
 ---
 
-## WinPEAS結果の見方
+## WinPEAS結果の見方→削除
 
 前提：
 - 低権限ユーザーとして実行したときの実際の出力（最初のASCIIアートを除く）をもとに、検知内容について細かく追記していく
@@ -654,42 +654,7 @@ at System.Management.ThreadDispatch.Start()
 	- "System Environment Variables"と同じ変数があれば、PATH変数を除き、"User Environment Variables"で上書きされる（PATH = System PATH + User PATH）
 ```powershell
 ÉÍÍÍÍÍÍÍÍÍÍ¹ User Environment Variables
-È Check for some passwords or keys in the env variables 
-    COMPUTERNAME: SRV22 # NW上での役割を推測
-    PUBLIC: C:\Users\Public # すべてのユーザーがアクセスできる
-    LOCALAPPDATA: C:\Users\<username>\AppData\Local # ユーザー固有の設定ファイル、キャッシュデータなど
-    PROCESSOR_ARCHITECTURE: AMD64 #ソフトウェアのアーキテクチャをこの値に合わせる
-    Path: C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\; # インストールされたアプリケーションや、どのパスを優先処理したいか
-    ProgramData: C:\ProgramData # アプリ設定ファイルが保存される。一般的でないアプリがあれば要注目
-    USERDOMAIN: OSCP # NetBIOIS名
-    USERDNSDOMAIN: oscp.exam #  DNS名
-```
 
-- システム環境変数
-	- すべてのユーザーに適用される
-```powershell
-ÉÍÍÍÍÍÍÍÍÍÍ¹ System Environment Variables
-È Check for some passwords or keys in the env variables 
-...
-    TEMP: C:\Windows\TEMP # 通常は書き込み不可
-```
-
-- 監査・ログ設定
-```powershell
-ÉÍÍÍÍÍÍÍÍÍÍ¹ Audit Settings
-È Check what is being logged 
-    Not Found # 監査設定がされていないので、痕跡が残りにくい
-
-ÉÍÍÍÍÍÍÍÍÍÍ¹ WEF Settings
-È Windows Event Forwarding, is interesting to know were are sent the logs 
-    Not Found # ログがどこにも送られないので、痕跡削除がローカルで完結する
-```
-
-- 認証情報の保護機能について
-	- すべて無効であれば、認証情報窃取しやすい
-```powershell
-ÉÍÍÍÍÍÍÍÍÍÍ¹ LAPS Settings
-È If installed, local administrator password is changed frequently and is restricted by ACL 
     LAPS Enabled: LAPS not installed
 
 ÉÍÍÍÍÍÍÍÍÍÍ¹ Wdigest
