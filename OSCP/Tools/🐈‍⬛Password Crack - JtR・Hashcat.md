@@ -50,8 +50,8 @@ GECOSフィールドを利用し候補を生成のうえクラック
 # 例：john --single --format=sha512crypt shadow_has_homedir
 john --single --format=<format> <file>
 ```
-- 🚨ファイルの中身は `username:hash`に整形する（余計なフィールドは削除する）
--  🔗[GECOSフィールドとは](https://docs.oracle.com/cd/E19683-01/817-4909/userconcept-74705/index.html)
+- ファイルの中身は `username:hash`に整形する（余計なフィールドは削除する）
+-  [GECOSフィールドとは](https://docs.oracle.com/cd/E19683-01/817-4909/userconcept-74705/index.html)
 
 ---
 
@@ -66,7 +66,8 @@ john --single --format=<format> <file>
 
 ### カスタムルールの作成 w/ JtR
 
-1. `/usr/share/john`に遷移
+1. `/usr/share/john`にcd
+
 2. 管理者権限で、`john-local.conf`を作成
 ```zsh
 sudo touch john-local.conf
