@@ -258,7 +258,7 @@ hashcat <hash_file> -a 3 -m <hash_mode> -i ?d?d?d?d?d?d?d
 hashcat <hash_file> -a 3 -m <hash_mode> -i ?u?l?l?l<word>
 ```
 
-### 参考： Keyspaceテクニック w
+### 参考： Keyspaceテクニック w/ crunch
 
 - Keyspace: 文字、数字、記号など、パスワードや秘密情報に使用される可能性のあるすべての要素を含む可能性のある組み合わせ
 
