@@ -392,6 +392,11 @@ sed -i '/^[a-zA-Z0-9]*$/d' <wordlist>
 	- →ワードリストの候補見直し
 - Not enough allocatable device memory or free host memory for mapping.
 	- →メモリ不足のため、他のプロセスを一旦終了する
+- Token length exception
+> - ハッシュタイプが異なる
+> 	- →[[#Hashの識別]]を実施
+> - HashcatがサポートしないHashアルゴリズム
+> 	- →JtRを使用
 
 
 ---
