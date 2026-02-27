@@ -443,4 +443,4 @@ hashcat --help | grep -i "<keyword>"
 - hash-identifierのGUI版：[GUI hash-identifier](https://hashes.com/en/tools/hash_identifier)
 - crack station (https://crackstation.net/)
 	- ハッシュ値を入力することで元の値と使用されているハッシュ計算アルゴリズムが閲覧可
-- [Hashcat example](https://hashcat.net/wiki/doku.php?id=example_hashes)からパスワードハッシュのモードを判別する
+- からパスワードハッシュのモードを判別する
