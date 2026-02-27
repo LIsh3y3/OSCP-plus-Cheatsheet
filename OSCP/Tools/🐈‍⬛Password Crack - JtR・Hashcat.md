@@ -193,7 +193,7 @@ john --show --format=<format> <hashファイル>
 
 ## 必要な情報
 
-1. 対象ハッシュのタイプ（例：MD5、SHA1、bcryptなど）: [[#Hashの識別]]
+1. 対象ハッシュのタイプ（例：MD5、SHA1、bcryptなど）: [[#Hashの識別]]、[Hashcat example](https://hashcat.net/wiki/doku.php?id=example_hashes)
 2. 使用するワードリスト（例：rockyou.txt）
 3. 使用する攻撃モード（例：辞書攻撃、ブルートフォースなど）
 
@@ -443,4 +443,4 @@ hashcat --help | grep -i "<keyword>"
 - hash-identifierのGUI版：[GUI hash-identifier](https://hashes.com/en/tools/hash_identifier)
 - crack station (https://crackstation.net/)
 	- ハッシュ値を入力することで元の値と使用されているハッシュ計算アルゴリズムが閲覧可
-- からパスワードハッシュのモードを判別する
+- [Hashcat example](https://hashcat.net/wiki/doku.php?id=example_hashes)からパスワードハッシュのモードを判別する
