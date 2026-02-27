@@ -206,11 +206,9 @@ john --show --format=<format> <hashファイル>
 hashcat <hash_file> -m <hash_mode> -a <attack_mode> <wordlist> --force
 ```
 
-- 🚨has場合がある
-
-- 具体例
+具体例
 ```zsh
-hashcat hash.txt -m 400 -a 0 /usr/share/wordlists/rockyou.txt --force
+
 ```
 - `-a 0` はスタンダードな辞書攻撃（wordlist attack）
 - `-m 400` は MD5 のモード（例）
