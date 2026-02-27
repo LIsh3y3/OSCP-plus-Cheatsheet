@@ -193,8 +193,7 @@ john --show --format=<format> <hashファイル>
 
 ## 必要な情報
 
-1. 対象ハッシュのタイプ（例：MD5、SHA1、bcryptなど）
-	- [[#Hashの識別]]
+1. 対象ハッシュのタイプ（例：MD5、SHA1、bcryptなど）: [[#Hashの識別]]
 2. 使用するワードリスト（例：rockyou.txt）
 3. 使用する攻撃モード（例：辞書攻撃、ブルートフォースなど）
 
