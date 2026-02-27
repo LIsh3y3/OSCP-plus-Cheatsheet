@@ -203,13 +203,11 @@ john --show --format=<format> <hashファイル>
 
 基本構文
 ```zsh
+
 hashcat <hash_file> -m <hash_mode> -a <attack_mode> <wordlist> --force
 ```
 
 具体例
-```zsh
-
-```
 - `-a 0` はスタンダードな辞書攻撃（wordlist attack）
 - `-m 400` は MD5 のモード（例）
 
