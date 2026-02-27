@@ -261,12 +261,14 @@ hashcat <hash_file> -a 3 -m <hash_mode> -i ?u?l?l?l<word>
 ### 参考： Keyspaceテクニック w/ crunch
 
 - Keyspace: 文字、数字、記号など、パスワードや秘密情報に使用される可能性のあるすべての要素を含む可能性のある組み合わせ
-
 - *crunch*：ワードリストを作成するためのツール
+
+基本構文
 ```zsh
 crunch <min_char_length> <max_char_length> -t <文字セット> -o <output>
 ```
-- 例：
+
+具体例：
 ```zsh
 crunch 6 6 -t pass%%
 ```
