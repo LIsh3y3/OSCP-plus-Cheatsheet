@@ -203,12 +203,10 @@ john --show --format=<format> <hashファイル>
 
 基本構文
 ```zsh
-
+# 具体例: hashcat hash.txt -m 400 -a 0 /usr/share/wordlists/rockyou.txt --force
 hashcat <hash_file> -m <hash_mode> -a <attack_mode> <wordlist> --force
 ```
-
-具体例
-- `-a 0` はスタンダードな辞書攻撃（wordlist attack）
+- `-a` : アタックタイプで、0がwordlist attack
 - `-m 400` は MD5 のモード（例）
 
 ⚠️Token length exception エラー：
