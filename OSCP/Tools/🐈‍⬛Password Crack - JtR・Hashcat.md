@@ -204,10 +204,10 @@ john --show --format=<format> <hashファイル>
 基本構文
 ```zsh
 # 具体例: hashcat hash.txt -m 400 -a 0 /usr/share/wordlists/rockyou.txt --force
-hashcat <hash_file> -m <hash_mode> -a <attack_mode> <wordlist> --force
+hashcat <hash_file> -m <hash_mode> -a 0 <wordlist> --force
 ```
-- `-a` : アタックタイプで、0がwordlist attack
-- `-m 400` は MD5 のモード（例）
+- `-a` : 攻撃モードで、0は辞書攻撃
+- `-m` : 解析するハッシュのモード（[Hashcat example](https://hashcat.net/wiki/doku.php?id=example_hashes)）
 
 ⚠️Token length exception エラー：
 	ハッシュタイプが異なる場合（[[#Hashの識別]]をやる）
@@ -218,11 +218,11 @@ hashcat <hash_file> -m <hash_mode> -a <attack_mode> <wordlist> --force
 
 ## ブルートフォース攻撃 w/ Hashcat
 
-- 基本文法
+基本文法
 ```zsh
 hashcat <hash_file> -a 3 -m <hash_mode> <charset>
 ```
-- `-a 3` はbrute force
+- `-a 3` はbrute force攻撃
 
 1. charsetの確認
 ```zsh
