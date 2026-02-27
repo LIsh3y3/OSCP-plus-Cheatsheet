@@ -211,10 +211,10 @@ hashcat <hash_file> -m <hash_mode> -a 0 <wordlist> --force
 
 
 > [!ERROR] Token length exception
-> ハッシュタイプが異なる場合（[[#Hashの識別]]をやる）
-
-		or
-	
+> - ハッシュタイプが異なる
+> 	- →[[#Hashの識別]]を実施
+> - HashcatがサポートしないHashアルゴリズム
+> 	- →JtRを使用
 
 ---
 
@@ -230,7 +230,7 @@ hashcat <hash_file> -a 3 -m <hash_mode> <charset>
 ```zsh
 hashcat --help
 ```
-	↓
+↓出力抜粋
 ```
 - [ Built-in Charsets ] -
 
