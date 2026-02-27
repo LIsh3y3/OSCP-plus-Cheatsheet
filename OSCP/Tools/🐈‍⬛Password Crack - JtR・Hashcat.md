@@ -211,10 +211,10 @@ hashcat <hash_file> -m <hash_mode> -a 0 <wordlist> --force
 
 
 > [!ERROR] Token length exception
->ハッシュタイプが異なる場合（[[#Hashの識別]]をやる）
+> ハッシュタイプが異なる場合（[[#Hashの識別]]をやる）
 
 		or
-	HashcatがサポートしないHashアルゴリズム（JtRを使用）
+	
 
 ---
 
