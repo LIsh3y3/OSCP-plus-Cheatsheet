@@ -18,13 +18,13 @@ sudo apt update && sudo apt install -y docker.io && sudo apt install -y docker-c
 ```zsh
 sudo usermod -aG docker $USER
 
-# ☑️設定変更反映のため、ログアウト→ログイン
+# 設定変更反映のため、ログアウト→ログイン
 shutdown -r now
 
 # 所属グループ確認
 groups
 ```
-	↓出力例：末尾にdockerが追加
+↓出力例：末尾にdockerが追加
 ```
 <username> adm dialout cdrom floppy sudo audio dip video plugdev users netdev bluetooth lpadmin wireshark scanner kaboxer docker
 ```
@@ -41,7 +41,7 @@ sudo systemctl enable docker
 
 # ２回目以降の起動・停止方法
 
-初回インストール時はBloodHoundが起動しているが、２回目以降はDocker Composeでサービスを起動する必要がある
+初回インストール時はBloodHoundが起動しているが、２回目以降はDocker Composeでサービスを起動する必要がある。
 
 1. `docker-compose.yml `が格納されているディレクトリにcd
 ```zsh
@@ -58,8 +58,8 @@ docker compose up -d
 ```url
 http://127.0.0.1:8080/ui
 ```
-- ⚠️デフォルトは8080ポートだが、自分は[[#おまけ：起動ポート8080の変更]]で9999へ変更した
-- emailはデフォルトadminで、パスワードは任意（英数字記号混在）
+- デフォルトは8080ポートだが、自分はBurp Suiteとの競合を避けるため、[[#おまけ：起動ポート8080の変更]]で9999へ変更した
+- "email"はデフォルトではadminで、パスワードは任意（英数字記号混在）
 
 4. BCEのコンテナ停止
 ```zsh
@@ -75,7 +75,7 @@ Legacyでは、BloodHoundとSharpHoundの互換性に気をつける必要があ
 
 1. BloodHoundを起動し、Download Collectorsからデータ収集ツールをダウンロードする
 	- Active Directoryに対しデータ収集：SharpHound
-	- Entra ID（旧称：Azure Active Directory）に対しデータ収集：AzureHound
+	- Entra IDに対しデータ収集：AzureHound
 ![[Pasted image 20251006071117.png]]
 $$Download　Collectorsのページ$$
 
@@ -87,7 +87,7 @@ $$Download　Collectorsのページ$$
 
 - 同じドメインであれば、基本的に**1度の実行で良い**
 	- Domain Admins以外のユーザーで繰り返しSharpHoundを実行しても結果に大差ない
-- 💡ターゲットに侵入できていない場合は、NetExecを使用する
+- 💡ターゲットに侵入できていない場合は、リモートからNetExecを使用する
 
 1. 攻撃者のマシン上でSMB共有を用意し、ファイル送受信の準備をする
 	- [[ファイル操作、ユーティリティ#Windows → Linux w/ SMB]]
