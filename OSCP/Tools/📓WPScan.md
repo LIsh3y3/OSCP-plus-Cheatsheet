@@ -63,12 +63,12 @@ wpscan --url http://<target_IP> --no-banner --enumerate p,t --plugins-detection 
 
 1. ユーザー名を列挙する：​
 ```zsh
-wpscan --url http://[target.com]/ --enumerate u
+wpscan --url http://<target.com>/ --enumerate u
 ```
 
 2. 見つかったユーザー名に対してパスワードのブルートフォース攻撃を行う：​
 ```zsh
-wpscan -o wpscan.txt -f cli-no-color --no-banner --url https://[target.com]/ --usernames [username] --passwords [wordlist]
+wpscan -o wpscan.txt -f cli-no-color --no-banner --url https://<target.com>/ --usernames [username] --passwords [wordlist]
 ```
 
 ---
@@ -77,17 +77,17 @@ wpscan -o wpscan.txt -f cli-no-color --no-banner --url https://[target.com]/ --u
 
 プロキシを使用してスキャンを行う：​
 ```zsh
-wpscan --url https://[target.com]/ --proxy socks5://127.0.0.1:9050
+wpscan --url https://<target.com>/ --proxy socks5://127.0.0.1:9050
 ```
 
 ランダムなユーザーエージェントを使用する：​
 ```zsh
-wpscan --url https://[target.com]/ --random-user-agent
+wpscan --url https://<target.com>/ --random-user-agent
 ```
 
 リクエスト間に遅延を追加する：​
 ```zsh
-wpscan --url https://[target.com]/ --throttle 5
+wpscan --url https://<target.com>/ --throttle 5
 ```
 
 ---
@@ -96,7 +96,7 @@ wpscan --url https://[target.com]/ --throttle 5
 
 カスタムのユーザーエージェントを指定する：​
 ```zsh
-wpscan -o wpscan.txt -f cli-no-color --no-banner --url https://[target.com]/ --user-agent "CustomUserAgent/1.0"
+wpscan -o wpscan.txt -f cli-no-color --no-banner --url https://<target.com>/ --user-agent "CustomUserAgent/1.0"
 ```
 
 - アグレッシブスキャン
@@ -110,6 +110,6 @@ wpscan -o wpscan.txt -f cli-no-color --no-banner\
 	--detection-mode aggressive \
 	--plugins-detection aggressive \
 	--plugins-version-detection aggressive \
-	--url http://[target.com]/ \
+	--url http://<target.com>/ \
 	--api-token [MY_API_TOKEN]
 ```
