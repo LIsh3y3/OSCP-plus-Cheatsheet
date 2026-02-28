@@ -160,7 +160,7 @@ $$ノードのアイコンの意味$$
 
 ## edgeについて
 
-- 🔗[About BloodHound Edges](https://bloodhound.specterops.io/resources/edges/overview)
+- [About BloodHound Edges](https://bloodhound.specterops.io/resources/edges/overview)
 - エッジとは、あるノードを別のノードに接続するリンク（関係）として表現
 - エッジの方向は攻撃または特権の方向を示す
 - エッジの名前をクリックすると、エンティティパネルに以下の情報が表示される
