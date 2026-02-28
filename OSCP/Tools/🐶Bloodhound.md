@@ -228,5 +228,5 @@ cd ~/.config/bloodhound
 ```zsh
 # ldapとdnsは同一のIPであることが多い
 # DCのIPに対して実行する必要がある
-netexec ldap <LDAPserverIP> -u <username> -p '<password>' --bloodhound --collection All --dns-server <DNSserverIP>
+netexec ldap <LDAP_server_IP> -u <username> -p '<password>' --bloodhound --collection All --dns-server <DNS_server_IP>
 ```
