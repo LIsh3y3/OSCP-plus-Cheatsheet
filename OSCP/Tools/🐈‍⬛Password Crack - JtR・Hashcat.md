@@ -390,6 +390,7 @@ sed -i '/^[a-zA-Z0-9]*$/d' <wordlist>
 - すぐに辞書攻撃が終わり、StatusがExhaustedになる
 	- →ハッシュファイルに余計な改行が入っていないか確認
 	- →ワードリストの候補見直し
+	- →くらっくできな
 - Not enough allocatable device memory or free host memory for mapping.
 	- →メモリ不足のため、他のプロセスを一旦終了する
 - Token length exception
