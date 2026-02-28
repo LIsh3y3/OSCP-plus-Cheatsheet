@@ -1,10 +1,9 @@
-- あらゆるタイプのwebアプリに対応
+あらゆるタイプのwebアプリに対応
 - 参考記事：[Niktoの解説 - 個人ブログzenn](https://zenn.dev/oreha_gao/scraps/e413e7e88fb929)
 
-
-> [! WARNIN] Title
-> Contents
-
+> [! WARNING]
+> - サブディレクトリのスキャンは自動で実行しないため、指定する必要がある
+> 	- `-h <TargetIP>`は、`http:/<TargetIP>`をスキャンするが、`http://<TargetIP>/xxx`はスキャンしない
 
 # 目的
 
