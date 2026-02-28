@@ -1,4 +1,4 @@
-あらゆるタイプのwebアプリに対応
+あらゆるタイプのwebアプリに対応し、Webサーバーの構成ミスや既知の脆弱性を検出するための、オープンソースのWebサーバー・スキャナ
 - 参考記事：[Niktoの解説 - 個人ブログzenn](https://zenn.dev/oreha_gao/scraps/e413e7e88fb929)
 
 > [! WARNING]
