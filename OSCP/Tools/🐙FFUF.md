@@ -114,10 +114,10 @@ ffuf -c -w wordlist.txt -u http://<target.com>/FUZZ -fw <word_num>
 ```
 - `-fw`：複数指定、範囲指定が可能（範囲指定例）`-fw 1000-1200`
 
-## アウトプット
-`
-
 ## アウトプットの、整形・抽出
+デフォルトはjson
+
+- `ffuf -o ffuf.json...
 
 - prettyに整形
 ```zsh
