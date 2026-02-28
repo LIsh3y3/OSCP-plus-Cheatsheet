@@ -1,7 +1,7 @@
 # ✋️Hydra実行前に
 
-- hydraによるパスワードはアカウントロックのリスク、ターゲットのダウンなど、ハイリスク
-- すべての列挙、攻撃ベクトルは試したか
+- hydraによるパスワード攻撃は、アカウントロックのリスク、ターゲットのダウンなど、非常にハイリスクであり、やみくもに実行するものではない
+- すべての列挙、攻撃ベクトルは試したか？
 - 以下は実行したか？
 ```
 admin:admin
@@ -22,7 +22,6 @@ Administrator:Administrator
 Webログインフォームへのパスワードアタック(POST)
 	（[[#構成要素]]を確認（特にFailure Message））
 ```zsh
-# 具体例：hydra -l admin -P /usr/share/wordlists/fasttrack.txt 10.10.10.43 http-post-form "/user/login.php:username=^USER^&password=^PASS^:F=Invalid Password!"
 hydra -l <username> -P <wordlist> <target_ip> http-post-form "/<url残り>:<クエリ文字列>:F=<Failure_Message>" 
 ```
 - 💡：Errorメッセージのないログインフォームをパスワードアタックするようなことは少ない
