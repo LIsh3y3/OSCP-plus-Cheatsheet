@@ -116,16 +116,16 @@ ffuf -c -w wordlist.txt -u http://<target.com>/FUZZ -fw <word_num>
 
 ## アウトプットの、整形・抽出
 
-デフォルトはjson
+デフォルトアウトプットはjson
+（`ffuf -o ffuf.json...）
 
-- `ffuf -o ffuf.json...
-
-- prettyに整形
+### prettyに整形
+ 
 ```zsh
 python -m json.tool < ffuf.json | tee pretty_ffuf.json
 ```
 
-抽出
+### 抽出
 
 - レスポンスコード 200のurl
 ```zsh
