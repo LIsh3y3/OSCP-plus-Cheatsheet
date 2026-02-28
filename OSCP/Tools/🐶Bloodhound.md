@@ -187,7 +187,6 @@ $$groupラベルでadminとつくグループのみを検索している$$
 
 - 指定したStart NodeからDestination Nodeまでの侵害経路をグラフ化する
 	- 存在しない場合はPATH NOT FINDING(存在しないと表示された場合でも[[💥Lateral Movement & Persistance in AD]]のテクニックで横展開可能な場合も多い)
-- あまり使えない
 
 ### ⭐️CYPHER
 
