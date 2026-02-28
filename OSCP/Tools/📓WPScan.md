@@ -68,7 +68,7 @@ wpscan --url http://<target.com>/ --enumerate u
 
 2. 見つかったユーザー名に対してパスワードのブルートフォース攻撃を行う：​
 ```zsh
-wpscan -o wpscan.txt -f cli-no-color --no-banner --url https://<target.com>/ --usernames [username] --passwords [wordlist]
+wpscan -o wpscan.txt -f cli-no-color --no-banner --url https://<target.com>/ --usernames <username --passwords [wordlist]
 ```
 
 ---
