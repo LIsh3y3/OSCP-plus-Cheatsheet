@@ -12,7 +12,7 @@
 
 > [! WARNING]
 > - サブディレクトリのスキャンは自動で実行しないため、指定する必要がある
-> 	- `-h <TargetIP>`は、`http:/<TargetIP>`をスキャンするが、`http://<TargetIP>/xxx`はスキャンしない
+> 	- `-h <target₋IP>`は、`http:/<target₋IP>`をスキャンするが、`http://<target₋IP>/xxx`はスキャンしない
 > - 過剰なリクエスト、かつ、過検知、見過ごしも非常に多いため、OSCP+ではほとんど使わなかった
 
 # 目的
@@ -38,7 +38,7 @@
 
 ```shell
 # -C：CGIディレクトリを探索
-nikto -Format htm -o nikto.html --maxtime=180s -C all -h <TargetIP>
+nikto -Format htm -o nikto.html --maxtime=180s -C all -h <target₋IP>
 ```
 - faviconやデフォルトのパスなどから何のアプリケーションが使われているか割り出せる
 - どのHTTPメソッドが使われているかわかる
@@ -50,7 +50,7 @@ nikto -Format htm -o nikto.html --maxtime=180s -C all -h <TargetIP>
 
 特定のホストのポートをスキャンするとき、`-p`を使用し、複数のポートをスキャンできる
 ```zsh
-nikto -h <TargetIP> -p <Port>, <Port>
+nikto -h <target₋IP> -p <Port>, <Port>
 ```
 - ⚠️`nikto -h http://`とやると、ポート80しか検査されない
 
