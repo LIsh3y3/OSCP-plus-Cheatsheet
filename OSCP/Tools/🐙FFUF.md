@@ -41,38 +41,38 @@ python -m json.tool < ffuf.json | tee pretty_result.json
 # 特定のレスポンスコードで絞る
 cat ffuf.json | jq '.results[] | select(.status == 200) | .url'
 ```
-- レスポンスのフィルタリングは、ffuf実行時点でも可能[[#⌛️レスポンスのフィルタリングとマッチング]]
+- レスポンスのフィルタリングは、ffuf実行時点でも可能: [[#レスポンスのフィルタリングとマッチング]]
 
 ---
 
-# 🌐 サブドメイン・バーチャルホスト探索
+# サブドメイン・バーチャルホスト探索
 
-サブドメインの検出：
+サブドメインの検出
 ```zsh
 ffuf -c -w <subdomains.txt> -u http://<target.com>/ -H "Host: FUZZ.<target.com>"
 ```
 
-バーチャルホストの検出：
+バーチャルホストの検出
 ```zsh
 ffuf -c -w <vhosts.txt> -u http://<target.com>/ -H "Host: FUZZ"
 ```
 
 ---
 
-# 🔐 パラメータ・値のファジング
+# パラメータ・値のファジング
 
-- 💡脆弱性の検出に使う場合は、狙った脆弱性に適したwordlist(param.txt)を選択すること
-	- `/usr/share/seclists/Fuzzing/`をよく使う
+脆弱性の検出に使う場合は、狙った脆弱性に適したwordlistを選択すること。
+ `/usr/share/seclists/Fuzzing/`をよく使う。
 
 GETパラメータのファジング
 ```zsh
-ffuf -c -w <param.txt> -u http://<target.com>/page.php?FUZZ=test
+ffuf -c -w <wordlist> -u http://<target.com>/page.php?FUZZ=test
 ```
 - すべてErrorsの場合は、ワードリストと指定URLでURL形式が崩壊しているか、(例：`http://<target.com>//etc/passwd`)
 
 POSTでの値ファジング
 ```zsh
-ffuf -c -w <params.txt> -X POST -d "username=admin&password=FUZZ" -u http://<target.com>/login.php
+ffuf -c -w <wordlist> -X POST -d "username=admin&password=FUZZ" -u http://<target.com>/login.php
 ```
 - `-X`: メソッド指定（POSTなど）
 - `-d`: リクエストボディ指定
@@ -91,37 +91,33 @@ FUZZ
 ------WebKitFormBoundary8a04b3vGdGjphqRa--
 ```
 ```zsh
-ffuf -c --request-proto http -w <params.txt> -request fuzz.req
+ffuf -c --request-proto http -w <wordlist> -request fuzz.req
 ```
-- `Content-Length`ヘッダーには注意？
 
 ---
 
-# ⌛️レスポンスのフィルタリングとマッチング
+# レスポンスのフィルタリングとマッチング
 
-ステータスコードでマッチ：
+ステータスコードでマッチ
 ```zsh
 ffuf -c -w wordlist.txt -u http://<target.com>/FUZZ -mc 200
 ```
 
-404レスポンスを除外：
+404レスポンスを除外
 ```zsh
 ffuf -c -w wordlist.txt -u http://<target.com>/FUZZ -fc 404
 ```
 
-特定のワード数を除外：
+特定のワード数を除外
 ```zsh
-ffuf -c -w wordlist.txt -u http://<target.com>/FUZZ -fw [word数]
+ffuf -c -w wordlist.txt -u http://<target.com>/FUZZ -fw <word_num>
 ```
 - `-fw`：複数指定、範囲指定が可能（範囲指定例）`-fw 1000-1200`
 
-## 📝アウトプット
+## アウトプット
+`
 
-(デフォルトはjson)
-
-- `ffuf -o ffuf.json...`
-
-### アウトプット後、整形・抽出
+## アウトプットの、整形・抽出
 
 - prettyに整形
 ```zsh
@@ -142,9 +138,9 @@ cat ffuf.json | jq '.results[] | select(.words != 4632) | .input.FUZZ'
 
 ---
 
-# ⚙️ その他テクニック
+# その他テクニック
 
-標準入力からワードリストを流す：
+標準入力からワードリストを流す
 ```zsh
 seq 1 1000 | ffuf -c -w - -u http://<target.com>/api/user?id=FUZZ
 ```
