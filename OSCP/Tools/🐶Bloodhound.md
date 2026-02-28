@@ -190,7 +190,7 @@ $$groupラベルでadminとつくグループのみを検索している$$
 
 ### CYPHER
 
-- 公式ドキュメント[Search With Cypher - SPECTEROPS](https://bloodhound.specterops.io/analyze-data/cypher-search)
+- [Search With Cypher - SPECTEROPS](https://bloodhound.specterops.io/analyze-data/cypher-search)
 - 関連ノート：[[Cypher文法]]
 
 - クエリを使用して、任意の情報を表示する
