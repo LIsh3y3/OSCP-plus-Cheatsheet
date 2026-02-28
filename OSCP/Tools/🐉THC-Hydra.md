@@ -59,6 +59,13 @@ hydra -C /usr/share/seclists/Passwords/Default-Credentials/ftp-betterdefaultpass
 hydra -l <username> -x 1:6:1A <service>://<target_ip>
 ```
 
+プロキシ経由で攻撃（通信内容をBurp Suiteで確認したいときなどに使う）
+```zsh
+export HYDRA_PROXY_HTTP=http://127.0.0.1:8080
+hydra ...
+unset HYDRA_PROXY_HTTP
+```
+
 その他よく使うオプション：
 
 | オプション       | 説明                                  |
