@@ -404,10 +404,11 @@ sed -i '/^[a-zA-Z0-9]*$/d' <wordlist>
 ## 前提事項・注意事項
 
 - JtRでも自動でHashタイプを認識しないときがあるし、HashcatではHashアルゴリズムの指定が必須
+
 - Hashの識別には[hash-identifier](https://www.kali.org/tools/hash-identifier/) もしくは [hashid](https://www.kali.org/tools/hashid/)というツールを使う
-	- ==2つのツールで確認すること==
-		- 異なる結果を返す場合は、信頼性が低い
-	- ツールでもわからない場合は、
+	- ==2つのツールで確認すること==（異なる結果を返す場合は、信頼性が低い）
+	
+- ツールでもわからない場合は、[Hashcat example](https://hashcat.net/wiki/doku.php?id=example_hashes)で確認
 
 - 💡識別結果のHashアルゴリズムでクラックできないときは？
 	- 誤ったアルゴリズムである可能性がある
@@ -431,7 +432,7 @@ hash-identifier
 hashcat --help | grep -i "<keyword>"
 ```
 - 複数結果が出た場合は、ハッシュ前半の値が一致するものを選ぶ
-- カッコ内に記載(`$0$`など)：
+- カッコ内に記載(`$0$`など)
 ```
 22911 | RSA/DSA/EC/OpenSSH Private Keys ($0$)                      | Private Key
 22921 | RSA/DSA/EC/OpenSSH Private Keys ($6$)  
@@ -442,4 +443,3 @@ hashcat --help | grep -i "<keyword>"
 - hash-identifierのGUI版：[GUI hash-identifier](https://hashes.com/en/tools/hash_identifier)
 - crack station (https://crackstation.net/)
 	- ハッシュ値を入力することで元の値と使用されているハッシュ計算アルゴリズムが閲覧可
-- [Hashcat example](https://hashcat.net/wiki/doku.php?id=example_hashes)からパスワードハッシュのモードを判別する
