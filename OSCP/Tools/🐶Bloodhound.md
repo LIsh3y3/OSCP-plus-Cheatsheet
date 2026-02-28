@@ -196,10 +196,8 @@ $$groupラベルでadminとつくグループのみを検索している$$
 - クエリを使用して、任意の情報を表示する
 - 「Saved Query」で定義済みのクエリを使用可能
 > [!TIP] 便利なCYPHER
-- 💡
-	- Shortest paths from Owned objects
-	- AS-REP Roastable users (DontReqPreAuth)
-	- All Kerberoastable users
+- 
+
 ![[Pasted image 20251006124753.png]]
 $$定義済みクエリですべてのドメインadminを列挙しているイメージ$$
 
