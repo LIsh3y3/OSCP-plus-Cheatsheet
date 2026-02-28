@@ -22,7 +22,7 @@ Webログインフォームへのパスワードアタック(POST)
 hydra -l <username> -P <wordlist> $TargetIP http-post-form "/<url残り>:<クエリ文字列>:F=<Failure_Message>" 
 ```
 - ⚠️：HTTPSの場合はhttp*s*-post-form：F
-- ⚠️：JSONと相性が悪いため、ffufかBurp Suiteを使用
+- ⚠️：
 - 💡：Errorメッセージのないログインフォームをパスワードアタックするようなことは少ない
 
 Basic authenticationへのパスワードアタック
@@ -32,7 +32,7 @@ hydra -l <username> -P <wordlist> $TargetIP http-get /<URL_path>
 - ⚠️：
 
 > [!WARNING]
-> HTTPSの場合はhttp*s*-get
+> - HTTPSの場合はhttp*s*-get
 
 特定サービスへのパスワードアタック
 ```zsh
