@@ -39,7 +39,7 @@ wpscan --url http://<target_IP> --no-banner --enumerate p,t --plugins-detection 
 	- →`-t 1`: スレッド数減少で対策
 
 - `--enumerate` オプション一覧表：
-	- （引数なしで`--enumerate`を使った場合のデフォルト値：  `vp,vt,tt,cb,dbe,u,m`）
+	- 引数なしで`--enumerate`を使った場合のデフォルト値：  `vp,vt,tt,cb,dbe,u,m`
 
 | オプション | 内容                     | 備考     |
 | ----- | ---------------------- | ------ |
@@ -59,12 +59,12 @@ wpscan --url http://<target_IP> --no-banner --enumerate p,t --plugins-detection 
 
 # ユーザー名の列挙とブルートフォース攻撃
 
-1. ユーザー名を列挙する：​
+1. ユーザー名を列挙する
 ```zsh
 wpscan --url http://<target.com>/ --enumerate u
 ```
 
-2. 見つかったユーザー名に対してパスワードのブルートフォース攻撃を行う：​
+2. 見つかったユーザー名に対してパスワードのブルートフォース攻撃を行う
 ```zsh
 wpscan -o wpscan.txt -f cli-no-color --no-banner --url https://<target.com>/ --usernames <username> --passwords 
 <wordlist>
@@ -74,17 +74,17 @@ wpscan -o wpscan.txt -f cli-no-color --no-banner --url https://<target.com>/ --u
 
 # ステルスモードとバイパス
 
-プロキシを使用してスキャンを行う：​
+プロキシを使用してスキャンを行う
 ```zsh
 wpscan --url https://<target.com>/ --proxy socks5://127.0.0.1:9050
 ```
 
-ランダムなユーザーエージェントを使用する：​
+ランダムなユーザーエージェントを使用する
 ```zsh
 wpscan --url https://<target.com>/ --random-user-agent
 ```
 
-リクエスト間に遅延を追加する：​
+リクエスト間に遅延を追加する
 ```zsh
 wpscan --url https://<target.com>/ --throttle 5
 ```
@@ -93,15 +93,16 @@ wpscan --url https://<target.com>/ --throttle 5
 
 # その他のオプション
 
-カスタムのユーザーエージェントを指定する：​
+カスタムのユーザーエージェントを指定する
 ```zsh
 wpscan -o wpscan.txt -f cli-no-color --no-banner --url https://<target.com>/ --user-agent "CustomUserAgent/1.0"
 ```
 
-- アグレッシブスキャン
-	- ✅見逃しが少ない
-	- ❌時間がかかる
-	- ❌ステルス性低い
+## アグレッシブスキャン
+
+- ✅見逃しが少ない
+- ❌時間がかかる
+- ❌ステルス性低い
 ```zsh
 wpscan -o wpscan.txt -f cli-no-color --no-banner\
 	--random-user-agent \
@@ -110,5 +111,5 @@ wpscan -o wpscan.txt -f cli-no-color --no-banner\
 	--plugins-detection aggressive \
 	--plugins-version-detection aggressive \
 	--url http://<target.com>/ \
-	--api-token [MY_API_TOKEN]
+	--api-token <API_TOKEN>
 ```

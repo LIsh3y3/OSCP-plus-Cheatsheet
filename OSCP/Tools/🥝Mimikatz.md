@@ -1,15 +1,16 @@
-Mimikatzを使って何ができるかをメインでまとめているが、一部代替手段としてimpacketなども記載している
+Mimikatzを使って何ができるかをメインでまとめているが、一部代替手段としてimpacketなども記載している。
 
 # 概要
 
 - **Mimikatz** はWindowsのメモリ／LSA領域からパスワード、NTLMハッシュ、Kerberosチケット、PIN、LSA Secrets などを抽出したり、チケットを偽造・インポート（PtT）したり、DCSync でクレデンシャルを取得したりする、<u>Windowsシステムにおける認証情報窃取のオールインワンツール</u>
-- 多くの攻撃手法（Pass-the-Hash, Pass-the-Ticket, Golden/Silver Ticket, DCSync, PtK/Overpass-the-Hash, Skeleton Key 等）をサポートする
+- 多くの攻撃手法（Pass-the-Hash, Pass-the-Ticket, Golden/Silver Ticket, DCSync, Overpass-the-Hash, Skeleton Key 等）をサポートする
 
 ---
 
 # 実行前提 / 権限
 
-- 基本的に**管理者権限（Local Admin）またはSYSTEM相当**が必要。LSASSメモリへアクセスするために `SeDebugPrivilege` が必須
+- 基本的に**管理者権限（Local Admin）またはSYSTEM相当**が必要
+	- LSASSメモリへアクセスするために `SeDebugPrivilege` が必須で、これは管理者以上がもつことが多い権限
 - RDP/SSH 等で対象にアクセスでき、該当ユーザがログオン済みであること（認証情報がメモリに存在すること）が条件となる操作も多い
 
 ---
@@ -17,7 +18,7 @@ Mimikatzを使って何ができるかをメインでまとめているが、一
 # 主なモジュールとそのコマンドの解説
 
 - すべてのモジュールを確認するには`::`と実行
-- モジュール内のコマンドを確認するには`[module]::`と実行
+- モジュール内のコマンドを確認するには`<module>:`と実行
 
 ## privilegeモジュール
 
