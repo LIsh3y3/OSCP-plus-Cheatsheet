@@ -209,8 +209,7 @@ net use \\<target_host> # →The command completed successfully.
 
 # TGTの確認
 klist
-```
-↓出力例(Serverの値に着目し、krbtgtの場合はTGTで、それ以外はTGSと判別する)
+``
 ```
 #0>     Client: jen @ CORP.COM
         Server: krbtgt/CORP.COM @ CORP.COM
