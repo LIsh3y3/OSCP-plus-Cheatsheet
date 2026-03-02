@@ -209,8 +209,8 @@ net use \\<target_host> # →The command completed successfully.
 
 # TGTの確認
 klist
-``
-```
+
+
 #0>     Client: jen @ CORP.COM
         Server: krbtgt/CORP.COM @ CORP.COM
         KerbTicket Encryption Type: AES-256-CTS-HMAC-SHA1-96
