@@ -1,5 +1,6 @@
 Passive Reconとも呼ばれる
 
+- [ ] TODO: まとめる
 ### whois
 
 #### whoisレコード
