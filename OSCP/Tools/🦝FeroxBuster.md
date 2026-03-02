@@ -69,9 +69,7 @@ feroxbuster -u http://<TargetIP|Domain>:<Port>/ -k -w /usr/share/seclists/Discov
 
 ---
 
-# / Tips
-
-## 拡張子リスト
+#  拡張子リスト
 
 | スキャンタイプ  | 拡張子リスト                                                    |
 | -------- | --------------------------------------------------------- |
@@ -84,7 +82,9 @@ feroxbuster -u http://<TargetIP|Domain>:<Port>/ -k -w /usr/share/seclists/Discov
 | API/データ  | json,xml,yaml,yml,csv,txt                                 |
 | 軽量/高速    | html,php,txt,pdf                                          |
 
-## 利用ワードリスト候補
+---
+
+# 利用ワードリスト候補
 
 ```zsh
 # ワード数：4614
