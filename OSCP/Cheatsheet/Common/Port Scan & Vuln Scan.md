@@ -35,7 +35,9 @@ nmap -sU -sS -sV <target_IP> -T4 -oN Nmap/udpscan.nmap --top-ports 100
 
 
 > [!TIP] 
-> Conten
+> - ==スキャンは最低2回！==(3回やっても見逃しはある)
+> - 
+- 
 
 
 - 
