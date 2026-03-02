@@ -2,7 +2,7 @@
 	- [[1433 - MSSQL]]
 	- [[0. RDBMSの基本]]
 
-- 🔗参考：
+- 参考：
 	- [SQLi cheat sheet - PortsSwigger](https://portswigger.net/web-security/sql-injection/cheat-sheet) : RDBMSごとの文法で記載あり
 	- [SQL Injection Cheatsheet - tib3rius](https://tib3rius.com/sqli.html)
 
@@ -17,7 +17,6 @@
 SQLi脆弱性がありそうな箇所：
 - URLのクエリパラメタ
 - HTMLフォームのパラメタ
-- 💡検索boxでは、下記の[[#SQLi脆弱性検出]]で、行頭に`%`をつける(e.g.`%' xxx -- //`)
 - Cookie
 
 SQL/NoSQLインジェクションの検出に使えるキャラクタ
