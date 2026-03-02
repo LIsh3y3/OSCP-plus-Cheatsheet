@@ -216,8 +216,7 @@ githubの右上検索バーで使えるGoogle dorkingのようなもの。
 | NOT | 指定したクエリの結果を除外する | `"fatal error" NOT path:__testing__`                        |
 | ()  | 演算子のコンビネーション    | `(language:ruby OR language:python) AND NOT path:"/tests/"` |
 | *   | 任意の文字(0文字以上)    |                                                             |
-- 参考：
-	- [github code search syntax](https://docs.github.com/en/search-github/github-code-search/understanding-github-code-search-syntax)
+- 参考：[github code search syntax](https://docs.github.com/en/search-github/github-code-search/understanding-github-code-search-syntax)
 
 ### 自動 w/[gitleaks](https://github.com/gitleaks/gitleaks)
 
@@ -241,16 +240,17 @@ gitleaks detect -v
 ```
 
 ---
-### ツール(無料)：Netcraft、Shodan
 
-#### Netcraft：Search DNS
+# ツール(無料)：Netcraft、Shodan
 
-###### 基本情報
+## Netcraft：Search DNS
+
+### 基本情報
 
 - **Webページの構成技術を表示**することができるWappalyzerのようなもので、Wappalyzerよりも情報量が多い。
 	- 💥2024年にサ終とあるが2025年3月現在使用可能
 
-###### 使い方
+### 使い方
 
 -  [Tools Netcraft](https://www.netcraft.com/tools/) にアクセスし、"Search DNS"を開く
 - ターゲットのhostnameを入力
@@ -258,18 +258,18 @@ gitleaks detect -v
 ![[Pasted image 20250302145854.png]]
 - （ただし、個人的にはBurp suiteを使用してレスポンスのServerやx-powered-byヘッダーの値を見るのが確実性高いと思う。）
 
-#### Shodan
+## Shodan
 
-###### 基本情報
+### 基本情報
 
 - NmapのOSINT版
 	- 接触なしで、ターゲットの**サービス情報や脆弱性を確認**可能
 - 用途は、Activeな列挙に入る前に、どこから列挙していくか当たりをつけるために使う
 
-###### 使い方
+### 使い方
 
 - ログインする
-- `hostname:[ターゲットドメイン]`を検索バーに入力する
+- `hostname:<ターゲットドメイン>`を検索バーに入力する
 ![[Pasted image 20250302172845.png]]
 
 - 結果をクリックしてレポートを見る
@@ -278,20 +278,21 @@ gitleaks detect -v
 
 - その他、"Advanced Search"よりポート番号などを指定可能
 
-#### Security Headers & Qualys SSL Labs
+## Security Headers & Qualys SSL Labs
 
-**ターゲットのセキュリティへの意識に関する洞察を得る**
+**ターゲットのセキュリティへの意識に関する洞察を得る**。
 
-###### Security Headers
+### Security Headers
 
 - [Security Headers](https://securityheaders.com/)
 - ターゲットのヘッダー情報で欠けているものを列挙する
-- ヘッダーの欠落は、それ自体が脆弱性であるとは限らない。しかし、ウェブ開発者やサーバー管理者がサーバーのハードニングに精通していないことを示している可能性がある。
+- ヘッダーの欠落は、それ自体が脆弱性であるとは限らない。しかし、ウェブ開発者やサーバー管理者がサーバーのハードニングに精通していないことを示している可能性がある
 
 ![[Pasted image 20250302173940.png]]
 
-###### Qualys SSL Labs
+### Qualys SSL Labs
 
 - [Qualys SSL Labs](https://www.ssllabs.com/ssltest/)
-- 暗号スイートのベストプラクティスと比較してスコアリングする。
-- 暗号スイートのベストプラクティスは頻繁に変わるものではない。それにもかかわらず、まだ対応していないなら、セキュリティへの意識が低いと考える。
+- 暗号スイートのベストプラクティスと比較してスコアリングする
+- 暗号スイートのベストプラクティスは頻繁に変わるものではない
+	- →それにもかかわらず、まだ対応していないなら、セキュリティへの意識が低いと考える
