@@ -130,8 +130,6 @@ log /stop
 ## LSASS.exeプロセスメモリ からの抽出
 
 - **今、ログオンしているユーザー**の情報（lsadumpより優先的に使用）
-- リアルタイム、揮発性
-	- 使える情報が多い
 	- ログオンしていないユーザーの認証情報は取得できないケースがある
 - Kerberosチケット取得可能
 - 横展開・Pass-the-Ticket向き
@@ -212,7 +210,7 @@ net use \\[TargetHost] # →The command completed successfully.
 # TGTの確認
 klist
 ```
-	↓出力例(Serverの値に着目し、krbtgtの場合はTGTで、それ以外はTGSと判別する)
+↓出力例(Serverの値に着目し、krbtgtの場合はTGTで、それ以外はTGSと判別する)
 ```
 #0>     Client: jen @ CORP.COM
         Server: krbtgt/CORP.COM @ CORP.COM
