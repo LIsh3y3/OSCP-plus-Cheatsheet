@@ -33,10 +33,12 @@ nmap -sU -sS -sV <target_IP> -T4 -oN Nmap/udpscan.nmap --top-ports 100
 
 ### 注意・Tips💡
 
-- ==スキャンは最低2回！==(3回やっても見逃しあり)
-- `/etc/hosts`にドメイン名登録し、再スキャンすることで、より正確な結果が表示される
-- `-sV`によって表示されるサービス名は、Administratorによって偽のサービス名に変更されている可能性があることを考慮する
-- 詳細なサービスはPort Scanだけではわからない可能性があるので、必要に応じてNSEを実行
+
+> [!TIP] 
+> Contents
+
+
+- 
 
 ---
 
