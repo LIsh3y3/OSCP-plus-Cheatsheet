@@ -255,20 +255,21 @@ Where-Object {$_.<プロパティ名> -<operator> <value>}
 
 `Get-Help Where-Object -ShowWindow` でも表示可能。
 
-| 演算子         | 概要                         | 例                                    |
-| ----------- | -------------------------- | ------------------------------------ |
-| -EQ         | 値が等しい                      | ProcessName -EQ "explorer"           |
-| -NE         | 値が等しくない                    | ProcessName -NE "explorer"           |
-| -Match      | 文字列が正規表現に一致する              | ProcessName -Match "ex.*"            |
-| -NotMatch   | Match演算子の逆                 |                                      |
-| -Like       | 文字列がワイルドカード表現に一致する         | ProcessName -Like "ex*"              |
-| -NotLike    | Like演算子の逆                  |                                      |
-| -ilike      | 大文字小文字を問わずワイルドカード表現に一致する   |                                      |
-| -GT         | より大きい                      | ProcessName -GT "ex"                 |
-| -LT         | より小さい                      |                                      |
-| -Contains   | プロパティ値のいずれかの項目が指定された値と完全一致 |                                      |
-| -in         | 指定されたリストに含まれているか           |                                      |
-| -notin      | 指定されたリストを含まない              |                                      |
+| 演算子       | 概要                            | 例                          |
+| --------- | ----------------------------- | -------------------------- |
+| -EQ       | 値が等しい                         | ProcessName -EQ "explorer" |
+| -NE       | 値が等しくない                       | ProcessName -NE "explorer" |
+| -Match    | 文字列が正規表現に一致する                 | ProcessName -Match "ex.*"  |
+| -NotMatch | Match演算子の逆                    |                            |
+| -Like     | 文字列がワイルドカード表現に一致する            | ProcessName -Like "ex*"    |
+| -NotLike  | Like演算子の逆                     |                            |
+| -ilike    | 大文字小文字を問わずワイルドカード表現に一致する      |                            |
+| -GT       | より大きい                         | ProcessName -GT "ex"       |
+| -LT       | より小さい                         |                            |
+| -Contains | プロパティ値のいずれかの項目が指定された値と完全一致    |                            |
+| -in       | 指定されたリストに含まれているか              |                            |
+| -notin    | 指定されたリストを含まない                 |                            |
+| -le       | less than or equalで、「以下」を意味する |                            |
 
 ```powershell
 # 停止したプロセスを表示する
@@ -428,123 +429,3 @@ for($i=<start num>; $i -le <end num>; $i++){
     Test-NetConnection <IPAddress> -Port $i
 }
 ```
-
-- `-le`：less than or equal（`<start num>` ～ `<end num>` まで ++する）
-
----
-
-- [ ] TODO: 以後削除
-
-  `
- *[FileName]* -File -Recurse -ErrorAction SilentlyContinue
-```
-- `-ErrorAction SilentlyContinue`: アクセス権のないディレクトリにアクセスしたときもエラーメッセージを表示せず続行する。
-
-- ファイルの内容を表示する
-```powershell
-Get-Content "[Path to file]"
-```
-
-###### ファイルのハッシュを閲覧する
-
-1. 使用できる**コマンドレットを検索する**
-```powershell
-Get-Command | Where-Object -Property Name -ilike "*[]*"
-```
-- `-ilike`: 大文字小文字問わない。
-- Get-FileHashコマンドレットが見つかった
-
-2. MD5ハッシュを表示する
-```powershell
-Get-FileHash -Path "[path to file]" -Algorithm MD5
-```
-
-###### パスの確認
-
-- 現在のパスを確認する
-```powershell
-Get-Location
-```
-
-###### ファイルをデコードする
-```powershell
-certutil -decode "[path to encoded file]" [outputfile which is file decoded]
-```
-
----
-
-# Basic Scripting
-
-- スクリプトを自分で書くと、より複雑で強力な動作ができるようになる。
-- ==NmapやPythonが使えない時の代替手段となる==
-- PowerShell ISE（Powershellテキストエディター）を使用する。
-- Powershellスクリプトは通常.ps1というファイル拡張子を持っている
-
-- 具体例を示すために、ポート番号のリストが与えられ、このリストを使ってローカルポートがリスニングしているかどうかを確認したいというシナリオを想定する。
--  例：
-```powershell
-$system_ports = Get-NetTCPConnection -State Listen
-
-$text_port = Get-Content -Path C:\Users\Administrator\Desktop\ports.txt
-
-foreach($port in $text_port){
-
-    if($port -in $system_ports.LocalPort){
-        echo $port
-     }
-
-}
-```
-
-## 使い方
-
-- 検索からPowerShell ISEと検索し、アプリを開く。
-- .ps1というファイル拡張子をもつファイルをFileタブから開く。
-- もしくはFileタブからNewを押し、新たにスクリプトを作成する
-- スクリプトを実行するには、PowerShellからファイルを実行するか、ISEの緑のボタンを押して実行する
-![[Pasted image 20230604162232.png | 400]]
-
-### ルールや記述方法
-
-- 変数への格納方法
-```powershell
-$variable_name = value
-```
-- 例えば
-```powershell
-$system_ports = Get-NetTCPConnection -State Listen
-```
-
-- foreach文
-```powershell
-foreach($new_var in $existing_var){}
-```
-- これは、すでに存在する変数(`$existing_var`)を１つずつ取り出し、新しい変数(`$new_var`)に入れる。
-
-- if文
-```powershell
-if($port -in $system_ports.LocalPort){}
-```
-- [比較演算子の詳細](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators?view=powershell-7.3&viewFallbackFrom=powershell-6)
-- `-in`:はリストに含まれているか検証する比較演算子。ここでは`$system_ports`のプロパティである`LocalPort`に`$port`が含まれているかチェックしている。
-
----
-
-# Intermediate Scripting (Nmap)
-
-- ==Nmapの代替手段==としてのPowerShellスクリプトの作成
-
-手順
-- スキャンするIP範囲を決定する
-- スキャンするポート範囲を決定する  
-- 実行するスキャンの種類を決定する
-
-- 例として、通常のTCP Connectionで、localhostとポートのスキャンをする
-```powershell
-for($i=[start num]; $i -le [end num]; $i++){ 
-	Test-NetConnection [IPAddress(localhost)] -Port $i
-}
-```
-- `-le`: less then。`start num` ~ [end num]まで++する
-
----
