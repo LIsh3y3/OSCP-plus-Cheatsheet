@@ -1,12 +1,5 @@
 Passive Reconとも呼ばれる
 
-###### まとめ
-
-- [[#whois]]
-- [[#Google hacking]]
-- [[#Open-Source Code]]
-- [[#ツール(無料)：Netcraft、Shodan]]
-
 ### whois
 
 #### whoisレコード

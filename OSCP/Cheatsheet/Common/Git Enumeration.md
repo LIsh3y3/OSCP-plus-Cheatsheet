@@ -47,7 +47,7 @@ git diff <commit_hash1> <commit_hash2>
 git show <commit_hash>
 ```
 
-💡ターゲットマシンのOS判定 w/git
+ターゲットマシンのOS判定 w/git
 ```zsh
 git version
 ```
