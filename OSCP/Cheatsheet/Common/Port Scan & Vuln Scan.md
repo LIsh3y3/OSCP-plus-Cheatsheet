@@ -4,7 +4,7 @@
 
 quick scan
 ```zsh
-sudo nmap -sC -sV -oA Nmap/quickscan -T4 <target_IP>
+sudo nmap -sC -sV -oN Nmap/quickscan.nmap -T4 <target_IP>
 ```
 
 full scan
@@ -14,7 +14,7 @@ ports=$(sudo nmap <target_IP> -p- --min-rate=1000 | grep '^[0-9]' | awk -F'/' '{
 ```
 ```zsh
 # openポートを詳細スキャン
-sudo nmap -A -sV -p $ports -oA Nmap/fullscan <target_IP>
+sudo nmap -sC -sV -O -p $ports -oA Nmap/fullscan <target_IP>
 ```
 
 UDPスキャン & SYNスキャン
@@ -26,7 +26,7 @@ nmap -sU -sS -sV <target_IP> -T4 -oN Nmap/udpscan.nmap --top-ports 100
 
 Rustscan
 ```zsh
-rustscan -a <target_IP> --ulimit 5000 -- -sC -sV -oN Nmap/rustscan.nmap
+rustscan -a <target_IP> --ulimit 5000 -- -sC -sV -O -oN Nmap/rustscan.nmap
 ```
 
 
@@ -40,13 +40,12 @@ rustscan -a <target_IP> --ulimit 5000 -- -sC -sV -oN Nmap/rustscan.nmap
 
 # PortScan x Service Scan w/ AutoRecon
 
-Openポートを発見し、さらにenum4linuxなどでサービスの自動列挙+NmapのsTスキャンを実施
+Openポートを発見し、さらにポートに合わせてenum4linuxなどでサービスの自動列挙+NmapのsTスキャンを実施
 ```zsh
-# 複数ホストの場合は、-t targets.txtとする
 # $portsは上記Nmapで作成した環境変数で、Openポートのリストを格納してある
 sudo autorecon <target_IP> -p $ports 
 ```
-- `_manual_commands.txt`に手動で列挙する方法が記載されている
+- 出力の`_manual_commands.txt`に手動で列挙する方法が記載されている
 
 出力に書き込みできるようにする
 ```zsh
@@ -75,13 +74,17 @@ sudo nmap -sOV --script "vuln" <target_IP> -p <port>
 ✅特定のスクリプトのみ実行
 	トラフィックと情報量を必要な量に抑える
 ```zsh
+# nseをピンポイントで指定
 sudo nmap --script "<xxx.nse>" <target_IP> -p <port>
 ```
 ```zsh
+# 特定サービスのすべてのnseに絞って実行
 sudo nmap --script "http-*" <target_IP> -p <port>
 ```
 
-## 特定の脆弱性のNSEを検索してダウンロードし、使えるようにする
+## NSEのダウンロード
+
+Nmap標準のスクリプトに存在しない
 
 1. 該当の脆弱性のNSEを検索
 ![[Pasted image 20250309222541.png]]
