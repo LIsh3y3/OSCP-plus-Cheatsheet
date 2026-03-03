@@ -141,7 +141,7 @@ cat /usr/share/nmap/scripts/script.db
 - DNS_Tree_Name の有無
     - 存在する → AD所属
     - 存在しない → AD非所属
-- 上記両方とも表示されない場合は、netexecでsmbのドメイン名を検証する
+- 上記両方とも表示されない場合は、Netexecでsmbのドメイン名を検証する
 	- smbもopenでない場合は、ワークグループと仮定する
 
 ```zsh
