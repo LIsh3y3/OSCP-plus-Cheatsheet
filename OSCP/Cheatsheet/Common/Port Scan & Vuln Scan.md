@@ -119,9 +119,11 @@ nmap --script-help "<category | script>"
 NSE、カテゴリを表示
 ```zsh
 cat /usr/share/nmap/scripts/script.db
-# ...Entry { filename = "memcached-info.nse", categories = { "discovery", "safe", } }...
 ```
-
+↓出力
+```
+...Entry { filename = "memcached-info.nse", categories = { "discovery", "safe", } }...
+```
 
 > [!WARNING] 
 > - 外部のNSEをダウンロードする時は注意が必要で、悪意あるコードが外部のNSEに含まれており、そのNSEを使うと悪意ある第三者がフルアクセスをゲットできてしまう可能性がある
