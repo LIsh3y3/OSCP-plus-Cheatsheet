@@ -235,16 +235,16 @@ or
 
 ### Error-based
 
- 挿入した条件文のクエリがtrueの場合に意図的にエラーを発生させ、エラーであれば
+ 挿入した条件文のクエリがtrueの場合に意図的にエラーを発生させる。
 [[#悪意のある文字を使ったテスト（"Bad Chars"）]]でわかる可能性が高い。
 
-基本構文(IF文)
+基本構文
 ```sql
 ' AND IF(1=2, 1/0, 'a') = 'a'--
 ' AND IF(1=1, 1/0, 'a') = 'a'--
 ```
-- 💡PostgreSQLの場合はIF文は適さないのでCASEを優先する - pentest monekyより）
-- 🔗参考：[Conditional errors - SQLi cheat sheet by PortSwigger](https://portswigger.net/web-security/sql-injection/cheat-sheet#:~:text=TABLE%2DNAME%2DHERE%27-,Conditional%20errors,-You%20can%20test)
+- PostgreSQLの場合はIF文は適さないのでCASEを優先する - pentest monekyより）
+- 参考：[Conditional errors - SQLi cheat sheet by PortSwigger](https://portswigger.net/web-security/sql-injection/cheat-sheet#:~:text=TABLE%2DNAME%2DHERE%27-,Conditional%20errors,-You%20can%20test)
 
 ---
 
