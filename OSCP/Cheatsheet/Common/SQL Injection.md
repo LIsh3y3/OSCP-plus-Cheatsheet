@@ -172,10 +172,6 @@ admin') or (1=1 -- #
 
 
 
-> [!TIP]
-> 1つのカラムのみ利用可能な場合[SQLi cheet sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet)の「String concatenation」を参照し、文字列を連結する
-
-
 ```sql
 ' UNION SELECT CONCAT(username, '~', password) FROM users -- //
 ```
