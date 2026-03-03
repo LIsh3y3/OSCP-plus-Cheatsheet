@@ -179,7 +179,7 @@ admin') or (1=1 -- #
 
 #### ★Webシェルの書き込み（MySQL）
 
--必要な条件：ファイルの保存先がMySQLを実行しているユーザによって書き込み可能
+必要な条件：ファイルの保存先がMySQLを実行しているユーザによって書き込み可能なこと。
 
 1. 書き込み可能なディレクトリに PHP web shellの文字列をファイルとして保存する
 ```mysql
@@ -187,7 +187,7 @@ admin') or (1=1 -- #
 ```
 - `\"cmd\"`: クオテーションが誤解されないように
 - `/var/www/html`はApacheのデフォルトのWeb root、IISであれば`C:\inetpub\wwwroot`
-	- phpinfoの結果、`$_SERVER['DOCUMENT_ROOT']`にWeb rootディレクトリが記載されているので、そこに保存する
+	- phpinfoの確認ができるのであれば、`$_SERVER['DOCUMENT_ROOT']`にWeb rootディレクトリが記載されているので、そこに保存する
 -  `Uncaught type error`が返ることがあるが、返り値が意図されていたデータ型と異なるだけで、Web shellの書き込みには影響はない
 ![[Pasted image 20250420091519.png]]
 $$書き込み時のレスポンス例$$
