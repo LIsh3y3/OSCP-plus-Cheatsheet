@@ -284,7 +284,6 @@ SUBSTR関数を使う
 ```sql
 admin' AND SUBSTRING(database(),1,1)<'f' -- #
 ```
-- 🚨：SUBSTR関数は、単一の値を引数に取るため、クエリの結果、複数レコードが返る場合は、`LIMIT 1`とする
 
 ##### Boolean-based SQLi 具体例：パスワード抽出
 
