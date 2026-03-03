@@ -385,10 +385,8 @@ SELECT EXTRACTVALUE(1, CONCAT(0x5c, (SELECT password FROM users LIMIT 1)));
 ```
 - → `XPATH syntax error: '\secret'` のように表示されて
 
-
 > [!INFO] 
 > `EXTRACTVALUE()` は XML 関連関数で、MySQL 5.1～8.0で動作（8.0.27 以降廃止）
-
 
 ##### Error-based SQLi 具体例：パスワードの抽出
 
