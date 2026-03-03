@@ -188,7 +188,7 @@ admin') or (1=1 -- #
 - `\"cmd\"`: クオテーションが誤解されないように
 - `/var/www/html`はApacheのデフォルトのWeb root、IISであれば`C:\inetpub\wwwroot`
 	- phpinfoの確認ができるのであれば、`$_SERVER['DOCUMENT_ROOT']`にWeb rootディレクトリが記載されているので、そこに保存する
-- `Uncaught type error`が返ることがあるが、返り値が意図されていたデータ型と異なるだけで、web shellの書き込みには影響はない
+- `Uncaught type error`が返ることがあるが、返り値が意図されていたデータ型と異なるだけで、webshellの書き込みには影響はない
 ![[Pasted image 20250420091519.png]]
 $$書き込み時のレスポンス例$$
 
@@ -196,7 +196,6 @@ $$書き込み時のレスポンス例$$
 ```
 http://example.com/webshell.php?cmd=id
 ```
-- ⚠️：SQLiの脆弱性があるWebサービス≠PHPが実行できるサービスであるため、INTO OUTFILEで書き込んだが、ほかのweb サービスでrootが動作している場合は
 
 ---
 ---
