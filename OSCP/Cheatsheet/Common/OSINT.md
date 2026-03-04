@@ -1,4 +1,4 @@
-Passive Reconとも呼ばれる
+Passive Reconとも呼ばれる。
 
 # whois
 
