@@ -87,12 +87,7 @@ sudo nc -lvnp 4444
 
 ## 💡Tips
 
-- 次の流れで==LatMov==の可能性あり
-	1. 低権限ユーザーでシェル獲得
-	2. web root(`/var/www/html`等）に書き込みが可能であり、Webシェルペイロードをアップロードする
-	3. 攻撃者のブラウザからアップロードしたペイロードにリクエスト
-	4. Apache or IISのWebShellを獲得
-	5. WebShellから安定したreverse shellへ展開し、インタラクティブなシェルを獲得
+- 次の流れで==L
 
 - Linuxシステムにおけるファイルアップロード先として、初期侵入後は`/dev/shm`がベスト（webから読み込めるのであれば）
 	- *PrivateTmp*の影響を受けないから
