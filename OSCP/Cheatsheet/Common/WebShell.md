@@ -11,7 +11,8 @@
  * 初期侵入後の足場確保やネットワーク内での横展開が目的
  * ファイアウォール制限等によりBind / Reverse Shellが使えない場合の代替手段
 > [!TIP]
-> WebShellを起点として、最終的にBind / Reverse Shellへ移行させるのが定石
+> - WebShellを起点として、最終的にBind / Reverse Shellへ移行させるのが定石。
+> - 初期侵入だけでなく、侵入後にhttpローカルサービスを利用することで横展開にも使える。
 
 ## 動作原理・実行権限
 
@@ -44,9 +45,6 @@ $$WebShell実行例$$
 ---
 
 # WebShellからReverse Shellへの展開
-
-Kali にはデフォルトで`/usr/share/WebShells`にプログラム言語ごとにさまざまなリバースシェルペイロードが用意されている。
-[Reverse Shell Generator](https://www.revshells.com/)を使うと、環境に合わせたペイロードが生成できる。
 
 🐧Linux：WebShell上に以下のコマンドをエンコードて実行する
 ```zsh
