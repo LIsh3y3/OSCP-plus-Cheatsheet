@@ -55,8 +55,7 @@ $$WebShell実行例$$
 
 🪟Windows：[[What is the shell#Base64化したPowerShellリバースシェルワンライナー]]
 
-
-Reverse Shell を実行したのに接続が確立しない場合、FWなどにより遮断されていないか、問題の切り分けに使う
+とらぶるReverse Shell を実行したのに接続が確立しない場合、FWなどにより遮断されていないか、問題の切り分けに使う
 ```zsh
 # Attacker
 sudo tcpdump -nni any host <attacker_IP> and port 4444
