@@ -457,12 +457,14 @@ powershell -enc '<Base64エンコードされたペイロード>'
 
 ## Metasploit - multi/handler
 
+- [ ] todo:要まとめ
+
 - ✅️Windowsにおいても安定している
-- Meterpreterシェルを使用したい場合は必須で、ステージングされたペイロードを使用する場合は、このツールを使用する（[[☠️Msfvenom]]）
+- Meterpreterシェルを使用したい場合は必須で、ステージドペイロードを使用する場合は、このツールを使用する（[[☠️Msfvenom]]）
 - Metasploitフレームワークの`exploit/multi/handler`モジュールはsocat や netcat のように、リバースシェルを受信するために使用されるリスナー（OSCP examで無制限に利用可能）
 	- Meterpreterシェルは、Metasploit独自の完全な機能を備えたシェル
 	- ✅ファイルのアップロードやダウンロードなど、多くの機能を内蔵している
-	- ❌必ずMetaSploitモジュールから通信が必要である（msfvenomの実行結果の通信など）
+	- ❌Meterpreterシェルは必ずMetasploitモジュール経由の通信が必要（通常シェルペイロードはncでも受信可能）
 
 1. msfvenomでペイロードの生成
 ```zsh
@@ -484,7 +486,9 @@ msfconsole -q -x "use exploit/multi/handler; set payload <生成ペイロード>
 
 - 目的：ネットワーク監視装置（IDS・IPS）の検知回避
 	- 暗号化されたシェルは、復号鍵がない限り傍受されることはない
-	- ⚠️AV/EDRに検知される
+
+> [!warning]
+> AV/EDRには検知される。
 
 ## Reverse Shellの暗号化
 
@@ -502,7 +506,6 @@ cat shell.key shell.crt > shell.pem
 -  pemはデジタル証明書やキーのコンテナ
 
 3. Reverse Shellリスナーを用意
-	- TCP-LISTENではなく、OPENSSL-LISTEN
 ```zsh
 socat OPENSSL-LISTEN:<Port>,cert=shell.pem,verify=0 -
 ```
