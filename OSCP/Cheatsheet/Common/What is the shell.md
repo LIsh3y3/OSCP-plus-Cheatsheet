@@ -29,7 +29,7 @@
  * ユーザーに入力を求めるプログラム（sshのパスワード入力、sudoのプロンプトなど）は、対話のための端末デバイスがないため実行できない
  * 下のキャプチャのように、引数だけで完結するwhoamiは問題なく実行できるが、対話的なセッションを必要とするsshは正常に動作しない
    ![[Pasted image 20230318182007.png | 300]]
-   （listenerコマンドはsudo rlwrap nc -lvnp 443のaliasとして説明している）
+   （上記listenerコマンドはsudo rlwrap nc -lvnp 443のaliasとして説明している）
 
 ## Bind Shellとは
 
