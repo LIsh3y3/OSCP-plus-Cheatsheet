@@ -45,8 +45,8 @@ $$WebShell実行例$$
 
 # WebShellからReverse Shellへの展開
 
-- Kali にはデフォルトで`/usr/share/WebShells`にプログラム言語ごとにさまざまなリバースシェルペイロードが用意されている
-- [Reverse Shell Generator](https://www.revshells.com/)を使うのが簡単
+Kali にはデフォルトで`/usr/share/WebShells`にプログラム言語ごとにさまざまなリバースシェルペイロードが用意されている。
+[Reverse Shell Generator](https://www.revshells.com/)を使うと、環境に合わせたペイロードが生成できる。
 
 🐧Linux：WebShell上に以下のコマンドをエンコードて実行する
 ```zsh
@@ -82,7 +82,8 @@ sudo nc -lvnp 4444
 - PHPなどの言語固有のリバースシェルペイロードは、Unixベースのターゲット向けに書かれていることに注意
 	-→ これらは、デフォルトでは<u>Windowsで動作しない</u>ため、[Reverse Shell Generator](https://www.revshells.com/)でシェルをcmdやpowershellでペイロードを生成する
 
-- Webアプリケーションにペイロードをアップロードできても、phpでは、`shell_exec`の無効化などにより、`?cmd=id`などが実行できないことがある→[[#トラブルシューティング]]
+- Webアプリケーションにペイロードをアップロードできても、phpでは、`shell_exec`の無効化などにより、`?cmd=id`などが実行できないことがある
+	- →[[#トラブルシューティング]]
 
 ## 💡Tips
 
