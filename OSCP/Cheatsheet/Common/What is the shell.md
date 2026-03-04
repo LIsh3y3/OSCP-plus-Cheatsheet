@@ -458,8 +458,8 @@ powershell -enc '<Base64エンコードされたペイロード>'
 ## Metasploit - multi/handler
 
 - ✅️Windowsにおいても安定している
-- Meterpreterシェルを使用したい場合は必須で、ステージングされたペイロードを使用する場合は、このツールを使用する
-- Metasploitフレームワークの`exploit/multi/handler`モジュールはsocat や netcat のように、リバースシェルを受信するために使用されるリスナー（OSCPで利用可能）
+- Meterpreterシェルを使用したい場合は必須で、ステージングされたペイロードを使用する場合は、このツールを使用する（[[☠️Msfvenom]]）
+- Metasploitフレームワークの`exploit/multi/handler`モジュールはsocat や netcat のように、リバースシェルを受信するために使用されるリスナー（OSCP examで無制限に利用可能）
 	- Meterpreterシェルは、Metasploit独自の完全な機能を備えたシェル
 	- ✅ファイルのアップロードやダウンロードなど、多くの機能を内蔵している
 	- ❌必ずMetaSploitモジュールから通信が必要である（msfvenomの実行結果の通信など）
