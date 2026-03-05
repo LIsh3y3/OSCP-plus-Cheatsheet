@@ -528,7 +528,7 @@ socat OPENSSL:<TARGET-IP>:<TARGET-PORT>,verify=0 -
 ```
 
 > [!Tip] Defender検知回避
->
+>  [hoaxshell - GitHub](https://github.com/t3l3machus/hoaxshell)を使う
 
 - ✅HTTP/HTTPSのアウトバンド通信のみを使うことで<u>Web通信に見せかける</u>ため、検知されにくい（通常のリバースシェルであればTCP通信）
 - ❌安定性、即応性はTCP接続のほうが高い
