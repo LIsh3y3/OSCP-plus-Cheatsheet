@@ -242,6 +242,8 @@ gitleaks detect -v
 
 # ツール(無料)：Netcraft、Shodan
 
+- [ ] Todo:以降編集
+
 ## Netcraft：Search DNS
 
 ### 基本情報
