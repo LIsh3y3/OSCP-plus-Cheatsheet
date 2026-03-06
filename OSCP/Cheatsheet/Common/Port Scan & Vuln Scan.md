@@ -135,39 +135,6 @@ cat /usr/share/nmap/scripts/script.db
 ---
 ----
 
-# ADに所属しているかどうか（Windows）
-
-- DNS_Domain_Name の形式
-    - FQDN形式 (例: `domain.com`) → AD所属
-    - 単一名 (例: `HOSTNAME`) → AD非所属
-- DNS_Tree_Name の有無
-    - 存在する → AD所属
-    - 存在しない → AD非所属
-- 上記両方とも表示されない場合は、NetExecでsmbのドメイン名を検証する
-	- smbもopenでない場合は、ワークグループと仮定する
-
-```zsh
-# AD所属
-rdp-ntlm-info: 
-  Target_Name: RELIA
-  NetBIOS_Domain_Name: RELIA
-  DNS_Domain_Name: relia.com          # 着目
-  DNS_Computer_Name: login.relia.com  # 着目（FQDN）
-  DNS_Tree_Name: relia.com      　　　 # 着目
-  
-# AD非所属（単純なワークグループ）
-rdp-ntlm-info: 
-  Target_Name: EXTERNAL
-  NetBIOS_Domain_Name: EXTERNAL
-  NetBIOS_Computer_Name: EXTERNAL     # 着目
-  DNS_Domain_Name: EXTERNAL           # 着目
-  DNS_Computer_Name: EXTERNAL         # 着目
-```
-- 関連ノート：[[ADの基本#Active Directoryとは]]
-
-
----
-
 # 基本スキャンコマンド
 
 ## 主要フラグチートシート
@@ -240,7 +207,16 @@ nmap -sn 192.168.0.0/24
 
 ---
 
-### NSEのカテゴリ一覧表
+# 参考リンク
+
+- [Nmap公式チートシート](https://www.stationx.net/nmap-cheat-sheet/)
+- [NSEスクリプト一覧](https://nmap.org/nsedoc/)
+
+---
+
+# 補足
+
+## NSEのカテゴリ一覧表
 
 ⚠️NSEのカテゴリを理解せずに使うことは厳禁
 
@@ -261,8 +237,6 @@ nmap -sn 192.168.0.0/24
 | version   | サービスのバージョンを特定するスクリプト。                                 | 影響なし（通常は情報収集のみ）                         |
 | vuln      | 既知の脆弱性を検出し、影響を評価するスクリプト。                              | 影響あり（一部のスクリプトはサービスに影                    |
 
----
-
 ## FW回避用オプション
 
 | スイッチ                    | 説明                                                                                                                                              |
@@ -274,15 +248,32 @@ nmap -sn 192.168.0.0/24
 | --data-length \<number> | 指定したバイト数のランダムデータを付加する。処理速度は低下するが、スキャンを幾分でも目立たなくすることができる                                                                                         |
 | **-Pn**                 | ICMPブロックを回避する。Windowsマシンへのスキャンにはほぼ必須。==遅くなる。==                                                                                                  |
 
----
+## ADに所属しているかどうか（Windows）
 
-# 参考リンク
+- DNS_Domain_Name の形式
+    - FQDN形式 (例: `domain.com`) → AD所属
+    - 単一名 (例: `HOSTNAME`) → AD非所属
+- DNS_Tree_Name の有無
+    - 存在する → AD所属
+    - 存在しない → AD非所属
+- 上記両方とも表示されない場合は、NetExecでsmbのドメイン名を検証する
+	- smbもopenでない場合は、ワークグループと仮定する
 
-- [Nmap公式チートシート](https://www.stationx.net/nmap-cheat-sheet/)
-- [NSEスクリプト一覧](https://nmap.org/nsedoc/)
-
----
-
-# 補足
-
-- [ ] todo: 補足に回す
+```zsh
+# AD所属
+rdp-ntlm-info: 
+  Target_Name: RELIA
+  NetBIOS_Domain_Name: RELIA
+  DNS_Domain_Name: relia.com          # 着目
+  DNS_Computer_Name: login.relia.com  # 着目（FQDN）
+  DNS_Tree_Name: relia.com      　　　 # 着目
+  
+# AD非所属（単純なワークグループ）
+rdp-ntlm-info: 
+  Target_Name: EXTERNAL
+  NetBIOS_Domain_Name: EXTERNAL
+  NetBIOS_Computer_Name: EXTERNAL     # 着目
+  DNS_Domain_Name: EXTERNAL           # 着目
+  DNS_Computer_Name: EXTERNAL         # 着目
+```
+- 関連ノート：[[ADの基本#Active Directoryとは]]
