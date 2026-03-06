@@ -134,8 +134,9 @@ cat /usr/share/nmap/scripts/script.db
 > 	-  [[#NSEのカテゴリ一覧表]]
 
 ---
+---
 
-# 基本スキャンコマンド
+# Nmap/NSE 補足
 
 ## 主要フラグチートシート
 
@@ -160,22 +161,22 @@ cat /usr/share/nmap/scripts/script.db
 
 ---
 
-# スキャンタイプごとの特徴・内部動作
+## スキャンタイプごとの特徴・内部動作
 
-## TCPコネクションスキャン (-sT)
+### TCPコネクションスキャン (-sT)
 
 - 3ウェイハンドシェイクを実施
 - 閉じたポートにはRSTで応答
 - 遅く目立ちやすいが、==FW越えはしやすい==
 
-## SYNスキャン (-sS)
+### SYNスキャン (-sS)
 
 - ステルススキャン
 - `sudo`時にデフォルトで使われる
 - syn/ackにはRSTで返答（接続確立前に終了）
 - 速く目立ちにくいが、==特殊なフィルタには弱い==
 
-## UDPスキャン (-sU)
+### UDPスキャン (-sU)
 
 - 非常に遅く不確実
 - ICMP unreachable応答があるとclosedポートと判断し、応答がないとopen|filteredと判断する
@@ -190,13 +191,13 @@ nmap -sU --top-ports [num] <target_IP>
 sudo nmap -sU -sS <target_IP>
 ```
   
-## NULL/FIN/Xmasスキャン
+### NULL/FIN/Xmasスキャン
 
 - ステルス性高いが信頼性低い
 - Windowsでは全て「closed」に見える
 - SYNフラグを含まないため、特定フィルタ回避に有効
 
-## ICMPネットワークスキャン (-sn)
+### ICMPネットワークスキャン (-sn)
 
 - ホスト発見用
 - CIDR範囲で使用
@@ -207,14 +208,12 @@ nmap -sn 192.168.0.0/24
 
 ---
 
-# 参考リンク
+## 参考リンク
 
 - [Nmap公式チートシート](https://www.stationx.net/nmap-cheat-sheet/)
 - [NSEスクリプト一覧](https://nmap.org/nsedoc/)
 
 ---
-
-# 補足
 
 ## NSEのカテゴリ一覧表
 
@@ -237,6 +236,8 @@ nmap -sn 192.168.0.0/24
 | version   | サービスのバージョンを特定するスクリプト。                                 | 影響なし（通常は情報収集のみ）                         |
 | vuln      | 既知の脆弱性を検出し、影響を評価するスクリプト。                              | 影響あり（一部のスクリプトはサービスに影                    |
 
+---
+
 ## FW回避用オプション
 
 | スイッチ                    | 説明                                                                                                                                              |
@@ -248,7 +249,9 @@ nmap -sn 192.168.0.0/24
 | --data-length \<number> | 指定したバイト数のランダムデータを付加する。処理速度は低下するが、スキャンを幾分でも目立たなくすることができる                                                                                         |
 | **-Pn**                 | ICMPブロックを回避する。Windowsマシンへのスキャンにはほぼ必須。==遅くなる。==                                                                                                  |
 
-## ADに所属しているかどうか（Windows）
+---
+
+## ADに所属しているかどうかの判断方法（Windows）
 
 - DNS_Domain_Name の形式
     - FQDN形式 (例: `domain.com`) → AD所属
