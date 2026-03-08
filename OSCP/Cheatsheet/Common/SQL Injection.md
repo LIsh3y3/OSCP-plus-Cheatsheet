@@ -10,9 +10,9 @@
 
 # In-band SQLi
 
-結果がブラウザの画面やレスポンス内に直接表示されるタイプのSQLiのこと（攻撃の送信とデータの取得を同じ通信チャネルで実施）。
+結果がブラウザの画面やレスポンス内に直接表示されるタイプのSQLiのことを言う（攻撃の送信とデータの取得を同じ通信チャネルで実施）。
 
-直接結果が現れないタイプを、[SQL Injection](#Blind%20SQLi)という。
+反対に、直接結果が現れないタイプを、[Blind SQLi](#Blind%20SQLi)と言う。
 
 ## 🔍Enumeration
 
@@ -43,10 +43,10 @@ $
 ```
 
 > [!TIP] 
-> - 検索boxでは、行頭に`%`をつける(e.g.`%' xxx -- //`)
+> - 検索boxでは、行頭に`%`をつける（e.g.`%' xxx -- //`）
 > - `--` の後の空白がアプリ側で除去される場合があるので、コメントを使って対応する
 > 	- `-- #`
-> 	- `-- //` ...など（[SQL Injection](#SQLコメントアウトの種類表)）
+> 	- `-- //` ...など（[SQLコメントアウトの種類表](#SQLコメントアウトの種類表)）
 > - HTTPリクエストヘッダが`Content-Type: application/x-www-form-urlencoded`のときは、ペイロードをURLエンコードすること
 > - 明確なエラーメッセージが表示されない場合もあるため、レスポンスの応答時間やlengthの変化を観察
 
@@ -54,12 +54,12 @@ $
 
 エラーメッセージの種類表
 
-| RDBMS      | 典型エラーメッセージ                                                                        | 備考                                                                       |
-| ---------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| RDBMS      | 典型エラーメッセージ                                                                        | 備考                                                                                                               |
+| ---------- | --------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | MSSQL      | `Unclosed quotation mark after the character string`  <br>`Incorrect syntax near` | `SqlException` や `.SqlClient.` を含む<br>（参考ノート：[Webアプリケーションのテクノロジー](../../../BSCP/Misc/Webアプリケーションのテクノロジー.md#ASP)） |
-| MySQL      | `You have an error in your SQL syntax; check the manual...`                       | `MySqlException` など                                                      |
-| PostgreSQL | `syntax error at or near`                                                         | `org.postgresql.util.PSQLException`（Java系）                               |
-| Oracle     | `ORA-01756: quoted string not properly terminated`                                | `OracleException` が出ることもある                                               |
+| MySQL      | `You have an error in your SQL syntax; check the manual...`                       | `MySqlException` など                                                                                              |
+| PostgreSQL | `syntax error at or near`                                                         | `org.postgresql.util.PSQLException`（Java系）                                                                       |
+| Oracle     | `ORA-01756: quoted string not properly terminated`                                | `OracleException` が出ることもある                                                                                       |
 
 バージョン情報表示のコマンド表
 
@@ -171,7 +171,7 @@ admin') or (1=1 -- #
 ```
 
 > [!TIP]
-> 1つのカラムのみ利用可能な場合[SQLi cheet sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet)の「String concatenation」を参照し、文字列を連結する
+> 1つのカラムのみ利用可能な場合、🔗[SQLi cheet sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet)の「String concatenation」を参照し、文字列を連結する。
 
 ```sql
 ' UNION SELECT CONCAT(username, '~', password) FROM users -- //
@@ -238,7 +238,7 @@ or
 ### Error-based
 
  挿入した条件文のクエリがtrueの場合に意図的にエラーを発生させる。
-[SQL Injection](#悪意のある文字を使ったテスト（"Bad%20Chars"）)でわかる可能性が高い。
+[悪意のある文字を使ったテスト（"Bad Chars"）](#悪意のある文字を使ったテスト（"Bad%20Chars"）)の過程でこのタイプであることがわかる可能性が高い。
 
 基本構文
 ```sql
@@ -246,7 +246,7 @@ or
 ' AND IF(1=1, 1/0, 'a') = 'a'--
 ```
 - PostgreSQLの場合はIF文は適さないのでCASEを優先する - pentest monekyより）
-- 参考：[Conditional errors - SQLi cheat sheet by PortSwigger](https://portswigger.net/web-security/sql-injection/cheat-sheet#:~:text=TABLE%2DNAME%2DHERE%27-,Conditional%20errors,-You%20can%20test)
+- 参考🔗：[Conditional errors - SQLi cheat sheet by PortSwigger](https://portswigger.net/web-security/sql-injection/cheat-sheet#:~:text=TABLE%2DNAME%2DHERE%27-,Conditional%20errors,-You%20can%20test)
 
 ---
 
@@ -254,8 +254,8 @@ or
 
 ### リモートコマンドの実行
 
-- MySQL：[SQL Injection](#★Webシェルの書き込み（MySQL）)
-- MSSQL：[1433 - MSSQL](../Ports%20-%20Service/1433%20-%20MSSQL.md#💥%20Exploit)
+- MySQL：[★Webシェルの書き込み（MySQL）](#★Webシェルの書き込み（MySQL）)
+- MSSQL：[💥 Exploit](../Ports%20-%20Service/1433%20-%20MSSQL.md#💥%20Exploit)
 
 #### PostgreSQL
 
@@ -399,7 +399,7 @@ SELECT EXTRACTVALUE(1, CONCAT(0x5c, (SELECT password FROM users LIMIT 1)));
 
 ##### Error-based SQLi 具体例：パスワードの抽出
 
-- 基本の考え方は[SQL Injection](#Boolean-based%20SQLi%20具体例：パスワード抽出)と同じだが、Error-basedはWebアプリのレスポンスから値が漏洩する
+- 基本の考え方は[Boolean-based](#Boolean-based)と同じだが、Error-basedはWebアプリのレスポンスから値が漏洩する
 
 1. 文字のおおまかな範囲を決定する。
 ```sql
@@ -410,7 +410,7 @@ user=offsec' AND IF((SELECT LENGTH(password) FROM users WHERE username = 'admini
 ```sql
 user=offsec' AND IF((SELECT SUBSTRING(password, 1, 1) FROM users WHERE username='administrator') = 'm', 1/0, 'a') = 'a'--
 ```
-- 💡自動で実行する方法は、[SQL Injection](#Boolean-based%20SQLi%20具体例：パスワード抽出)のペイロードを、Error-basedに変更するだけ
-- 参考：[Extracting data via visible error messages - SQLi cheat sheet by PortSwigger](https://portswigger.net/web-security/sql-injection/cheat-sheet#:~:text=Extracting%20data%20via%20visible%20error%20messages)
+- 自動で実行する方法は、[Boolean-based SQLi 具体例：パスワード抽出](#Boolean-based%20SQLi%20具体例：パスワード抽出)のペイロードを、Error-basedに変更するだけ
+- 参考🔗：[Extracting data via visible error messages - SQLi cheat sheet by PortSwigger](https://portswigger.net/web-security/sql-injection/cheat-sheet#:~:text=Extracting%20data%20via%20visible%20error%20messages)
 
 
