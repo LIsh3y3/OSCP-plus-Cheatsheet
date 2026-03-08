@@ -71,7 +71,7 @@ git version
 ...
 ```
 
-1. [git-dumper - GitHub](http://github.com/arthaud/git-dumper)のインストール
+1. 🔗[git-dumper - GitHub](http://github.com/arthaud/git-dumper)のインストール
 ```zsh
 pipx install git-dumper
 ```
@@ -82,4 +82,4 @@ pipx install git-dumper
 git-dumper <url> <output_dir>
 ```
 
-3. [Git Enumeration](#Local%20Git%20Enumeration)の手法で列挙
+3. [Local Git Enumeration](#Local%20Git%20Enumeration)の手法で列挙

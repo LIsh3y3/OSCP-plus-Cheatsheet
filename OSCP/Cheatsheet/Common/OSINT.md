@@ -64,6 +64,7 @@ dig <domain> MX
 
 - [DorkSearch](https://dorksearch.com/): 用意済みのdorkingがある（※AIは廃止されている）
 - [GHDB](https://www.exploit-db.com/google-hacking-database)：💡"Quick Search"よりも"Category"でフィルタリングする方が、目的のDorkが見つかる
+
 ![](../../画像ファイル/Pasted%20image%2020250302124658.png)
 
 ## Dorking syntax
@@ -255,8 +256,10 @@ gitleaks detect -v
 
 -  [Tools Netcraft](https://www.netcraft.com/tools/) にアクセスし、"Search DNS"を開く
 - ターゲットのhostnameを入力
-- Site Reportに構成技術が書いてある。
+- Site Reportに構成技術が書いてある
+
 ![](../../画像ファイル/Pasted%20image%2020250302145854.png)
+
 - （ただし、個人的にはBurp suiteを使用してレスポンスのServerやx-powered-byヘッダーの値を見るのが確実性高いと思う。）
 
 ## Shodan
@@ -275,7 +278,9 @@ gitleaks detect -v
 
 - 結果をクリックしてレポートを見る
 - open portでさらに結果を絞ることができる
+
 ![](../../画像ファイル/Pasted%20image%2020250302173035.png)
+
 
 - その他、"Advanced Search"よりポート番号などを指定可能
 
