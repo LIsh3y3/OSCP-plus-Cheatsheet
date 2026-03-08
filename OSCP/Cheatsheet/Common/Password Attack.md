@@ -285,49 +285,28 @@ python3 cupp.py -a
 
 # Password Hashを用いた攻撃
 
+- 前提知識： [NTLM周りの用語](../../Misc/用語.md#NTLM周りの用語)
 
-- [ ]もしくは[🔍 Credentials Harvesting](../🪟Windows/Active%20Directory/🔍%20Credentials%20Harvesting.md)もしくは[💥Lateral Movement & Persistance in AD](../🪟Windows/Active%20Directory/💥Lateral%20Movement%20&%20Persistance%20in%20AD.md)にまとめたほうがいい
+## NTLM Hashのクラッキング
 
-- 前提知識：
-	- [用語](../../Misc/用語.md#SAM)
-	- [NTLM周りの用語](../../Misc/用語.md#NTLM周りの用語)
-
-- NTLM Hashのクラッキング
-
-[🥝Mimikatz](../../Tools/🥝Mimikatz.md#認証情報の抽出)
-
-- NTLMハッシュを取得出来たら、[Password Attack](#2.%20Hashのフォーマット化)以降のメソドロジーでクラックする
-
----
+1. [認証情報の抽出](../../Tools/🥝Mimikatz.md#認証情報の抽出) 
+2. [🐈‍⬛Hashcat](../../Tools/🐈‍⬛Password%20Crack%20-%20JtR・Hashcat.md#🐈‍⬛Hashcat)
 
 ## PtH
 
-- [Password Attack](#NTLM%20Hashのクラッキング)がハッシュが複雑で成功しない場合、かつ、同じパスワードを使用するアカウントが存在するだろう場合に実施
-	[PtH (Pass-the-Hash)](../🪟Windows/Active%20Directory/💥Lateral%20Movement%20&%20Persistance%20in%20AD.md#PtH%20(Pass-the-Hash))
-
----
+- ハッシュが複雑で成功しない場合、かつ、同じパスワードを使用するアカウントが存在するだろう場合に検討：[PtH (Pass-the-Hash)](../🪟Windows/Active%20Directory/💥Lateral%20Movement%20&%20Persistance%20in%20AD.md#PtH%20(Pass-the-Hash))
 
 ## Net-NTLMv2のクラッキング
 
-- Net-NTLM認証フロー：[2. Breaching Active Directory](../../TryHackME/Offensive%20Pentesting/Active%20Directory/2.%20Breaching%20Active%20Directory.md#NetNTLMの基本)
+
 
 ### シチュエーション
 
 - Windows環境で<u>獲得したユーザーが非特権アカウントであるとき</u>
-```powershell
-whoami
-```
-```powershell
-net user <username>
-```
-	↓
-```
-Local Group Memberships [*Administrators以外]
-```
 
  - シェルを獲得できずコード実行ができない場合でも、Windowsサーバーへファイルアップロードが可能なWebアプリケーションを発見したとき
 
-- SMBサーバーにファイルアップロードが可能なとき
+- S MBサーバーにファイルアップロードが可能なとき
 	- 参考🔗：[Proving Grounds Practice write-up - Vault](https://medium.com/@Dpsypher/proving-grounds-practice-vault-158516460860)
 
 ### Net-NTLMv2クラッキング概要
