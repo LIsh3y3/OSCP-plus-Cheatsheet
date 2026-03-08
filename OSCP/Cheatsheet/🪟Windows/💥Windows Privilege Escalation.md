@@ -7,24 +7,21 @@
 > 特権昇格した後も**再度列挙**し、重要な情報がないかどうかを探索する。
 > また、Mimikatzでクレデンシャルをダンプする。
 
-
 ---
 
 # Serviceを利用したPrivEsc
 
-
 - Serviceについての基本事項：[用語](../../Misc/用語.md#サービス)
-- Serviceの列挙：[🔍Windows Local Enumeration](🔍Windows%20Local%20Enumeration.md#サービスの列挙)
 
 ## Service Exploits - Service Binary Hijacking
 
 サービスバイナリを直接上書き可能な場合に使用する手法。
 たとえば、winPEASの結果、`Services Information`で`File Permissions: Everyone [Allow: AllAccess]`となっているような場合に使う。
 
-1. [🔍Windows Local Enumeration](🔍Windows%20Local%20Enumeration.md#サービスの列挙)で、StartNameが"LocalSystem"であるサービスを探す
+1. [サービスの列挙](🔍Windows%20Local%20Enumeration.md#サービスの列挙)で、StartNameが"LocalSystem"であるサービスを探す
 > [!TIP]
 > - Stateが"Stopped"のサービスをスタートするには、一般的には高権限が必要なため、権限昇格ベクターとしての優先度は低い
-> - どのサービスバイナリを書き換えればいいのかわからない場合 は、[💥Windows Privilege Escalation](#Service%20Binary%20Hijacking%20w/%20PowerUp（自動）)で列挙することも検討する
+> - どのサービスバイナリを書き換えればいいのかわからない場合は、[💥Windows Privilege Escalation](#Service%20Binary%20Hijacking%20w/%20PowerUp（自動）)で列挙することも検討する
 > 
 
 2. 実行バイナリのパーミッションが(F)もしくは(M)であることを確認（[権限関連の知識、コマンド](../Common/権限関連の知識、コマンド.md#パーミッションの読み方)）
