@@ -213,7 +213,7 @@ cat /etc/os-release
 # 絞り込み：ps --pid <PID>
 ps auxw
 ```
-- ↓出力例](#補足：結果の見方)
+- ↓出力例
 ```zsh
 USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 root       20566  0.0  0.0      0     0 ?        I    00:07   0:00 [kworker/0:2-
@@ -274,7 +274,7 @@ ip a
 routel
 ```
 - 侵害した足場から内部NWへアクセスしたいときなど、そのマシンから他にどのマシンにアクセスできそうかを確認する第一歩
-- →怪しいサブネットがあったら[Port Scan & Vuln Scan](../Common/Port%20Scan%20&%20Vuln%20Scan.md#ホストディスカバリ)でアクセス可能なIPアドレスを列挙する
+- →怪しいサブネットがあったら[Nmap Live Host Discovery](../../TryHackME/Jr%20Penetration%20Tester/Nmap%20Live%20Host%20Discovery.md)でアクセス可能なIPアドレスを列挙する
 
 アクティブなネットワーク接続とリスニングポートの確認
 ```zsh
