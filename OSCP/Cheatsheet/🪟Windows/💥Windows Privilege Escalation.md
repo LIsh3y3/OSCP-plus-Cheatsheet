@@ -114,7 +114,9 @@ sc.exe query "<service_name>"
 sc.exe start "<service_name>"
 ```
 - →[Safe DLL Search Modeの探索順序](../../TryHackME/Red%20Teaming/4.%20Host%20Evasions/1.%20Windows%20Internal.md#Safe%20DLL%20Search%20Modeの探索順序)を念頭に当該レコードが先にロードされることを確かめる
+
 ![](../../画像ファイル/Pasted%20image%2020250816122522.png)
+
 $$Result列がNot　Foundとなっている例$$
 
 > [!WARNING]
@@ -399,7 +401,9 @@ copy "<path_to_payload>" "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\S
 ## Windows特権のエクスプロイト
 
 - 参考🔗：[Priv2Admin](https://github.com/gtworek/Priv2Admin)
+
 ![](../../画像ファイル/Pasted%20image%2020250820172631.png)
+
 $$Priv2Adminの中身は権限ごとにPrivEsc技法概要がまとめられている$$
 
 ### SeImpersonatePrivilege / SeAssignPrimaryToken
