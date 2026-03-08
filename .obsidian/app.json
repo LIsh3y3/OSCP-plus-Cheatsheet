@@ -25,5 +25,7 @@
     "editor:insert-callout",
     "editor:configure-toolbar"
   ],
-  "attachmentFolderPath": "OSCP/画像ファイル"
+  "attachmentFolderPath": "OSCP/画像ファイル",
+  "useMarkdownLinks": true,
+  "newLinkFormat": "relative"
 }
