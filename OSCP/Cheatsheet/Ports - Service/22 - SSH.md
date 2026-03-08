@@ -41,7 +41,7 @@ $$UbuntuバージョンごとのSSHバージョン$$
 
 - **脆弱でないことが多いのでエクスプロイトの優先度は低い**（ソースはPEN-200のModule13: Locating Public Exploits）
 - ハイブリット方式の暗号化、もしくはパスワード方式で認証する
-- known_hosts (`/.ssh/known_hosts`)とは、SSHクライアント側に保存されるデータで、過去に接続したSSHサーバーのホストキー(公開鍵)を保存している
+- known_hosts (`~/.ssh/known_hosts`)とは、SSHクライアント側に保存されるデータで、過去に接続したSSHサーバーのホストキー(公開鍵)を保存している
 
 ## 公開鍵認証
 
@@ -53,10 +53,10 @@ $$公開鍵認証フロー$$
 | --------------------------------- | ----------------------- | ----------------------------- |
 | 秘密鍵 (id_rsa / id_ed25519)         | SSHクライアントが保持。外に出してはいけない | クライアント（`~/.ssh/id_rsa`）       |
 | 公開鍵 (id_rsa.pub / id_ed25519.pub) | サーバがこれを使って署名検証          |                               |
-| authorized_keys                   | 正規のSSHクライアントの公開鍵一覧      | サーバ(`~/.ssh/aurhorized_keys`) |
+| authorized_keys                   | 正規のSSHクライアントの公開鍵一覧      | サーバ(`~/.ssh/authorized_keys`) |
 | パスフレーズ                            | 秘密鍵ファイルをローカルで暗号化するもの    |                               |
 
-## sshd.config
+## sshd_config
 
 - コメントアウトされている設定値は「無効」ではなく、OpenSSH のデフォルト値が適用される
 - そのため、コメントアウト＝安全／無効と誤解しないこと
@@ -92,7 +92,7 @@ xxxx
 ```
 
 >[!WARNING]
->一番最後の行には`\n\r`（改行）が必須
+>一番最後の行には`\n`（改行）が必須
 
 - Keyの権限は、ユーザー/オーナーだけがREAD可能と設定しないと使えない
 ```zsh
@@ -118,7 +118,7 @@ IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
 ```
 - →対策：`known_hosts`を削除する
 ```zsh
-rm /.ssh/known/hosts
+rm ~/.ssh/known/hosts
 ```
 
 ### SSH Private Keyの種類
