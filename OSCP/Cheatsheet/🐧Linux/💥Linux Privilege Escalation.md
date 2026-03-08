@@ -343,7 +343,7 @@ env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootba
 
 ## Sudo権限 w/GTFOBins
 
-1. [🔍Linux Enumeration](🔍Linux%20Enumeration.md#ユーザー情報・ホスト名の列挙コマンド)でsudo権限を確認
+1. [ユーザー情報・ホスト名の列挙コマンド](🔍Linux%20Enumeration.md#ユーザー情報・ホスト名の列挙コマンド)でsudo権限を確認
 ```zsh
 sudo -l
 ```
