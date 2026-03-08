@@ -291,15 +291,15 @@ gitleaks detect -v
 
 ### Security Headers
 
-- [Security Headers](https://securityheaders.com/)
+- 🔗[Security Headers](https://securityheaders.com/)
 - ターゲットのヘッダー情報で欠けているものを列挙する
-- ヘッダーの欠落は、それ自体が脆弱性であるとは限らない。しかし、Web開発者やサーバー管理者がサーバーのハードニングに精通していないことを示している可能性がある
+- ヘッダーの欠落は、それ自体が脆弱性であるとは限らないが、Web開発者やサーバー管理者がサーバーのハードニングに精通していないことを示している可能性がある
 
 ![](../../画像ファイル/Pasted%20image%2020250302173940.png)
 
 ### Qualys SSL Labs
 
-- [Qualys SSL Labs](https://www.ssllabs.com/ssltest/)
+- 🔗[Qualys SSL Labs](https://www.ssllabs.com/ssltest/)
 - 暗号スイートのベストプラクティスと比較してスコアリングする
 - 暗号スイートのベストプラクティスは頻繁に変わるものではない
 	- →それにもかかわらず、まだ対応していないなら、セキュリティへの意識が低いと考える
