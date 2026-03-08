@@ -27,7 +27,7 @@
 ### 実例：パスワードマネージャー
 
 1. ターゲットのWindowsマシンが、どのパスワードマネージャーを使用しているか明らかにする
-	- CLI：[🔍Windows Local Enumeration](../🪟Windows/🔍Windows%20Local%20Enumeration.md#インストール済みアプリケーションの列挙)
+	- CLI：[インストール済みアプリケーションの列挙](../🪟Windows/🔍Windows%20Local%20Enumeration.md#インストール済みアプリケーションの列挙)
 	- GUI：設定 > Apps > Apps & features
 
 2. パスワードマネージャーのdbファイルを検索（ここではKeePassとする）

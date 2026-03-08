@@ -2,17 +2,7 @@ Passive Reconとも呼ばれる。
 
 # whois
 
-## whoisレコード
-
-| 項目             | 役割                                     | 具体例/観点                                                  |
-| -------------- | -------------------------------------- | ------------------------------------------------------- |
-| Registry       | TLDを管理する親分的な組織                         | `.com`, `.net` → Verisign / `.jp` → JPRS / `.org` → PIR |
-| Registrar      | Registryと契約し、ユーザーにドメイン登録を提供する業者（ブローカー） | GoDaddy, Google Domains, Namecheap, お名前.com             |
-| **Registrant** | 実際にドメインを登録する企業や個人（利用者）                 | 個人情報                                                    |
-| Name Server    | IPアドレスとホスト名を変換 or 知らないと応答              | `dig`などのコマンドで情報収集につながる。<br>==ゾーン転送に使える情報==。             |
-
-## コマンド
-
+基本コマンド
 ```zsh
 whois <domain|IP>
 ```
@@ -22,20 +12,14 @@ whois <domain|IP>
 whois <domain|IP> -h <whois_server_IP>
 ```
 
-### 補足：dig
+## whoisレコード
 
->[!Warning]
->Active Reconに分類される
-
-ゾーン転送
-```zsh
-dig @<name_server> <domain> AXFR
-```
-
-MX（メールサーバ）列挙
-```zsh
-dig <domain> MX
-```
+| 項目             | 役割                                     | 具体例/観点                                                  |
+| -------------- | -------------------------------------- | ------------------------------------------------------- |
+| Registry       | TLDを管理する親分的な組織                         | `.com`, `.net` → Verisign / `.jp` → JPRS / `.org` → PIR |
+| Registrar      | Registryと契約し、ユーザーにドメイン登録を提供する業者（ブローカー） | GoDaddy, Google Domains, Namecheap, お名前.com             |
+| **Registrant** | 実際にドメインを登録する企業や個人（利用者）                 | 個人情報                                                    |
+| Name Server    | IPアドレスとホスト名を変換 or 知らないと応答              | `dig`などのコマンドで情報収集につながる。<br>==ゾーン転送に使える情報==。             |
 
 ## IP・ドメインを指定したときの違い
 
@@ -48,8 +32,6 @@ dig <domain> MX
 | **スキャンの足がかり**   | ◎        | △          |
 | **ゾーン転送（AXFR）** | 使えない     | 使える        |
 
-###### 詳細
-
 |              | `whois <IP>`                                                                                                           | `whois <domain>`                                                                                         |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | 主な目的         | ネットワークの割り当て情報から、所属組織・ネットワーク範囲を特定                                                                                       | ドメインの所有者・運用者を特定して、ブランド情報・関連企業を把握                                                                         |
@@ -60,6 +42,22 @@ dig <domain> MX
 | 見える内部構成      | CIDR全体のIP割り当て  <br>過去のIP移転履歴  <br>逆引きホスト名からシステム名が漏れる                                                                   | ネームサーバーからDNS管理元を特定  <br>歴代レジストラを調査（WHOIS履歴ツールと組み合わせ）                                                     |
 | クラウドかオンプレか   | IPからクラウド事業者を特定                                                                                                         | ネームサーバーがAWSやCloudflareならクラウドと推測                                                                          |
 | 防御の甘さチェック    | オープンポートチェック  <br>古いホスト名が生きているか                                                                                         | ゾーン転送チェック  <br>サブドメインに死にレコードがないか                                                                         |
+
+### 補足：dig
+
+>[!Warning]
+>ゾーン転送はActive Reconに分類される
+
+ゾーン転送
+```zsh
+dig @<name_server> <domain> AXFR
+```
+
+MX（メールサーバ）列挙
+```zsh
+dig <domain> MX
+```
+
 
 ---
 
@@ -84,7 +82,6 @@ dig <domain> MX
 | allintitle                     | タイトルに指定したすべてのキーワードが含まれているものを検索            | allintitle:"hoge foo"                                 |
 | site                           | 指定したサイトに限定して検索し、そのサイト内のすべての結果を表示          | site:"[www.google.com](http://www.google.com)"        |
 | filetype                       | 指定したファイル形式のものを検索                          | filetype:"pdf"                                        |
-| link                           | 指定したキーワードがリンクとして貼られているページを検索              | link:"keyword"                                        |
 | allinanchor / inanchor         | 他のページから貼られたリンクのアンカーテキストに指定キーワードが含まれるものを検索 | inanchor:rat                                          |
 | allinpostauthor / inpostauthor | ブログ検索限定。指定した著者が書いたブログ記事を検索                | allinpostauthor:"keyword"                             |
 | related                        | 指定したページと似ているページを検索                        | related:www.google.com                                |
@@ -242,16 +239,12 @@ gitleaks detect -v
 
 ---
 
-# ツール(無料)：Netcraft、Shodan
-
-- [ ] Todo:以降編集
+# 無料ツール：Netcraft、Shodan
 
 ## Netcraft：Search DNS
 
-### 基本情報
-
-- **Webページの構成技術を表示**することができるWappalyzerのようなもので、Wappalyzerよりも情報量が多い。
-	- 💥2024年にサ終とあるが2025年3月現在使用可能
+**Webページの構成技術を表示**することができるWappalyzerのようなもので、Wappalyzerよりも情報量が多い。（2024年に一部機能が有料化・制限された。）
+ただし、個人的にはBurp Suiteを使用してレスポンスのServerやx-powered-byヘッダーの値を見るのが確実性高いと思う。
 
 ### 使い方
 
@@ -261,19 +254,14 @@ gitleaks detect -v
 
 ![](../../画像ファイル/Pasted%20image%2020250302145854.png)
 
-- ただし、個人的にはBurp Suiteを使用してレスポンスのServerやx-powered-byヘッダーの値を見るのが確実性高いと思う。
-
 ## Shodan
-
-### 基本情報
 
 - NmapのOSINT版のようなもので、ターゲットとの接触なしで、**サービス情報や脆弱性を確認**できる
 - 用途は、Activeな列挙に入る前に、どこから列挙していくか当たりをつけるために使う
 
 ### 使い方
 
-- ログインする
-- `hostname:<ターゲットドメイン>`を検索バーに入力する
+- `hostname:<target_domain>`を検索バーに入力する
 
 ![](../../画像ファイル/Pasted%20image%2020250302172845.png)
 
@@ -282,12 +270,11 @@ gitleaks detect -v
 
 ![](../../画像ファイル/Pasted%20image%2020250302173035.png)
 
-
 - その他、"Advanced Search"よりポート番号などを指定可能
 
 ## Security Headers & Qualys SSL Labs
 
-**ターゲットのセキュリティへの意識に関する洞察を得る**。
+ターゲットのセキュリティへの意識に関する洞察を得る。
 
 ### Security Headers
 
