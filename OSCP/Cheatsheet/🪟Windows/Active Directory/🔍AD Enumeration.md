@@ -323,9 +323,9 @@ setspn -L <サービスアカウント>
 Get-ObjectAcl -Identity "<common_name>" | ? {$_.ActiveDirectoryRights -eq "<権限>"} | select SecurityIdentifier,ActiveDirectoryRights
 ```
 - `SecurityIdentifier`：指定したオブジェクトに対して権限をもつプリンシパル
-	- 例でいうと、Management Departmentオブジェクトに対して権限をもつプリンシパル（Adminなど）
+	- 具体例でいうと、Management Departmentオブジェクトに対して権限をもつプリンシパル（Adminなど）
 - `ActiveDirectoryRights`：オブジェクトに対するプリンシパルの権限
-	- GPOで*GenericAll*が最強： [🔍AD Enumeration](#補足：攻撃者が着目する権限一覧)
+	- ACLでは*GenericAll*が最強： [補足：攻撃者が着目する権限一覧](#補足：攻撃者が着目する権限一覧)
 - 補足：`ObjectSID`：オブジェクト自身のSID(重要でない)
 
 2. SIDの名前解決（PowerView）
@@ -341,9 +341,11 @@ BUILTIN\Account Operators
 Local System
 CORP\Enterprise Admins
 ```
-- 💥GenericAllをもつプリンシパルを侵害できたら、そのオブジェクト(この例ではManagement Department)に対して自由自在に操作可能
+- GenericAllをもつプリンシパルを侵害できたら、そのオブジェクトを自由自在に操作可能
 
 #### 補足：攻撃者が着目する権限一覧
+
+[💥AD Exploit](💥AD%20Exploit.md)
 
 | 権限名                   | 内容                |
 | :-------------------- | :---------------- |
@@ -364,12 +366,12 @@ CORP\Enterprise Admins
 
 1. ドメイン全体で共有されているフォルダー（domain shares）を列挙し、  重要情報（パスワード、設定ファイル、スクリプトなど）を探索すること
 2. 特に SYSVOL や非デフォルト共有（例: docshare）に注目する
-	- **すべて調査対象！**
+	- **量は多いがすべて調査対象！**
 
 ### Domain共有の列挙コマンド
 
 1. すべてのDomain共有一覧を取得する（PowerView）
-	⚠️将来的に標的とする可能性があるDomain共有も含めた完全な一覧を取得するため、すべてのDomain共有一覧は必ず取得すること（少し時間がかかる）
+	将来的に標的とする可能性があるDomain共有も含めた完全な一覧を取得するため、すべてのDomain共有一覧は必ず取得すること（少し時間がかかる）
 ```powershell
 Find-DomainShare
 ```
@@ -413,33 +415,31 @@ gpp-decrypt '<cpasswordの値>'
 
 ## Credential Injection w/Runas
 
-Runas：他のユーザーのクレデンシャルを使用してそのユーザの権限で別のプログラムを実行する
+Runas：他のユーザーのクレデンシャルを使用してそのユーザの権限で別のプログラムを実行する。
 
 ### 用途
 
 - ADの認証情報を入手したが、対象のマシンがSSHやRDPを有効にしておらず、ログインできないとき
 - 入手した認証情報の権限を利用してネットワークリソース（SYSVOLやSMB共有）を列挙したいとき
 
-### 前提
+### エクスプロイト条件
 
 - ADの認証情報を入手済
 - **実行環境**として、攻撃者側でWindowsマシンを用意するか、ターゲットのドメイン内に足場がある
 
 ### ドメインに参加していないマシンに必要な準備：DNSの設定
 
-※ターゲットのドメインにある足場から実行する場合はこの準備は不要
-
 1. DNS設定をする理由：Runasが成功したかどうかはSYSVOLを列挙することでわかるが、DNSを設定していないとSYSVOLにアクセスできないため
 ```powershell
 powershell -ep bypass
-$dnsip = "<DC IP>"
+$dnsip = "<DC_IP>"
 $index = Get-NetAdapter -Name '<Interface>' | Select-Object -ExpandProperty 'ifIndex'
 Set-DnsClientServerAddress -InterfaceIndex $index -ServerAddresses $dnsip
 ```
 
 2. DNSの設定が成功したかどうかを確認
-```command
-nslookup <DC FQDN>
+```powershell
+nslookup <DC_FQDN>
 ```
 
 ### Runasによるcmd.exeの起動とSYSVOLへのアクセス
@@ -456,7 +456,7 @@ runas.exe /user:<domain>\<username> cmd.exe
 whoami
 
 # SYSVOLへアクセス
-dir \\<DC FQDN>\SYSVOL\
+dir \\<DC_FQDN>\SYSVOL\
 ```
 
 ### 留意点
