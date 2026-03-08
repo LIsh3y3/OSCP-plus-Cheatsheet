@@ -277,15 +277,18 @@ python3 cupp.py -a
 
 ## 5. Hashの攻撃
 
+- [🐈‍⬛Password Crack - JtR・Hashcat](../../Tools/🐈‍⬛Password%20Crack%20-%20JtR・Hashcat.md)でクラックする
 - パスワードが複雑でクラックできない場合は、PtHやrelay攻撃に展開する
-	- [Password Attack](#Password%20Hashを用いた攻撃)
+	- [Password Hashを用いた攻撃](#Password%20Hashを用いた攻撃)
 
 ---
 ---
 
 # Password Hashを用いた攻撃
 
-- 前提知識： [NTLM周りの用語](../../Misc/用語.md#NTLM周りの用語)
+- 前提知識：
+	- [NTLM周りの用語](../../Misc/用語.md#NTLM周りの用語)
+	- [NTLM](../🪟Windows/Active%20Directory/ADの基本.md#NTLM)
 
 ## NTLM Hashのクラッキング
 
@@ -298,20 +301,16 @@ python3 cupp.py -a
 
 ## Net-NTLMv2のクラッキング
 
+Windows環境で<u>獲得したユーザーが非特権アカウントであるとき</u>に検討する攻撃手法。
+参考🔗：[Proving Grounds Practice write-up - Vault](https://medium.com/@Dpsypher/proving-grounds-practice-vault-158516460860)
 
-
-### シチュエーション
-
-- Windows環境で<u>獲得したユーザーが非特権アカウントであるとき</u>
-
- - シェルを獲得できずコード実行ができない場合でも、Windowsサーバーへファイルアップロードが可能なWebアプリケーションを発見したとき
-
-- S MBサーバーにファイルアップロードが可能なとき
-	- 参考🔗：[Proving Grounds Practice write-up - Vault](https://medium.com/@Dpsypher/proving-grounds-practice-vault-158516460860)
+- 条件：
+	- シェルを獲得できずコード実行ができない場合でも、Windowsサーバーへファイルアップロードが可能なWebアプリケーションを発見したとき
+	- S MBサーバーにファイルアップロードが可能なとき
 
 ### Net-NTLMv2クラッキング概要
 
-- 権限が低く、MimikatzなどでパスワードやNTLMハッシュを抜くことができなくても、Net-NTLMv2認証プロトコルを悪用して、ハッシュを取得 → クラックし、パスワードを得る
+- ユーザーの権限が低く、MimikatzなどでパスワードやNTLMハッシュを抜くことができなくても、Net-NTLMv2認証プロトコルを悪用して、ハッシュを取得 → クラックし、パスワードを得る
 
 1. 攻撃者側で[*Responder*](https://github.com/lgandx/Responder)を用意する
 	- SMB, HTTP, FTP, LLMNR, NBT-NS, MDNSなど、さまざまなプロトコルをサポート
