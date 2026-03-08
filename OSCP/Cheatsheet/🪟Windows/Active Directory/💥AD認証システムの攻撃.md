@@ -1,6 +1,6 @@
 - 関連ノート：
 	- [[ADの基本#認証方法]]
-	- [[Password Attack]]
+	- [[../../Common/Password Attack]]
 	- [[🥝Mimikatz]]
 
 ---

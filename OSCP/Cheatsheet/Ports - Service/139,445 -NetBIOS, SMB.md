@@ -365,7 +365,7 @@ SMBリレー攻撃
 ```zsh
 netexec smb $TargetIP --gen-relay-list <output.txt>
 ```
-- [[Password Attack#Net-NTLMv2のリレーアタック]]へ
+- [[../Common/Password Attack#Net-NTLMv2のリレーアタック]]へ
 
 ## ファイルアップロード
 

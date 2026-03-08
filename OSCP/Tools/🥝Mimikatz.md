@@ -549,7 +549,7 @@ net use c:\\<DC>\Admin$ /user:Administrator mimikatz
 
 # Credential Guardを回避してパスワード窃取
 
-- [[Password Attack#Windows Credential Guardの仕組みとその回避]]
+- [[../Cheatsheet/Common/Password Attack#Windows Credential Guardの仕組みとその回避]]
 
 ## 攻撃の概要
 

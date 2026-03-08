@@ -554,7 +554,7 @@ find / -type f \( -perm -2000 \) -exec ls -la {} \; 2>/dev/null
 
 - 保存されたパスワードやキャッシュされた資格情報を取得する
 	- そのまま**ダイレクトに**LatMovやPrivEscにつなげる
-	- 発見した認証情報をもとに、新たなパスワードリストを作成してブルートフォースを実施する[[Password Attack]]
+	- 発見した認証情報をもとに、新たなパスワードリストを作成してブルートフォースを実施する[[../Common/Password Attack]]
 
 - 💡Googleで、`<service> where is [database] password stored`と検索するのもよい手段
 

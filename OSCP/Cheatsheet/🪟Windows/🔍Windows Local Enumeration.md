@@ -238,7 +238,7 @@ Where-Object { $_.DisplayName } |
 Select-Object DisplayName, DisplayVersion, InstallLocation |
 Sort-Object DisplayName
 ```
-- →パスワードマネージャーを使っている場合は、クラックへ：[[Password Attack]]
+- →パスワードマネージャーを使っている場合は、クラックへ：[[../Common/Password Attack]]
 - →設定ファイルに含まれる認証情報列挙へ：[[#ファイルに含まれる認証情報の列挙]]
 
 インストール済アプリケーションの列挙モレがないことを確認
