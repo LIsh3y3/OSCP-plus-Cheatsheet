@@ -159,7 +159,7 @@
 
 $$TGTのレスポンス$$
 
-3. *TGS-REQ*：TGTを使用してKDCにTGS（Ticket Granting Service）をリクエストするため、クライアントはUsernameとTimestampをセッションキーで暗号化して送信し、TGTと、SPNを添付する
+3. *TGS-REQ*：TGTを使用してKDCにTGS（Ticket Granting Service）をリクエストするため、クライアントはUsernameとTimestamp(Authenticator)をセッションキーで暗号化して送信し、TGTと、SPNを添付する
 	- TGSは、作成された特定のサービスに対してのみ接続を許可するチケット（(ST:==service ticket==ともいう）
 4. *TGS-REP*：KDCはアクセスしたいサービスに認証するために必要となるSvc Session KeyとTGSを返す
 	- TGSは、Service OwnerのHashからできたキーを使用して暗号化される
@@ -188,7 +188,7 @@ $$TGSでサービスの使用要求$$
 - KDC LT Key：krbtgtがTGTを暗号化し==PACに署名する==ためのもの
 - Client LT Key：
 	- [ADの基本](#Kerberos認証ステップ)でUser Hashとあるもの
-	- サーバーは、クライアントのClient LT Keyを使用して、そのハッシュ値を検証し、クライアントが正当なユーザーであることを確認する
+	- KDCは、クライアントのClient LT Keyを使用して、そのハッシュ値を検証し、クライアントが正当なユーザーであることを確認する
 	- 暗号化されたタイムスタンプの検証や、セッションキーの暗号化に使用
 - *PAC(Privilege Attribute Certificate)*： 
 	- ユーザーの関連情報をすべて保持し、TGTとともにKDCに送信される
@@ -233,7 +233,7 @@ $$ticket出力例$$
 
 ## NTLM
 
-- NetNTLMも利用可能だが、高性能なGPUを使えば、パスワードハッシュのクラックにそこまで時間は掛からないため、非推奨とされている
+- NetNTLMも利用可能だが、高性能なGPUを使えば、パスワードハッシュのクラックにそこまで時間は掛からないうえ、PtH攻撃が可能なため、非推奨とされている
 - しかし、現実にはKerberosに対応していないマシンなどもあり、停止することによる他システムへの影響などから大掛かりな準備が必要であるため、今もなおNTLM認証が有効な組織は多い
 
 ![](../../../画像ファイル/Pasted%20image%2020230410163456.png)
