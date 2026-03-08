@@ -24,5 +24,6 @@
     "editor:unindent-list",
     "editor:insert-callout",
     "editor:configure-toolbar"
-  ]
+  ],
+  "attachmentFolderPath": "OSCP/画像ファイル"
 }
