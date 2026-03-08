@@ -16,7 +16,8 @@
 ## 実行コマンド
 
 ==LinPEAS==は誤検知が多いため、手動での検査はもちろん、unix-privesc-checkでもスキャンする
-<mark>LinPEAS</mark>
+
+<mark>LinPEAS</mark>aaaaaa
 
 unix-privesc-check
 	standardモードの方が、detailedモードよりも実行スピードが早く、誤検出も少ない
