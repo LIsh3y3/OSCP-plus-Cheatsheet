@@ -2,7 +2,7 @@
 
 2. WordPressのsetup-config.phpインストールページでは、攻撃者の用意したMySQLデータベースの認証情報を使って、ターゲットの有効な認証情報がなくともインストールプロセスを完了させることができる脆弱性があった。[Exploit-DB - 18417](https://www.exploit-db.com/exploits/18417)
 
-3. wordpressのセットアッププロセスのリクエストをBurp SuiteでInterceptし、[3306 - MySQL](../../Cheatsheet/Ports%20-%20Service/3306%20-%20MySQL.md#MariaDB%20を%200.0.0.0%203306%20でホストする手順)に従いホストしたDBの認証情報を使ってインストールプロセスを完了し、adminパネルにアクセスできるようにした
+3. wordpressのセットアッププロセスのリクエストをBurp SuiteでInterceptし、[3306 - MySQL](../Cheatsheet/Ports%20-%20Service/3306%20-%20MySQL.md#MariaDB%20を%200.0.0.0%203306%20でホストする手順)に従いホストしたDBの認証情報を使ってインストールプロセスを完了し、adminパネルにアクセスできるようにした
 
 4. wordpressのadmin panelで、Tools -> Theme File Editor -> patterns/footer-default.phpをPentest MonkeyのPHP reverse shellのペイロードに変更し、リクエストしてシェルを獲得
 ```

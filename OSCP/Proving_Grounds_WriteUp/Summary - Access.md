@@ -4,14 +4,14 @@
 
 2. HTTPサービスにファイルアップロード機能があり、phpファイルをアップロードすると、"The file extension is not allowed !!"という、拡張子ブラックリストを示唆するレスポンスが返った（file.hogehogeはアップロードできたので、ホワイトリストではない）
 
-3. [⚡️File upload vuln](../../../BSCP/Server-side/File%20upload%20vuln/⚡️File%20upload%20vuln.md#ブラックリスト回避テクニック)を試すも失敗したので、[⚡️File upload vuln](../../../BSCP/Server-side/File%20upload%20vuln/⚡️File%20upload%20vuln.md#サーバ設定の上書きによるバイパス)を参考に、`.htaccess`をアップロードしたところ、設定を上書きでき、Web shellを獲得できた
+3. [⚡️File upload vuln](../../BSCP/Server-side/File%20upload%20vuln/⚡️File%20upload%20vuln.md#ブラックリスト回避テクニック)を試すも失敗したので、[⚡️File upload vuln](../../BSCP/Server-side/File%20upload%20vuln/⚡️File%20upload%20vuln.md#サーバ設定の上書きによるバイパス)を参考に、`.htaccess`をアップロードしたところ、設定を上書きでき、Web shellを獲得できた
 	- **反省**：ファイルアップロードが可能、かつ、ブラックリストで妨害される場合は、サーバ設定の上書きを検討すること
 
 4. Active Directory環境であるため、SharpHoundを内部で実行し、BloodHoundにインポートして列挙したところ、Kerberoastingが可能なユーザーを発見したので、認証情報を入手
 
 5. ユーザー名が`svc_mssql`であったこと、xampp配下にmysqlがあったため、MySQLやMSSQLでログインできないかどうかを試すも失敗し、ADMIN$への書き込み権限もないため横展開に詰まった
 
-6. [RunasCs](https://github.com/antonioCoco/RunasCs)を使ってリバースシェルを獲得して横移動成功（[💥Lateral Movement & Persistance in AD](../../Cheatsheet/🪟Windows/Active%20Directory/💥Lateral%20Movement%20&%20Persistance%20in%20AD.md#RunasCs)）
+6. [RunasCs](https://github.com/antonioCoco/RunasCs)を使ってリバースシェルを獲得して横移動成功（[💥Lateral Movement & Persistance in AD](../Cheatsheet/🪟Windows/Active%20Directory/💥Lateral%20Movement%20&%20Persistance%20in%20AD.md#RunasCs)）
 ```powershell
 Import-Module .\Invoke-RunasCs.ps1
 

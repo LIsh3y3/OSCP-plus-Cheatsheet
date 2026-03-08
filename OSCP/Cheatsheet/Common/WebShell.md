@@ -99,7 +99,7 @@ sudo nc -lvnp 4444
 # Webアプリのソースコードを取得する考え方と手法概要
 
 - 関連ノート：
-	- [Summary - Apex](../../Lab_Writeup/Proving_Grounds/Summary%20-%20Apex.md)
+	- [Summary - Apex](../../Proving_Grounds_WriteUp/Summary%20-%20Apex.md)
 
 ## 目的
 

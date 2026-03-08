@@ -1,4 +1,4 @@
-[25,465,587 - SMTP](../../Cheatsheet/Ports%20-%20Service/25,465,587%20-%20SMTP.md#Postfix%20Disclaimer%20Exploitation)を使用したエクスプロイト
+[25,465,587 - SMTP](../Cheatsheet/Ports%20-%20Service/25,465,587%20-%20SMTP.md#Postfix%20Disclaimer%20Exploitation)を使用したエクスプロイト
 
 1. Port Scanをしたところ、httpと各種メールサービスが有効であることを確認
 
@@ -31,6 +31,6 @@ first_name=Brian&last_name=Moore&email=brian.moore%postfish.off&username=brian.m
 
 6. 入手した認証情報でSSH接続
 
-7. ユーザーが`filter`グループに所属していること、`/etc/postfix/disclaimer`の所有グループが`filter`で書き込み可能であることから、[25,465,587 - SMTP](../../Cheatsheet/Ports%20-%20Service/25,465,587%20-%20SMTP.md#Postfix%20Disclaimer%20Exploitation)を使って`filter`に横展開
+7. ユーザーが`filter`グループに所属していること、`/etc/postfix/disclaimer`の所有グループが`filter`で書き込み可能であることから、[25,465,587 - SMTP](../Cheatsheet/Ports%20-%20Service/25,465,587%20-%20SMTP.md#Postfix%20Disclaimer%20Exploitation)を使って`filter`に横展開
 
 8. 横展開後のユーザーが`mail`をsudoで使えるので、GTFOBinsの手法に従い権限昇格

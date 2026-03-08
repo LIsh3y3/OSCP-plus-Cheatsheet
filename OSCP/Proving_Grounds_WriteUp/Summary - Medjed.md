@@ -17,6 +17,6 @@ cewl -e --email_file WebEnum/emails.txt -m 5 -w WebEnum/cewl.txt http://$TargetI
 
 6. リセットしたパスワードでWebアプリにログインしたところ、`#<Mysql2::Result:0x...`という記載があったため、シングルクォーテーションを入力したところ、SQLのエラーが表示→SQLi脆弱性あることが確実（そのほか、500エラーでも脆弱な可能性あり）
 
-7. [SQL Injection](../../Cheatsheet/Common/SQL%20Injection.md#★Webシェルの書き込み（MySQL）)でリバースシェルにつなげ、内部に侵入
+7. [SQL Injection](../Cheatsheet/Common/SQL%20Injection.md#★Webシェルの書き込み（MySQL）)でリバースシェルにつなげ、内部に侵入
 
 8. `C:\`ディレクトリを列挙し、README.txtからBarracudaDrive 6.5が動作していることがわかったので、[CVE-2020-23834](https://www.exploit-db.com/exploits/48789)（Service Binary Hijacking）を用いて権限昇格

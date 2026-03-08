@@ -7,10 +7,10 @@
 1. ポートスキャンでSMB、kerberos、ldap、httpなどがopenであることを確認
 
 2. httpサービスでユーザー名の一覧を入手
-	- 入手したユーザー名の有効性の確認としてkerbruteが有効[💥AD認証システムの攻撃](../../Cheatsheet/🪟Windows/Active%20Directory/💥AD認証システムの攻撃.md#(b)%20Kerbruteによるパスワードスプレー)
+	- 入手したユーザー名の有効性の確認としてkerbruteが有効[💥AD認証システムの攻撃](../Cheatsheet/🪟Windows/Active%20Directory/💥AD認証システムの攻撃.md#(b)%20Kerbruteによるパスワードスプレー)
 	- ASPNETCORE_ENVIRONMENTのErrorページが怪しく見えて時間を浪費
 	- Development Modeに切り替えればエラーの詳細情報が表示→Development Modeではないので、無意味
-![](../../画像ファイル/Pasted%20image%2020260208172319.png)
+![](../画像ファイル/Pasted%20image%2020260208172319.png)
 
 3. 季節と年号の簡易的なパスワード(summer2023など）でスプレーし、有効な認証情報を入手
 	- **反省**：詰まったときは、OSINTで見つけた情報からパスワードリストを作成し、スプレーする（今回は西暦の情報があった）
@@ -28,7 +28,7 @@ netexec ldap <LDAPserverIP> -u <username> -p '<pw>' --bloodhound --collection Al
 
 6. 入手したユーザーはGenericAllをもつユーザーであったため、Remote Management Usersグループに所属するユーザーのパスワードをリセット
 	- BloodHound の Cypher で "Shortest paths from Owned objects" としたら、次の攻撃につながりそうなパスを明示できる
-	- [💥AD Exploit](../../Cheatsheet/🪟Windows/Active%20Directory/💥AD%20Exploit.md#ForceChangePassword)
+	- [💥AD Exploit](../Cheatsheet/🪟Windows/Active%20Directory/💥AD%20Exploit.md#ForceChangePassword)
 
 7. リセットしたパスワードでwinRM接続し、`netstat`とすると、MSSQLが動作していることを確認
 	- **反省**：
@@ -36,7 +36,7 @@ netexec ldap <LDAPserverIP> -u <username> -p '<pw>' --bloodhound --collection Al
 		- `netstat -ano | Select-String 127.0.0.1`とし、MSSQL(1433)が動作していることに気づかず、時間を浪費したので、==FWで遮断されている可能性も考慮すること==
 
 8. Kerberoastをし、MSSQLユーザーのパスワードハッシュを入手できたので、リモートからSilver Ticketを発行
-	- [🥝Mimikatz](../../Tools/🥝Mimikatz.md#Silver%20Ticket)
+	- [🥝Mimikatz](../Tools/🥝Mimikatz.md#Silver%20Ticket)
 
 9. リモートからMSSQLで接続
 ```sh
@@ -44,6 +44,6 @@ impacket-mssqlclient -k nagoya.nagoya-industries.com
 ```
 
 10. xp_cmdshellでリバースシェルを獲得
-	- [1433 - MSSQL](../../Cheatsheet/Ports%20-%20Service/1433%20-%20MSSQL.md#対話セッション経由のコマンド実行（xp_cmdshell）)
+	- [1433 - MSSQL](../Cheatsheet/Ports%20-%20Service/1433%20-%20MSSQL.md#対話セッション経由のコマンド実行（xp_cmdshell）)
 
 11. MSSQLがSeImpersonatePrivilegeが有効であったため、SigmaPotatoで権限昇格

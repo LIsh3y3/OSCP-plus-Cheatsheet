@@ -29,8 +29,8 @@ python 49362.py 192.168.224.240 /proc/self/cmdline
 
 9. freeswitchのRCEを実行するために、現状のパスワードをcassandraの脆弱性を使って読み取ると、`ClueCon`ではないパスワードが使われていたため、[47799](https://www.exploit-db.com/exploits/47799)のパスワードを変更した上で実行し、シェルを獲得
 	- ポートを試行錯誤したが、80しか通らなかった
-	- **tips**：80以外のすべてのポートがFWで遮断されているときでも、`base64`を使えばファイルは転送できる（[ファイル操作、ユーティリティ](../../Cheatsheet/Common/ファイル操作、ユーティリティ.md#base64)）
-	- **反省**：最新のpspyを動作させたところ、GLIBC xxx not foundと表示され諦めたが、これはそのGLIBCを使っているバージョンを使えばいいだけのこと（[コンパイル・ビルド](../../Misc/コンパイル・ビルド.md#GLIBC_xxx%20not%20found)）
+	- **tips**：80以外のすべてのポートがFWで遮断されているときでも、`base64`を使えばファイルは転送できる（[ファイル操作、ユーティリティ](../Cheatsheet/Common/ファイル操作、ユーティリティ.md#base64)）
+	- **反省**：最新のpspyを動作させたところ、GLIBC xxx not foundと表示され諦めたが、これはそのGLIBCを使っているバージョンを使えばいいだけのこと（[コンパイル・ビルド](../Misc/コンパイル・ビルド.md#GLIBC_xxx%20not%20found)）
 
 10. freeswitchユーザーで列挙すると、cassieのid_rsaが`/home/cassie/id_rsa`にあることを確認したので、Cassandraの脆弱性で読み取り、cassieとしてアクセスするも、失敗した
 
