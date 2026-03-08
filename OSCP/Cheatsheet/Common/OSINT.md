@@ -22,7 +22,10 @@ whois <domain|IP>
 whois <domain|IP> -h <whois_server_IP>
 ```
 
-### 補足：dig←Active Recon
+### 補足：dig
+
+>[!Warning]
+>Active Reconに分類される
 
 ゾーン転送
 ```zsh
@@ -62,8 +65,8 @@ dig <domain> MX
 
 # Google hacking
 
-- [DorkSearch](https://dorksearch.com/): 用意済みのdorkingがある（※AIは廃止されている）
-- [GHDB](https://www.exploit-db.com/google-hacking-database)：💡"Quick Search"よりも"Category"でフィルタリングする方が、目的のDorkが見つかる
+- 🔗[DorkSearch](https://dorksearch.com/): 用意済みのdorkingがある（※AIは廃止されている）
+- 🔗[GHDB](https://www.exploit-db.com/google-hacking-database)："Quick Search"よりも"Category"でフィルタリングする方が、目的のDorkが見つかる
 
 ![](../../画像ファイル/Pasted%20image%2020250302124658.png)
 
@@ -73,18 +76,18 @@ dig <domain> MX
 
 | フィルタ名                          | 説明                                              | 例                                                     |
 | ------------------------------ | ----------------------------------------------- | ----------------------------------------------------- |
-| allintext                      | 指定した**すべて**のキーワードがページ本文に含まれているものを検索             | allintext:"keyword"                                   |
-| intext                         | 指定したキーワードが**すべて**または**どれか1つ**がページ本文に含まれているものを検索 | intext:"keyword"                                      |
+| allintext                      | 指定したすべてのキーワードがページ本文に含まれているものを検索             | allintext:"keyword"                                   |
+| intext                         | 指定したキーワードがすべてまたはどれか1つがページ本文に含まれているものを検索 | intext:"keyword"                                      |
 | inurl                          | URLに指定したキーワードが含まれているものを検索                       | inurl:"keyword"                                       |
-| allinurl                       | URLに指定した**すべて**のキーワードが含まれているものを検索               | allinurl:"hoge foo"                                   |
+| allinurl                       | URLに指定したすべてのキーワードが含まれているものを検索               | allinurl:"hoge foo"                                   |
 | intitle                        | タイトルに指定したキーワードが含まれているものを検索（すべて or どれか1つ）        | intitle:"keyword"                                     |
-| allintitle                     | タイトルに指定した**すべて**のキーワードが含まれているものを検索              | allintitle:"hoge foo"                                 |
+| allintitle                     | タイトルに指定したすべてのキーワードが含まれているものを検索              | allintitle:"hoge foo"                                 |
 | site                           | 指定したサイトに限定して検索し、そのサイト内のすべての結果を表示                | site:"[www.google.com](http://www.google.com)"        |
 | filetype                       | 指定したファイル形式のものを検索                                | filetype:"pdf"                                        |
 | link                           | 指定したキーワードがリンクとして貼られているページを検索                    | link:"keyword"                                        |
-| allinanchor / inanchor         | 他のページから貼られたリンクの**アンカーテキスト**に指定キーワードが含まれるものを検索   | inanchor:rat                                          |
+| allinanchor / inanchor         | 他のページから貼られたリンクのアンカーテキストに指定キーワードが含まれるものを検索   | inanchor:rat                                          |
 | allinpostauthor / inpostauthor | ブログ検索限定。指定した著者が書いたブログ記事を検索                      | allinpostauthor:"keyword"                             |
-| related                        | 指定したページと**似ているページ**を検索                          | related:www.google.com                                |
+| related                        | 指定したページと似ているページを検索                          | related:www.google.com                                |
 | before / after                 | 特定の日付範囲を検索                                      | `filetype:pdf & (before:2000-01-01 after:2001-01-01)` |
 
 ### 演算子
@@ -100,7 +103,7 @@ dig <domain> MX
 
 - 参考：[Google Dorking cheat sheet](https://gist.github.com/sundowndev/283efaddbcf896ab405488330d1bbc06)
 
-### Dorking実例
+## Dorking実例
 
 管理画面探し（Adminページ探し）
 
@@ -183,12 +186,10 @@ dig <domain> MX
 # Open-Source Code
 
 - 以下の公開場所がある
-	- [GitHub](https://github.com/)
-	- [GitHub Gist](https://gist.github.com/)：コードスニペットのシェア
-	- [GitLab](https://about.gitlab.com/)：DevSecOpsに特化
-	- [SourceForge](https://sourceforge.net/)（GitHubやGitLabの劣化版。もはや使われない）
-
-- [OSINT](#Google%20hacking)のオペレーターをサポートしていることがある
+	- 🔗[GitHub](https://github.com/)
+	- 🔗[GitHub Gist](https://gist.github.com/)：コードスニペットのシェア
+	- 🔗[GitLab](https://about.gitlab.com/)：DevSecOpsに特化
+	- 🔗[SourceForge](https://sourceforge.net/)（GitHubやGitLabの劣化版。もはや使われない）
 
 ## GitHub Search
 
@@ -218,7 +219,7 @@ githubの右上検索バーで使えるGoogle dorkingのようなもの。
 | *   | 任意の文字(0文字以上)    |                                                             |
 - 参考：[github code search syntax](https://docs.github.com/en/search-github/github-code-search/understanding-github-code-search-syntax)
 
-### 自動 w/[gitleaks](https://github.com/gitleaks/gitleaks)
+### 自動 w/🔗[gitleaks](https://github.com/gitleaks/gitleaks)
 
 - 大規模レポ向け
 - 手動での列挙後に実行すること
@@ -260,20 +261,20 @@ gitleaks detect -v
 
 ![](../../画像ファイル/Pasted%20image%2020250302145854.png)
 
-- （ただし、個人的にはBurp suiteを使用してレスポンスのServerやx-powered-byヘッダーの値を見るのが確実性高いと思う。）
+- ただし、個人的にはBurp Suiteを使用してレスポンスのServerやx-powered-byヘッダーの値を見るのが確実性高いと思う。
 
 ## Shodan
 
 ### 基本情報
 
-- NmapのOSINT版
-	- 接触なしで、ターゲットの**サービス情報や脆弱性を確認**可能
+- NmapのOSINT版のようなもので、ターゲットとの接触なしで、**サービス情報や脆弱性を確認**できる
 - 用途は、Activeな列挙に入る前に、どこから列挙していくか当たりをつけるために使う
 
 ### 使い方
 
 - ログインする
 - `hostname:<ターゲットドメイン>`を検索バーに入力する
+
 ![](../../画像ファイル/Pasted%20image%2020250302172845.png)
 
 - 結果をクリックしてレポートを見る
@@ -292,7 +293,7 @@ gitleaks detect -v
 
 - [Security Headers](https://securityheaders.com/)
 - ターゲットのヘッダー情報で欠けているものを列挙する
-- ヘッダーの欠落は、それ自体が脆弱性であるとは限らない。しかし、ウェブ開発者やサーバー管理者がサーバーのハードニングに精通していないことを示している可能性がある
+- ヘッダーの欠落は、それ自体が脆弱性であるとは限らない。しかし、Web開発者やサーバー管理者がサーバーのハードニングに精通していないことを示している可能性がある
 
 ![](../../画像ファイル/Pasted%20image%2020250302173940.png)
 
