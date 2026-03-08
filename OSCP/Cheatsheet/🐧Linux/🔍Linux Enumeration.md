@@ -372,11 +372,10 @@ crontab -l
 # No such file or directoryの場合はログファイルがsyslogでない、cron.logかも
 grep "CRON" /var/log/syslog
 ```
-- 💡`...(root) CMD...` となっていて、定期的に実行されているものが狙い目
-    - → `ls -la` の実行で、呼び出されているスクリプトのパーミッションを確認
 
 > [!TIP]
-> `...(root) CMD...` となっていて、定期的に実行されているものが狙い目。`ls -la` の実行で、呼び出されているスクリプトのパーミッションを確認
+> - `...(root) CMD...` となっていて、定期的に実行されているものが狙い目
+> 	- →`ls -la` の実行で、呼び出されているスクリプトのパーミッションを確認
 
 ## 得られる情報
 
@@ -462,7 +461,9 @@ $$fstabの結果例$$
 ```zsh
 mount
 ```
-- 💡[Normal Informations](../../Misc/Normal%20Informations.md#マウント仮想ファイルシステム)は着目の優先度は低い
+
+> [!TIP]
+> [マウント仮想ファイルシステム](../../Misc/Normal%20Informations.md#マウント仮想ファイルシステム)は着目の優先度は低い 
 
 ![](../../画像ファイル/Pasted%20image%2020250826124828.png)
 
@@ -595,8 +596,6 @@ ls -la ~/.ssh/
 - →秘密鍵があった場合：[💥Linux Privilege Escalation](💥Linux%20Privilege%20Escalation.md#Misc)
 
 中身に認証情報の記載があるファイルを探す ([EvilTree](https://github.com/t3l3machus/eviltree)）
-	🚨gzやzipファイル等の圧縮ファイルの中身は読み取れないことに留意する（機密情報が圧縮ファイルにある可能性）
-	⚠️これで探索するより、Googleで調べることを優先する
 ```zsh
 # 拡張子はターゲットシステムに応じて追記する（cnf等）
 grep -EiR "pass(word)?|pwd|credential" --include=\*.{txt,ini,cfg,conf,config,xml,ps1,git,yml,php} . 2>/dev/null  
@@ -614,6 +613,9 @@ python3 eviltree.py -r <dir> -i -v -k passw,db_,admin,account,user,token,pwd,key
 - `-i`：Interesiting only
 - `-v`：どのキーワードがマッチしたか表示
 - `-x ".{0,3}passw.{0,3}[=]{1}.{0,18}"`：`passw` を含み、その近くに `=` があり、右側に値っぽいものがあるのを抽出
+> [!WARNING]
+> - gzやzipファイル等の圧縮ファイルの中身は読み取れないことに留意する（機密情報が圧縮ファイルにある可能性）
+> - Googleで調べることを優先し、このコマンドは補助として使うこと
 
 認証情報の記載があるバイナリを探す
 ```zsh
