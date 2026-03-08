@@ -1,16 +1,16 @@
 - 関連ノート：
-	- [⚡️Path traversal](../../../BSCP/Server-side/Path%20traversal/⚡️Path%20traversal.md#SSH%20private%20key)
+	- [SSH private keyの抽出](../../../BSCP/Server-side/Path%20traversal/⚡️Path%20traversal.md#SSH%20private%20keyの抽出)
 	- [🐉THC-Hydra](../../Tools/🐉THC-Hydra.md)
 
 ---
 
 # ssh-audit
 
-[ssh-audit - GitHub](https://github.com/jtesta/ssh-audit)
+🔗[ssh-audit - GitHub](https://github.com/jtesta/ssh-audit)
 
 - ssh-auditとは
 	- SSH接続を分析するツールであり、バナー、OS/ソフトウェアの識別、圧縮検出、アルゴリズム情報、セキュリティ推奨事項に関する詳細情報を取得する
-	- 赤🟥：危険(脆弱)、黄色🟨：注意、緑🟩：安全
+	- 凡例：赤🟥：危険(脆弱)、黄色🟨：注意、緑🟩：安全
 ```zsh
 ssh-audit <TargetIP> > ssh_audit_result.txt
 ```
@@ -27,7 +27,7 @@ ssh-audit <TargetIP> > ssh_audit_result.txt
 
 - `(gen) banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.5`→OSのバージョンが推測できる
 	- OSでは標準のSSHバージョンが決まっている
-	- [Ubuntu - DistroWatch.com](https://distrowatch.com/table.php?distribution=ubuntu)などでsshのバージョンを検索すると、どのOSバージョンかがわかる
+	- 🔗[Ubuntu - DistroWatch.com](https://distrowatch.com/table.php?distribution=ubuntu)などでsshのバージョンを検索すると、どのOSバージョンかがわかる
 ![](../../画像ファイル/Pasted%20image%2020251227113634.png)
 - OpenSSH **4.x 系以前**であれば脆弱な可能性大
 - CVEを検索する
@@ -36,7 +36,7 @@ ssh-audit <TargetIP> > ssh_audit_result.txt
 
 # 基本情報
 
-- ==脆弱でないことが多い==のでエクスプロイトの優先度は低い（ソースはPEN-200のModule13: Locating Public Exploits）
+- **脆弱でないことが多いのでエクスプロイトの優先度は低い**（ソースはPEN-200のModule13: Locating Public Exploits）
 - ハイブリット方式の暗号化、もしくはパスワード方式で認証する
 - known_hosts (`/.ssh/known_hosts`)とは、SSHクライアント側に保存されるデータで、過去に接続したSSHサーバーのホストキー(公開鍵)を保存している
 
@@ -55,7 +55,7 @@ $$公開鍵認証フロー$$
 ## sshd.config
 
 - コメントアウトされている設定値は「無効」ではなく、OpenSSH のデフォルト値が適用される
-- そのため、コメントアウト＝安全／無効と誤解しないこと。
+- そのため、コメントアウト＝安全／無効と誤解しないこと
 
 | 設定値                    | 意味・確認ポイント                                |
 | ---------------------- | ---------------------------------------- |
@@ -86,7 +86,9 @@ xxxx
 -----END OPENSSH PRIVATE KEY-----
 
 ```
-🚨一番最後の行は`\n\r`（改行）
+
+>[!WARNING]
+>一番最後の行は`\n\r`（改行）は必須
 
 - Keyの権限は、ユーザー/オーナーだけがREAD可能と設定しないと使えない
 ```zsh
