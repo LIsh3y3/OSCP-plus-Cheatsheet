@@ -5,11 +5,12 @@
 - ユーザー、グループ、サーバー情報を収集・列挙する
 
 シチュエーション：
-- ターゲットはWindows
+- ターゲットはWindowsもしくはSamba利用のLinux
 - Port: 139（NetBIOS）または445（SMB）がopen
 
-留意点：
-	ツールごとに使用するプロトコルなどが変わるため、結果に差異が出る可能性がある（NetExecでは失敗したがsmbclientなら成功、など）
+
+> [!WARNING]
+> Contents
 
 ---
 ---
@@ -109,38 +110,38 @@ $$smbclientで接続後ls実施した画面$$
 
 基本スキャン
 ```zsh
-nmap -p 139,445 $TargetIP
+nmap -p 139,445 <target_IP>
 ```
 
 OS, コンピュータ名,  domain, workgroupを見当づける
 ```zsh
-nmap -v -p 139,445 --script "smb-os-discovery" $TargetIP
+nmap -v -p 139,445 --script "smb-os-discovery" <target_IP>
 ```
 
 脆弱性の列挙
 ```zsh
-nmap --script "smb-vuln*" -p 139,445 $TargetIP
+nmap --script "smb-vuln*" -p 139,445 <target_IP>
 ```
 
 ### NetExec
 
 SMB経由でOS, コンピュータ名,  domain, workgroupを見当つける
 ```zsh
-netexec smb $TargetIP
+netexec smb <target_IP>
 ```
 
 ### nbtscan
 
 NetBIOSの名前はホストの"役割"を詳細に語る
 ```zsh
-sudo nbtscan -r $TargetIP
+sudo nbtscan -r <target_IP>
 ```
 - 例：`__MSBROWSE__`があればマスタブラウザ（DC）だと分かる
 
 ### nc
 
 ```zsh
-nc -nv $TargetIP 445
+nc -nv <target_IP> 445
 ```
 
 ### 総合列挙
@@ -150,19 +151,19 @@ nc -nv $TargetIP 445
 smbmap
 ```zsh
 # 基本列挙（Null Session / ゲスト確認）
-smbmap -H $TargetIP
+smbmap -H <target_IP>
 ```
 
 enum4linux
 ```zsh
 # 基本列挙
-enum4linux $TargetIP
+enum4linux <target_IP>
 
 # 詳細列挙
-enum4linux -aMld $TargetIP | tee enum4linux.log
+enum4linux -aMld <target_IP> | tee enum4linux.log
 
 # Guestユーザーとして列挙
-enum4linux -u guest -aMld $TargetIP | tee enum4linux.log
+enum4linux -u guest -aMld <target_IP> | tee enum4linux.log
 ```
 
 #### 補足
@@ -178,80 +179,80 @@ enum4linux -u guest -aMld $TargetIP | tee enum4linux.log
 
 Nullセッション
 ```zsh
-netexec smb $TargetIP --shares
+netexec smb <target_IP> --shares
 ```
 
 Guestもしくはanonymous認証
 ```zsh
-netexec smb $TargetIP -u guest -p '' --shares
-netexec smb $TargetIP -u anonymous -p '' --shares
+netexec smb <target_IP> -u guest -p '' --shares
+netexec smb <target_IP> -u anonymous -p '' --shares
 ```
 
 認証あり
 ```zsh
-netexec smb $TargetIP -u <username> -p '<password>' --shares
+netexec smb <target_IP> -u <username> -p '<password>' --shares
 ```
 
 読み書き可能なSMB共有
 ```zsh
-netexec smb $TargetIP -u <username> -p '<password>' --shares --filter-shares READ WRITE
+netexec smb <target_IP> -u <username> -p '<password>' --shares --filter-shares READ WRITE
 ```
 
 ### smbmap
 
 Nullセッション
 ```zsh
-smbmap -H $TargetIP
+smbmap -H <target_IP>
 ```
 
 Guestもしくはanonymous認証
 ```zsh
-smbmap -u guest -p '' -H $TargetIP -r
-smbmap -u anonymous -p '' -H $TargetIP -r
+smbmap -u guest -p '' -H <target_IP> -r
+smbmap -u anonymous -p '' -H <target_IP> -r
 ```
 
 認証あり
 ```zsh
 # ドメインなし
-smbmap -u <username> -p "<password>" -H $TargetIP
+smbmap -u <username> -p "<password>" -H <target_IP>
 # ドメインあり
-smbmap -d <domain> -u <username> -p "<password>" -H $TargetIP
+smbmap -d <domain> -u <username> -p "<password>" -H <target_IP>
 ```
 
 PtH
 ```zsh
-smbmap -u <username> -p "<LM>:<NT>" -H $TargetIP
+smbmap -u <username> -p "<LM>:<NT>" -H <target_IP>
 ```
 
 再帰探索
 ```zsh
-smbmap -H $TargetIP -r <SHARENAME>
+smbmap -H <target_IP> -r <SHARENAME>
 ```
 
 よく使う追加オプション
 
 | コマンド                                               | 内容                  |
 | -------------------------------------------------- | ------------------- |
-| `smbmap -H $TargetIP -L`                           | ドライブ（ボリューム）の一覧を表示   |
-| `smbmap -H $TargetIP -d $DOMAIN -u $USER -p $PASS` | ドメイン指定でのログイン試行      |
-| `smbmap -H $TargetIP --download "path\to\file"`    | 指定したファイルを直接ダウンロード   |
-| `smbmap -H $TargetIP -x "whoami"`                  | OSコマンド実行（管理権限がある場合） |
+| `smbmap -H <target_IP> -L`                           | ドライブ（ボリューム）の一覧を表示   |
+| `smbmap -H <target_IP> -d $DOMAIN -u $USER -p $PASS` | ドメイン指定でのログイン試行      |
+| `smbmap -H <target_IP> --download "path\to\file"`    | 指定したファイルを直接ダウンロード   |
+| `smbmap -H <target_IP> -x "whoami"`                  | OSコマンド実行（管理権限がある場合） |
 
 ### smbclient
 
 Nullセッション
 ```zsh
-smbclient --no-pass -L //$TargetIP
+smbclient --no-pass -L //<target_IP>
 ```
 
 認証あり
 ```zsh
-smbclient -L //$TargetIP -W <domain> -U '<username>'
+smbclient -L //<target_IP> -W <domain> -U '<username>'
 ```
 
 PtH
 ```zsh
-smbclient //$TargetIP -U '<username>' --pw-nt-hash <NTHash>
+smbclient //<target_IP> -U '<username>' --pw-nt-hash <NTHash>
 ```
 
 ### Windowsマシン上から(LotL)
@@ -273,7 +274,7 @@ net view \\<TargetHost> /all
 
 Kerberos認証を使ったファイルの列挙
 ```zsh
-impacket-smbclient <domain>/<username>:<password>@<TargetIP/host> -k -no-pass
+impacket-smbclient <domain>/<username>:<password>@<target_IP/host> -k -no-pass
 ```
 
 ---
@@ -284,7 +285,7 @@ impacket-smbclient <domain>/<username>:<password>@<TargetIP/host> -k -no-pass
 
 ```zsh
 # 接続
-smbclient -W <domain> -U '<username>' \\\\<TargetIP>\\<share>
+smbclient -W <domain> -U '<username>' \\\\<target_IP>\\<share>
 # ファイル名のフィルターを解除（すべて対象に）
 smb:> mask ""
 # ディレクトリを再帰的に処理
@@ -302,7 +303,7 @@ smb:> mget *
 基本コマンド
 ```zsh
 mkdir <mount_dir>
-sudo mount -t cifs //<TargetIP>/<share_name> <mound_dir>/ -o username=<username>,password=<pw>
+sudo mount -t cifs //<target_IP>/<share_name> <mound_dir>/ -o username=<username>,password=<pw>
 cd <mount_dir>
 # マウント解除：sudo umount -l <mount_dir>
 ```
@@ -319,7 +320,7 @@ cd mount_point
 - すべてのデータを収集
 	- （出力はjsonファイルに保存されるが、ファイルがない場合は何も保存されずSMB shareの列挙に留まる）
 ```zsh
-netexec smb $TargetIP -u <username> -p '<password>' -M spider_plus
+netexec smb <target_IP> -u <username> -p '<password>' -M spider_plus
 ```
 
 ---
@@ -330,17 +331,17 @@ netexec smb $TargetIP -u <username> -p '<password>' -M spider_plus
 
 ユーザー一覧の取得
 ```zsh
-netexec smb $TargetIP -u <username> -p '<PW>' --users
+netexec smb <target_IP> -u <username> -p '<PW>' --users
 ```
 
 ユーザーのブルートフォース([用語](../../Misc/用語.md#RID%20(Relative%20Identifier)))
 ```zsh
-netexec smb $TargetIP -u guest -p '' --rid-brute
+netexec smb <target_IP> -u guest -p '' --rid-brute
 ```
 
 入手済み認証情報の有効性確認
 ```zsh
-netexec smb $TargetIP -u <username wordlist> -p <pw wordlist> --continue-on-success
+netexec smb <target_IP> -u <username wordlist> -p <pw wordlist> --continue-on-success
 ```
 
 ---
@@ -352,18 +353,18 @@ netexec smb $TargetIP -u <username wordlist> -p <pw wordlist> --continue-on-succ
 
 NSE
 ```zsh
-nmap --script smb-brute -p 445 $TargetIP
+nmap --script smb-brute -p 445 <target_IP>
 ```
 
 Hydra（[🐉THC-Hydra](../../Tools/🐉THC-Hydra.md)）
 ```zsh
-hydra -V -f -l <username> -P <wordlist> $TargetIP smb
+hydra -V -f -l <username> -P <wordlist> <target_IP> smb
 ```
 - SMBv1が無効なときは、`invalid reply`と表示されるので、NetExecで認証情報を検証する
 
 SMBリレー攻撃
 ```zsh
-netexec smb $TargetIP --gen-relay-list <output.txt>
+netexec smb <target_IP> --gen-relay-list <output.txt>
 ```
 - [Password Attack](../Common/Password%20Attack.md#Net-NTLMv2のリレーアタック)へ
 
@@ -372,7 +373,7 @@ netexec smb $TargetIP --gen-relay-list <output.txt>
 ※WRITE Permissionsが必要
 
 ```zsh
-smbclient //$TargetIP/<share> -U <username>%<password>
+smbclient //<target_IP>/<share> -U <username>%<password>
 smb: > put <local> <remote>
 ```
 
@@ -380,9 +381,9 @@ smb: > put <local> <remote>
 
 | 攻撃手法          | Tool                  | Command例                                          |
 | ------------- | --------------------- | ------------------------------------------------- |
-| Pass-the-Hash | NetExec               | `netexec smb $TargetIP -u <username> -H <NTLM>`   |
+| Pass-the-Hash | NetExec               | `netexec smb <target_IP> -u <username> -H <NTLM>`   |
 | SMB Relay     | Impacket (ntlmrelayx) | `impacket-ntlmrelayx -tf <targets.txt>`           |
-| 任意コマンド実行      | NetExec / Impacket    | `nxc smb $TargetIP -u <user> -p <pw> -x 'whoami'` |
+| 任意コマンド実行      | NetExec / Impacket    | `nxc smb <target_IP> -u <user> -p <pw> -x 'whoami'` |
 
 ---
 ---
@@ -416,7 +417,7 @@ client max protocol = SMB3
 対処例：
 - `-t`でタイムアウト時間を延ばす
 ```zsh
-smbcilent \\\\<TargetIP>\<share> -W <domain> -U '<username>' -t 60
+smbcilent \\\\<target_IP>\<share> -W <domain> -U '<username>' -t 60
 ```
 - →これでもTIMEOUTの場合は、フォルダ構成を理解し、直でファイルを指定する
 	- 具体的には、アプリケーションのバックアップフォルダがあり、ファイルがTIMEOUTで取得できない場合は、アプリケーションの公式ドキュメントを読み、passwordのあるファイルをダイレクトに指定して取得する
