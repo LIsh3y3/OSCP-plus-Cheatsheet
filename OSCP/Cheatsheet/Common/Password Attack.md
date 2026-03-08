@@ -290,8 +290,6 @@ python3 cupp.py -a
 	- [NTLM周りの用語](../../Misc/用語.md#NTLM周りの用語)
 	- [NTLM](../🪟Windows/Active%20Directory/ADの基本.md#NTLM)
 
----
-
 ## NTLM Hashのクラッキング
 
 1. [認証情報の抽出](../../Tools/🥝Mimikatz.md#認証情報の抽出) 

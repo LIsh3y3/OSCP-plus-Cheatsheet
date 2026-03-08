@@ -1,6 +1,6 @@
 # Port Scan
 
-以下、必要に応じて[Port Scan & Vuln Scan](#🧱FW回避用オプション)をつけること。
+以下、必要に応じて[FW回避用オプション](#FW回避用オプション)をつけること。
 
 quick scan
 ```zsh
