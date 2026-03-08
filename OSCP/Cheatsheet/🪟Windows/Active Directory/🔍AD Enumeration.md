@@ -7,7 +7,7 @@
 # ADの自動列挙 w/ ldapdomaindump
 
 - 🔗[ldapdomaindump](https://www.kali.org/tools/python-ldapdomaindump/)
-- 初期段階において非常に有用
+- 初期段階において有用だが、BloodHoundのほうが可読性が高い
 ```zsh
 # anonymous
 ldapdomaindump <target_IP> -n <DC_IP> -o <outputdir>
@@ -20,9 +20,9 @@ ldapdomaindump -u '<domain>\<username>' -p '<pw | LM:NTLMhash>' <target_IP> -n <
 
 # ADの自動列挙 w/BloodHound
 
-- 💡[ADの手動列挙](#ADの手動列挙)で確認できる内容とほぼ同じ内容を短時間かつ視覚的に確認でき、PEN-200モジュールでも、まずはBloodHoundを実行するよう推奨されている
-- 手動・自動の両方を駆使すること
-	- 例えば、`Find-LocalAdminAccess`でわかることが、BloodHoundではわからない
+- BloodHoundは、[ADの手動列挙](#ADの手動列挙)で確認できる内容とほぼ同じ内容を、短時間かつ視覚的に確認でき、PEN-200モジュールでも、まずはBloodHoundを実行するよう推奨されている
+- **手動・自動の両方で列挙すること**
+	- 例えば、手動列挙の`Find-LocalAdminAccess`でわかることが、BloodHoundではわからない
 
 - 使い方：[🐶Bloodhound](../../../Tools/🐶Bloodhound.md)
 
@@ -30,8 +30,10 @@ ldapdomaindump -u '<domain>\<username>' -p '<pw | LM:NTLMhash>' <target_IP> -n <
 
 # ADの手動列挙
 
-- 補足：`Get-ADUser`は[Remote Server Administration Tools](https://learn.microsoft.com/en-us/troubleshoot/windows-server/system-management-components/remote-server-administration-tools)の一部であり、DCにしかインストールされていないことが多いため、使えないことが多い
-- 🔗[PowerViewコマンドリファレンス - PowerSploit](https://powersploit.readthedocs.io/en/latest/Recon/)
+>[!NOTE]
+>`Get-ADUser`は🔗[RSAT](https://learn.microsoft.com/en-us/troubleshoot/windows-server/system-management-components/remote-server-administration-tools)の一部であり、DCにのみインストールされていることが多いため、基本的に使えないと考えた方がよい
+
+- 手動列挙の多くは、PowerViewを使った列挙となる（🔗[PowerViewコマンドリファレンス - PowerSploit](https://powersploit.readthedocs.io/en/latest/Recon/)）
 
 ## ユーザー・グループオブジェクトの列挙
 
@@ -39,11 +41,12 @@ ldapdomaindump -u '<domain>\<username>' -p '<pw | LM:NTLMhash>' <target_IP> -n <
 
 1. ユーザー/グループの属性(Attribute)を把握し、リスト化する
 2. 異質なユーザー/グループを探す
-	- デフォルトで存在するグループ：[Active Directory security groups - Microsoft](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-groups)
+	- デフォルトで存在するグループ：🔗[Active Directory security groups - Microsoft](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-groups)
 
 ### ビルトインコマンドによるユーザー・グループの列挙
 
-- ⚠️特定の属性（Attribute）を表示できないため、見逃しが発生する可能性あり
+>[!Warning]
+>特定の属性（Attribute）を表示できないため、見逃しが発生する可能性あり
 
 現在のユーザーが保持するチケットを確認する
 ```cmd
@@ -65,7 +68,7 @@ ADのドメインのグループをすべてEnum
 net group /domain
 ```
 - 見慣れないグループがあったら着目
-- デフォルトで存在するグループ：[Default AD security group - Microsoft](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-groups#default-active-directory-security-groups)
+- デフォルトで存在するグループ：🔗[Default AD security group - Microsoft](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-groups#default-active-directory-security-groups)
 
 一つのグループをさらに深掘りする
 ```cmd
@@ -92,7 +95,7 @@ net accounts /domain
 powershell -ep bypass
 Import-Module .\PowerView.ps1
 ```
-- Exception calling "FindAll" with "0" argument(s): "An operations error occurred.：権限不足
+- `Exception calling "FindAll" with "0" argument(s): "An operations error occurred.`：権限不足
 
 3. 列挙する
 ```powershell
@@ -103,7 +106,7 @@ Get-NetDomain
 Get-NetUser | select cn
 
 # 特定ユーザーの属性を表示
-Get-NetUser '<common name>'
+Get-NetUser '<common_name>'
 
 # パスワードの変更日と最終ログイン日を合わせて出力(※)
 Get-NetUser | select cn,pwdlastset,lastlogon
@@ -112,7 +115,7 @@ Get-NetUser | select cn,pwdlastset,lastlogon
 Get-NetGroup | select cn
 
 # 特定グループの属性を表示（member属性が存在しない場合はmemberがいない）
-Get-NetGroup '<common name>'
+Get-NetGroup '<common_name>'
 
 # Kerberosの事前認証が無効なユーザーを列挙→AS-REP Roasting
 Get-DomainUser -PreauthNotRequired
