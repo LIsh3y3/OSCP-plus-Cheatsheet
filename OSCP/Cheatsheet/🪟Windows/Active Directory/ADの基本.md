@@ -1,3 +1,5 @@
+画像引用元（credit）：🔗[Active Directory Basics - TryHackMe](https://tryhackme.com/room/winadbasics)
+
 # Active Directoryとは
 
 - Windowsドメインは、ネットワーク上の複数のコンピュータを一元管理する仕組み
