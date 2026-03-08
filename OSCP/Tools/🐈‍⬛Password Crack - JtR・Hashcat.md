@@ -35,7 +35,7 @@ john --list=formats | grep -iF <keyword>
 john --format=<format> --wordlist=<wordlist> <hash_file>
 ```
 
-- 補足：hashアルゴリズム指定なしでも、自動でハッシュタイプを識別してくれるが、不正確な結果につながる可能性があるため、[🐈‍⬛Password Crack - JtR・Hashcat](🐈‍⬛Password%20Crack%20-%20JtR・Hashcat.md#Hashの識別)を実施する方がよい
+- 補足：hashアルゴリズム指定なしでも、自動でハッシュタイプを識別してくれるが、不正確な結果につながる可能性があるため、[🐈‍⬛Password Crack - JtR・Hashcat](#Hashの識別)を実施する方がよい
 ```zsh
 john --wordlist=<wordlist> <hash_file>
 ```
@@ -59,7 +59,7 @@ john --single --format=<format> <file>
 
 ### カスタムルール
 
-- [🐈‍⬛Password Crack - JtR・Hashcat](🐈‍⬛Password%20Crack%20-%20JtR・Hashcat.md#Single%20Crack%20モード)では、word manglingといい、任意の値をパスワードとして"ありえそうな"値に変換していた
+- [🐈‍⬛Password Crack - JtR・Hashcat](#Single%20Crack%20モード)では、word manglingといい、任意の値をパスワードとして"ありえそうな"値に変換していた
 - カスタムルールを作成することで、ワードリストを任意の方式に変更することができる
 	- 例えば、ターゲットのパスワードポリシーなどにあわせて、先頭文字を大文字にする、記号を使う、などが考えられる。
 	- ==パスワードポリシーに沿ったワードリストは所要時間削減の効果大！==
@@ -116,7 +116,7 @@ john --list=rules
 ```
 - 標準作成のルールの中身は`john.conf`に記載
 
-参考：[🐈‍⬛Password Crack - JtR・Hashcat](🐈‍⬛Password%20Crack%20-%20JtR・Hashcat.md#補足：不要な文字行の削除(`sed`))
+参考：[🐈‍⬛Password Crack - JtR・Hashcat](#補足：不要な文字行の削除(`sed`))
 
 ---
 
@@ -164,7 +164,7 @@ kdbxファイル：*keepass2john*
 keepass2john <file.kdbx> > <output_file>
 ```
 - `Database.kdbx`をクラックするとmasterパスワードを入手できるので、 `keepass2` で`Database.kdbx`ファイルを開き、master パスワードで中身のパスワードを確認する
-![[Pasted image 20260220163242.png]]
+![](../画像ファイル/Pasted%20image%2020260220163242.png)
 $$keepass2でパスワードを確認$$
 
 #### 補足：/etc/shadowについて
@@ -193,7 +193,7 @@ john --show --format=<format> <hashファイル>
 
 ## 必要な情報
 
-1. 対象ハッシュのタイプ（例：MD5、SHA1、bcryptなど）: [🐈‍⬛Password Crack - JtR・Hashcat](🐈‍⬛Password%20Crack%20-%20JtR・Hashcat.md#Hashの識別)、[Hashcat example](https://hashcat.net/wiki/doku.php?id=example_hashes)
+1. 対象ハッシュのタイプ（例：MD5、SHA1、bcryptなど）: [🐈‍⬛Password Crack - JtR・Hashcat](#Hashの識別)、[Hashcat example](https://hashcat.net/wiki/doku.php?id=example_hashes)
 2. 使用するワードリスト（例：rockyou.txt）
 3. 使用する攻撃モード（例：辞書攻撃、ブルートフォースなど）
 
@@ -311,7 +311,7 @@ verysecure
 ```
 
 2. 使用可能なルール関数詳細は[Hashcat Wiki](https://hashcat.net/wiki/doku.php?id=rule_based_attack)を参照し、ルールを作成
-	- 必要に応じて改行：[🐈‍⬛Password Crack - JtR・Hashcat](🐈‍⬛Password%20Crack%20-%20JtR・Hashcat.md#ルールの改行の解釈について)
+	- 必要に応じて改行：[🐈‍⬛Password Crack - JtR・Hashcat](#ルールの改行の解釈について)
 ```
 c $1 $#
 ```
@@ -393,7 +393,7 @@ sed -i '/^[a-zA-Z0-9]*$/d' <wordlist>
 - Not enough allocatable device memory or free host memory for mapping.
 	- →メモリ不足のため、他のプロセスを一旦終了する
 - Token length exception
-	- →`-m`で指定したハッシュタイプが違う可能性があるため、[🐈‍⬛Password Crack - JtR・Hashcat](🐈‍⬛Password%20Crack%20-%20JtR・Hashcat.md#Hashの識別)を実施 
+	- →`-m`で指定したハッシュタイプが違う可能性があるため、[🐈‍⬛Password Crack - JtR・Hashcat](#Hashの識別)を実施 
 	- →HashcatがサポートしないHashアルゴリズムである可能性があるため、JtRを使用
 
 ---

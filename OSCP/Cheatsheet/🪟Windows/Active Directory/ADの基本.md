@@ -78,7 +78,7 @@
 - OUは階層化可能、ポリシー継承あり
 - デフォルトでBuiltin, Computersなどのコンテナが存在
 - OUには１ユーザーは１つだけ所属できる
-![[Pasted image 20230409150913.png]]
+![](../../../画像ファイル/Pasted%20image%2020230409150913.png)
 
 ## User管理
 
@@ -118,7 +118,7 @@
 3. 作成したポリシーを右クリックし、Editを開く
 4. User Configuration -> Administrative Templates -> Control Panel -> Prohibit Access をEnable
 5. 部門OUにリンク
-![[Pasted image 20230410135945.png]]
+![](../../../画像ファイル/Pasted%20image%2020230410135945.png)
 
 ---
 
@@ -150,7 +150,7 @@
 	- TGTは中身にSession Keyのコピーを保持しており、KDCは必要な時にTGTを復号してSession Keyを得ることができるので、KDC自体にSession keyを保持する必要はない(session keyはUserhashで暗号化)
 	- TGTは*krgtgt* hashという、サービスアカウントがTGTを発行するための鍵を内部に保持している = TGTはkrbtgtアカウントのパスワードハッシュを使用して暗号化されているため、ユーザーはTGTの内容を復号できない
 	- 💥krbtgtアカウントのパスワードが漏洩した場合、悪意のある攻撃者はWindowsドメイン内のすべてのアカウントにアクセスできる可能性がある→攻撃者に狙われやすい
-![[Pasted image 20230410155451.png]]
+![](../../../画像ファイル/Pasted%20image%2020230410155451.png)
 $$TGTのレスポンス$$
 
 3. *TGS-REQ*：TGTを使用してKDCにTGS（Ticket Granting Service）をリクエストするため、クライアントはUsernameとTimestampをセッションキーで暗号化して送信し、TGTと、SPNを添付する
@@ -160,14 +160,14 @@ $$TGTのレスポンス$$
 	- Service Ownerはサービスを所有するプリンシパル（クライアントではない）
 	- TGSは、サービス所有者がTGSを復号することでアクセスできるように、中身（暗号化されたコンテンツ）にSvc session keyのコピーをもつ
 		- Svc＝Serviceの略
-![[Pasted image 20230410161109.png]]
+![](../../../画像ファイル/Pasted%20image%2020230410161109.png)
 $$TGSのレスポンス$$
 
 5. *AP-REQ*：クライアントはSvc Session Keyで暗号化したUsernameとTimestamp、そしてService Owner Hashで暗号化されているTGSを、サービスが稼働しているSRV（サーバー）に送る
 	- SRVは自身の持つService Owner HashでTGSを復号し、Svc Session Keyを取り出す
 	- Svc Session Keyを使って、クライアントから送られてきた暗号化されたAuthenticator（UsernameとTimestamp）を復号する
 	- 復号した内容（UsernameとTimestamp）を検証する
-![[Pasted image 20230410162330.png]]
+![](../../../画像ファイル/Pasted%20image%2020230410162330.png)
 $$TGSでサービスの使用要求$$
 - 💥[[Attacking Kerberos#Golden/Silver Ticket Attacks w/ mimikatz]]にもあるように、Silver Ticket攻撃のステルス性が高いのは、TGSはKDCのTGSにより発行されるが、検証するのはKDCではなくSRVなので、偽造されたTGSがSRVに送られてもKDCのASで検証できないから。要はTGSは認証サーバに送られないから。
 
@@ -177,26 +177,26 @@ $$TGSでサービスの使用要求$$
 
 - KDC LT Key：krbtgtがTGTを暗号化し==PACに署名する==ためのもの
 - Client LT Key：
-	- [ADの基本](ADの基本.md#Kerberos認証ステップ)でUser Hashとあるもの
+	- [ADの基本](#Kerberos認証ステップ)でUser Hashとあるもの
 	- サーバーは、クライアントのClient LT Keyを使用して、そのハッシュ値を検証し、クライアントが正当なユーザーであることを確認する
 	- 暗号化されたタイムスタンプの検証や、セッションキーの暗号化に使用
 - *PAC(Privilege Attribute Certificate)*： 
 	- ユーザーの関連情報をすべて保持し、TGTとともにKDCに送信される
 	- PACはKDC LT Keyによって署名され、ユーザーの権限を検証するために使用される
 	- これにより、サービスが都度DCに問い合わせることなく、チケットの情報から必要な権限を持つかどうかを確認できる
-![[Pasted image 20230413150630.png]]
+![](../../../画像ファイル/Pasted%20image%2020230413150630.png)
 $$TGTのイメージ$$
 
 #### TGS
 
-- Service LT Key：[ADの基本](ADの基本.md#Kerberos認証ステップ)でservice owner hashとあるもので、サービスチケットを暗号化する
-![[Pasted image 20230413150522.png]]
+- Service LT Key：[ADの基本](#Kerberos認証ステップ)でservice owner hashとあるもので、サービスチケットを暗号化する
+![](../../../画像ファイル/Pasted%20image%2020230413150522.png)
 $$TGSのイメージ$$
 
 #### チケットの形式
 
 - 出力形式：`[<セッションID>]-x-x-<フラグ>-<ClientName>@<ServiceName>-<TargetName>.kirbi`
-![[Pasted image 20260106093049.png]]
+![](../../../画像ファイル/Pasted%20image%2020260106093049.png)
 $$ticket出力例$$
 
 | セッションID (LUID)  | 一般的な名称          | 特徴・用途                                              |
@@ -219,7 +219,7 @@ $$ticket出力例$$
 
 - NetNTLMも利用可能だが、高性能なGPUを使えば、パスワードハッシュのクラックにそこまで時間は掛からないため、非推奨とされている
 - しかし、現実にはKerberosに対応していないマシンなどもあり、停止することによる他システムへの影響などから大掛かりな準備が必要であるため、今もなおNTLM認証が有効な組織は多い
-![[Pasted image 20230410163456.png]]
+![](../../../画像ファイル/Pasted%20image%2020230410163456.png)
 $$NetNTLMの認証フロー$$
 
 ---
@@ -232,13 +232,13 @@ $$NetNTLMの認証フロー$$
 	- 例：<u>thm.local</u>, uk.<u>thm.local</u>, us.<u>thm.local</u>
 - 下図ではthm.localがルートドメイン
 - Enterprise Admins（ツリー全体の管理者）、Domain Admins（単一ドメインの管理者）という権限階層がある
-![[Pasted image 20230410164027.png]]
+![](../../../画像ファイル/Pasted%20image%2020230410164027.png)
 
 ## Forest
 
 - 異なる名前空間を持つ複数Treeを統合したもの
 - 自動で権限は共有されず、Trust関係が必要
-![[Pasted image 20230410164545.png]]
+![](../../../画像ファイル/Pasted%20image%2020230410164545.png)
 
 ## Trust
 
@@ -246,6 +246,6 @@ $$NetNTLMの認証フロー$$
 	- アクセス権限そのものを与えるわけではない
 - 単方向または双方向の設定が可能
 - Trust関係があっても自動で全リソースにアクセスできるわけではない
-![[Pasted image 20230410164755.png]]
+![](../../../画像ファイル/Pasted%20image%2020230410164755.png)
 
 ---

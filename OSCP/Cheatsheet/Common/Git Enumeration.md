@@ -20,7 +20,7 @@ git status
 git log
 ```
 - 凡例：🟥赤：リモートリポジトリ、🟩緑：ローカル
-![[Pasted image 20260102123346.png]]
+![](../../画像ファイル/Pasted%20image%2020260102123346.png)
 $$log出力例$$
 - 出力形式
 ```zsh
@@ -79,4 +79,4 @@ pipx install git-dumper
 git-dumper <url> <output_dir>
 ```
 
-3. [Git Enumeration](Git%20Enumeration.md#Local%20Git%20Enumeration)の手法で列挙
+3. [Git Enumeration](#Local%20Git%20Enumeration)の手法で列挙

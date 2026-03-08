@@ -70,13 +70,13 @@ Computer role:                                        WORKSTATION
 netexec <network_protocol(e.g.smb|rdp|winrm|ldap)> <TargetSubnet(192.168.xx.0/24)> -u <username> -p <pw> --continue-on-success
 ```
 - →"Pwn3d!"と表示されたらadmin権限をもつという意味だが、一般ユーザーの可能性もある
-![[Pasted image 20260105104135.png]]
+![](../../../画像ファイル/Pasted%20image%2020260105104135.png)
 $$Using Credentials- NetExec doc$$
 
 - ⚠"STATUS_LOGON_FAILURE"の意味:
     - ログインが失敗した
     - ユーザーが存在しなかった
-![[Pasted image 20251129101219.png]]
+![](../../../画像ファイル/Pasted%20image%2020251129101219.png)
 $$rdp,smb,winrmでログイン試行した結果、rdpでPwn3d!と表示されている（実際には一般ユーザ）$$
 
 ### (b) Kerbruteによるパスワードスプレー
@@ -213,7 +213,7 @@ impacket-GetNPUsers -dc-ip <DC_IP> -request -outputfile <outputfile> <domain>/ -
 ## Kerberoasting w/ Impacket
 
 - ✅リモートから実行可能
-- ❌Impacketだけではアカウントの種別がユーザーかそれ以外かがわからず、[💥AD認証システムの攻撃](💥AD認証システムの攻撃.md#Kerberoastingの仕組み)の「使用に適したシチュエーション」であるかどうかが判別つかない
+- ❌Impacketだけではアカウントの種別がユーザーかそれ以外かがわからず、[💥AD認証システムの攻撃](#Kerberoastingの仕組み)の「使用に適したシチュエーション」であるかどうかが判別つかない
 - ❌FWなどの影響で失敗することがある
 - →==可能な限りRubeusを使用==
 - 💡他攻撃手法：[389,636,3268 - LDAP](../../Ports%20-%20Service/389,636,3268%20-%20LDAP.md#💥Kerberoasting)

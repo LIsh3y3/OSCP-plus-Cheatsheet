@@ -20,7 +20,7 @@ ldapdomaindump -u '<domain>\<username>' -p '<pw | LM:NTLMhash>' <TargetIP> -n <D
 
 # ADの自動列挙 w/BloodHound
 
-- 💡[🔍AD Enumeration](🔍AD%20Enumeration.md#ADの手動列挙)で確認できる内容とほぼ同じ内容を短時間かつ視覚的に確認でき、PEN-200モジュールでも、まずはBloodHoundを実行するよう推奨されている
+- 💡[🔍AD Enumeration](#ADの手動列挙)で確認できる内容とほぼ同じ内容を短時間かつ視覚的に確認でき、PEN-200モジュールでも、まずはBloodHoundを実行するよう推奨されている
 - 手動・自動の両方を駆使すること
 	- 例えば、`Find-LocalAdminAccess`でわかることが、BloodHoundではわからない
 
@@ -126,7 +126,7 @@ Get-DomainUser -PreauthNotRequired
 AMSIなどの影響で<u>PowerViewが使えないとき</u>に使う
 
 1. 以下の関数を用意し、ファイルに保存する（ファイル名：`function.ps1`とする）
-	- [🔍AD Enumeration](🔍AD%20Enumeration.md#補足：powershell列挙関数の解説)
+	- [🔍AD Enumeration](#補足：powershell列挙関数の解説)
 ```powershell
 function LDAPSearch {
     param (
@@ -171,7 +171,7 @@ $user.properties
 $group = LDAPSearch -LDAPQuery "(&(objectCategory=group)(cn=<common name>))"
 $group.properties
 ```
-- (※1)　[🔍AD Enumeration](🔍AD%20Enumeration.md#補足：samAccountType一覧)
+- (※1)　[🔍AD Enumeration](#補足：samAccountType一覧)
 - (※2）ObjectCategory：オブジェクトの主要カテゴリ（グループ、ユーザー等）を表す
 - (※3)  例えば：`Development Department*`（ワイルドカード使用可）
 
@@ -306,7 +306,7 @@ Get-NetSession -ComputerName <dnshostname(Get-NetComputerの出力)>　-Verbose
 
 3. `Get-NetSession`がAccess is deniedエラーで失敗した場合は、PsLoggedOnを試す
 	（[🛠️Windows Sysintarnals](../../../Tools/🛠️Windows%20Sysintarnals.md#PsLoggedOn)）
-	（[🔍AD Enumeration](🔍AD%20Enumeration.md#補足：Get-NetSessionがうまくいかない理由)）
+	（[🔍AD Enumeration](#補足：Get-NetSessionがうまくいかない理由)）
 ```powershell
 .\PsLoggedon.exe \\<dnshostname>
 ```
@@ -386,7 +386,7 @@ Get-ObjectAcl -Identity "<objectのcommon name>" | ? {$_.ActiveDirectoryRights -
 - `SecurityIdentifier`：指定したオブジェクトに対して権限をもつプリンシパル
 	- 例でいうと、Management Departmentオブジェクトに対して権限をもつプリンシパル（Adminなど）
 - `ActiveDirectoryRights`：オブジェクトに対するプリンシパルの権限
-	- GPOで*GenericAll*が最強： [🔍AD Enumeration](🔍AD%20Enumeration.md#補足：攻撃者が着目する権限一覧)
+	- GPOで*GenericAll*が最強： [🔍AD Enumeration](#補足：攻撃者が着目する権限一覧)
 - 補足：`ObjectSID`：オブジェクト自身のSID(重要でない)
 
 2. SIDの名前解決（PowerView）

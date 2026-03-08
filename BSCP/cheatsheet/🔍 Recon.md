@@ -30,7 +30,7 @@
 ## Stage1: Access any user account
 
 
-- [🔍 Recon](🔍%20Recon.md#Content%20discovery)
+- [🔍 Recon](#Content%20discovery)
 - [🔍XSS](../Client-side/XSS/🔍XSS.md)
 - [🔍DOM-based Vuln](../Client-side/DOM-based%20vuln/🔍DOM-based%20Vuln.md)
 - [🔍Web cache poisoning](../Advanced/Web%20cache%20poisoning/🔍Web%20cache%20poisoning.md)

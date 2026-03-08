@@ -1,13 +1,13 @@
 ###### まとめ
 
-- [⚡️Authentication](⚡️Authentication.md#Username列挙から入る場合)
-	- [⚡️Authentication](⚡️Authentication.md#IPアドレスブロックバイパス)
-	- [⚡️Authentication](⚡️Authentication.md#アカウントロックの場合)
-	- [⚡️Authentication](⚡️Authentication.md#User%20rate制限バイパス)
-- [⚡️Authentication](⚡️Authentication.md#2FAの場合)
-- [⚡️Authentication](⚡️Authentication.md#Stay-logged-inから入る場合)
-- [⚡️Authentication](⚡️Authentication.md#Change%20passwordを悪用して被害者パスワードのbrute-force)
-- [⚡️Authentication](⚡️Authentication.md#brute-forceがリクエストごとのランダムな値で妨害される場合)
+- [⚡️Authentication](#Username列挙から入る場合)
+	- [⚡️Authentication](#IPアドレスブロックバイパス)
+	- [⚡️Authentication](#アカウントロックの場合)
+	- [⚡️Authentication](#User%20rate制限バイパス)
+- [⚡️Authentication](#2FAの場合)
+- [⚡️Authentication](#Stay-logged-inから入る場合)
+- [⚡️Authentication](#Change%20passwordを悪用して被害者パスワードのbrute-force)
+- [⚡️Authentication](#brute-forceがリクエストごとのランダムな値で妨害される場合)
 
 - 難：暗号化を利用した認証バイパス[2. -2 事例：Business logic vuln](../Business%20logic%20vuln/2.%20-2%20事例：Business%20logic%20vuln.md#暗号化オラクルの提供)
 

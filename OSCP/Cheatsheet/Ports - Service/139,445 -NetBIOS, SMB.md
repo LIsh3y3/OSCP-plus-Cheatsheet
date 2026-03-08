@@ -76,7 +76,7 @@
 | r   | Reparse point | シンボリックリンクやマウントポイント等                         |
 | T   | Temporary     | 一時ファイル                                      |
 
-![[Pasted image 20250525181048.png]]
+![](../../画像ファイル/Pasted%20image%2020250525181048.png)
 $$smbclientで接続後ls実施した画面$$
 
 ### NetExecの結果の読み方

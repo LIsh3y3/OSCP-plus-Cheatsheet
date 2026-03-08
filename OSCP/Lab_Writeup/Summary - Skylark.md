@@ -27,7 +27,7 @@ nmap -n -Pn -sU -p69 -sV --script tftp-enum $TargetIP
 
 # VM18
 
-1. FTPが動作している、かつ、ほかのポートでUmbracoが動作していたため、[Summary - Skylark](Summary%20-%20Skylark.md#VM14)で入手した認証情報でFTPログインしたところ、以下のような構成であった
+1. FTPが動作している、かつ、ほかのポートでUmbracoが動作していたため、[Summary - Skylark](#VM14)で入手した認証情報でFTPログインしたところ、以下のような構成であった
 ```sh
 ftp> ls
 229 Entering Extended Passive Mode (|||63862|)
@@ -89,7 +89,7 @@ Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Services\* |
 
 1. VM16でsquidが動作していた、かつ、VM16のWebサービスで172.16のインターフェースを持つことを示唆する出力があったため、FoxyProxyとproxychainsに登録のうえ、内部NW側のインターフェースにアクセスしたところ、sipXcomを発見
 
-2. [Summary - Skylark](Summary%20-%20Skylark.md#VM14)のTFTPDで発見したsipXcomの認証情報を使いログイン
+2. [Summary - Skylark](#VM14)のTFTPDで発見したsipXcomの認証情報を使いログイン
 
 3. [脆弱性リスト](../Misc/脆弱性リスト.md#SipXcom%20RCE・PE（CVE-2023-25355・CVE-2023-25356）)を使い、権限昇格
 
@@ -141,8 +141,8 @@ root
 
 # VM13
 
-1. [Summary - Skylark](Summary%20-%20Skylark.md#VM17)で入手した認証情報でWebサービスに接続し、`.rdp`ファイルをゲット
-- ちなみに、nginxでGobusterしても何も出力はされなかったが、[Summary - Skylark](Summary%20-%20Skylark.md#VM17)のPDFファイルに/RDWebというディレクトリがあることがわかった
+1. [Summary - Skylark](#VM17)で入手した認証情報でWebサービスに接続し、`.rdp`ファイルをゲット
+- ちなみに、nginxでGobusterしても何も出力はされなかったが、[Summary - Skylark](#VM17)のPDFファイルに/RDWebというディレクトリがあることがわかった
 ```sh
 PORT   STATE SERVICE REASON  VERSION
 80/tcp    open  http          Microsoft IIS httpd 10.0

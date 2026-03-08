@@ -65,12 +65,12 @@ gobuster dir -u http://<TargetIP>/<path> -x .<拡張子>
 #### エクスプロイト
 
 - ブラックリスト方式
-	- [⚡️File upload vuln](⚡️File%20upload%20vuln.md#ファイル拡張子の難読化によるバイパス)
+	- [⚡️File upload vuln](#ファイル拡張子の難読化によるバイパス)
 
 - ホワイトリスト方式
-	- [⚡️File upload vuln](⚡️File%20upload%20vuln.md#サーバ設定の上書きによるバイパス)
-	- [⚡️File upload vuln](⚡️File%20upload%20vuln.md#Exiftoolによるpolyglot作成によるコンテンツ検証の回避実践)
-	- [⚡️File upload vuln](⚡️File%20upload%20vuln.md#Content-Typeフィルタバイパス実践)
+	- [⚡️File upload vuln](#サーバ設定の上書きによるバイパス)
+	- [⚡️File upload vuln](#Exiftoolによるpolyglot作成によるコンテンツ検証の回避実践)
+	- [⚡️File upload vuln](#Content-Typeフィルタバイパス実践)
 
 ### Magic Number フィルタ
 
@@ -110,7 +110,7 @@ file exploit.php
 
 7. 上記のファイルをアップロードする
 
-もしくは、[⚡️File upload vuln](⚡️File%20upload%20vuln.md#Exiftoolによるpolyglot作成によるコンテンツ検証の回避実践)
+もしくは、[⚡️File upload vuln](#Exiftoolによるpolyglot作成によるコンテンツ検証の回避実践)
 
 ### MIME タイプフィルタ
 
@@ -121,7 +121,7 @@ file exploit.php
 
 #### エクスプロイト
 
-- [⚡️File upload vuln](⚡️File%20upload%20vuln.md#Content-Typeフィルタバイパス実践)
+- [⚡️File upload vuln](#Content-Typeフィルタバイパス実践)
 
 ### ファイルサイズフィルタ
 
@@ -169,7 +169,7 @@ GET /files/uploaded/path/exploit.php?cmd=[ShellCommand]
 
 ## 基本
 
-- 1段階目の防衛策は[⚡️File upload vuln](⚡️File%20upload%20vuln.md#Content-Type制限)
+- 1段階目の防衛策は[⚡️File upload vuln](#Content-Type制限)
 - 2段階目：Content-Type制限が突破されても、スクリプトを実行させないようにする
 - [1. File upload脆弱性の基本と対策](1.%20File%20upload脆弱性の基本と対策.md#事前知識：サーバは静的なファイルをどう処理するのか)の3にあるように、 executable + サーバがファイルを実行しない設定 → エラー or Plain text
 	- つまり、実行可能ファイルをアップロードできない場合にトライする。
@@ -374,7 +374,7 @@ http://<TargetIP>/<path>/shell.jpg?cmd=whoami
 - [HackTricks: Bypass file extensions check](https://book.hacktricks.xyz/pentesting-web/file-upload#bypass-file-extensions-checks)をファイル名ごと総当たり
 - うまくいったリクエストでファイル名を実際のファイル名に変更する
 - 用途：ファイルがブラックリストのとき
-	- 💡これでうまくいかないときは[⚡️File upload vuln](⚡️File%20upload%20vuln.md#悪意あるファイルへの不十分なブラックリスト)を試す
+	- 💡これでうまくいかないときは[⚡️File upload vuln](#悪意あるファイルへの不十分なブラックリスト)を試す
 
 ## ブラックリスト回避テクニック
 ### 汎用 (`a.xxx`)

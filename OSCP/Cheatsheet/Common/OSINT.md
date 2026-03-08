@@ -64,7 +64,7 @@ dig <domain> MX
 
 - [DorkSearch](https://dorksearch.com/): 用意済みのdorkingがある（※AIは廃止されている）
 - [GHDB](https://www.exploit-db.com/google-hacking-database)：💡"Quick Search"よりも"Category"でフィルタリングする方が、目的のDorkが見つかる
-![[Pasted image 20250302124658.png]]
+![](../../画像ファイル/Pasted%20image%2020250302124658.png)
 
 ## Dorking syntax
 
@@ -187,7 +187,7 @@ dig <domain> MX
 	- [GitLab](https://about.gitlab.com/)：DevSecOpsに特化
 	- [SourceForge](https://sourceforge.net/)（GitHubやGitLabの劣化版。もはや使われない）
 
-- [OSINT](OSINT.md#Google%20hacking)のオペレーターをサポートしていることがある
+- [OSINT](#Google%20hacking)のオペレーターをサポートしていることがある
 
 ## GitHub Search
 
@@ -256,7 +256,7 @@ gitleaks detect -v
 -  [Tools Netcraft](https://www.netcraft.com/tools/) にアクセスし、"Search DNS"を開く
 - ターゲットのhostnameを入力
 - Site Reportに構成技術が書いてある。
-![[Pasted image 20250302145854.png]]
+![](../../画像ファイル/Pasted%20image%2020250302145854.png)
 - （ただし、個人的にはBurp suiteを使用してレスポンスのServerやx-powered-byヘッダーの値を見るのが確実性高いと思う。）
 
 ## Shodan
@@ -271,11 +271,11 @@ gitleaks detect -v
 
 - ログインする
 - `hostname:<ターゲットドメイン>`を検索バーに入力する
-![[Pasted image 20250302172845.png]]
+![](../../画像ファイル/Pasted%20image%2020250302172845.png)
 
 - 結果をクリックしてレポートを見る
 - open portでさらに結果を絞ることができる
-![[Pasted image 20250302173035.png]]
+![](../../画像ファイル/Pasted%20image%2020250302173035.png)
 
 - その他、"Advanced Search"よりポート番号などを指定可能
 
@@ -289,7 +289,7 @@ gitleaks detect -v
 - ターゲットのヘッダー情報で欠けているものを列挙する
 - ヘッダーの欠落は、それ自体が脆弱性であるとは限らない。しかし、ウェブ開発者やサーバー管理者がサーバーのハードニングに精通していないことを示している可能性がある
 
-![[Pasted image 20250302173940.png]]
+![](../../画像ファイル/Pasted%20image%2020250302173940.png)
 
 ### Qualys SSL Labs
 

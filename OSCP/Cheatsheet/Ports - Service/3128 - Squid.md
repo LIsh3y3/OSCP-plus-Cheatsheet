@@ -34,7 +34,7 @@ curl --proxy http://<squid_IP>:3128 http://<TargetIP>
 
 FirefoxのFoxyProxy等でSquidのIPとポート3128を指定する。  
 認証が必要な場合はユーザー名・パスワードも設定する。
-![[Pasted image 20260220195415.png]]
+![](../../画像ファイル/Pasted%20image%2020260220195415.png)
 $$FoxyProxy設定例$$
 
 ---
@@ -132,7 +132,7 @@ wpscan --url http://<TargetIP>/wordpress --wp-content-dir wp-content --proxy htt
 ## プロキシ経由での隠れたポートへのアクセス
 
 Squidプロキシが動いているターゲットでは、直接アクセスできない内部ポートが存在することがある。  
-[3128 - Squid](3128%20-%20Squid.md#SPOSE%20Scanner) などでスキャンして開いているポートを特定し、ブラウザのプロキシ設定経由でアクセスする。
+[3128 - Squid](#SPOSE%20Scanner) などでスキャンして開いているポートを特定し、ブラウザのプロキシ設定経由でアクセスする。
 
 典型的な攻撃フロー：
 

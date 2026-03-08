@@ -8,8 +8,8 @@
 - ルールベースでトラフィックを監視するための技術で、侵害を示すパターンを指定しておく
 - これにより、外向けのSSHトラフィックを遮断され、[Port Redirection & SSH Port Forwarding](Port%20Redirection%20&%20SSH%20Port%20Forwarding.md)が失敗することがある
 - Deep Packet Inspectionを回避するために...
-	- HTTP通信が許可されているとき：[Tunneling Through Deep Packet Inspection](Tunneling%20Through%20Deep%20Packet%20Inspection.md#HTTP%20Tunneling)
-	- DNS通信が許可されているとき：[Tunneling Through Deep Packet Inspection](Tunneling%20Through%20Deep%20Packet%20Inspection.md#DNS%20Tunneling)
+	- HTTP通信が許可されているとき：[Tunneling Through Deep Packet Inspection](#HTTP%20Tunneling)
+	- DNS通信が許可されているとき：[Tunneling Through Deep Packet Inspection](#DNS%20Tunneling)
 
 ---
 ---
@@ -21,7 +21,7 @@
 - 下図のように、HTTPのインバウンド通信のみが許可されている状況では、SSH通信によるポートフォワーディングも、リバースシェルの確立もできない
 - HTTPでトンネリングすることで、ローカルNW上にアクセスすることが可能になる
 	- SSH通信をHTTPでカプセル化するなど
-![[Pasted image 20250926065949.png]]
+![](../../../画像ファイル/Pasted%20image%2020250926065949.png)
 $$FWとINSPECTORによりマシンが保護されているイメージ図(PEN-200)$$
 
 ---
@@ -34,7 +34,7 @@ $$FWとINSPECTORによりマシンが保護されているイメージ図(PEN-20
 - ⚠️OS依存はないが、ChiselのバージョンとOSのアーキテクチャで不一致が起きた場合は実行失敗する
 - ChiselサーバーはSOCKSポート経由で送信される<u>すべてのデータをHTTP通信としてカプセル化</u>するので、HTTPトンネルの中にSSHパケットを通すことが可能
 - Chiselクライアントはデ・カプセル化し、宛先に転送する
-![[Pasted image 20250926071427.png]]
+![](../../../画像ファイル/Pasted%20image%2020250926071427.png)
 $$ChiselによるローカルNWへのアクセスイメージ図(PEN-200)$$
 
 ### ChiselによるHTTP Tunneling(リモートポートフォワーディング)
@@ -137,7 +137,7 @@ nslookup -type=txt [domain]
 Non-authoritative answer:
 [domain]      text = "[string]"
 ```
-![[Pasted image 20250927150533.png]]
+![](../../../画像ファイル/Pasted%20image%2020250927150533.png)
 $$DNSリゾルバを介してデータが漏洩・侵入するイメージ(PEN-200)$$
 
 ---
@@ -240,7 +240,7 @@ session <Session ID>
 ifconfig
 ```
 
-![[Pasted image 20251119071530.png]]
+![](../../../画像ファイル/Pasted%20image%2020251119071530.png)
 $$ローカルNW側インターフェースが表示されている$$
 
 6. 攻撃者のマシンで<u>新たなターミナルを開き</u>、攻撃者のマシンからローカルNWへの通信が、Ligolo-ngが作成したTUNインターフェース（`ligolo`）を経由するようにルーティングを設定
@@ -289,11 +289,11 @@ ip a show
 
 ### 用途
 
-- 攻撃者 → Agent(足場) → ローカルNW内の他のマシン：[Tunneling Through Deep Packet Inspection](Tunneling%20Through%20Deep%20Packet%20Inspection.md#Tunneling%20w/%20Ligolo-ng)
-- ☑️ローカルNW内の他のマシン→攻撃者マシン：[Tunneling Through Deep Packet Inspection](Tunneling%20Through%20Deep%20Packet%20Inspection.md#Listener)
+- 攻撃者 → Agent(足場) → ローカルNW内の他のマシン：[Tunneling Through Deep Packet Inspection](#Tunneling%20w/%20Ligolo-ng)
+- ☑️ローカルNW内の他のマシン→攻撃者マシン：[Tunneling Through Deep Packet Inspection](#Listener)
 - <u>ツール転送やSMB接続、リバースシェル等の用途</u>で使う
 	- 例えばローカルNW内のマシンにMimikatzを送りたいとき等
-	- ⚠️以下、[Tunneling Through Deep Packet Inspection](Tunneling%20Through%20Deep%20Packet%20Inspection.md#Tunneling%20w/%20Ligolo-ng)のステップ７で`start`としてから実行するものとする
+	- ⚠️以下、[Tunneling Through Deep Packet Inspection](#Tunneling%20w/%20Ligolo-ng)のステップ７で`start`としてから実行するものとする
 
 ### Listenerセットアップ方法
 
@@ -320,7 +320,7 @@ listener_add --addr 0.0.0.0:<AgentListenPort(任意)> --to 127.0.0.1:<AttackerLi
 
 listener_list
 ```
-![[Pasted image 20251120124523.png]]
+![](../../../画像ファイル/Pasted%20image%2020251120124523.png)
 $$Agentが1234portでリッスンし、通信を攻撃者のマシンの4321ポートにリダイレクト$$
 
 2. 攻撃者のマシン(Proxy)上で新たなターミナルを開き、ncリスナーを立てる

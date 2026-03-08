@@ -26,10 +26,10 @@
 ---
 ###### まとめ
 
-- [CL.0 request smuggling](CL.0%20request%20smuggling.md#CL.0脆弱性のprobe)
-- [CL.0 request smuggling](CL.0%20request%20smuggling.md#CL.0の挙動を引き出す)
-- [CL.0 request smuggling](CL.0%20request%20smuggling.md#CL.0のエクスプロイト)
-- [CL.0 request smuggling](CL.0%20request%20smuggling.md#H2.0脆弱性)
+- [CL.0 request smuggling](#CL.0脆弱性のprobe)
+- [CL.0 request smuggling](#CL.0の挙動を引き出す)
+- [CL.0 request smuggling](#CL.0のエクスプロイト)
+- [CL.0 request smuggling](#H2.0脆弱性)
 
 ---
 ## CL.0脆弱性のprobe
@@ -88,7 +88,7 @@ Host: [ターゲットのホスト名]
 ### 方法①：ヘッダでエラーを起こす
 
 1. 1つのタブに存在しないサーバエラーを引き起こすためのヘッダを指定したリクエストを作成
-	- [CL.0 request smuggling](CL.0%20request%20smuggling.md#CL.0%20probeステップ)のステップ1と同じ設定変更は忘れずに
+	- [CL.0 request smuggling](#CL.0%20probeステップ)のステップ1と同じ設定変更は忘れずに
 ```http
 POST /[脆弱なエンドポイント候補] HTTP/1.1
 Host: [ターゲットのホスト名]
@@ -106,7 +106,7 @@ hogehoge
 ### 方法②GET × Content-Lengthの難読化
 
 1. 1つのタブに難読化したCLとbody部を含むGETリクエストを作成する
-	- [CL.0 request smuggling](CL.0%20request%20smuggling.md#CL.0%20probeステップ)のステップ1と同じ設定変更は忘れずに
+	- [CL.0 request smuggling](#CL.0%20probeステップ)のステップ1と同じ設定変更は忘れずに
 ```http
 GET /[脆弱なエンドポイント候補] HTTP/1.1
 Host: [ターゲットのホスト名]

@@ -1,8 +1,8 @@
 
-- [⚡️GraphQL API vuln](⚡️GraphQL%20API%20vuln.md#Passwordの抽出)
-- [⚡️GraphQL API vuln](⚡️GraphQL%20API%20vuln.md#ミューテーションの実行)
-- [⚡️GraphQL API vuln](⚡️GraphQL%20API%20vuln.md#brute-force防御バイパス)
-- [⚡️GraphQL API vuln](⚡️GraphQL%20API%20vuln.md#&%20CSRF)
+- [⚡️GraphQL API vuln](#Passwordの抽出)
+- [⚡️GraphQL API vuln](#ミューテーションの実行)
+- [⚡️GraphQL API vuln](#brute-force防御バイパス)
+- [⚡️GraphQL API vuln](#&%20CSRF)
 
 ---
 ### Passwordの抽出

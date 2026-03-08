@@ -34,8 +34,8 @@ JSON ver.(`\u0000`はNull byte)
 ```
 	↓
 - Internal server errorや異なるエラーメッセージなどの通常のレスポンスと違うものが返るか？
-	- YES -> Syntax injectionに脆弱な可能性あり:[🔍NoSQLi](🔍NoSQLi.md#Boolean注入可能か？)へ進む
-	- No-> [🔍NoSQLi](🔍NoSQLi.md#Operator%20injection)へ進む
+	- YES -> Syntax injectionに脆弱な可能性あり:[🔍NoSQLi](#Boolean注入可能か？)へ進む
+	- No-> [🔍NoSQLi](#Operator%20injection)へ進む
 
 #### Boolean注入可能か？
 

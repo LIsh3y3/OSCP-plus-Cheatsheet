@@ -58,7 +58,7 @@ docker compose up -d
 ```url
 http://127.0.0.1:8080/ui
 ```
-- デフォルトは8080ポートだが、自分はBurp Suiteとの競合を避けるため、[🐶Bloodhound](🐶Bloodhound.md#おまけ：起動ポート8080の変更)で9999へ変更した
+- デフォルトは8080ポートだが、自分はBurp Suiteとの競合を避けるため、[🐶Bloodhound](#おまけ：起動ポート8080の変更)で9999へ変更した
 - "email"はデフォルトではadminで、パスワードは任意（英数字記号混在）
 
 4. BCEのコンテナ停止
@@ -76,7 +76,7 @@ Legacyでは、BloodHoundとSharpHoundの互換性に気をつける必要があ
 1. BloodHoundを起動し、Download Collectorsからデータ収集ツールをダウンロードする
 	- Active Directoryに対しデータ収集：SharpHound
 	- Entra IDに対しデータ収集：AzureHound
-![[Pasted image 20251006071117.png]]
+![](../画像ファイル/Pasted%20image%2020251006071117.png)
 $$Download　Collectorsのページ$$
 
 2. zipファイルを解凍する（自分は`/opt/bloodhound`配下に解凍）
@@ -118,14 +118,14 @@ Invoke-BloodHound -CollectionMethod All -OutputDirectory \\<attacker_IP>\share -
 ```
 
 > [!INFO]
-> - WinRM接続など、インタラクティブなシェルが使えない場合は [🐶Bloodhound](🐶Bloodhound.md#SharpHoundの実行エラーとその対策)を参照 
+> - WinRM接続など、インタラクティブなシェルが使えない場合は [🐶Bloodhound](#SharpHoundの実行エラーとその対策)を参照 
 > - Tunneling環境では手間だがSharpHoundを転送、結果ファイルを転送させる
 > 	- `net use`ではポート指定ができないため、Ligolo-ngのListenerで445以外を指定してもSMB接続ができないし、また、Agentが445を使っているとき、Listnerを445に立てて、ということができない
 > - csvファイルは使えない（BCEのバージョンが1.xxなら使えるが、古い）
 > - ローカルGPOは収集できない
 
 3. 攻撃者のマシンに戻り、BloodHoundのAdministration > File IngestでUpload Fileを実行し、SharpHoundの実行結果であるzipファイルをアップロードする
-![[Pasted image 20251006074057.png]]
+![](../画像ファイル/Pasted%20image%2020251006074057.png)
 $$File　IngestのStatusがCompleteになれば分析準備OK$$
 - 取り込んだデータの削除は、Administration > Database Managementから可能
 
@@ -148,16 +148,16 @@ $$File　IngestのStatusがCompleteになれば分析準備OK$$
 | Execution Privileges    | あるオブジェクトに対するリモートコマンド実行権限            |
 | Inbound Object Control  | 他のオブジェクトがこのオブジェクトに対してどのような権限を持っているか |
 | Outbound Object Control | このオブジェクトが他のオブジェクトに対してどのような権限を持っているか |
-![[Pasted image 20251007072812.png]]
+![](../画像ファイル/Pasted%20image%2020251007072812.png)
 $$エンティティパネル$$
 
 - ノードを右クリックすると、Add to Owned（侵害済みリストに追加）などが可能
 	- 💀：Ownedリストに追加されたノードを意味する
 	- アタックベクターを可視化するため、侵害したユーザーは==必ずAdd to Ownedする==こと
-![[Pasted image 20251007071811.png | 200]]
+![ 200](../画像ファイル/Pasted%20image%2020251007071811.png)
 
 - 💎："HIGH VALUE"を意味し、特に重要なオブジェクトや侵害できると大きなメリットがあるオブジェクトを指す
-![[Pasted image 20251007064333.png]]
+![](../画像ファイル/Pasted%20image%2020251007064333.png)
 $$ノードのアイコンの意味$$
 
 ## edgeについて
@@ -171,7 +171,7 @@ $$ノードのアイコンの意味$$
 		- 詳細は公式ドキュメントでEdgeの名前を検索
 		- ⚠️古いエクスプロイトの場合もあるので、エクスプロイト技法については公式ドキュメントを読む
 	- Opsec Considerations：レッドチームメンバーが検知回避で考慮すべき点など
-![[Pasted image 20251007064618.png]]
+![](../画像ファイル/Pasted%20image%2020251007064618.png)
 $$edgeのプロパティを表示$$
 - その他の情報は、公式ドキュメントの「[Resources](https://bloodhound.specterops.io/resources/overview)」を閲覧
 
@@ -181,8 +181,8 @@ $$edgeのプロパティを表示$$
 
 - 検索機能
 - ノードについてのラベルをつけると、そのラベルに該当するオブジェクトに絞ることができる
-	- [🐶Bloodhound](🐶Bloodhound.md#nodeについて)
-![[Pasted image 20251007065722.png]]
+	- [🐶Bloodhound](#nodeについて)
+![](../画像ファイル/Pasted%20image%2020251007065722.png)
 $$groupラベルでadminとつくグループのみを検索している$$
 
 ### PATHFINDING
@@ -202,7 +202,7 @@ $$groupラベルでadminとつくグループのみを検索している$$
 > - AS-REP Roastable users (DontReqPreAuth)
 > - All Kerberoastable users
 
-![[Pasted image 20251006124753.png]]
+![](../画像ファイル/Pasted%20image%2020251006124753.png)
 $$定義済みクエリですべてのドメインadminを列挙しているイメージ$$
 
 ---

@@ -99,10 +99,10 @@ PrimaryとImpersonationの違い：
 - 不正な、あるいは意図しないPrivEscを防ぐ目的
 - ==Access token + MIC + UACでセキュリティを担保==
 - アプリケーション・タスクを起動するユーザーがAdminであっても、Standard userの権限で実行する
-- 仕組みとして、LSASSはユーザーがログオン時に２つの[PrivEsc前提知識：Windowsの特権とAccess Controlの仕組み](PrivEsc前提知識：Windowsの特権とAccess%20Controlの仕組み.md#Access%20token)を発行する
+- 仕組みとして、LSASSはユーザーがログオン時に２つの[PrivEsc前提知識：Windowsの特権とAccess Controlの仕組み](#Access%20token)を発行する
     - Adminトークン：必要なときのみ使われる
     - Standard userトークン：通常の操作
 - Administratorであっても、まずはStandard userトークン + Medium Integrityでプロセスを実行する
     
-- UACプロンプトを通じてはじめてAdminトークン + High Integrityで実行される ![[Pasted image 20250722124456.png | 300]] $$UACプロンプト$$
+- UACプロンプトを通じてはじめてAdminトークン + High Integrityで実行される ![ 300](../../../画像ファイル/Pasted%20image%2020250722124456.png) $$UACプロンプト$$
 - 詳細：🔗[User Account Control overview - Microsoft](https://learn.microsoft.com/en-us/windows/security/application-security/application-control/user-account-control/)

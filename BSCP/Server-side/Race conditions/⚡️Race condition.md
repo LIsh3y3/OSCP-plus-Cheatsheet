@@ -1,14 +1,14 @@
 #### 注目ポイント
 
 - `/login`リクエスト：
-	- ログインリクエストを何度か試行すると"You have made too many incorrect login attempts. Please try again in 時間"と表示される -> [⚡️Race condition](⚡️Race%20condition.md#Brute-forceのrate%20limitをバイパスする)
+	- ログインリクエストを何度か試行すると"You have made too many incorrect login attempts. Please try again in 時間"と表示される -> [⚡️Race condition](#Brute-forceのrate%20limitをバイパスする)
 
 - emailアドレスでアクセス制限している&update email機能:
-	- Please click the link in your email to confirm the change of e-mail to:`carlos@ginandjuice.shop` ->[⚡️Race condition](⚡️Race%20condition.md#攻撃者のアカウントと高権限ユーザのemailをリンクさせることによるPrivEsc)
+	- Please click the link in your email to confirm the change of e-mail to:`carlos@ginandjuice.shop` ->[⚡️Race condition](#攻撃者のアカウントと高権限ユーザのemailをリンクさせることによるPrivEsc)
 
 - Forgot password? (Please enter your *username* or email) or ユーザ登録.  `Cookie: phpsessionid=~` &トークンがtimestamp
 
-- リクエストが複数のエンドポイントに一気に送られる->[⚡️Race condition](⚡️Race%20condition.md#Multi-endpoint)
+- リクエストが複数のエンドポイントに一気に送られる->[⚡️Race condition](#Multi-endpoint)
 
 ---
 ## Stage1

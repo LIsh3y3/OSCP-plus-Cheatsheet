@@ -37,13 +37,13 @@
 ###### Java
 
 - Java Deserialization sccanerを使用(ライブラリの番号の信頼性は低い)
-- ソースコードを閲覧 -> [🔍 Insecure deserialization](🔍%20Insecure%20deserialization.md#ソースコードや設定ファイルの検査)
+- ソースコードを閲覧 -> [🔍 Insecure deserialization](#ソースコードや設定ファイルの検査)
 
 ###### PHP &  Rubyなどその他言語
 
 - シリアライズドオブジェクトを適当な値(`aaa`等)に変更し、Internal Server errorを引き起こすことで、レスポンスにどのフレームワークを使用しているかが表示される
 	or
-- ソースコードを閲覧 -> [🔍 Insecure deserialization](🔍%20Insecure%20deserialization.md#ソースコードや設定ファイルの検査)
+- ソースコードを閲覧 -> [🔍 Insecure deserialization](#ソースコードや設定ファイルの検査)
 
 ---
 #### ソースコードや設定ファイルの検査

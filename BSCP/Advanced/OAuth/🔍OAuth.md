@@ -9,7 +9,7 @@
 ---
 ## Detect
 
-- [🔍OAuth](🔍OAuth.md#注目ポイント)があればOAuth使用している
+- [🔍OAuth](#注目ポイント)があればOAuth使用している
 
 ### OIDC
 

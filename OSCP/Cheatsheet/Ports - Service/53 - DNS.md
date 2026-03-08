@@ -15,7 +15,7 @@
 | host     | Linux   | Linuxデフォルト<br>シンプル・初心者向け | `host -t [record type] <domain>`        |
 | nslookup | Windows | Windowsデフォルト(LOLBIN)     | `nslookup -type=[record type] <domain>` |
 | dig      | Linux   | 高機能・詳細な情報取得向け            | `dig ANY <domain>`<br>（ANY =  一括取得）     |
-（record type : [53 - DNS](53%20-%20DNS.md#DNS%20record)）
+（record type : [53 - DNS](#DNS%20record)）
 
 ---
 

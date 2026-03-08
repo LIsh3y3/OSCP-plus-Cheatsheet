@@ -12,7 +12,7 @@
 
 #### 基本
 
-- [🔍XXEi](🔍XXEi.md#注目ポイント)の(POST)リクエスト==全体==をActive Scanする : 4分ほどかかる
+- [🔍XXEi](#注目ポイント)の(POST)リクエスト==全体==をActive Scanする : 4分ほどかかる
 	- XMLのbodyがあるなら、bodyだけscan selected insertion pointするのが早い
 
 - ⚠️：プレーンテキストでも、Content Type ConverterでXMLへ変換しリクエストするとXXEi脆弱性を検出できるかも？

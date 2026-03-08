@@ -1,6 +1,6 @@
 # Port Scan
 
-以下、必要に応じて[Port Scan & Vuln Scan](Port%20Scan%20&%20Vuln%20Scan.md#🧱FW回避用オプション)をつけること。
+以下、必要に応じて[Port Scan & Vuln Scan](#🧱FW回避用オプション)をつけること。
 
 quick scan
 ```zsh
@@ -61,7 +61,7 @@ sudo chown -R <attacker_username>:<attacker_username> results
 
 - [NSEドキュメント](https://nmap.org/nsedoc/)
 
-カテゴリに属するNSEすべてを実行（[Port Scan & Vuln Scan](Port%20Scan%20&%20Vuln%20Scan.md#NSEのカテゴリ一覧表)）
+カテゴリに属するNSEすべてを実行（[Port Scan & Vuln Scan](#NSEのカテゴリ一覧表)）
 	⚠️トラフィックと情報量が膨大なのであまり実行すべきでない
 ```zsh
 sudo nmap --script　"<category>" <target_IP> -p <port>
@@ -89,7 +89,7 @@ sudo nmap --script "http-*" <target_IP> -p <port>
 Nmap標準のスクリプトに存在しないNSEをダウンロードして使うことができる。
 
 1. 該当の脆弱性のNSEを検索
-![[Pasted image 20250309222541.png]]
+![](../../画像ファイル/Pasted%20image%2020250309222541.png)
 
 2. 既存のNSEに存在しなければダウンロード
 
@@ -131,7 +131,7 @@ cat /usr/share/nmap/scripts/script.db
 > - 外部のNSEをダウンロードする時は注意が必要で、悪意あるコードが外部のNSEに含まれており、そのNSEを使うと悪意ある第三者がフルアクセスをゲットできてしまう可能性がある
 > - スキャナが発見できるのは、スキャナが設定した脆弱性だけである
 > - カテゴリごとにNSEがシステムにどのような影響を与えるかを確認してから実行すること
-> 	-  [Port Scan & Vuln Scan](Port%20Scan%20&%20Vuln%20Scan.md#NSEのカテゴリ一覧表)
+> 	-  [Port Scan & Vuln Scan](#NSEのカテゴリ一覧表)
 
 ---
 ---

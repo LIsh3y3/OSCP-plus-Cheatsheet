@@ -83,7 +83,7 @@ nxc smb <TargetIP> -u <username> -p <pw> --dpapi
 	- →🚨ゴミ情報が多いので、ルートディレクトリから探索は避ける
 - 💡以下のディレクトリで検索すること
 	- ①ユーザーのホームディレクトリ
-	- ②[🔍 Credentials Harvesting](🔍%20Credentials%20Harvesting.md#インストール済みアプリケーションの列挙)で判明したアプリケーションの`Install Location`
+	- ②[🔍 Credentials Harvesting](#インストール済みアプリケーションの列挙)で判明したアプリケーションの`Install Location`
 	- ③ユーザーのホームディレクトリから一階層上がったディレクトリ→さらに一階層あがったディレクトリ...
 	- ④`C:\`ディレクトリ：==通常の構成と異なるディレクトリがあれば==要注目
 - ⚠️興味深い情報がエンコードされていて簡単に読み取れない可能性もある
@@ -202,7 +202,7 @@ PSReadlineモジュールのログ記録パス表示
 	- Filter Current Log：Event ID *4104* = Script Block Logging（※）でフィルター
 		- （※）PowerShellが関与するものすべての記録。デフォルトでは無効。
 	- もしくは、Find：ScriptBlockで検索
-![[Pasted image 20250804074835.png]]
+![](../../../画像ファイル/Pasted%20image%2020250804074835.png)
 $$EventViewerのイメージ$$
 
 ### 補足：履歴の種類
@@ -274,7 +274,7 @@ impacket-secretsdump -sam <SAMデータベースのファイルフルパス> -sy
 1. この後の手順で"Access is denied"エラーを防ぐため、レジストリ値を修正
 
 2. Task Managerを開く -> Detailsタブへ -> lsass.exeファイルを右クリック -> Create dump file
- ![[Pasted image 20230602114024.png | 380]]
+ ![ 380](../../../画像ファイル/Pasted%20image%2020230602114024.png)
 
 3.  ダンプされたプロセスをMimikatzフォルダにコピー
 ```cmd
@@ -307,7 +307,7 @@ vaultcmd /list
 ```
 - デフォルトでは、Windowsには2つのvaultがあり、1つはWeb用、もう1つはWindowsマシンCreds用
 - （GUIでは、Control Panel -> User Accounts -> Credential Managerからアクセスできる）
-![[Pasted image 20230602142505.png]]
+![](../../../画像ファイル/Pasted%20image%2020230602142505.png)
 
 2. Web Credentials vaultに保存されているクレデンシャルがあるかどうかを確認する
 ```cmd
@@ -327,7 +327,7 @@ Import-Module .\Get-WebCredentials.ps1
 Get-WebCredentials
 ```
 - ↓出力例
-![[Pasted image 20230602143342.png]]
+![](../../../画像ファイル/Pasted%20image%2020230602143342.png)
 
 ### 補足：Credentials Managerとは
 
@@ -415,7 +415,7 @@ dir "C:\Program Files\LAPS\CSE"
 Find-AdmPwdExtendedRights -Identity <OU_Target>
 ```
 - 利用可能なすべての OU を一覧表示するには、`-Identity *` を使用
-![[Pasted image 20230602175950.png]]
+![](../../../画像ファイル/Pasted%20image%2020230602175950.png)
 
 3. ExtendedRightHoldersをもつグループのメンバーを確認する
 ```powershell
@@ -451,10 +451,10 @@ Get-AdmPwdPassword -ComputerName <MachineName>
 
 1. Toolsタブ >   Active Directory Users and Computersを選択
 	- Toolsの中にはEvent Viewerなど、さまざまなツールがある
- ![[Pasted image 20230421110906.png | 400]]
+ ![ 400](../../../画像ファイル/Pasted%20image%2020230421110906.png)
 
 2. Descriptionの中にサービスアカウントのパスワードがある
-![[Pasted image 20230421111143.png | 500]]
+![ 500](../../../画像ファイル/Pasted%20image%2020230421111143.png)
 
 
 ---

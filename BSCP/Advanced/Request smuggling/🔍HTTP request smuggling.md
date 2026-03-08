@@ -17,7 +17,7 @@
 ---
 ## Detect
 
-- [🔍HTTP request smuggling](🔍HTTP%20request%20smuggling.md#注目ポイント)にHTTP Request Smugglerの以下の機能を同時に実行する：
+- [🔍HTTP request smuggling](#注目ポイント)にHTTP Request Smugglerの以下の機能を同時に実行する：
 	- Smuggle Probe 
 	- HTTP/2 probe
 	- CL.0

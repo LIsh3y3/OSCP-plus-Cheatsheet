@@ -55,7 +55,7 @@
 ## 手法
 #### No defenceの場合
 
-- 値を直接、[⚡️Path traversal](⚡️Path%20traversal.md#/etc/passwdのtraversal%20wordlist)でbrute-force
+- 値を直接、[⚡️Path traversal](#/etc/passwdのtraversal%20wordlist)でbrute-force
 ```
 /image?filename=§§
 ```
@@ -63,7 +63,7 @@
 #### Prefix validationの場合
 
 - `?filename=/var/www/images/36.jpg `みたいに元々絶対パス指定のとき
-- 元の正常な値のうしろでpath traversalを実行する（[⚡️Path traversal](⚡️Path%20traversal.md#/etc/passwdのtraversal%20wordlist)で）
+- 元の正常な値のうしろでpath traversalを実行する（[⚡️Path traversal](#/etc/passwdのtraversal%20wordlist)で）
 ```
 /image?filename=10.jpg§§
 ```
@@ -71,7 +71,7 @@
 #### Suffix validationの場合
 
 - 上記2つでうまくいかなかった場合
-- null byteを使用する（[⚡️Path traversal](⚡️Path%20traversal.md#/etc/passwdのtraversal%20wordlist)で）
+- null byteを使用する（[⚡️Path traversal](#/etc/passwdのtraversal%20wordlist)で）
 ```
 /image?filename=§§%00
 ```
@@ -84,7 +84,7 @@
 
 初期侵入ができていない段階で有効
 
-1. [⚡️Path traversal](⚡️Path%20traversal.md#手法)に従い、`/etc/passwd`を抽出し、ユーザーとそのhome directoryをメモ（`/home/<username>`）
+1. [⚡️Path traversal](#手法)に従い、`/etc/passwd`を抽出し、ユーザーとそのhome directoryをメモ（`/home/<username>`）
 ```
 user:x:1000:1000:user,,,:/home/<username>:/usr/bin/zsh
 ```

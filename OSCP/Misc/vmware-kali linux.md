@@ -163,13 +163,13 @@ sudo apt install sublime
 3. sublime text上で、Ctrl + Shift + Pを押し、「Package Control: Install Package」と入力
 4. 入力したいパッケージ名を入力（ここでは例としてANSI escapeをインストール）
 5. 右下のファイルタイプ(Plain Textを選択)
-![[Pasted image 20251101103833.png]]
+![](../画像ファイル/Pasted%20image%2020251101103833.png)
 
 6. ANSIを選択する→ANSIが適用される
 	- ⚠️注意点：
 		- 一度閉じて再度開くと、色付けはなくなっている
 		- 文字コードをANSIとしているときは、読み取り専用になっているため、Plain textに戻して書き込む
-![[Pasted image 20251101103951.png]]
+![](../画像ファイル/Pasted%20image%2020251101103951.png)
 
 
 ---
@@ -201,7 +201,7 @@ reboot -h now
 
 4. アプリケーションからFcitx5 Configurationを開き、Inputを以下の構成にする
 	- ⚠️:この際、ポップアップで"現在のレイアウトと違うようです"のような表示が出ると思うが、OKとする
-![[Pasted image 20260208163838.png]]
+![](../画像ファイル/Pasted%20image%2020260208163838.png)
 
 5. いくつかのアプリケーションで日本語入力試行し、問題ないことを確認する
 	- 切り替えはCtrl + Space
@@ -376,12 +376,12 @@ sudo nano /etc/fstab
 	- （バックアップと違うのは、バックアップがデータを保存しておくことに対し、スナップショットは状態を保存しておく）
 
 1. 仮想マシンのスナップショットから、「スナップショット」を選択
-![[Pasted image 20250427112256.png]]
+![](../画像ファイル/Pasted%20image%2020250427112256.png)
 
 2. 左上の📷マークでスナップショットを撮影。💾マークで、選択したスナップショットの状態に切り戻す。🗑️でスナップショットを削除する。
 	画面では、「テスト」がスナップショットで、この「テスト」から現在の状態が派生していることを表している
 
-![[Pasted image 20250427112347.png]]
+![](../画像ファイル/Pasted%20image%2020250427112347.png)
 
 ## ダウンロードしたツールをコマンドで実施する方法
 
@@ -411,7 +411,7 @@ echo $PATH
 ```zsh
 lsblk
 ```
-![[Pasted image 20250125193534.png | 300]]
+![ 300](../画像ファイル/Pasted%20image%2020250125193534.png)
 
 - バックアップを作成
 ```zsh
@@ -466,8 +466,8 @@ sha256sum -c sha256sum_nessus
 - [x] Kaliに共有フォルダを設定
 - [x] sublime text, Bloodhound, kerbrute, penelope, Burp Suite,autorecon,rustscan,flameshotをインストール
 	- [x] sublimeはkey bindingの編集
-- [x] [vmware-kali linux](vmware-kali%20linux.md#Kaliで%20Windows%20と同じ「Win%20+%20Ctrl%20+%20→」でワークスペース切替する方法)を設定
+- [x] [vmware-kali linux](#Kaliで%20Windows%20と同じ「Win%20+%20Ctrl%20+%20→」でワークスペース切替する方法)を設定
 	- [x] 追加で、"Move window to left/right workspace"を、shift + win + ctrl + →/←と設定
 - [x] rockyou.txt.gzをgzipでアンジップ
-- [x] [vmware-kali linux](vmware-kali%20linux.md#日本語入力)を有効にする
+- [x] [vmware-kali linux](#日本語入力)を有効にする
 - [x] sublime textにANSI Escaping, Markdown Extended, MarkdownEditingを入れる

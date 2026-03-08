@@ -10,7 +10,7 @@
 	- 入手したユーザー名の有効性の確認としてkerbruteが有効[💥AD認証システムの攻撃](../../Cheatsheet/🪟Windows/Active%20Directory/💥AD認証システムの攻撃.md#(b)%20Kerbruteによるパスワードスプレー)
 	- ASPNETCORE_ENVIRONMENTのErrorページが怪しく見えて時間を浪費
 	- Development Modeに切り替えればエラーの詳細情報が表示→Development Modeではないので、無意味
-![[Pasted image 20260208172319.png]]
+![](../../画像ファイル/Pasted%20image%2020260208172319.png)
 
 3. 季節と年号の簡易的なパスワード(summer2023など）でスプレーし、有効な認証情報を入手
 	- **反省**：詰まったときは、OSINTで見つけた情報からパスワードリストを作成し、スプレーする（今回は西暦の情報があった）

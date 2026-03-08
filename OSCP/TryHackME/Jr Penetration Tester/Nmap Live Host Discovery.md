@@ -35,7 +35,7 @@
 # ホストディスカバリ実行コマンド
 
 - どのホストがオンラインかわからない場合はまずこれを実行
-- `-Pn`は使わないこと [Nmap Live Host Discovery](Nmap%20Live%20Host%20Discovery.md#ホストディスカバリにおける注意点)
+- `-Pn`は使わないこと [Nmap Live Host Discovery](#ホストディスカバリにおける注意点)
 
 複数ホストをスキャンしてオンラインホストの一覧を作成（ping sweep(`-sn`)より正確）
 ```zsh

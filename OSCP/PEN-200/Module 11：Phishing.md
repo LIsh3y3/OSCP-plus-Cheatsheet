@@ -51,7 +51,7 @@
 ### 送信者のメールアドレスの入手先
 
 - 送信者のアドレスは、重要なブランド、既知の連絡先、または同僚を偽装したドメイン名であることが望ましい。
-	- [Module 11：Phishing](Module%2011：Phishing.md#フィッシングドメインの選択)
+	- [Module 11：Phishing](#フィッシングドメインの選択)
 - ターゲットがどのようなブランドや人物と交流しているかを調べるには、OSINT戦術を活用：[1. Recon](../TryHackME/Red%20Teaming/2.%20Initial%20Access/1.%20Recon.md)
 - SNSアカウントを観察し、ターゲットが興味をもっているブランドや友人について調べる。  
 - Googleでターゲットの名前と大まかな場所を検索し、ターゲットが地元の企業やブランドについて残したレビューがないか確認する。  
@@ -115,7 +115,7 @@
 - フィッシングキャンペーンを成功させるためには、ある程度のインフラを整える必要がある
 
 ✅Domain Name:
-	本物そっくりのドメイン名か、他のドメインを模倣したドメイン名を登録する。完璧なドメイン名を作成する方法の詳細は[Module 11：Phishing](Module%2011：Phishing.md#Using%20GoPhish)
+	本物そっくりのドメイン名か、他のドメインを模倣したドメイン名を登録する。完璧なドメイン名を作成する方法の詳細は[Module 11：Phishing](#Using%20GoPhish)
 
 ✅ SSL/TLS Certificates:
 	選択したドメイン名のSSL/TLS証明書を作成することで、攻撃に信憑性を持たせる
@@ -151,14 +151,14 @@
 - 実際にフィッシングメールを送信するために必要な接続の詳細で、単にアクセス可能なSMTPサーバーのこと。
 - 左メニューのSending Profiles -> +New Profile
 - Name, From, Hostに適切な情報を入力し、Save Profileする
- ![[Pasted image 20230613114928.png]]
+ ![](../画像ファイル/Pasted%20image%2020230613114928.png)
 
 
 ### Landing Pages:
 
 - これはフィッシングメールがターゲットを誘導する先のWebサイト
 - 企業のWebサイトをクローンするなどの方法もとられる
-	- →[Module 11：Phishing](Module%2011：Phishing.md#Credential%20Phishing実践)
+	- →[Module 11：Phishing](#Credential%20Phishing実践)
 
 - Landing Pages -> New Page
 - Name：欄に適切な名前をつけ、次にHTMLボックスで「Source」ボタンを押し、以下のようにHTMLコードを入力する
@@ -190,7 +190,7 @@
 </html>
 ```
 - Sourceボタンを再度クリックすると、下の画像のようにコードをレンダリングした結果を表示する。Capture Submitted DataボックスとCapture Passwordsボックスもクリックし、Save Pageボタンをクリック
-![[Pasted image 20230613115508.png ]]
+![](../画像ファイル/Pasted%20image%2020230613115508.png)
 
 ### Email Templates:
 
@@ -200,28 +200,28 @@
 2. Template Nameに"Email 1"などの名前を入力 -> Subjectに"New Message Received"など件名を入力 -> "HTML"タブをクリックし、"Source"ボタンをクリックしてHTMLエディターモードを有効にする。
 3. コンテンツに、ユーザにリンクをクリックさせるようなメールを書く。
 4. リンクテキストは、Linkボタンをクリックで編集できる
-![[Pasted image 20230613120312.png]]
+![](../画像ファイル/Pasted%20image%2020230613120312.png)
 5. Display Textには`https://admin.acmeitsupport.thm`と入力
 6. 実際のリンクは`{{.URL}}`に設定する。これは、メール送信時に偽装したランディングページに変更される。
 7. Protocolを`<other>`に変更する。
-![[Pasted image 20230613120629.png]]
+![](../画像ファイル/Pasted%20image%2020230613120629.png)
 
 8. Save Template
-![[Pasted image 20230613120936.png | 400]]
+![ 400](../画像ファイル/Pasted%20image%2020230613120936.png)
 
 ### Users & Groups
 
 - ここに、ターゲットのメールアドレスを保存する。
 - Users & Groupsをクリック -> New Group -> Group Nameを"Targets"など名前付けし、メールアドレスを追加していく。
 - Save Changesボタンを押す
-![[Pasted image 20230613132642.png]]
+![](../画像ファイル/Pasted%20image%2020230613132642.png)
 
 ### Campaigns
 
 - 左側のCampaigns -> +New Campaign
 - 必要情報を入力していく
 - Launch CampaignをするとResultページに飛ぶ
-![[Pasted image 20230613132948.png]]
+![](../画像ファイル/Pasted%20image%2020230613132948.png)
 
 ### Results
 
@@ -230,7 +230,7 @@
 - 画面下部には、各メールアドレスの内訳が表示されている。MartinとBrianのメールは正常に送信されていて、このaccountsのメールはエラーになっていることがわかる
 - 左側の▶️ボタンから、エラーの詳細をみることができる。
 - "Submitted Data"のアカウントの▶️ボタンから詳細をみるとクレデンシャルなどのデータが入力・送信されたことがわかる。
-- ![[Pasted image 20230613133226.png]]
+- ![](../画像ファイル/Pasted%20image%2020230613133226.png)
 
 ---
 ---
@@ -248,7 +248,7 @@
 
 ## フィッシングドメインの選択
 
-[Module 11：Phishing](Module%2011：Phishing.md#送信者のメールアドレス)
+[Module 11：Phishing](#送信者のメールアドレス)
 
 - ターゲットに対して心理的優位性を確保するためには、攻撃を開始するフィッシング・ドメインを適切に選択することが不可欠。攻撃者は以下のような方法を用いて最適なドメイン名を選択する
 
@@ -278,7 +278,7 @@
 - もともとドメイン名はラテン文字のa-zと0-9で構成されていたが、1998年にIDN（International Domain Name）が実装され、アラビア語、中国語、キリル文字、ヘブライ語など、他の言語の文字やアルファベットに対応した。
 - IDNの実装によって生じる問題は、異なる言語の異なる文字が同一に見えるということ。
 - 例えば、Unicode文字U+0430（キリル文字の小文字a）は、英語で使用されるUnicode文字U+0061（ラテン文字の小文字a）と同じに見えるため、攻撃者は別のドメイン名とほとんど同じに見えるドメイン名を登録することができる
- ![[Pasted image 20230613134518.png | 300]]
+ ![ 300](../画像ファイル/Pasted%20image%2020230613134518.png)
 
 ---
 ---
@@ -317,7 +317,7 @@
 ※以下、Zoomをクローン対象とする
 
 
-- 上記の2〜4はSETで自動化できる：[Module 11：Phishing](Module%2011：Phishing.md#フィッシングサイト作成の自動化%20w/%20SET(Social-%20Engineer-Toolkit))
+- 上記の2〜4はSETで自動化できる：[Module 11：Phishing](#フィッシングサイト作成の自動化%20w/%20SET(Social-%20Engineer-Toolkit))
 	- しかし、Zoomのログインページのように、POSTリクエストを他のエンドポイントに送信して処理する場合、SETは指定したURLの静的なページしか入力情報をキャプチャできないので、うまくいかない
 	- 💡まず、SETでクローンしてみて、うまくキャプチャできないのであれば、下記の手法でクローンする。
 
@@ -334,7 +334,7 @@
 ### 具体的なPretextの作成 w/ ChatGPT
 
 - 侵害したEmailアカウント上で、Zoomのライセンスについて従業員にアクティベートを要求するメールの送受信が行われていることが確認できた
-![[Pasted image 20250509074001.png]]
+![](../画像ファイル/Pasted%20image%2020250509074001.png)
 
 - ChatGPTなどの生成AIを用いて、正規のメールの特徴を"模倣"したメールを作成させる(↓プロンプトプロンプト)
 ```txt
@@ -370,7 +370,7 @@ Best regards,
 1. 正規のサインインページのURLを探す
 	Zoom signin：をインターネットで検索すると、このWebサイトがヒットする
 	https://zoom.us/ja/signin#/login
-![[Pasted image 20250509074928.png]]
+![](../画像ファイル/Pasted%20image%2020250509074928.png)
 
 2. クローンするwebサイトの構成情報を保持するディレクトリを作成し、cdする
 ```zsh
@@ -399,7 +399,7 @@ sudo python -m http.server 80
 http://localhost/signin.html
 ```
 以下のエラーはOWASP CSRF Guardによるもので、外部にホストされていたJSを読み込むと表示される。無視してOKでよい。
-![[Pasted image 20250510094458.png]]
+![](../画像ファイル/Pasted%20image%2020250510094458.png)
 
 5. クローンしたサイトのログインフォームなどの入力フィールド（※）に適当な値を入力し、python webサーバーのログを確認
 	（※：ターゲットが機密情報を入力するであろうフィールドをテストする）
@@ -490,7 +490,7 @@ http://127.0.0.1/signin.html
 1.  どの`<div>`タグ内にHTMLフォームがあるかを確認するため、開発者ツールのElementsで分析する
 
 - 上の要素から順にマウスカーソルをあわせ、選択した要素がHTMLフォームをハイライトしているなら、その`<div>`タグ内にHTMLフォームがあると判断する
-![[Pasted image 20250511154425.png]]
+![](../画像ファイル/Pasted%20image%2020250511154425.png)
 
 - HTMLフォームは以下のdivタグ内（`<div id="app" class="login-page">`）にあることがわかる
 ```html
@@ -553,15 +553,15 @@ sudo cp -f signin.html signin_orig.html
 subl signin.html
 ```
 - 変更前：
-![[Pasted image 20250511155905.png]]
+![](../画像ファイル/Pasted%20image%2020250511155905.png)
 
 - 変更後：
-![[Pasted image 20250511160432.png]]
+![](../画像ファイル/Pasted%20image%2020250511160432.png)
 
 4. 保存後、ページをリロードして中身を表示し、本来のページと異なる箇所を把握する
 	- zoomのアイコンがでかい
 	- 本来であれば画面の左側には画像が、右側にはフォームがあったのに消えている
-![[Pasted image 20250511160755.png]]
+![](../画像ファイル/Pasted%20image%2020250511160755.png)
 
 #### 4.3.5 LLMを用いたページの調整
 
@@ -573,12 +573,12 @@ subl signin.html
 
 <header class="layout-header">..{中略}..</header>
 ```
-![[Pasted image 20250511162117.png]]
+![](../画像ファイル/Pasted%20image%2020250511162117.png)
 
 2. 正規のSigninページに存在する画像のURLをコピーする
-![[Pasted image 20250511162853.png]]
+![](../画像ファイル/Pasted%20image%2020250511162853.png)
 
-3. LLMに正規のSiginページに存在する画像（ステップ２でコピーしたURL）と、HTMLフォームを挿入させるコードを書かせる（POSTデータの送信先を*custom_login.php*とする：[Module 11：Phishing](Module%2011：Phishing.md#4.4%20LLMにPOSTデータ送信先を用意させる)）
+3. LLMに正規のSiginページに存在する画像（ステップ２でコピーしたURL）と、HTMLフォームを挿入させるコードを書かせる（POSTデータの送信先を*custom_login.php*とする：[Module 11：Phishing](#4.4%20LLMにPOSTデータ送信先を用意させる)）
 ```txt
 divタグを2つ書き、1つは左側に配置し、次の画像を入れてください：
 https://file-paa.zoom.us/1xJu7pL8RIWc9lsGFcnRcQ/MS4yLqsI3_R6GW921i53kTJpxI85yLrAIDXer91U-i7ukgBK/12b43c75-e1f7-4d9c-93ee-aaa7f83fdd1a.png
@@ -604,7 +604,7 @@ https://zoom.us/ja/signin#/login
 
 5. 保存後、再度ページをリロードして正規とのページの差異を確かめる
 	- 画像の位置
-![[Pasted image 20250511163847.png]]
+![](../画像ファイル/Pasted%20image%2020250511163847.png)
 
 6. LLMに微調整させる
 ```txt
@@ -616,7 +616,7 @@ https://zoom.us/ja/signin#/login
 - この下にチェックボックスを作り、その横に「サインインしたままにする」と書いてください。
 - この下に「Zoom は reCAPTCHA で保護されています。Zoom には、Google のプライバシー ポリシーと利用規約が適用されます。」というテキストを追加し、「プライバシーポリシー」と「利用規約」が公式リソースを指すハイパーリンクになっていることを確認してください。
 ```
-![[Pasted image 20250511191303.png]]
+![](../画像ファイル/Pasted%20image%2020250511191303.png)
 
 ### 4.4 LLMにPOSTデータ送信先を用意させる
 
@@ -650,8 +650,8 @@ cat test_data.txt
 
 ## 5. フィッシングメールの作成
 
-- [Module 11：Phishing](Module%2011：Phishing.md#1.%20Credential%20Phishing%20Pretext（口実）の作成)で作成されたメールに、フィッシングサイトへのリンクを追加し、全返信する。
-- ドメイン名は、正規のFQDNを真似ること（[Module 11：Phishing](Module%2011：Phishing.md#フィッシングドメインの選択)）
+- [Module 11：Phishing](#1.%20Credential%20Phishing%20Pretext（口実）の作成)で作成されたメールに、フィッシングサイトへのリンクを追加し、全返信する。
+- ドメイン名は、正規のFQDNを真似ること（[Module 11：Phishing](#フィッシングドメインの選択)）
 ```txt
 Hello Sales department,
 
@@ -720,7 +720,7 @@ set:webattack> Enter the url to clone: [URL]
 ```
 
 5. サイトがクローンされ、リクエストをキャプチャする状態となる
-![[Pasted image 20250510160554.png]]
+![](../画像ファイル/Pasted%20image%2020250510160554.png)
 
 6. Ctrl + Cでキャンセルするまでクローンしたサイトをホストし続ける
 7. キャンセルするとレポートが生成され、`/root/.set/reports`に格納される（root権限で閲覧可）

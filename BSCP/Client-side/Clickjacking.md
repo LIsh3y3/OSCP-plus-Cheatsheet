@@ -99,7 +99,7 @@ http://TARGET_NET/?[formタグ内inputのname属性の値]=hogehoge
 
 ###### 悪用ステップ
 
-1. [Clickjacking](Clickjacking.md#基本的なclickjackingの構築)の`iframe`に`sandbox`属性を付与し、`allow-forms`か`allow-scripts`を設定する
+1. [Clickjacking](#基本的なclickjackingの構築)の`iframe`に`sandbox`属性を付与し、`allow-forms`か`allow-scripts`を設定する
 ```html
 <iframe id="target_website" src="[URL]" sandbox="allow-forms">
 ```
@@ -118,14 +118,14 @@ http://TARGET_NET/?[formタグ内inputのname属性の値]=hogehoge
 
 1. DOM based XSS脆弱性探索
 2. XSS攻撃のリンクを`iframe`の`src`属性に指定する
-	- 必要であれば[Clickjacking](Clickjacking.md#入力済みフォームのクリックジャッキング)
+	- 必要であれば[Clickjacking](#入力済みフォームのクリックジャッキング)
 
 3. ペイロードを作成・ホストし、被害者にDeliver
 
 ---
 ## マルチステップなクリックジャッキング
 
-- [Clickjacking](Clickjacking.md#汎用版)を2つコピーして、要素のid名(もしくはクラス名)をそれぞれ変えて位置を調整するだけ
+- [Clickjacking](#汎用版)を2つコピーして、要素のid名(もしくはクラス名)をそれぞれ変えて位置を調整するだけ
 - ↓シンプルなスクリプト例
 ```html
 <style>

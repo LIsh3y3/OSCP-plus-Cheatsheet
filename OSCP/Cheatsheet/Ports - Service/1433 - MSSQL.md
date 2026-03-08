@@ -57,7 +57,7 @@ SELECT SYSTEM_USER;
 ```sql
 SELECT IS_SRVROLEMEMBER('sysadmin');
 ```
-- 出力が1 → [1433 - MSSQL](1433%20-%20MSSQL.md#xm_cmdshellの利用手順)
+- 出力が1 → [1433 - MSSQL](#xm_cmdshellの利用手順)
 
 パスワードハッシュの列挙
 ```sql

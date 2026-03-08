@@ -1,10 +1,10 @@
 ###### まとめ
 
-- [Command injection](Command%20injection.md#コマンドとコマンド注入用特殊文字のリスト)
-- [Command injection](Command%20injection.md#脆弱性の検出の基本)
-- [Command injection](Command%20injection.md#Blind%20OS%20command%20injection)
-- [Command injection](Command%20injection.md#Out-of-bandを使用してのエクスプロイト%20w/%20Collaborator)
-- [Command injection](Command%20injection.md#OSコマンドインジェクションの考え方(独自))
+- [Command injection](#コマンドとコマンド注入用特殊文字のリスト)
+- [Command injection](#脆弱性の検出の基本)
+- [Command injection](#Blind%20OS%20command%20injection)
+- [Command injection](#Out-of-bandを使用してのエクスプロイト%20w/%20Collaborator)
+- [Command injection](#OSコマンドインジェクションの考え方(独自))
 
 ---
 
@@ -76,7 +76,7 @@ $(whoami)@attacker-email-address
 ## 非blind Command injectionの検出
 
 1. `echo [適当な文字列]`を注入する
-2. 注入したコマンドの前後に、[Command injection](Command%20injection.md#コマンド注入用の特殊文字リスト)を追加してレスポンスを確認
+2. 注入したコマンドの前後に、[Command injection](#コマンド注入用の特殊文字リスト)を追加してレスポンスを確認
 3. それでも成功しないなら、`[正規の値] | echo [適当な文字列]`とする。
 ###### 具体例
 

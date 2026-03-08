@@ -98,7 +98,7 @@ id
 sudo -l
 ```
 - →[💥Linux Privilege Escalation](💥Linux%20Privilege%20Escalation.md#Sudoを利用したPrivEsc)
-- →`tcpdump`の場合、通信のキャプチャも可能：[🔍Linux Enumeration](🔍Linux%20Enumeration.md#デーモンの列挙コマンド)
+- →`tcpdump`の場合、通信のキャプチャも可能：[🔍Linux Enumeration](#デーモンの列挙コマンド)
 - `NOPASSWD`：sudo xxxとしても、パスワード不要で実行可能
 
 ホスト名を確認
@@ -115,7 +115,7 @@ hostname
 ```zsh
 cat /etc/passwd
 ```
-- [🔍Linux Enumeration](🔍Linux%20Enumeration.md#補足：/etc/passwdの出力)
+- [🔍Linux Enumeration](#補足：/etc/passwdの出力)
 
 グループ一覧を取得
 ```zsh
@@ -212,7 +212,7 @@ cat /etc/os-release
 # 絞り込み：ps --pid <PID>
 ps auxw
 ```
-- ↓出力例：[🔍Linux Enumeration](🔍Linux%20Enumeration.md#補足：結果の見方)
+- ↓出力例：[🔍Linux Enumeration](#補足：結果の見方)
 ```zsh
 USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 root       20566  0.0  0.0      0     0 ?        I    00:07   0:00 [kworker/0:2-
@@ -354,7 +354,7 @@ ls -lah /etc/cron*
 ```
 - cronのファイル名はわかるが、cronの中身を `cat` で閲覧しないと、何のファイルを実行しているかまではわからない    
 - ここで表示されるディレクトリやファイルの権限自体は無視する。なぜなら、cronそのものに権限がなくても、その中で実行されている外部ファイル（xxxx.sh など）の権限が書き込み可能（w）であれば攻撃可能だから。
-![[Pasted image 20250911130420.png]]
+![](../../画像ファイル/Pasted%20image%2020250911130420.png)
 $$<cat /etc/cron.daily/dpkg> として中身を閲覧する必要あり$$
 
 現在ログインしているユーザーが設定したcronを列挙
@@ -445,8 +445,8 @@ find / -writable -type d 2>/dev/null
 cat /etc/fstab 
 ```
 - ここにないドライブをマウントしている可能性もあるので、`mount`による列挙も必須
-- [🔍Linux Enumeration](🔍Linux%20Enumeration.md#fstabの結果の見方)
-![[Pasted image 20250827123908.png]]
+- [🔍Linux Enumeration](#fstabの結果の見方)
+![](../../画像ファイル/Pasted%20image%2020250827123908.png)
 $$fstabの結果例$$
 
 マウント済みファイルシステムの列挙（**マウントの現状**）
@@ -454,7 +454,7 @@ $$fstabの結果例$$
 mount
 ```
 - 💡[Normal Informations](../../Misc/Normal%20Informations.md#マウント仮想ファイルシステム)は着目の優先度は低い
-![[Pasted image 20250826124828.png]]
+![](../../画像ファイル/Pasted%20image%2020250826124828.png)
 $$mountの実行結果例$$
 
 利用可能なストレージ・パーティションを確認（未マウント領域も含む）
@@ -471,7 +471,7 @@ lsblk -f
 
 - `fstab`(マウントのルール)に記載があるのに、`mount`(マウントの現状)には存在しない
 	-  `noauto`オプションにより手動でマウントすべきものがマウントされていない可能性アリ
-	- →`user`オプションもあれば、マウントして利用できるかも([🔍Linux Enumeration](🔍Linux%20Enumeration.md#fstabの結果の見方))
+	- →`user`オプションもあれば、マウントして利用できるかも([🔍Linux Enumeration](#fstabの結果の見方))
 ```zsh
 # マウント具体例：mount /media/usb0
 # マウントできない場合は、攻撃者のマシンに<fstabのfile_system>を転送してローカルでマウント
@@ -501,7 +501,7 @@ cd <fstabのmount_point>
 - type：ファイルシステムの種類
 	- swap：メモリ上のデータを一時的にディスクに退避させる場所で、機密情報が暗号化されずに残っている可能性がある（OSはswapに退避させるとき暗号化しないことが多い）
 
-![[Pasted image 20250827123908.png]]
+![](../../画像ファイル/Pasted%20image%2020250827123908.png)
 
 
 ---

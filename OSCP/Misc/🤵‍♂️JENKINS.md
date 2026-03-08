@@ -212,7 +212,7 @@ println "out> $sout"
 
 リバースシェル([revshell.com](https://www.revshells.com/))
 	⚠️ShellはターゲットOSに合わせて、Linuxならbash、Windowsならcmdとすること
-![[Pasted image 20260113123622.png]]
+![](../画像ファイル/Pasted%20image%2020260113123622.png)
 $$revshells.com$$
 
 ## ジョブ作成によるエクスプロイト

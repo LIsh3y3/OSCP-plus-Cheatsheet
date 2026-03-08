@@ -19,7 +19,7 @@
 ---
 ## Detect
 
-- [🔍Web cache poisoning](🔍Web%20cache%20poisoning.md#注目ポイント)をActive scanにかける
+- [🔍Web cache poisoning](#注目ポイント)をActive scanにかける
 - Hostヘッダの値でレスポンスを検索していく。該当する箇所でリソースの読み込みなどしているかも
 ```html
 <link rel="canonical" href='//TARGET_NET/?hogehoge=aaa'/>

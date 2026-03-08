@@ -51,7 +51,7 @@
 1. `../`が無効化されている場合 👉 絶対パスを入力(`filename=/etc/password`)
 2. `../`がサニタイジングされて除去されている場合 👉 `....//` or `..../\`
 
-3. Webサーバが[Path traversal](Path%20traversal.md#⚠️脆弱性のある部分)をアプリケーションに入力を渡す前に[Path traversal](Path%20traversal.md#Traversal%20sequences)を取り除いている場合 
+3. Webサーバが[Path traversal](#⚠️脆弱性のある部分)をアプリケーションに入力を渡す前に[Path traversal](#Traversal%20sequences)を取り除いている場合 
 	- 👉 1回もしくは2回のURLエンコーディング(`Ctrl+U`)
 	- 👉一般的でない様々なエンコーディング方式(PayloadAllTheThingsの記事Basic exploitation参照)
 	- `/`スラッシュはURLの特殊文字なので基本エンコードすること

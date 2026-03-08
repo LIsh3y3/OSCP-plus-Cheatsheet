@@ -2,8 +2,8 @@
 
 ###### まとめ
 
-- [🔍HTTP Host header attack](🔍HTTP%20Host%20header%20attack.md#Detect)
-- [🔍HTTP Host header attack](🔍HTTP%20Host%20header%20attack.md#該当脆弱性)
+- [🔍HTTP Host header attack](#Detect)
+- [🔍HTTP Host header attack](#該当脆弱性)
 
 ---
 #### 注目ポイント
@@ -14,7 +14,7 @@
 ## Detect
 
  [🔍 Recon](../../cheatsheet/🔍%20Recon.md#3.%20Param%20Miner%20->%20Guess%20Headers)でHHI攻撃に使用できそうなヘッダは見つかった
-- yes->[🔍HTTP Host header attack](🔍HTTP%20Host%20header%20attack.md#3.%20Host上書き用特殊ヘッダを使用する)を試す
+- yes->[🔍HTTP Host header attack](#3.%20Host上書き用特殊ヘッダを使用する)を試す
 
 - No -> 下記のテクニックを試す。Invalid Host Headerなどのエラーが吐かれたりレスポンスが返らなければ他のテクニックへ進む
 	- それぞれのテクニックの==エラーstatusの違いにも着目==すること
