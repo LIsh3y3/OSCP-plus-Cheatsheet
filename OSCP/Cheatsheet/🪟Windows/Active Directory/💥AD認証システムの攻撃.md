@@ -11,18 +11,18 @@
 
 ### (a)ドメインユーザーの足場がある場合
 
-[🔍AD Enumeration](🔍AD%20Enumeration.md#⭐️PowerViewによるユーザー・グループの列挙列挙)
+[⭐️PowerViewによるユーザー・グループの列挙列挙](🔍AD%20Enumeration.md#⭐️PowerViewによるユーザー・グループの列挙列挙)
 
 ### (b)足場がない場合
 
-kerberosが有効(UDP 88 open)であれば、攻撃者のマシンから[Kerbrute](https://github.com/ropnop/kerbrute/releases)でユーザーの列挙
+kerberosが有効(UDP 88 open)であれば、攻撃者のマシンから🔗[Kerbrute](https://github.com/ropnop/kerbrute/releases)でユーザーの列挙
 ```zsh
 # wordlistは、/usr/share/seclists/Usernames/xato-net-10-million-usernames.txt が良い
 kerbrute userenum --dc <DC_IP> -d <domain> <wordlist>
 ```
 
 SMBが有効(TCP 445 open)であれば、攻撃者のマシンからNetExecでユーザーの列挙（guestが有効である必要あり）：
-	[139,445 -NetBIOS, SMB](../../Ports%20-%20Service/139,445%20-NetBIOS,%20SMB.md#アカウントの列挙)
+	[アカウントの列挙](../../Ports%20-%20Service/139,445%20-NetBIOS,%20SMB.md#アカウントの列挙)
 
 ## 2. アカウントロックポリシーの確認
 
