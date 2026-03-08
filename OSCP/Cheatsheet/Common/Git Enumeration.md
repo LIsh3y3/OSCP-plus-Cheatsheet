@@ -1,6 +1,6 @@
 - 関連ノート：
 	- [コンパイル・ビルド](../../Misc/コンパイル・ビルド.md#Python%20Package%20Management%20(pip))
-- 参照：[Git's Reference page](https://git-scm.com/docs).
+- 参照🔗：[Git's Reference page](https://git-scm.com/docs).
 
 ---
 
@@ -8,7 +8,7 @@
 
 - シチュエーション：ターゲット侵害後、ターゲットがGitでWebサイトを管理しているとき
 
-- 知識：`.git`が保存されているディレクトリは、Gitで管理するディレクトリのルートディレクトリに当たる
+- 知識：`.git`が保存されているディレクトリは、Gitで管理するディレクトリのルートディレクトリに相当する
 
 gitのワーキングディレクトリのステータス表示
 ```zsh
@@ -20,8 +20,11 @@ git status
 git log
 ```
 - 凡例：🟥赤：リモートリポジトリ、🟩緑：ローカル
+
 ![](../../画像ファイル/Pasted%20image%2020260102123346.png)
+
 $$log出力例$$
+
 - 出力形式
 ```zsh
 commit <commit_hash> (HEAD -> master)
@@ -57,7 +60,7 @@ git version
 
 # Remote Git Enumeration
 
-シチューエーション：NmapやGobusterの結果、WebサイトがGitを利用していることがわかったとき
+- シチューエーション：NmapやGobusterの結果、WebサイトがGitを利用していることがわかったとき
 ```zsh
 # Nmap出力例
 ...
