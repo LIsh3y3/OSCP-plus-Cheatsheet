@@ -2,7 +2,7 @@
 	- [1433 - MSSQL](../Ports%20-%20Service/1433%20-%20MSSQL.md)
 	- [0. RDBMSの基本](../../../BSCP/Server-side/SQLi/0.%20RDBMSの基本.md)
 
-- 参考：
+- 参考リンク🔗：
 	- [SQLi cheat sheet - PortsSwigger](https://portswigger.net/web-security/sql-injection/cheat-sheet) : RDBMSごとの文法で記載あり
 	- [SQL Injection Cheatsheet - tib3rius](https://tib3rius.com/sqli.html)
 
@@ -189,7 +189,9 @@ admin') or (1=1 -- #
 - `/var/www/html`はApacheのデフォルトのWeb root、IISであれば`C:\inetpub\wwwroot`
 	- phpinfoの確認ができるのであれば、`$_SERVER['DOCUMENT_ROOT']`にWeb rootディレクトリが記載されているので、そこに保存する
 - `Uncaught type error`が返ることがあるが、返り値が意図されていたデータ型と異なるだけで、webshellの書き込みには影響はない
+
 ![](../../画像ファイル/Pasted%20image%2020250420091519.png)
+
 $$書き込み時のレスポンス例$$
 
 2. アップロード先urlにアクセスして任意のコマンドを実行する
@@ -304,7 +306,10 @@ user=offsec' AND (SELECT username FROM users WHERE username = 'administrator' AN
 ```
 - Attack Type: sniper
 - Payload Type: Numbers
+
 ![](../../画像ファイル/Pasted%20image%2020250420094746.png)
+
+$$Number　rangeの例$$
 
 3. Intruderの結果から、レスポンスが変わる境界値を探す
 	- 実際にWebアプリ上で条件がTrueの反応があるかどうかを確認
@@ -336,6 +341,7 @@ user=offsec' AND SUBSTRING((SELECT password FROM users WHERE username = 'adminis
 
 ![](../../画像ファイル/Pasted%20image%2020250420095001.png)
 
+$$IntruderにてLengthでソートする例$$
 
 #### Time-based
 
@@ -353,7 +359,10 @@ SELECT IF(<条件文>=1,SLEEP(3),'false')
 
 - 参考: RDBごとの文法[SQL cheet sheet Time delays & Conditional Time delays](https://portswigger.net/web-security/sql-injection/cheat-sheet#:~:text=a%20MySQL%20database.-,Time%20delays,-You%20can%20cause)
 - Burp SuiteのRepeaterの右下にレスポンスタイムが記載
+
 ![](../../画像ファイル/Pasted%20image%2020250420100807.png)
+
+$$BurpSuite右下レスポンス記載あり$$
 
 #### Error-based
 

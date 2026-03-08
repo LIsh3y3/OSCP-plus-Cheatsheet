@@ -31,7 +31,7 @@ rustscan -a <target_IP> --ulimit 5000 -- -sC -sV -O -oN Nmap/rustscan.nmap
 
 
 > [!TIP] 
-> - ==スキャンは最低2回実施すること！==(3回やっても見逃しはある)
+> - **スキャンは最低2回実施すること！**(3回やっても見逃しはある)
 > - `/etc/hosts`にドメイン名登録し、再スキャンすることで、より正確な結果が表示される
 > - `-sV`によって表示されるサービス名は、Administratorによって非正規のサービス名に変更されている可能性があることを考慮する
 > - 詳細なサービスはPort Scanだけではわからない可能性があるので、必要に応じてNSEを実行
@@ -53,15 +53,15 @@ sudo chown -R <attacker_username>:<attacker_username> results
 ```
 
 > [!WARNING] 
-> ヌケモレや誤検知が多いので、過信せず、Nmapと併用すること
+> ヌケモレや誤検知が多いので、過信せず、Nmapと併用すること。
 
 ---
 
 # Vuln Scan w/ NSE
 
-- [NSEドキュメント](https://nmap.org/nsedoc/)
+- 🔗[NSEドキュメント](https://nmap.org/nsedoc/)
 
-カテゴリに属するNSEすべてを実行（[Port Scan & Vuln Scan](#NSEのカテゴリ一覧表)）
+カテゴリに属するNSEすべてを実行（[NSEのカテゴリ一覧表](#NSEのカテゴリ一覧表)）
 	⚠️トラフィックと情報量が膨大なのであまり実行すべきでない
 ```zsh
 sudo nmap --script　"<category>" <target_IP> -p <port>
@@ -89,7 +89,10 @@ sudo nmap --script "http-*" <target_IP> -p <port>
 Nmap標準のスクリプトに存在しないNSEをダウンロードして使うことができる。
 
 1. 該当の脆弱性のNSEを検索
+
 ![](../../画像ファイル/Pasted%20image%2020250309222541.png)
+
+$$nse検索例$$
 
 2. 既存のNSEに存在しなければダウンロード
 
@@ -131,7 +134,7 @@ cat /usr/share/nmap/scripts/script.db
 > - 外部のNSEをダウンロードする時は注意が必要で、悪意あるコードが外部のNSEに含まれており、そのNSEを使うと悪意ある第三者がフルアクセスをゲットできてしまう可能性がある
 > - スキャナが発見できるのは、スキャナが設定した脆弱性だけである
 > - カテゴリごとにNSEがシステムにどのような影響を与えるかを確認してから実行すること
-> 	-  [Port Scan & Vuln Scan](#NSEのカテゴリ一覧表)
+> 	-  [NSEのカテゴリ一覧表](#NSEのカテゴリ一覧表)
 
 ---
 ---
@@ -183,7 +186,7 @@ cat /usr/share/nmap/scripts/script.db
 - 応答がない→ open or filtered と判断する
 - 対策: `--top-ports`：一般的なUDPポートのリストで絞る    
 ```zsh
-nmap -sU --top-ports [num] <target_IP>
+nmap -sU --top-ports <num> <target_IP>
 ```
 
 - SYN Scanと組み合わせることでホストへの理解がより鮮明になる
@@ -205,13 +208,6 @@ sudo nmap -sU -sS <target_IP>
 nmap -sn 192.168.0.0/24
 ```
 - ICMP Echo Requestだけでなく、TCP/80,443へのリクエスト、ICMP Timestamp requestも送信し、あらゆる角度からホストの生死を判断する
-
----
-
-## 参考リンク
-
-- [Nmap公式チートシート](https://www.stationx.net/nmap-cheat-sheet/)
-- [NSEスクリプト一覧](https://nmap.org/nsedoc/)
 
 ---
 
@@ -280,3 +276,10 @@ rdp-ntlm-info:
   DNS_Computer_Name: EXTERNAL         # 着目
 ```
 - 関連ノート：[ADの基本](../🪟Windows/Active%20Directory/ADの基本.md#Active%20Directoryとは)
+
+---
+
+## 参考リンク🔗
+
+- [Nmap公式チートシート](https://www.stationx.net/nmap-cheat-sheet/)
+- [NSEスクリプト一覧](https://nmap.org/nsedoc/)
