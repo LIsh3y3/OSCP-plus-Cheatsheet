@@ -1,13 +1,16 @@
 - 関連ノート：
 	- [💥Lateral Movement & Persistance in AD](../🪟Windows/Active%20Directory/💥Lateral%20Movement%20&%20Persistance%20in%20AD.md)
 
-（5985/tcp と 47001/tcp が `http` と表示されていても、アクセスして意味のあるページは出てこない）
+>[!NOTE]
+>5985/tcp と 47001/tcp が `http` と表示されていても、ブラウザでアクセスして意味のあるページは出てこない。
+
+---
 
 # ログイン情報の有効性検証
 
 ```zsh
 # winrm/wmi
-netexec <winrm|wmi> <TargetSubnet(192.168.xx.0/24)> -u <username> -p '<pw>' --continue-on-success
+netexec <winrm|wmi> <target_subnet(192.168.xx.0/24)> -u <username> -p '<password>' --continue-on-success
 ```
 
 ---
@@ -16,18 +19,18 @@ netexec <winrm|wmi> <TargetSubnet(192.168.xx.0/24)> -u <username> -p '<pw>' --co
 
 - evil-winrmでの接続
 ```zsh
-evil-winrm -i $TargetIP -u '[domain\]<username>' -p '<password>'
+evil-winrm -i <target_IP> -u '[domain\]<username>' -p '<password>'
 ```
 
 - インタラクティブなシェル（リバースシェル）への切り替え
-	- →[What is the shell](../Common/What%20is%20the%20shell.md#Windows%20PowerShellのリバースシェル%20w/%20Nishang)
+	- →[Windows PowerShellのリバースシェル w/ Nishang](../Common/What%20is%20the%20shell.md#Windows%20PowerShellのリバースシェル%20w/%20Nishang)
 	- →[3389 - RDP](3389%20-%20RDP.md)
 	- WinRM接続状態では、非インタラクティブであるため、切り替えがベター（※）
 		- （※）`powershell -ep bypass -c <cmd>`と実行ポリシー回避を都度都度実行する必要がある
 
-- SeImpersonateもしくはSeAssignPrimaryTokenが付与されている場合は、[💥Windows Privilege Escalation](../🪟Windows/💥Windows%20Privilege%20Escalation.md#Token%20Impersonationによる権限昇格)
+- SeImpersonateもしくはSeAssignPrimaryTokenが付与されている場合は、[Token Impersonationによる権限昇格](../🪟Windows/💥Windows%20Privilege%20Escalation.md#Token%20Impersonationによる権限昇格)
 
-- 横展開のための[💥Lateral Movement & Persistance in AD](../🪟Windows/Active%20Directory/💥Lateral%20Movement%20&%20Persistance%20in%20AD.md#WinRM%20&%20WMI)
+- 横展開のための[WinRM & WMI](../🪟Windows/Active%20Directory/💥Lateral%20Movement%20&%20Persistance%20in%20AD.md#WinRM%20&%20WMI)
 
 ---
 
@@ -42,7 +45,7 @@ evil-winrm -i $TargetIP -u '[domain\]<username>' -p '<password>'
 
 - evil-winrmで接続できる可能性がある
 	- 🚨ペイロードによって追加したAdminユーザーに接続できない場合は、winrmがドメイン認証のみを許可している可能性が高い
-- 💡WinRMが動作しているアカウントを侵害し、SeImpersonate / SeAssignPrimaryTokenが付与されていたら、[💥Windows Privilege Escalation](../🪟Windows/💥Windows%20Privilege%20Escalation.md#Token%20Impersonation%20w/%20RogueWinRM)で権限昇格できる可能性がある
+- 💡WinRMが動作しているアカウントを侵害し、SeImpersonate / SeAssignPrimaryTokenが付与されていたら、[Token Impersonationによる権限昇格](../🪟Windows/💥Windows%20Privilege%20Escalation.md#Token%20Impersonationによる権限昇格)で権限昇格できる可能性がある
 
 ##  `47001/tcp` - WinRM + WMI 通信用
 
