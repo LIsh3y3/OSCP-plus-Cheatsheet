@@ -74,7 +74,7 @@ sudo nmap --script "http-*" <target_IP> -p <Port>
 cewl -e --email_file emails.txt -m 5 -w cewl.txt http://<target_IP>
 ```
 
-## Webフォーム（POST）をブルートフォース
+## ログインフォーム（POST）をブルートフォース
 
 hydra POST
 ```zsh
@@ -98,9 +98,8 @@ ffuf -x socks5://localhost:1080 -u http://<target_IP>/login -X POST -w /usr/shar
 - 補足：CSRFトークン付きのフォームをブルートフォースするときは、🔗[patator - github](https://github.com/lanjelot/patator)を使う
 
 ---
----
 
-# CMS Enumeration x Exploit
+# CMS Enumeration & Exploit
 
 ## Wordpress
 
@@ -120,7 +119,7 @@ ffuf -x socks5://localhost:1080 -u http://<target_IP>/login -X POST -w /usr/shar
 
 1. リスナーを開く
 ```zsh
-sudo nc -lvnp 4444
+sudo rlwrap nc -lvnp 4444
 ```
 
 2. ペイロードを作成する
