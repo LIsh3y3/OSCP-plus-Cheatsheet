@@ -269,14 +269,14 @@ net share
 リモート共有
 ```powershell
 # 具体例:net view \\dc01 /all
-net view \\<targetHost> /all
+net view \\<target_host> /all
 ```
 
 ### Impacket
 
 Kerberos認証を使ったファイルの列挙
 ```zsh
-impacket-smbclient <domain>/<username>:<password>@<target_IP/host> -k -no-pass
+impacket-smbclient <domain>/<username>:<password>@<target_IP|host> -k -no-pass
 ```
 
 ---
