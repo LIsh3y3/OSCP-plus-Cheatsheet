@@ -164,7 +164,7 @@ SELECT routines.routine_name, parameters.data_type FROM information_schema.routi
 ファイルの読み取り
 ```sql
 CREATE TABLE demo(t text);
-COPY demo FROM '/etc/passwd';
+COPY demo FROM '<file_path>';
 SELECT * FROM demo;
 ```
 
@@ -259,7 +259,7 @@ COPY (select '') to PROGRAM 'psql -U <super_user> -c "ALTER USER <your_username>
 
 ## Misc
 
-dblink を使用したローカルログイン
+dblink を使用したローカルログイン方法。
 
 - 外部IPからのログインが制限されていても、127.0.0.1 経由で dblink を叩くことでログイン可能な場合がある
 ```sql
