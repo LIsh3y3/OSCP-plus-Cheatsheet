@@ -38,23 +38,23 @@ evil-winrm -i <target_IP> -u '[domain\]<username>' -p '<password>'
 
 ## `5985/tcp` - WinRM (Windows Remote Management)
 
-- Windowsのリモート管理用ポート。
-- HTTPベースのSOAP通信を使っており、ブラウザからアクセスしても何も役に立たない。
-- 通信の実体はPowerShell Remotingなどの管理系機能。
-- 通常、認証なしで操作するのは不可能。
+- Windowsのリモート管理用ポート
+- HTTPベースのSOAP通信を使っており、ブラウザからアクセスしても何も役に立たない
+- 通信の実体はPowerShell Remotingなどの管理系機能
+- 通常、認証なしで操作するのは不可能
 
 - evil-winrmで接続できる可能性がある
-	- 🚨ペイロードによって追加したAdminユーザーに接続できない場合は、winrmがドメイン認証のみを許可している可能性が高い
-- 💡WinRMが動作しているアカウントを侵害し、SeImpersonate / SeAssignPrimaryTokenが付与されていたら、[Token Impersonationによる権限昇格](../🪟Windows/💥Windows%20Privilege%20Escalation.md#Token%20Impersonationによる権限昇格)で権限昇格できる可能性がある
+>[!NOTE]
+>攻撃者のペイロードなどの操作によって追加されたAdminユーザーに接続できない場合は、winrmがドメイン認証のみを許可している可能性が高い。
 
 ##  `47001/tcp` - WinRM + WMI 通信用
 
-- WinRMとWMIを連携させた管理通信で使われる。
-- ブラウザで叩くと `Not Found` が返るのは正常。
-- SOAP通信専用で、ユーザー向けのサービスではない。
-- 認証情報がなければ何もできない。こちらも攻撃には使いづらい。
+- WinRMとWMIを連携させた管理通信で使われる
+- ブラウザで叩くと `Not Found` が返るのは正常
+- SOAP通信専用で、ユーザー向けのサービスではない
+- 認証情報がなければ何もできない。こちらも攻撃には使いづらい
 
 ### 補足： なぜNmapが `http` と表示するか
 
-- サービスのヘッダーや応答がHTTPプロトコルの形式（例：`Microsoft-HTTPAPI/2.0`）になっている。
-- Nmapはこれを見て `http` と判定するが、単に通信形式がHTTPというだけで、Webアプリが動いているわけではない。
+- サービスのヘッダーや応答がHTTPプロトコルの形式（例：`Microsoft-HTTPAPI/2.0`）になっている
+- Nmapはこれを見て `http` と判定するが、単に通信形式がHTTPというだけで、Webアプリが動いているわけではない
