@@ -7,7 +7,7 @@
 
 テクノロジースタックや、mailアドレス、ドメイン名などを列挙
 ```zsh
-whatweb -v -a3 --log-verbose WebEnum/whatweb.txt http://<TargetIP>
+whatweb -v -a3 --log-verbose WebEnum/whatweb.txt http://<target_IP>
 ```
 - `-a3`：アグレッシブ度（1～4）
 - ターゲットがhttpsの場合で"ERROR Opening:xxx- SSL_read: unexpected eof while reading"というエラーが出たら、解決策はないので、`curl -k https:...`で代替する
@@ -16,43 +16,46 @@ whatweb -v -a3 --log-verbose WebEnum/whatweb.txt http://<TargetIP>
 >[!NOTE]
 >Wappalyzerでは同じ目的を遂行可能で、WappalyzerはPassive Recon（OSINT）なのでステルス性高いが、whatwebの方が正確な結果がわかるうえ、可読性良好
 
--
+---
+
 # ディレクトリ探索
 
 推奨アプローチ：
 1. まずGobusterで1階層の高速スキャン
-2. 気になるディレクトリ(301ステータス、api等)が見つかったらFeroxbusterで再帰的に深掘り
+2. 気になるディレクトリ(301のレスポンス、`api`等)が見つかったらFeroxbusterで再帰的に探索
 
-Gobuster：[👻Gobuster](../../Tools/👻Gobuster.md)
+[👻Gobuster](../../Tools/👻Gobuster.md)
 ```zsh
 # ファイルアクセスエラー回避のため、同時に開けるファイルの最大数を調整
 ulimit -n 8192
 
-gobuster dir -u http://<TargetIP>:<Port>/ -r -k -w /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt -t 100 -o WebEnum/gobuster.txt -x '<extensions>'
+gobuster dir -u http://<target_IP>:<Port>/ -r -k -w /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt -t 100 -o WebEnum/gobuster.txt -x '<extensions>'
 ```
 
-FeroxBuster：[🦝FeroxBuster](../../Tools/🦝FeroxBuster.md)
+[🦝FeroxBuster](../../Tools/🦝FeroxBuster.md)
 ```zsh
 # ファイルアクセスエラー回避のため、同時に開けるファイルの最大数を調整
 ulimit -n 8192
 
 # 再帰スキャン
-feroxbuster -u http://<TargetIP>:<Port>/ --depth <num> -r -k -w  /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt --auto-tune -o WebEnum/feroxbuster.txt -x '<extensions>'
+feroxbuster -u http://<target_IP>:<Port>/ --depth <num> -r -k -w  /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt --auto-tune -o WebEnum/feroxbuster.txt -x '<extensions>'
 ```
 
 >[!WARNING] 
 >レスポンスのステータスを絞ることは、表層が403で内部は200のようなパスを見逃すことにつながる。
 
-## 脆弱性のスキャン
+---
+
+# 脆弱性のスキャン
 
 nikto：[👽Nikto](../../Tools/👽Nikto.md)
 ```zsh
-nikto -Format htm -o WebEnum/nikto.html --maxtime=180s -C all -h <TargetIP>
+nikto -Format htm -o WebEnum/nikto.html --maxtime=180s -C all -h <target_IP>
 ```
 
 Nmap：[Port Scan & Vuln Scan](../Common/Port%20Scan%20&%20Vuln%20Scan.md#NSE)
 ```zsh
-sudo nmap --script "http-*" <TargetIP> -p <Port>
+sudo nmap --script "http-*" <target_IP> -p <Port>
 ```
 
 ---
@@ -65,28 +68,28 @@ sudo nmap --script "http-*" <TargetIP> -p <Port>
 
 メールアドレスがあれば`emails.txt`に、それ以外のユーザー名候補は`cewl.txt`に保存する
 ```zsh
-cewl -e --email_file emails.txt -m 5 -w cewl.txt http://<TargetIP>
+cewl -e --email_file emails.txt -m 5 -w cewl.txt http://<target_IP>
 ```
 
 ## Webフォーム（POST）をブルートフォース
 
 hydra POST
 ```zsh
-hydra -V -f -l <username> -P <wordlist> <TargetIP> http-post-form "/<login_path>:<username_param>=^USER^&<pw_param>=^PASS^:<failure_message>" -t 64
+hydra -V -f -l <username> -P <wordlist> <target_IP> http-post-form "/<login_path>:<username_param>=^USER^&<pw_param>=^PASS^:<failure_message>" -t 64
 ```
 - 参考ノート：[🐉THC-Hydra](../../Tools/🐉THC-Hydra.md)
 
 hydra GET(BASIC認証)
 ```zsh
-hydra -u -L [userlist] -P [passwordlist] "http-get://<TargetIP>/<path>:A=BASIC"
+hydra -u -L [userlist] -P [passwordlist] "http-get://<target_IP>/<path>:A=BASIC"
 ```
 
 fuff(Proxy経由のブルートフォース時)
 ```zsh
-ffuf -x socks5://localhost:1080 -u http://<TargetIP>/login -X POST -w <wordlist> -d "<username_param>=<username>&<pw_param>=FUZZ&RememberMe=true" -fw <failure_len>
+ffuf -x socks5://localhost:1080 -u http://<target_IP>/login -X POST -w <wordlist> -d "<username_param>=<username>&<pw_param>=FUZZ&RememberMe=true" -fw <failure_len>
 ```
 ```zsh
-ffuf -x socks5://localhost:1080 -u http://<TargetIP>/login -X POST -w /usr/share/seclists/Passwords/2020-200_most_used_passwords.txt -d "Username=admin&Password=FUZZ&RememberMe=true" -fw 6719
+ffuf -x socks5://localhost:1080 -u http://<target_IP>/login -X POST -w /usr/share/seclists/Passwords/2020-200_most_used_passwords.txt -d "Username=admin&Password=FUZZ&RememberMe=true" -fw 6719
 ```
 
 - 補足：CSRFトークン付きのフォームをブルートフォースするときは、🔗[patator - github](https://github.com/lanjelot/patator)を使う
@@ -173,7 +176,7 @@ Joomla CMSを使っているとき
 1. JoomScanを実行
 ```zsh
 # /cmsや/cms/administratorも存在すれば、IPの後ろに付与するとより確実な情報を表示
-joomscan -ec -u <TargetIP>
+joomscan -ec -u <target_IP>
 ```
 
 2. componentのバージョンを特定する
@@ -190,7 +193,7 @@ joomscan -ec -u <TargetIP>
 
 Drupal CMSを使っているとき
 ```zsh
-droopescan scan drupal http://$TargetIP -t 32
+droopescan scan drupal http://<target_IP> -t 32
 ```
 - [コンパイル・ビルド](../../Misc/コンパイル・ビルド.md#Python%20Package%20Management%20(pip))
 
