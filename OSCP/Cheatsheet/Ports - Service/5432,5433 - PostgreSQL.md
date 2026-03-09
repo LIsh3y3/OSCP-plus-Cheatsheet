@@ -41,7 +41,7 @@ SELECT datname FROM pg_database;
 -- テーブル一覧
 \d
 
--- 💡ユーザーロールの確認
+-- ユーザーロールの確認
 \du+
 
 -- 現在のユーザー
@@ -88,7 +88,7 @@ SELECT * FROM dblink_connect('host=<TargetIP>
 
 | 属性名            | 説明              |
 | -------------- | --------------- |
-| rolsuper       | スーパーユーザー権限      |
+| **rolsuper**   | スーパーユーザー権限      |
 | rolinherit     | 権限の継承設定         |
 | rolcreaterole  | ロール作成権限         |
 | rolcreatedb    | データベース作成権限      |
@@ -143,9 +143,9 @@ SELECT grantee,table_schema,table_name,privilege_type FROM information_schema.ro
 関数（Functions）の調査
 ```sql
 -- pg_catalog 内の関数を確認
-\df *                 # 全取得
-\df *pg_ls*           # 部分一致
-\df+ pg_read_binary_file # アクセス権確認
+\df *                 -- 全取得
+\df *pg_ls*           -- 部分一致
+\df+ pg_read_binary_file -- アクセス権確認
 
 -- 特定スキーマの全関数
 \df pg_catalog.*
