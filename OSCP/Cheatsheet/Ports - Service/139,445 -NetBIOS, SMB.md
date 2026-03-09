@@ -225,12 +225,12 @@ smbmap -u <username> -p "<password>" -H <target_IP>
 
 PtH
 ```zsh
-smbmap -u <username> -p "<LM>:<NT>" -H <target_IP>
+smbmap -u <username> -p "<LMHash>:<NTHash>" -H <target_IP>
 ```
 
 再帰探索
 ```zsh
-smbmap -H <target_IP> -r <SHARENAME>
+smbmap -H <target_IP> -r <share_name>
 ```
 
 よく使う追加オプション
@@ -259,20 +259,18 @@ PtH
 smbclient //<target_IP> -U '<username>' --pw-nt-hash <NTHash>
 ```
 
-### Windowsマシン上から(LotL)
-
-#LotL
+### Windowsマシン上から
 
 ローカル共有
-```cmd
+```powershell
 net share
 ```
 
 リモート共有
-```cmd
+```powershell
+
 net view \\<TargetHost> /all
 ```
-（例：`net view \\dc01 /all`）
 
 ### Impacket
 
