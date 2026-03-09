@@ -103,7 +103,11 @@ $$smbclientで接続後ls実施した画面$$
 # Enumeration
 
 - 主なツール：
-	- NetExec、smbclient、smbmap、enum4linux、impacket
+	- NetExec
+	- smbclient
+	- smbmap
+	- enum4linux
+	- impacket
 
 ## SMB スキャン & 基本列挙
 
