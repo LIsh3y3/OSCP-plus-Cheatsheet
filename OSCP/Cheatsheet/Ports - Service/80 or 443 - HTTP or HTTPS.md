@@ -49,7 +49,7 @@ feroxbuster -u http://<target_IP>:<Port>/ --depth <num> -r -k -w  /usr/share/sec
 # 脆弱性のスキャン
 
 >[!NOTE]
->OSCP試験においては、niktoはほとんど使わなかった。
+>OSCP試験においては、niktoはほとんど使わなかった。また、niktoは過検知が多い。
 
 [👽Nikto](../../Tools/👽Nikto.md)
 ```zsh
@@ -65,7 +65,7 @@ sudo nmap --script "http-*" <target_IP> -p <Port>
 
 # Web Credential Bruteforcing
 
-まず、デフォルト／一般的な認証情報でログイン試行したか？
+✋まず、デフォルト認証情報や一般的な認証情報でログイン試行したか？
 
 ## CEWLで単語・メール抽出
 
