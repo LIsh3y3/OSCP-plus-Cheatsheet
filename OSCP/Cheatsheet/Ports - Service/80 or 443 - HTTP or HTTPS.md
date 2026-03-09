@@ -117,7 +117,7 @@ ffuf -x socks5://localhost:1080 -u http://<target_IP>/login -X POST -w /usr/shar
 
 (b) shell獲得のために、プラグインをアップロードする↓
 
-#### Reverse shell w/ WordPressプラグイン
+#### Reverse Shell w/ WordPressプラグイン
 
 1. リスナーを開く
 ```zsh
@@ -143,7 +143,7 @@ zip <output_name> <file>
 
 4. アップロード→Activate Pluginし、リバースシェルを獲得
 
-#### Webshell
+#### WebShell
 
 1. ペイロードを作成
 ```php
