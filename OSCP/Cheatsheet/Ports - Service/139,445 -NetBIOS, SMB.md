@@ -107,7 +107,7 @@ $$smbclientで接続後ls実施した画面$$
 	- [smbclient](https://www.samba.org/samba/samba/docs/man/manpages/smbclient.1.html)
 	- [SMBMap](https://github.com/ShawnDEvans/smbmap)
 	- [enum4linux](https://github.com/CiscoCXSecurity/enum4linux)
-	- impacket
+	- [Impacket](https://github.com/fortra/impacket)
 
 ## SMB スキャン & 基本列挙
 
@@ -151,7 +151,7 @@ nc -nv <target_IP> 445
 
 ### 総合列挙
 
-- enum4linux よりもSMBMapの方がメンテナンス状況や機能面で推奨される（[HTB "Active" - ippsec - Youtube](https://www.youtube.com/watch?v=jUc1J31DNdw)）
+- enum4linux よりもSMBMapの方がメンテナンス状況や機能面で推奨される（🔗[HTB "Active" - ippsec - Youtube](https://www.youtube.com/watch?v=jUc1J31DNdw)）
 - ターゲット環境によってはenum4linuxでのみ有用な結果が得られることもある
 
 smbmap
@@ -222,7 +222,7 @@ smbmap -u anonymous -p '' -H <target_IP> -r
 # ドメインなし
 smbmap -u <username> -p "<password>" -H <target_IP>
 # ドメインあり
-smbmap -d <domain> -u <username> -p "<password>" -H <target_IP>
+smbmap -d <d
 ```
 
 PtH
