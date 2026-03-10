@@ -113,7 +113,7 @@ ffuf -x socks5://localhost:1080 -u http://<target_IP>/login -X POST -w /usr/shar
 
 ### Exploit
 
-- [ ] todo:編集
+- [ ] todo:編集（プラグインの脆弱性）
 
 以下のエクスプロイトのために、WordPress管理画面にアクセスする必要がある。
 `/wp-admin`にアクセスし、`admin:admin` もしくは所有クレデンシャルでログイン試行する。
