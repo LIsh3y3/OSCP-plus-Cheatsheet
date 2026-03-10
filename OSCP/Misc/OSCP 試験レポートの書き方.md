@@ -123,4 +123,3 @@ which pdflatex
 ## レポート出力方法
 
 1. norajの[Available templates - GitHub](https://github.com/noraj/OSCP-Exam-Report-Template-Markdown?tab=readme-ov-file#available-templates)をダウンロードし、Obsidianのpandocプラグインを有効化したvaultに保存しておく
-2. 

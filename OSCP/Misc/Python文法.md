@@ -1,4 +1,3 @@
-すこし理解に時間がかかった文法をまとめる。
 公開エクスプロイトのほとんどがPythonであるため、Pythonの理解を深める必要がある。
 
 ---
@@ -41,7 +40,7 @@ if __name__ == "__main__":
 `if __name__ == "__main__":`
 は「スクリプトとして直接起動されたときだけ実行する」という意味。
 
-Pythonでは、実行されているモジュールには `__name__` という特殊変数が自動で入る
+Pythonでは、実行されているモジュールには `__name__` という特殊変数が自動で入る。
 - 直接実行された場合 → `"__main__"`    
 - 他のファイルから `import` された場合  → `__name__ == ファイル名（拡張子なし）`
 
@@ -89,8 +88,8 @@ python3 main.py
 ## 文字列の置き換え
 
 ```python
-print 'My name is %s.' % ('Ikeda')
-# My name is Ikeda.
+print 'My name is %s.' % ('Suzuki')
+# My name is Suzuki.
 ```
 ```python
 # exploit.py http://examle

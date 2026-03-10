@@ -79,6 +79,7 @@ printf("Hello world.")
 ```
 Hello world.\0
 ```
+
 ---
 
 # メモリの操作
@@ -99,5 +100,3 @@ char *pointer = malloc(buffer_size);
 # memset(確保メモリのポインタ, 初期化値, サイズ)
 memset(pointer, 0x41, buffer_size);
 ```
-
----
