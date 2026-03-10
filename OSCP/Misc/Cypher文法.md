@@ -1,4 +1,5 @@
-- 関連ノート：[🐶Bloodhound](../Tools/🐶Bloodhound.md)
+- 関連ノート:
+	- [🐶Bloodhound](../Tools/🐶Bloodhound.md)
 
 - 参考リンク🔗
 	- [Cypherクエリの基礎 2020 #neo4j](https://www.creationline.com/tech-blog/data-management/neo4j/33668)
@@ -9,7 +10,7 @@
 
 ## グラフモデルの構成要素
 
-Cypherはグラフ構造のデータ処理を行うために開発されたクエリ言語で、簡略な構文で複雑な論理構成が可能
+Cypherはグラフ構造のデータ処理を行うために開発されたクエリ言語で、簡略な構文で複雑な論理構成が可能。
 
 |要素|説明|表記例|
 |---|---|---|
@@ -311,4 +312,3 @@ RETURN p.name,
 | ----------------- | --------------------------------------------------------- | ------------------------- |
 | すべての指定したオブジェクトを表示 | `MATCH (m:Computer) RETURN m`                             |                           |
 | アクティブなセッションを確認する  | `MATCH p = (c:Computer)-[:HasSession]->(m:User) RETURN p` | owened userでどのマシンに横展開できるか |
-|                   |                                                           |                           |

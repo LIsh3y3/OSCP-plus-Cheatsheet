@@ -18,7 +18,7 @@ int *get_static_value_addr()
 ```c
 strcpy(buffer, argv[1])
 ```
-	bufferは実は配列の先頭へのポインタがわたされている　
+- bufferは実は配列の先頭へのポインタがわたされている　
 
 ```c
 int main(int argc, char *argv[]) {
@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
 
 ## 構造体
 
-関連するデータを1つにまとめたいときに使う
+関連するデータを1つにまとめたいときに使う。
 
 たとえば1人の人間の情報を1つにまとめて管理する場合：
 ```c
@@ -43,12 +43,11 @@ struct Person {
     float height;
 };
 ```
-これは「`a`, `b`, `c`という3つのint型のメンバを持ったデータのかたまり」を定義
 
 - 各要素（変数）は メンバ（member） と呼ぶ
-    - `a` → メンバ
-    - `b` → メンバ
-    - `c` → メンバ
+    - `name`
+    - `age`
+    - `height`
 
 ### メンバにアクセスする方法
 
@@ -77,9 +76,6 @@ printf("%s", src); // 出力は "ABC" まで。'D' は出力されない
 printf("Hello world.")
 ```
 	↓
-`Hello world.\0`
-
-
 
 
 ---
