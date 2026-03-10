@@ -178,15 +178,15 @@ joomscan -ec -u <target_IP>
 ```
 
 >[!TIP]
->[[#ディレクトリ探索]]の結果、/cmsや/cms/administratorも存在すれば、IPの後ろに付与するとより確実な情報を表示
+>[[#ディレクトリ探索]]の結果、/cmsや/cms/administratorも存在すれば、`<target_IP>/cmd`とすれば、より確実な情報を表示できる。
 
 2. componentのバージョンを特定する
-	- （joomscanの特定したパスにアクセスし、xmlファイルにアクセス）
 ```xml
 ...
 <authorUrl>www.joomla.org</authorUrl>
 <version>4.0.0</version>
 ```
+- joomscanが特定したパスにアクセスし、xmlファイルにアクセス
 
 3. component名とバージョン情報でExploit DBでPoC探索（Joomla Coreの脆弱性は少ない）
 
