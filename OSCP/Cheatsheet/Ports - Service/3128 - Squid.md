@@ -88,7 +88,7 @@ sudo proxychains nmap -sT -Pn <target_IP> -p $ports -n -A -sV -oN Nmap/scan_via_
 ```
 
 >[!TIP]
->アクセスできる内部NW インターフェースを探し当てるため、[Nmap Live Host Discovery](../../TryHackME/Jr%20Penetration%20Tester/Nmap%20Live%20Host%20Discovery.md)を実施する（ただし、たとえばHTTPがopenになっていてもブラウザでアクセスできないことがあるので、実際にアクセスできるかどうかは確認が必要）
+>アクセスできる内部NW インターフェースを探し当てるため、[Nmap Live Host Discovery](../../Misc/Nmap%20Live%20Host%20Discovery.md)を実施する（ただし、たとえばHTTPがopenになっていてもブラウザでアクセスできないことがあるので、実際にアクセスできるかどうかは確認が必要）
 
 >[!WARNING] 注意
 > - proxychains.confの デフォルト設定である `socks4 127.0.0.1 9050` は コメントアウトすること

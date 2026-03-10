@@ -274,7 +274,7 @@ ip a
 routel
 ```
 - 侵害した足場から内部NWへアクセスしたいときなど、そのマシンから他にどのマシンにアクセスできそうかを確認する第一歩
-- →怪しいサブネットがあったら[Nmap Live Host Discovery](../../TryHackME/Jr%20Penetration%20Tester/Nmap%20Live%20Host%20Discovery.md)でアクセス可能なIPアドレスを列挙する
+- →怪しいサブネットがあったら[Nmap Live Host Discovery](../../Misc/Nmap%20Live%20Host%20Discovery.md)でアクセス可能なIPアドレスを列挙する
 
 アクティブなネットワーク接続とリスニングポートの確認
 ```zsh

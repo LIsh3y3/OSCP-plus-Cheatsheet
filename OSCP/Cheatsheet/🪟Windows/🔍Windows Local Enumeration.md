@@ -211,7 +211,7 @@ $$ipconfigの結果例$$
 route print
 ```
 - 侵害した足場から内部NWへアクセスしたいときなど、そのマシンから他にどのマシンにアクセスできそうかを確認できる
-	- →怪しいサブネットがあったら[Nmap Live Host Discovery](../../TryHackME/Jr%20Penetration%20Tester/Nmap%20Live%20Host%20Discovery.md)でアクセス可能なIPアドレスを列挙する
+	- →怪しいサブネットがあったら[Nmap Live Host Discovery](../../Misc/Nmap%20Live%20Host%20Discovery.md)でアクセス可能なIPアドレスを列挙する
 -  [ルーティングテーブルの見方](#ルーティングテーブルの見方)
 
 ARPテーブルを確認し、同じLAN上の通信可能な他のシステムを発見する
