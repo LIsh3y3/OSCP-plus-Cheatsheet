@@ -154,6 +154,9 @@ INSERT INTO npn VALUES(LOAD_FILE('/tmp/lib_mysqludf_sys.so'));
 
 2. ライブラリを `plugin_dir` へ出力する
 ```sql
+-- plugin_dirの確認
+SELECT @@plugin_dir;
+
 SELECT * FROM npn INTO DUMPFILE '/usr/lib/mysql/plugin/lib_mysqludf_sys.so';
 ```
 
