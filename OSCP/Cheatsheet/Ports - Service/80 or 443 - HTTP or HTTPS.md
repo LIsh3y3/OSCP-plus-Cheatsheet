@@ -106,16 +106,17 @@ ffuf -x socks5://localhost:1080 -u http://<target_IP>/login -X POST -w /usr/shar
 ### Enumeration
 
 - [📓WPScan](../../Tools/📓WPScan.md#基本スキャン)
-- WordPressを使っているターゲット環境にアクセスできるなら、`wp-config.php`に認証情報がないか探す
+- WordPressを使っているターゲット環境のファイルシステムにアクセスできるなら、`wp-config.php`に認証情報がないか探す
 - 🔗参考： [Wordpress cheat sheet - HackTricks](https://book.hacktricks.wiki/en/network-services-pentesting/pentesting-web/wordpress.html)
 
 ### Exploit
 
-方法A: WPScanで検出した脆弱性から公開エクスプロイトを探索する。
+- 方法A: WPScanで検出した脆弱性から公開エクスプロイトを探索する
 
-方法B: プラグイン経由でシェルを獲得する。
-以下のエクスプロイトのために、WordPress管理画面にアクセスする必要がある。
-`/wp-admin`にアクセスし、`admin:admin` もしくは所有クレデンシャルでログイン試行する。
+- 方法B: 
+	- プラグインにペイロードを注入し、シェルを獲得する
+	- プラグインアップロードのためにWordPress管理画面にアクセスする必要がある
+	- `/wp-admin`にアクセスし、`admin:admin` もしくは所有クレデンシャルでログイン試行する。
 
 #### Reverse Shell w/ WordPressプラグイン
 
