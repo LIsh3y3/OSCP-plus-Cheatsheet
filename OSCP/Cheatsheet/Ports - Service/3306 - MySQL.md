@@ -202,7 +202,7 @@ grep -oaE "[-_\.\*a-Z0-9]{3,}" /var/lib/mysql/mysql/user.MYD | grep -v "mysql_na
 
 ```sql
 CREATE USER '<username>'@'%' IDENTIFIED BY '<password>';
-GRANT ALL PRIVILEGES ON *.* TO '<username>'@'%' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO '<username'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 ```
 
