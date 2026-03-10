@@ -265,9 +265,7 @@ COPY (select '') to PROGRAM 'psql -U <super_user> -c "ALTER USER <your_username>
 
 ## Misc
 
-dblink を使用したローカルログイン方法。
-
-- 外部IPからのログインが制限されていても、127.0.0.1 経由で dblink を叩くことでログイン可能な場合がある
+- dblink を使用したローカルログインが可能で、外部IPからのログインが制限されていても、127.0.0.1 経由で dblink を叩くことでログイン可能な場合がある
 ```sql
 SELECT * FROM dblink('host=127.0.0.1 user=<username> password=<password> dbname=<database>', 'SELECT usename,passwd from pg_shadow') RETURNS (result TEXT);
 ```
