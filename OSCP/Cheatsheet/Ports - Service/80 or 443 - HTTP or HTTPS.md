@@ -170,9 +170,7 @@ http://<target_IP>/wp-content/plugins/<プラグイン名>/<php_filename>?cmd=id
 
 ## Joomla
 
-### JoomScan
-
-1. JoomScanを実行
+1. 🔗[JoomScan](https://github.com/OWASP/joomscan)を実行
 ```zsh
 joomscan -ec -u <target_IP>
 ```
@@ -188,11 +186,13 @@ joomscan -ec -u <target_IP>
 ```
 - joomscanが特定したパスにアクセスし、xmlファイルにアクセス
 
-3. component名とバージョン情報でExploit DBでPoC探索（Joomla Coreの脆弱性は少ない）
+3. component名とバージョン情報でPoCを検索（Joomla Core自体の脆弱性は少ないため、componentがねらい目）
 
-### droopescan
+## Drupal
 
-Drupal CMSを使っているとき
+[droopescan](https://github.com/SamJoan/droopescan)
+
+
 ```zsh
 droopescan scan drupal http://<target_IP> -t 32
 ```
