@@ -190,13 +190,11 @@ joomscan -ec -u <target_IP>
 
 ## Drupal
 
-[droopescan](https://github.com/SamJoan/droopescan)
-
-
+🔗[droopescan](https://github.com/SamJoan/droopescan)を実行
 ```zsh
 droopescan scan drupal http://<target_IP> -t 32
 ```
-- [コンパイル・ビルド](../../Misc/コンパイル・ビルド.md#Python%20Package%20Management%20(pip))
+- 関連ノート：[Python Package Management (pip)](../../Misc/コンパイル・ビルド.md#Python%20Package%20Management%20(pip))
 
 ---
 
@@ -212,7 +210,7 @@ droopescan scan drupal http://<target_IP> -t 32
     - [ ] すべてのリンク
     - [ ] バージョン情報
 - [ ] SSL証明書からDNSサブドメインやメールアドレスを調査
-- [ ] Apache VirtualHost（または nginx/IIS の同等機能）に注意！ `/etc/hosts` にすべての(サブ)ドメインをTarget IPで登録
+- [ ] Apache VirtualHost（または nginx/IIS の同等機能）に注意！ `/etc/hosts` にすべての(サブ)ドメインをtarget IPで登録
 - [ ] デフォルト／一般的な認証情報でログイン試行
 - [ ] 認証バイパス(SQLi)：`' or 1=1 -- #` などで試行
 - [ ] 悪意ある文字でSQL/NoSQLインジェクションのテスト：[悪意のある文字を使ったテスト（"Bad Chars"）](../Common/SQL%20Injection.md#悪意のある文字を使ったテスト（"Bad%20Chars"）)
