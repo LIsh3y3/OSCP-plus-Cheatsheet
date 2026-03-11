@@ -3,23 +3,6 @@
 - ペイロードのデコードで攻撃を防御するWebサイトに対して、難読化でXSSやSQLiを成功させるテクニック
 - HV = HackVertor
 
-###### まとめ
-
-- [Web攻撃の難読化](#考え方：特定のcontextに合わせたデコードを把握する)
-- [Web攻撃の難読化](#考え方：デコードの不一致を利用する)
-- [Web攻撃の難読化](#URL%20encoding)
-- [Web攻撃の難読化](#HTML%20encoding)
-- [Web攻撃の難読化](#XML%20encoding)
-- [Web攻撃の難読化](#unicode%20escaping)
-- [Web攻撃の難読化](#hex%20escaping)
-- [Web攻撃の難読化](#octal%20escaping)
-- [Web攻撃の難読化](#SQL%20CHAR()関数)
-- [Web攻撃の難読化](#base64%20encoding)
-- [Web攻撃の難読化](#多段階encoding)
-- [Web攻撃の難読化](#大文字小文字組合せ)
-- [Web攻撃の難読化](#Misc)
-	- [Web攻撃の難読化](#JavaScript記法の変換)
-
 ---
 ##### 考え方：特定のcontextに合わせたデコードを把握する
 
