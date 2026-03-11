@@ -174,7 +174,7 @@ enum4linux -u guest -aMld <target_IP> | tee enum4linux.log
 
 #### enum4linuxの補足
 
-- `enum4linux -w <WORKGROUP> ...` でワークグループ指定が必要な場合有り（ワークグループ名は`smbmap -vH` で取得可能）
+- `enum4linux -w <WORKGROUP> ...` でワークグループ指定が必要な場合有り（ワークグループ名は`smbmap -v -H` で取得可能）
 - `Known Usernames`：一般的なユーザー名というだけで、ターゲットに存在するとは限らない
 
 ---
@@ -310,7 +310,7 @@ smb:> mget *
 基本コマンド
 ```zsh
 mkdir <mount_dir>
-sudo mount -t cifs //<target_IP>/<share_name> <mound_dir>/ -o username=<username>,password=<password>
+sudo mount -t cifs //<target_IP>/<share_name> <mount_dir>/ -o username=<username>,password=<password>
 cd <mount_dir>
 # マウント解除：sudo umount -l <mount_dir>
 ```
@@ -422,7 +422,7 @@ client max protocol = SMB3
 
 対処例：`-t`でタイムアウト時間を延ばす
 ```zsh
-smbcilent \\\\<target_IP>\<share> -W <domain> -U '<username>' -t 60
+smbclient \\\\<target_IP>\<share> -W <domain> -U '<username>' -t 60
 ```
 - →これでもTIMEOUTの場合は、フォルダ構成を理解し、直でファイルを指定する
 	- 具体的には、アプリケーションのバックアップフォルダがあり、ファイルがTIMEOUTで取得できない場合は、アプリケーションの公式ドキュメントを読み、passwordのあるファイルをダイレクトに指定して取得する
