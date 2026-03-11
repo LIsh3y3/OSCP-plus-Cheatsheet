@@ -143,7 +143,7 @@ SELECT table_name, column_name, table_schema FROM information_schema.columns WHE
 
 ### 実行手順 (Linux例)
 
-1. [UDF ライブラリ]をバイナリ（または16進数）でテーブルに流し込む
+1. UDF ライブラリをバイナリ（または16進数）でテーブルに流し込む
 ```sql
 USE mysql;
 CREATE TABLE npn(line blob);
