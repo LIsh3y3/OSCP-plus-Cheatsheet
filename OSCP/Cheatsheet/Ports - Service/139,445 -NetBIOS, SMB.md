@@ -336,15 +336,12 @@ netexec smb <target_IP> -u <username> -p '<password>' -M spider_plus
 
 - enum4linuxでも列挙可能
 
->[!TIP]
->AD環境ではアカウントロックに強いkerbruteの方がよい
-
 ユーザー一覧の取得
 ```zsh
 netexec smb <target_IP> -u <username> -p '<password>' --users
 ```
 
-ユーザーのブルートフォース([用語](../../Misc/用語.md#RID%20(Relative%20Identifier)))
+ユーザーのブルートフォース([RID (Relative Identifier)](../../Misc/用語.md#RID%20(Relative%20Identifier)))
 ```zsh
 netexec smb <target_IP> -u guest -p '' --rid-brute
 ```
