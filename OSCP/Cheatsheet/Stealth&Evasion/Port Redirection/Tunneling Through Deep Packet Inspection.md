@@ -37,7 +37,9 @@ $$FWとINSPECTORによりマシンが保護されているイメージ図(PEN-20
 - ⚠️OS依存はないが、ChiselのバージョンとOSのアーキテクチャで不一致が起きた場合は実行失敗する
 - ChiselサーバーはSOCKSポート経由で送信される<u>すべてのデータをHTTP通信としてカプセル化</u>するので、HTTPトンネルの中にSSHパケットを通すことが可能
 - Chiselクライアントはデ・カプセル化し、宛先に転送する
+
 ![](../../../画像ファイル/Pasted%20image%2020250926071427.png)
+
 $$ChiselによるローカルNWへのアクセスイメージ図(PEN-200)$$
 
 ### ChiselによるHTTP Tunneling(リモートポートフォワーディング)
@@ -104,20 +106,26 @@ tcp_connect_time_out 800
 
 ---
 
+## Ligolo-ng
 
-# Ligolo-ng
+### Ligolo-ngとは
 
 🔗[公式ドキュメント](https://docs.ligolo.ng/)
+🔗[Ligolo-ng - GitHub](https://github.com/nicocha30/ligolo-ng)
 
 - 用途：chiselと同様
-- 動作原理：chiselなどはSOCKSプロキシベースのツールだが、これはTUNインターフェースを使用してVPNのように動作する
+- 動作原理：chiselなどはSOCKSプロキシベースのツールだが、これはTUNインターフェースを使用して**VPNのように動作する**
 - メリット：
 	- 他ツールと比較し高速かつ安定している
-	- proxychainsを使わずにDynamic Port Forwardingが可能なので、静的リンクのオブジェクトでも実行可能（＝より多くのツールが使える）
-	- →==Port ForwardingはLigolo-ngを第一優先に==、権限の問題等で動作しない場合はChisel、と使い分ける
-- ⚠️注意 ：Go言語のversionが1.20以上でビルドされており、1.19以下のversionでビルドされたバイナリは存在しないため、"'GLIBC_2.32' not found"のエラーが出たときは使えない
+	- proxychainsを使わずにDynamic Port Forwardingが可能なので、**静的リンクのオブジェクトでも実行可能**（＝より多くのツールが使える）
 
-## Ligolo-ngの仕組み
+>[!TIP]
+>ポートフォワーディング系
+
+>[!NOTE]
+>Go言語のversionが1.20以上でビルドされており、1.19以下のversionでビルドされたバイナリは存在せず、"'GLIBC_2.32' not found"のエラーが出たときは使えないため、[HTTP Tunneling w/ Chisel](#HTTP%20Tunneling%20w/%20Chisel)を使う。
+
+### Ligolo-ngの仕組み
 
 `ligolo-agent`と`ligolo-proxy`があり、Agentが足場のマシンで、Proxyが攻撃者のマシンで起動する
 
@@ -130,9 +138,7 @@ tcp_connect_time_out 800
 4. パケットの転送
 	`ligolo`インターフェースに送られたネットワークパケットは、`ligolo-proxy`によってカプセル化され、確立されたTLSトンネルを通じて`ligolo-agent`に転送される。`ligolo-agent`は受信したパケットをターゲットネットワークに送り出す。逆方向の通信も同様に処理される。
 
----
-
-## Tunneling w/ [Ligolo-ng](https://github.com/nicocha30/ligolo-ng)
+## Tunneling w/ Ligolo-ng
 
 1. `sudo apt install`か、[Ligolo-ng release - Github](https://github.com/nicocha30/ligolo-ng/releases)からダウンロードする
 2. 攻撃者のマシン上でTUNインターフェースを作成する
@@ -170,6 +176,7 @@ ifconfig
 ```
 
 ![](../../../画像ファイル/Pasted%20image%2020251119071530.png)
+
 $$ローカルNW側インターフェースが表示されている$$
 
 6. 攻撃者のマシンで<u>新たなターミナルを開き</u>、攻撃者のマシンからローカルNWへの通信が、Ligolo-ngが作成したTUNインターフェース（`ligolo`）を経由するようにルーティングを設定
@@ -193,7 +200,7 @@ sudo nmap -sn 10.10.10.0/24 -oG ping-sweep.txt
 	- Ligolo-agent側の接続有効期限が切れている可能性があるため、再度ステップ４を実行
 	- Nmapなどclosed portにアクセスする場合は、このエラーが表示されるが正常
 
-### 補足：Ligolo-ngのクリーンアップ
+#### 補足：Ligolo-ngのクリーンアップ
 
 1. Ligolo-proxyプロンプトから、トンネルを停止し、Proxyサーバーを修了する
 ```zsh
@@ -212,9 +219,7 @@ sudo ip tuntap del mode tun ligolo
 ip a show
 ```
 
----
-
-## Listener 
+## Listener w/ Ligolo-ng 
 
 ### 用途
 
@@ -287,7 +292,7 @@ listener_add --addr 0.0.0.0:<AgentListenPort(任意)> --to 127.0.0.1:<HTTP_Port>
 Invoke-WebRequest -Uri http://<AgentLocalIP>:<HTTP_Port>/<file> -Outfile <output_dir>
 ```
 
-## Agentのlocalhostサービスへのアクセス
+## localhostサービスへのアクセス w/ Ligolo-ng
 
 - 用途：Agentで`localhost`でしかアクセスできないサービスにアクセスできるようにする
 - 具体例：Agent(足場)マシンでSSHが動いているが、iptablesで外部からの22番ポートが閉じられている(localhost:22 でしか接続できない)とき、アクセスできるようにする
@@ -301,7 +306,6 @@ sudo ip route add 240.0.0.1/32 dev ligolo
 ```zsh
 ssh <user>@240.0.0.1
 ```
-
 
 ---
 ---
