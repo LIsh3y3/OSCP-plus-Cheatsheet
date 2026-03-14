@@ -57,7 +57,7 @@ $$Socatポートフォワーディング成功時出力例$$
 2. 攻撃者のマシンからJump Host上のリッスンポートにアクセスすることで、フォワーディング先のtarget_IPにアクセス可能
 
 >[!NOTE]
->他のポートに対してポートフォワーディングをするためには、Ctrl + Zでターミナルを閉じ、再度ターミナルに接続後、既存のsocatプロセスを`kill`する。
+>他のポートに対してポートフォワーディングをするためには、Ctrl + Zでsocatプロセスをサスペンド（一時停止）してバックグラウンドに退避し、再度ターミナルに接続後、既存のsocatプロセスをkillする。
 
 ---
 
@@ -140,7 +140,7 @@ python3 -c 'import pty; pty.spawn("/bin/sh")'
 # 例：ssh -N -L 0.0.0.0:4455:172.16.50.217:445 database_admin@10.4.50.215
 ssh -N -L 0.0.0.0:<SSH_client_listen_port>:<target_IP>:<port> <SSH_server_username>@<SSH_server_IP>
 ```
-- `-N`：ポートフォワーディングのために使用することを明示し、新たなシェルが開かないようにする
+- `-N`：リモートでコマンドを実行せず、トンネルの確立のみを行う
 
 3. 別のセッションでSSHクライアントにアクセスし、SSHローカルポートフォワーディングに成功しているかどうかを確認
 ```zsh
@@ -336,7 +336,7 @@ tcp_connect_time_out 2000
 
 - 条件：
 	- SSHクライアント(Jump Host)にroot権限：iptables操作やパケットのキャプチャのため
-	- SSHサーバーにPython3：リモートでコードを実行するためのtty
+	- SSHサーバー（Jump Host）にPython3：sshuttleがリモート側でTCPソケット制御コードを実行するために必要
 
 1. Jump Hostでリモートポートフォワーディング
 ```zsh
@@ -441,7 +441,7 @@ netsh advfirewall firewall add rule name="<rule_name>" protocol=TCP dir=in local
 3. 攻撃者のマシンからNmap等でリッスンポート経由でtargetのソケットにアクセス
 ```zsh
 # 例
-sudo nmap -sS <Netsh_client_IP> -Pn -n -p <connect_port>
+sudo nmap -sS <Netsh_client_IP> -Pn -n -p <Netsh_client_listen_port>
 ```
 
 4. netshによる変更の取り消し
