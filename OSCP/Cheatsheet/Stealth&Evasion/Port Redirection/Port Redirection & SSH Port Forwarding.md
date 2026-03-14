@@ -259,8 +259,7 @@ ssh database_admin@127.0.0.1 -p 2222
 sudo systemctl start ssh
 ```
 
-2. SSHクライアント上でSSH接続に必要なTTY機能が使えるようにする
-	- RDP接続など、インタラクティブなシェルにアクセスできているなら不要
+2. SSHクライアント上で非インタラクティブシェルであれば、インタラクティブシェルへ切り替える
 ```zsh
 python3 -c 'import pty; pty.spawn("/bin/sh")'
 ```
@@ -283,12 +282,7 @@ tcp   LISTEN  0       128            0.0.0.0:22          0.0.0.0:*     users:(("
 tcp   LISTEN  0       128              [::1]:9998           [::]:*     users:(("sshd",pid=939038,fd=7))
 ```
 
-![](../../../画像ファイル/Pasted%20image%2020250923184203.png)
-
-$$リモートダイナミックポートフォワーディングによってFWを回避するイメージ$$
-
 5. 攻撃者のマシン上で、Proxychainsの設定を変更する
-	- ⚠️Proxychainsは関数をフックする仕組みを使うので、静的リンクされたバイナリには使えない
 ```zsh
 sudo nano /etc/proxychains4.conf
 ```
@@ -298,18 +292,29 @@ sudo nano /etc/proxychains4.conf
 # add proxy here ...
 # meanwile
 # defaults set to "tor"
-socks5 127.0.0.1 [SSH server LISTEN Port(1025以上任意)]
+socks5 127.0.0.1 <SSH_server_listen_port>
 ```
 - ProxyListはstrict_chainモード(デフォルト)では１つにしておく必要がある
+
+>[!WARNING]
+>Proxychainsは関数をフックする仕組みを使うので、静的リンクされたバイナリには使えない。
 
 6. 攻撃者のマシンから、コマンドの先頭に`proxychains`をつけて実行することで、任意のポートにフォワーディングできる
 ```zsh
 # 例：Nmapの場合
-sudo proxychains nmap -vvv -sT --top-ports=20 -Pn -n [target_IP]
+sudo proxychains nmap -vvv -sT --top-ports=20 -Pn -n <target_IP>
 ```
-- 🚨スキャン時は、target_IPに対し、足場からネットワーク情報を列挙して発見した内部NW側のインターフェースを使用する
 
-💡`proxychains nmap`の速度が遅い場合は、Proxychainsの設定で以下の２つの値を小さくする
+>[!NOTE]
+>🚨スキャン時は、target_IPに対し、足場からネットワーク情報を列挙して発見した内部NW側のインターフェースを使用する
+
+
+![](../../../画像ファイル/Pasted%20image%2020260314100618.png)
+
+$$リモートダイナミックポートフォワーディングによってFWを回避するイメージ$$
+
+>[!TIP]
+>`proxychains nmap`の速度が遅い場合は、Proxychainsの設定で以下の２つの値を小さくする。
 ```zsh
 # Some timeouts in milliseconds
 tcp_read_time_out 15000
