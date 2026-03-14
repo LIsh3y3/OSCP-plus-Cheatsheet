@@ -18,8 +18,6 @@ Port Redirection ＝ Port Forwarding
 - そこで利用するのが **Port Redirection / Tunneling**  
 	- →ネットワークの制限を「迂回」して、目的のサービスへ到達できるようにする
 
----
-
 ## Port Forwardingの基本原理
 
 リモートポートフォワーディング
@@ -47,19 +45,20 @@ $$ローカルポートフォワーディングのイメージ$$
 1. Jump Host上でリモートポートフォワーディング
 ```zsh
 # 下図例：socat -ddd TCP-LISTEN:2345,fork TCP:10.4.50.215:5432
-socat -ddd TCP-LISTEN:<listen_port>,fork TCP:[DestIP]:[Port]
+socat -ddd TCP-LISTEN:<listen_port>,fork TCP:<Dest_IP>:<port>
 ```
 - `-ddd`：詳細出力
 - `fork`：指定することで、１回きりの通信で接続断しないようになる
-- 💡踏み台のリッスンポートは1,024超えのwell-knownポート以外を指定する
+- Jump Hostのリッスンポートは1,024超えのwell-knownポート以外を指定すること
+
 ![](../../../画像ファイル/Pasted%20image%2020250920195209.png)
-$$Socatポートフォワーディング成功時出力$$
-![](../../../画像ファイル/Pasted%20image%2020250920194904.png)
-$$socatでのポートフォワーディングイメージ図(PEN-200)$$
 
-2. 攻撃者のマシン(KALI-MACHINE)からリッスンポートにアクセスすることで、フォワーディング先のDestIPにアクセス可能
+$$Socatポートフォワーディング成功時出力例$$
 
-⚠️他のポートに対してポートフォワーディングをするためには、Ctrl + Zでターミナルを閉じ、再度ターミナルに接続後、既存のsocatプロセスを`kill`する
+2. 攻撃者のマシンからJump Host上のリッスンポートにアクセスすることで、フォワーディング先のtarget_IPにアクセス可能
+
+>[!NOTE]
+>他のポートに対してポートフォワーディングをするためには、Ctrl + Zでターミナルを閉じ、再度ターミナルに接続後、既存のsocatプロセスを`kill`する。
 
 ---
 ---
@@ -133,7 +132,7 @@ python3 -c 'import pty; pty.spawn("/bin/sh")'
 	- 出力はなし
 ```zsh
 # 例：ssh -N -L 0.0.0.0:4455:172.16.50.217:445 database_admin@10.4.50.215
-ssh -N -L 0.0.0.0:[SSH client LISTEN Port(1025以上任意)]:[DestIP]:[DestPort] [SSH server username]@[SSH server IP]
+ssh -N -L 0.0.0.0:[SSH client LISTEN Port(1025以上任意)]:[target_IP]:[DestPort] [SSH server username]@[SSH server IP]
 ```
 - Dest：下図の最終到達先である「HRSHARES」マシンのこと
 - DestIPは、足場からネットワーク情報を列挙して発見する
@@ -195,13 +194,10 @@ socks5 [SSH client IP] [SSH client LISTEN Port(1025以上任意)]
 4. 攻撃者のマシンから、コマンドの先頭に`proxychains`をつけて実行することで、任意のポートにフォワーディングできる（SSHクライアントのIP/ポートは指定不要）
 ```zsh
 # 例：Nmapの場合（sTでないとProxyChains経由で動作しない）
-sudo proxychains nmap -vvv -sT --top-ports=20 -Pn [DestIP]
+sudo proxychains nmap -vvv -sT --top-ports=20 -Pn [target_IP]
 # 例：smbclientの場合
-sudo proxychains smbclient -L //[DestIP]/ -U hr_admin --password=Welcome1234
+sudo proxychains smbclient -L //[target_IP]/ -U hr_admin --password=Welcome1234
 ```
-- DestIPは、足場からネットワーク情報を列挙して発見する
-	- [🔍Windows Local Enumeration](../../🪟Windows/🔍Windows%20Local%20Enumeration.md#ネットワーク情報収集コマンド)
-	- [🔍Linux Enumeration](../../🐧Linux/🔍Linux%20Enumeration.md#ネットワーク情報収集コマンド)
 
 💡`proxychains nmap`の速度が遅い場合は、Proxychainsの設定で以下の２つの値を小さくする
 ```zsh
@@ -233,11 +229,8 @@ python3 -c 'import pty; pty.spawn("/bin/sh")'
 3. SSHクライアント上でリモートポートフォワーディング
 	- 出力はなし
 ```zsh
-ssh -N -R 127.0.0.1:[SSH server LISTEN Port(1025以上任意)]:[DestIP]:[DestPort] [SSH server username(攻撃者)]@[SSH server IP]
+ssh -N -R 127.0.0.1:[SSH server LISTEN Port(1025以上任意)]:[target_IP]:[DestPort] [SSH server username(攻撃者)]@[SSH server IP]
 ```
-- DestIPは、足場からネットワーク情報を列挙して発見する
-	- [🔍Windows Local Enumeration](../../🪟Windows/🔍Windows%20Local%20Enumeration.md#ネットワーク情報収集コマンド)
-	- [🔍Linux Enumeration](../../🐧Linux/🔍Linux%20Enumeration.md#ネットワーク情報収集コマンド)
 
 4. 攻撃者のマシンでリモートポートフォワーディングが成功しているかどうかを確認
 ```zsh
@@ -318,9 +311,9 @@ socks5 127.0.0.1 [SSH server LISTEN Port(1025以上任意)]
 6. 攻撃者のマシンから、コマンドの先頭に`proxychains`をつけて実行することで、任意のポートにフォワーディングできる
 ```zsh
 # 例：Nmapの場合
-sudo proxychains nmap -vvv -sT --top-ports=20 -Pn -n [DestIP]
+sudo proxychains nmap -vvv -sT --top-ports=20 -Pn -n [target_IP]
 ```
-- 🚨スキャン時は、DestIPに対し、足場からネットワーク情報を列挙して発見した内部NW側のインターフェースを使用する
+- 🚨スキャン時は、target_IPに対し、足場からネットワーク情報を列挙して発見した内部NW側のインターフェースを使用する
 
 💡`proxychains nmap`の速度が遅い場合は、Proxychainsの設定で以下の２つの値を小さくする
 ```zsh
@@ -350,7 +343,7 @@ tcp_connect_time_out 2000
 
 1. 足場上でリモートポートフォワーディング
 ```zsh
-socat -ddd TCP-LISTEN:[リッスンポート],fork TCP:[DestIP]:[DestPort]
+socat -ddd TCP-LISTEN:[リッスンポート],fork TCP:[target_IP]:[DestPort]
 ```
 
 2. 攻撃者のマシン上でsshuttleを使用し、トンネルをしたい**サブネット**を指定
@@ -450,7 +443,7 @@ mysql -h 127.0.0.1 -P <SSH server LISTEN Port(1025以上任意)> -u <username> -
 1. 管理者権限でcmd.exeを開き、netshのportproxyルールを追加しポートフォワーディング
 	- 出力はなし
 ```cmd
-netsh interface portproxy add v4tov4 listenport=[Netshクライアントリッスンポート(1025以上任意)] listenaddress=[NetshクライアントIP] connectport=[Dest Port] connectaddress=[Dest IP]
+netsh interface portproxy add v4tov4 listenport=[Netshクライアントリッスンポート(1025以上任意)] listenaddress=[NetshクライアントIP] connectport=[Dest Port] connectaddress=[target_IP]
 ```
 - `v4tov4`：IPv4からIPv4へのポートフォワーディングを意味する
 ![](../../../画像ファイル/Pasted%20image%2020250925065912.png)
@@ -463,7 +456,7 @@ netsh advfirewall firewall add rule name="[rule name]" protocol=TCP dir=in local
 ```
 ![](../../../画像ファイル/Pasted%20image%2020250925071526.png)
 $$netshでFWの穴あけ後$$
-3. 攻撃者のマシンからNmap等でリッスンポート経由でDestのソケットにアクセス
+3. 攻撃者のマシンからNmap等でリッスンポート経由でtargetのソケットにアクセス
 ```zsh
 # 例
 sudo nmap -sS [NetshクライアントIP] -Pn -n -p [指定したリッスンポート]
