@@ -115,14 +115,9 @@ tcp_connect_time_out 800
 
 - 用途：chiselと同様
 - 動作原理：chiselなどはSOCKSプロキシベースのツールだが、これはTUNインターフェースを使用して**VPNのように動作する**
-- メリット：
+- ✅メリット：
 	- 他ツールと比較し高速かつ安定している
 	- proxychainsを使わずにDynamic Port Forwardingが可能なので、**静的リンクのオブジェクトでも実行可能**（＝より多くのツールが使える）
-
-- 用途：
-	- 攻撃者 → Agent(足場) → ローカルNW内のAgent以外のマシンへのアクセス：[Tunneling w/ Ligolo-ng](#Tunneling%20w/%20Ligolo-ng)
-	- ローカルNW内のAgent以外のマシン→攻撃者マシンへのアクセス：[Listener w/ Ligolo-ng](#Listener%20w/%20Ligolo-ng)
-
 >[!TIP]
 >ポートフォワーディング・トンネリング系でもっとも使いやすい。
 
@@ -160,7 +155,7 @@ ligolo-proxy -selfcert -laddr 0.0.0.0:<ListenPort>
 ```
 - Web UIを起動するか(y/n)と聞かれるが、起動しなくてよい
 
-4. [Ligolo-ng relase - GitHub](https://github.com/nicocha30/ligolo-ng/releases)から足場のマシンのアーキテクチャ及びプロセッサに合ったagentバイナリをダウンロードし、足場に転送した上で、足場でAgentを起動する
+4. [Ligolo-ng relase - GitHub](https://github.com/nicocha30/ligolo-ng/releases)から足場のマシンのアーキテクチャ及びプロセッサに合ったagentバイナリをダウンロードし、足場に転送した上で、足場上でAgentを起動する
 ```zsh
 # windowsであってもコマンドは一緒(バイナリのパスは環境に合わせて)
 # githubからインストールした場合は./agent...
@@ -189,22 +184,24 @@ $$ローカルNW側インターフェースが表示されている$$
 sudo ip route add <ローカルNW_subnet> dev ligolo
 ```
 
-7. 攻撃者のマシンのProxyサーバーのインタラクティブシェル(`ifconfig`を実行したもの)に戻り、トンネリングを開始
+7. 攻撃者のマシンのProxyサーバーのインタラクティブシェル（ステップ5で`ifconfig`を実行したもの）に戻り、トンネリングを開始
 ```zsh
 start
 ```
 
-8. 目的の操作を実行する
-	- chiselなどと異なり、攻撃者のマシンのインターフェースを指定する必要はなく、ローカルNWのインターフェースを直接指定可能(透過的)
+8. 攻撃者のマシンから目的の操作を実行する
 ```zsh
 # nmapの例
-sudo nmap -sn 10.10.10.0/24 -oG ping-sweep.txt
+sudo nmap 172.16.125.33
 ```
+- ✅chiselなどと異なり、攻撃者のマシンのインターフェースを指定する必要はなく、ローカルNWのインターフェースを直接指定可能（透過的）
 - Ligolo-proxyが`ERRO connection was refused`となった場合：
 	- Ligolo-agent側の接続有効期限が切れている可能性があるため、再度ステップ４を実行
 	- Nmapなどclosed portにアクセスする場合は、このエラーが表示されるが正常
 
 ### 補足：Ligolo-ngのクリーンアップ
+
+再起動でもクリーンアップされる。
 
 1. Ligolo-proxyプロンプトから、トンネルを停止し、Proxyサーバーを修了する
 ```zsh
@@ -296,11 +293,13 @@ listener_add --addr 0.0.0.0:<agent_listen_port(任意)> --to 127.0.0.1:<HTTP_Por
 Invoke-WebRequest -Uri http://<agent_local_IP>:<HTTP_Port>/<file> -Outfile <output_dir>
 ```
 
+---
+
 ## localhostサービスへのアクセス w/ Ligolo-ng
 
 - 用途：Agentで`localhost`でしかアクセスできないサービスにアクセスできるようにする
 	- 0.0.0.0で接続を受け付けているが、FWにより接続できないときも有効
-- 具体例：Agent上で`netstat -ano`をじっこ
+- 具体例：Agent上で`netstat -ano`を実行し、`127.0.0.1`でListenしているポートや、`0.0.0.0`でListenしているが攻撃者のマシンからはFWのせいで直接接続できないときなど
 
 1. Ligolo-ng専用のマジックCIDRを使用する
 ```zsh
@@ -309,6 +308,7 @@ sudo ip route add 240.0.0.1/32 dev ligolo
 
 2. Agentのローカルサービスにアクセスする
 ```zsh
+# sshの例
 ssh <user>@240.0.0.1
 ```
 
