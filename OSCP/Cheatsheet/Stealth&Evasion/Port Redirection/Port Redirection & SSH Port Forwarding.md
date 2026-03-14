@@ -184,7 +184,7 @@ sudo nano /etc/proxychains4.conf
 # add proxy here ...
 # meanwile
 # defaults set to "tor"
-socks5 [SSH client IP] [SSH client LISTEN Port(1025以上任意)]
+socks5 <SSH_client_IP> <SSH_client_listen_port>
 ```
 - ProxyListはstrict_chainモード(デフォルト)では１つにしておく必要がある
 
@@ -238,7 +238,7 @@ ss -tulpn
 	↓
 ```zsh
 Netid State  Recv-Q Send-Q Local Address:Port Peer Address:PortProcess
-tcp   LISTEN 0      128        127.0.0.1:[listenport]      0.0.0.0:*
+tcp   LISTEN 0      128        127.0.0.1:<listen_port>      0.0.0.0:*
 ```
 
 5. 攻撃者のマシンから攻撃者マシンのリッスンポートに接続することで、Targetのportにアクセス可能
@@ -306,7 +306,7 @@ sudo proxychains nmap -vvv -sT --top-ports=20 -Pn -n <target_IP>
 ```
 
 >[!NOTE]
->🚨スキャン時は、target_IPに対し、足場からネットワーク情報を列挙して発見した内部NW側のインターフェースを使用する
+>`target_IP`には、Jump Host 01からネットワーク情報を列挙して発見した、**内部NW側**のインターフェースを使用する。たとえば、TargetがNICを2つもっていて、222.111.123.231という外部からアクセスできるIPと192.168.1.1という内部からのみアクセスできるIPをもっていたら、`target_IP`には192.168.1.1を指定する。
 
 
 ![](../../../画像ファイル/Pasted%20image%2020260314100618.png)
@@ -328,21 +328,19 @@ tcp_connect_time_out 2000
 
 ---
 
-# sshuttle(Dynamic Port Forwardingの簡素化)
+# Dynamic Port Forwardingの簡素化 w/🔗[sshuttle](https://github.com/sshuttle/sshuttle)
 
 - sshuttleとは
 	- SSH をトンネルとして利用し、特定のサブネットへのトラフィックをすべてそのトンネルに流す仕組みを持つ
-	- ユーザーにとっては「VPN に接続したかのように内部ネットワークに入れる」ように見える
-	- VPNよりも軽量な、簡易VPNツールのようなもの
+	- ユーザーにとっては**VPN で接続したかのように内部ネットワークを列挙できる**ように見える
 
 - 条件：
-	- SSHクライアントにroot権限：iptables操作やパケットのキャプチャのため
+	- SSHクライアント(Jump Host)にroot権限：iptables操作やパケットのキャプチャのため
 	- SSHサーバーにPython3：リモートでコードを実行するためのtty
 
-
-1. 足場上でリモートポートフォワーディング
+1. Jump Hostでリモートポートフォワーディング
 ```zsh
-socat -ddd TCP-LISTEN:[リッスンポート],fork TCP:[target_IP]:[DestPort]
+socat -ddd TCP-LISTEN:<listen_port>,fork TCP:<target_IP>:<port>
 ```
 
 2. 攻撃者のマシン上でsshuttleを使用し、トンネルをしたい**サブネット**を指定
