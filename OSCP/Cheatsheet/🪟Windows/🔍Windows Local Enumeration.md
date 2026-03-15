@@ -253,7 +253,7 @@ dir "C:\Program Files (x86)"
 dir ~\Downloads
 ```
 - 補足：[インストール済みアプリ列挙コマンド詳細](#インストール済みアプリ列挙コマンド詳細)
-- [レジストリのHKCU、HKLMの違い](../../Misc/用語.md#レジストリのHKCU、HKLMの違い)
+- [HKCU・HKLMの違い](../../Misc/用語.md#HKCU・HKLMの違い)
 
 ---
 

@@ -78,8 +78,8 @@ winrs -r:<target_IP> -u:<username> -p:<password> "powershell -nop -w hidden -e <
 
 ## 2. WMIによる横展開・永続化
 
-- [CIM（Common Infromation Model）](../../../Misc/用語.md#CIM（Common%20Infromation%20Model）)
-- [WMI（Windows Management Instrumentation)](../../../Misc/用語.md#WMI（Windows%20Management%20Instrumentation)
+- [CIM（Common Information Model）](../../../Misc/用語.md#CIM（Common%20Information%20Model）)
+- [WMI（Windows Management Instrumentation）](../../../Misc/用語.md#WMI（Windows%20Management%20Instrumentation）)
 
 ### WMI使用条件
 
@@ -342,8 +342,8 @@ smbclient \\\\<target_IP>\\<SMB共有> -U <username> --pw-nt-hash <NTHash>
 
 # DCOM
 
-- [COM・DCOM](../../../Misc/用語.md#COM・DCOM)
-- [MMC](../../../Misc/用語.md#MMC)
+- [COM・DCOM・ActiveX](../../../Misc/用語.md#COM・DCOM・ActiveX)
+- [MMC（Microsoft Management Console）](../../../Misc/用語.md#MMC（Microsoft%20Management%20Console）)
 - さまざまなDCOMによる横展開テクニック：🔗[Cyberreason](https://www.cybereason.com/blog/dcom-lateral-movement-techniques)
 	- （ここではこれらのテクニックのうち、"MMC20.APPLICATION"について記載）
 
