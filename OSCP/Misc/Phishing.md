@@ -749,7 +749,7 @@ set:webattack> Enter the url to clone: [URL]
 
 # 補足：メールの送信方法
 
-→[25,465,587 - SMTP](../Cheatsheet/Ports%20-%20Service/25,465,587%20-%20SMTP.md#Phishingの送信)
+→[💥Phishingの送信](../Cheatsheet/Ports%20-%20Service/25,465,587%20-%20SMTP.md#💥Phishingの送信)
 
 ---
 ---
