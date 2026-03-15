@@ -34,13 +34,9 @@ $$FWとINSPECTORによりマシンが保護されているイメージ図(PEN-20
 ### Chiselについて
 
 - クライアント・サーバーモデルを採用しているため、送受信双方にツールをダウンロードする必要がある
-- ⚠️OS依存はないが、ChiselのバージョンとOSのアーキテクチャで不一致が起きた場合は実行失敗する
+- OS依存はないが、ChiselのバージョンとOSのアーキテクチャで不一致が起きた場合は実行失敗する
 - ChiselサーバーはSOCKSポート経由で送信される<u>すべてのデータをHTTP通信としてカプセル化</u>するので、HTTPトンネルの中にSSHパケットを通すことが可能
 - Chiselクライアントはデ・カプセル化し、宛先に転送する
-
-![](../../../画像ファイル/Pasted%20image%2020250926071427.png)
-
-$$ChiselによるローカルNWへのアクセスイメージ図(PEN-200)$$
 
 ### ChiselによるHTTP Tunneling(リモートポートフォワーディング)
 
@@ -275,16 +271,16 @@ python -m http.server <HTTP_Port>
 listener_add --addr 0.0.0.0:<agent_listen_port(任意)> --to 127.0.0.1:<HTTP_Port> --tcp
 ```
 
-3. ローカルNWからファイルダウンロード
+3. ローカルNWのAgent以外のマシン上からファイルダウンロード
 ```powershell
-Invoke-WebRequest -Uri http://<agent_local_IP>:<HTTP_Port>/<file> -Outfile <output_dir>
+Invoke-WebRequest -Uri http://<agent_local_IP>:<agent_listen_port>/<file> -Outfile <output_path>
 ```
 
 ---
 
 ## localhostサービスへのアクセス w/ Ligolo-ng
 
-- 用途：Agentで`localhost（127.0.0.1）`でしかアクセスできないサービスや、0.0.0.0で接続を受け付けているが、FWにより接続できないサービスにアクセスする
+Agentで`localhost（127.0.0.1）`でしかアクセスできないサービスや、0.0.0.0で接続を受け付けているが、FWにより接続できないサービスにアクセスするときに使う。
 
 1. Ligolo-ng専用のマジックCIDRを使用する
 ```zsh
