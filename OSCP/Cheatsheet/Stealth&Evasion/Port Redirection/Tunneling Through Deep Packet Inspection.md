@@ -239,7 +239,7 @@ listener_add --addr 0.0.0.0:<agent_listen_port> --to 127.0.0.1:<attacker_listen_
 - →ターゲットからの通信をAgent経由でProxy（攻撃者マシン）に転送するようになる
 
 2. ローカルNWのAgent以外のマシン上から、Agentのリスナーポートに接続する
-	- 通信方向: ローカルNWのAgent以外のマシン → 足場マシン(Agent)のlistener → トンネル → 攻撃者マシン
+	- 通信方向：ローカルNWのAgent以外のマシン → 足場マシン(Agent)のlistener → トンネル → 攻撃者マシン
 ```bash
 curl http://<agent_IP>:<agent_listen_port>
 ```
@@ -256,7 +256,7 @@ listener_list
 
 ![](../../../画像ファイル/Pasted%20image%2020251120124523.png)
 
-$$Agentが1234portでリッスンし、通信を攻撃者のマシンの4321ポートにリダイレクト$$
+$$Agentが1234ポートでリッスンし、通信を攻撃者のマシンの4321ポートにリダイレクト$$
 
 2. 攻撃者のマシン(Proxy)上で新たなターミナルを開き、ncリスナーを立てる
 ```zsh
