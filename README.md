@@ -32,6 +32,13 @@ echo $TargetIP
 - [ ] AttackerIP、TargetIPを、attacker_IP、target_IPに変える（snakeにする）
 - [ ] pwとしているのを、passwordに変更する
 - [ ] ファイルのバックアップを取る
-- [ ] 不要なファイル（OSCP LABのwriteup、note_template、tryhackme、マインドなど）を削除
+- [x] 不要なファイル（OSCP LABのwriteup、note_template、tryhackme、マインドなど）を削除
 - [ ] 個人情報を削除
 - [ ] 著作物は改変
+
+---
+
+- ノート整理の現状
+	- Cheatsheetまで修正済み
+	- Toolsも修正済み
+	- 
