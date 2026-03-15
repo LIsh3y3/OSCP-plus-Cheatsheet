@@ -290,6 +290,7 @@ ssh <user>@240.0.0.1
 
 ## DNS Tunnelingの原理
 
+- DNS server（権威サーバー）をコントロール下においてる必要がある
 - 解説にあたっての前提：
 	- ローカルNWからはWAN上にあるマシンに直接アクセスできない（下図PGDATABASE01)
 	- DNSリゾルバ（名前解決を請け負う）がローカルNWと通信可能（下図MULTISERVER03）
@@ -325,7 +326,6 @@ Non-authoritative answer:
 ![](../../../画像ファイル/Pasted%20image%2020250927150533.png)
 
 $$DNSリゾルバを介してデータが漏洩・侵入するイメージ(PEN-200)$$
-
 
 ## DNS Tunneling w/ Dnscat2
 
