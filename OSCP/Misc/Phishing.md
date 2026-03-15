@@ -99,7 +99,7 @@
 
 # MFAのバイパス
 
-- [MFA fatigue](https://duo.com/blog/mfa-fatigue-what-is-it-how-to-respond)攻撃
+- 🔗[MFA fatigue](https://duo.com/blog/mfa-fatigue-what-is-it-how-to-respond)攻撃
 - フィッシングサイトにMFA入力欄を設ける
 - ブラウザ・イン・ザ・ミドル攻撃
 	- 攻撃者が被害者と正規サイトとの通信の間に自分のプロキシ（中間者）を挟むことで、被害者にまるで正規のWebサイトにアクセスしているかのように見せかけながら、認証情報（ID・パスワード・MFAトークン）やセッションを奪取する手法
@@ -135,8 +135,8 @@
 
 上記のインフラの一部は、以下のツールを使用することで迅速に自動化できる。
 
-- GoPhish - (Open-Source Phishing Framework) ： [getgophish.com](https://getgophish.com/)
-- SET - (Social Engineering Toolkit)：[social-engineer-toolkit](https://github.com/trustedsec/social-engineer-toolkit)
+- GoPhish - (Open-Source Phishing Framework) ： 🔗[getgophish.com](https://getgophish.com/)
+- SET - (Social Engineering Toolkit)：🔗[social-engineer-toolkit](https://github.com/trustedsec/social-engineer-toolkit)
 	- 数多くのツールが含まれている
 	- クローンサイトの作成が容易
 
@@ -156,7 +156,7 @@
 
 - これはフィッシングメールがターゲットを誘導する先のWebサイト
 - 企業のWebサイトをクローンするなどの方法もとられる
-	- →[Phishing](Phishing.md#Credential%20Phishing実践)
+	- →[Credential Phishing実践](Phishing.md#Credential%20Phishing実践)
 
 - Landing Pages -> New Page
 - Name：欄に適切な名前をつけ、次にHTMLボックスで「Source」ボタンを押し、以下のようにHTMLコードを入力する
@@ -254,7 +254,6 @@
 
 ## フィッシングドメインの選択
 
-
 - ターゲットに対して心理的優位性を確保するためには、攻撃を開始するフィッシング・ドメインを適切に選択することが不可欠。攻撃者は以下のような方法を用いて最適なドメイン名を選択する
 
 ###### Expired Domains:
@@ -264,7 +263,7 @@
 
 ###### Typosquatting:
 
-- タイポスクワッティングとは、登録されたドメインが、なりすまそうとする対象ドメインに酷似していることで
+- タイポスクワッティングとは、登録されたドメインが、なりすまそうとする対象ドメインに酷似していること
 - ぱっと見では、人間の脳は空白を埋めて見てしまう。つまり正しいドメイン名に解釈して見る傾向がある
 
 - スペルミス：gogle.com Vs google.com  
@@ -322,7 +321,6 @@
 5. フィッシングメールの作成
 
 ※以下、Zoomをクローン対象とする
-
 
 - 上記の2〜4はSETで自動化できる：[フィッシングサイト作成の自動化 w/ SET(Social- Engineer-Toolkit)](Phishing.md#フィッシングサイト作成の自動化%20w/%20SET(Social-%20Engineer-Toolkit))
 	- しかし、Zoomのログインページのように、POSTリクエストを他のエンドポイントに送信して処理する場合、SETは指定したURLの静的なページしか入力情報をキャプチャできないので、うまくいかない
