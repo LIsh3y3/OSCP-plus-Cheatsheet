@@ -1,5 +1,4 @@
 - 関連ノート
-	- [マインド](../../Misc/マインド.md#列挙時の心構え)
 	- [🔍 Credentials Harvesting](Active%20Directory/🔍%20Credentials%20Harvesting.md)
 
 - Local Enumeration→AD Enumerationの流れ

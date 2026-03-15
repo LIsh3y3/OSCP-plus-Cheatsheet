@@ -1,5 +1,4 @@
 - 関連ノート：
-	- [マインド](../../../Misc/マインド.md#列挙時の心構え)
 	- [🐶Bloodhound](../../../Tools/🐶Bloodhound.md)
 
 ---

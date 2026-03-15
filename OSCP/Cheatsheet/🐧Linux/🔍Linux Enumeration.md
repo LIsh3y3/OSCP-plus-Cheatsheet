@@ -1,6 +1,5 @@
 - 関連のノート：
 	- [💥Linux Privilege Escalation](💥Linux%20Privilege%20Escalation.md)
-	- [マインド](../../Misc/マインド.md#列挙時の心構え)
 
 ---
 
