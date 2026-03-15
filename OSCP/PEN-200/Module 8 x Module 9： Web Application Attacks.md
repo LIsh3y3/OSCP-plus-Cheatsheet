@@ -5,7 +5,7 @@
 - LinuxシステムのApache Webアプリでは`/var/www/html`がWebのrootディレクトリとして使われることが多い
 	- → つまり、例えば、http://example.com/file.txtと入力すると、`/var/www/html/file.txt`にアクセスできるということ
 - WindowsシステムのIIS Webアプリでは、`C:\inetpub\wwwroot`
-- このディレクトリに書き込み可能なら、Webshell獲得できるかも（[What is the shell](../Cheatsheet/Common/What%20is%20the%20shell.md#注意＆Tips)）
+- このディレクトリに書き込み可能なら、Webshell獲得できるかも（[Bind & Reverse Shell・ペイロード・安定化手法](../Cheatsheet/Common/Bind%20&%20Reverse%20Shell・ペイロード・安定化手法.md#注意＆Tips)）
 
 ---
 

@@ -1,5 +1,5 @@
 - 関連ノート：
-	- [What is the shell](What%20is%20the%20shell.md)
+	- [Bind & Reverse Shell・ペイロード・安定化手法](Bind%20&%20Reverse%20Shell・ペイロード・安定化手法.md)
 
 ---
 
@@ -55,7 +55,7 @@ $$WebShell実行例$$
 - エンコード方法はターゲット環境に応じて異なる
 - 基本はBurp SuiteのHackVertorを使って、"url_encode_not_plus"する
 
-🪟Windows：[What is the shell](What%20is%20the%20shell.md#Base64化したPowerShellリバースシェルワンライナー)
+🪟Windows：[Bind & Reverse Shell・ペイロード・安定化手法](Bind%20&%20Reverse%20Shell・ペイロード・安定化手法.md#Base64化したPowerShellリバースシェルワンライナー)
 
 トラブルシューティング: Reverse Shell を実行したのに接続が確立しない場合、FWなどにより遮断されていないか、問題の切り分けに使う
 ```zsh

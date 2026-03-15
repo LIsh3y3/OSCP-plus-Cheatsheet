@@ -305,7 +305,7 @@ sudo rlwrap nc -lvnp 4444
 
 ##### 補足：PowerShellワンライナー
 
-- [What is the shell](../Cheatsheet/Common/What%20is%20the%20shell.md#Base64化したPowerShellリバースシェルワンライナー)
+- [Bind & Reverse Shell・ペイロード・安定化手法](../Cheatsheet/Common/Bind%20&%20Reverse%20Shell・ペイロード・安定化手法.md#Base64化したPowerShellリバースシェルワンライナー)
 - この方法では、psファイルを保存する必要もないので、ファイルベースのスキャンに引っ掛かりにくいなどのメリットがある
 	- 一方で、psファイルは複数回実行が必要なスクリプトなどに向いている。
 

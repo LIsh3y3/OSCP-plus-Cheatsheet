@@ -375,7 +375,7 @@ $$filenameパラメタの値を攻撃者のIPを指すUNCパスに変更$$
 
 ### Net-NTLMv2リレーアタック手順
 
-1. PowerShellのリバースシェルワンライナーを用意する：[Base64化したPowerShellリバースシェルワンライナー](What%20is%20the%20shell.md#Base64化したPowerShellリバースシェルワンライナー)
+1. PowerShellのリバースシェルワンライナーを用意する：[Base64化したPowerShellリバースシェルワンライナー](Bind%20&%20Reverse%20Shell・ペイロード・安定化手法.md#Base64化したPowerShellリバースシェルワンライナー)
 
 2. 攻撃者マシン上でntlmrelayxを起動
 ```zsh

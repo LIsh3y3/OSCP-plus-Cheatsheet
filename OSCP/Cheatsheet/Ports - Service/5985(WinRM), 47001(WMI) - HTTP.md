@@ -23,7 +23,7 @@ evil-winrm -i <target_IP> -u '[domain\]<username>' -p '<password>'
 ```
 
 - インタラクティブなシェル（リバースシェル）への切り替え
-	- →[Windows PowerShellのリバースシェル w/ Nishang](../Common/What%20is%20the%20shell.md#Windows%20PowerShellのリバースシェル%20w/%20Nishang)
+	- →[Windows PowerShellのリバースシェル w/ Nishang](../Common/Bind%20&%20Reverse%20Shell・ペイロード・安定化手法.md#Windows%20PowerShellのリバースシェル%20w/%20Nishang)
 	- →[3389 - RDP](3389%20-%20RDP.md)
 	- WinRM接続状態では、非インタラクティブであるため、切り替えがベター（※）
 		- （※）`powershell -ep bypass -c <cmd>`と実行ポリシー回避を都度都度実行する必要がある

