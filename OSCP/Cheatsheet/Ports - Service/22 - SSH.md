@@ -205,7 +205,7 @@ hydra -C /usr/share/seclists/Passwords/Default-Credentials/ssh-betterdefaultpass
 
 ### 用途
 
-- [HTTP Tunneling w/ Chisel](../Stealth&Evasion/Port%20Redirection/Tunneling%20Through%20Deep%20Packet%20Inspection.md#HTTP%20Tunneling%20w/%20Chisel)等の方法(ポートフォワーディング)で確立した*既存の*SOCKSプロキシ経由でSSH接続したいとき
+- [HTTP Tunneling w/ Chisel](../Stealth&Evasion/Port%20Redirection/HTTP・DNSトンネリング（Chisel,%20Ligolo-ng,%20Dnscat2）.md#HTTP%20Tunneling%20w/%20Chisel)等の方法(ポートフォワーディング)で確立した*既存の*SOCKSプロキシ経由でSSH接続したいとき
 	- [SSH Local Dynamic Port Forwarding](../Stealth&Evasion/Port%20Redirection/Port%20Redirection%20&%20SSH%20Port%20Forwarding.md#SSH%20Local%20Dynamic%20Port%20Forwarding)の`-D`のように、SSHがSOCKSプロキシを*新規で*用意して接続はできるが、既存のSOCKSプロキシ経由でのアクセスは不可
 - 代わりに `ProxyCommand` オプションを使い、外部コマンド(`ncat`)でプロキシ経由の通信を実現する
 

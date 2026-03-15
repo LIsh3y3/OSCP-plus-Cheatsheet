@@ -32,7 +32,7 @@ sqlcmd [-S <target_IP|domain>] -U <username> -P <password> -l 30 -Q "<SQL_query>
 - ローカルの場合は`-S`はつけない、もしくは `-S 127.0.0.1`とする
 
 >[!WARNING] 注意
->WinRM/リバースシェルなど非インタラクティブシェルのとき、Windows認証で他ユーザーとしてログオンしたいのであれば、[Tunneling Through Deep Packet Inspection](../Stealth&Evasion/Port%20Redirection/Tunneling%20Through%20Deep%20Packet%20Inspection.md)と組み合わせて、`impacket`でアクセスしないと失敗する → RDP/SSH接続であれば、`runas`で対象ユーザーとしてcmdを実行し、`sqlcmd -E`でWindows認証のログオン可能([[💥Lateral Movement & Persistance in AD#RunasCs]]であれば成功するかもしれないが、試したことはない)
+>WinRM/リバースシェルなど非インタラクティブシェルのとき、Windows認証で他ユーザーとしてログオンしたいのであれば、[HTTP・DNSトンネリング（Chisel, Ligolo-ng, Dnscat2）](../Stealth&Evasion/Port%20Redirection/HTTP・DNSトンネリング（Chisel,%20Ligolo-ng,%20Dnscat2）.md)と組み合わせて、`impacket`でアクセスしないと失敗する → RDP/SSH接続であれば、`runas`で対象ユーザーとしてcmdを実行し、`sqlcmd -E`でWindows認証のログオン可能([[💥Lateral Movement & Persistance in AD#RunasCs]]であれば成功するかもしれないが、試したことはない)
 
 ---
 ---
