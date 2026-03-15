@@ -297,6 +297,7 @@ ssh <user>@240.0.0.1
 	- 権威サーバー(名前解決情報を持つ)がWANにある（下図DNS server）
 
 - 留意点：DNSは１つのパケットで少量のデータしかやり取りできないので、大きなデータは複数バイトに分割してやり取りしており、データのドロップが発生する可能性がある
+- 参考記事：🔗[ChamelDoH インプラント ～DNSトンネリング or DNS over HTTPS (DoH) ?～ - NECセキュリティブログ](https://jpn.nec.com/cybersecurity/blog/240920/index.html)
 
 ### データが外に出る仕組み
 
@@ -323,7 +324,7 @@ Non-authoritative answer:
 <domain>      text = "<string>"
 ```
 
-![](../../../画像ファイル/Pasted%20image%2020250927150533.png)
+![](../../../画像ファイル/Pasted%20image%2020260315104051.png)
 
 $$DNSリゾルバを介してデータが漏洩・侵入するイメージ(PEN-200)$$
 
