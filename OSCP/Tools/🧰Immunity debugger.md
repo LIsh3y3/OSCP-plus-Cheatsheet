@@ -1,7 +1,7 @@
 - OSCPにおいてはImmunity debuggerを使わなければならない
 - 試験では動作確認のためにWindows BOXが提供され、その中にImmunity debuggerがインストールされているし、Windows Boxはインターネット接続できないから
 	- 他のコースではwindbgが使われるが...
-- 参考：[OSCPではなぜImmunity debuggerを使うのか - Reddit](https://www.reddit.com/r/oscp/comments/b8ya99/deleted_by_user/)
+- 参考🔗：[OSCPではなぜImmunity debuggerを使うのか - Reddit](https://www.reddit.com/r/oscp/comments/b8ya99/deleted_by_user/)
 
 ---
 
@@ -27,7 +27,9 @@
 
 1. Admin権限で動作しているプロセスなどを選択できるようにするため、Run as administratorで開く
 2. File -> Attach -> 分析対象のプロセスを選択 -> Attach、で以下のような画面が開く
+
 ![](../画像ファイル/Pasted%20image%2020250609065800.png)
+
 $$Attach後のImmunityDebugger$$
 
 - ①プロセスのアセンブリコードを表示するウィンドウ
@@ -37,7 +39,9 @@ $$Attach後のImmunityDebugger$$
 - ⑤コマンドバー
 
 - 上部タブのさまざまなボタンのアクション内容は、下部に記載（画像赤枠同士対応）
+
 ![](../画像ファイル/Pasted%20image%2020250621090653.png)
+
 $$アクションの内容が表示される様子$$
 
 ---
@@ -48,7 +52,9 @@ $$アクションの内容が表示される様子$$
 2. Name列に実行可能ファイルやDLL等のPEフォーマットが記載されている
 	- PEフォーマットとは：[1. Windows Internal](../TryHackME/Red%20Teaming/4.%20Host%20Evasions/1.%20Windows%20Internal.md#Portable%20Executable%20Format)
 3. Name列から目的のモジュールを探す
+
 ![](../画像ファイル/Pasted%20image%2020250609073042.png)
+
 $$View->Executable　modules画面$$
 
 4. 該当のモジュールをダブルクリックすると、モジュールのアセンブラ等が表示される
@@ -61,20 +67,30 @@ $$View->Executable　modules画面$$
 ```python
 !mona modules
 ```
+
 ![](../画像ファイル/Pasted%20image%2020250609065800.png)
+
 $$Attach後のImmunityDebugger$$
 
 2. ASLRなどのセキュリティ保護機能が有効（True）か無効（False）かが表示される
-	- [🧰Immunity debugger](#!mona%20modulesの結果解説)
+	- [!mona modulesの結果解説](#!mona%20modulesの結果解説)
+
 ![](../画像ファイル/Pasted%20image%2020250615092757.png)
+
 $$ASLRなどのセキュリティ保護機構の有無表示$$
 
-3. [🧰Immunity debugger](#モジュールの探し方)で該当のモジュールを開く
+3. [モジュールの探し方](#モジュールの探し方)で該当のモジュールを開く
+
 4. Ctrl + Fで任意の命令（多くの場合JMP ESP）を検索する
+
 ![](../画像ファイル/Pasted%20image%2020250615101645.png)
+
 $$Find　Command$$
+
 ↓
+
 ![](../画像ファイル/Pasted%20image%2020250615101717.png)
+
 $$該当する行がハイライトされる$$
 
 ### !mona modulesの結果解説
@@ -101,11 +117,13 @@ $$該当する行がハイライトされる$$
 
 - Ctrl+F→ Find command：アセンブラで検索
 	- 存在してもヒットしないことがある
-	- ⚠️目的の命令とは限らない。
-		- 例えば、JMP ESP命令が複数あり、利用できる命令Aを見つけたいのに、利用できない命令Bもヒットする可能性がある
-	- ⚠️現在メモリ上にロードされていないモジュールはヒットしない
-		- 例えば、JMP ESPと検索しても見つからないが、Ctrl+Gでアドレスを検索するとメモリ上に仮でモジュールがロードされ、Ctrl+Fでも検索ヒットするようになる
-		- スクロールするとヒットした命令が消えることがあるが、これはモジュールがまだ読み込まれていないから
+
+>[!Warning]
+>- 目的の命令とは限らない
+>	- 例えば、JMP ESP命令が複数あり、利用できる命令Aを見つけたいのに、利用できない命令Bもヒットする可能性がある
+>- 現在メモリ上にロードされていないモジュールはヒットしない
+>	- 例えば、JMP ESPと検索しても見つからないが、Ctrl+Gでアドレスを検索するとメモリ上に仮でモジュールがロードされ、Ctrl+Fでも検索ヒットするようになる
+>	- スクロールするとヒットした命令が消えることがあるが、これはモジュールがまだ読み込まれていないから
 
 ---
 
@@ -114,8 +132,11 @@ $$該当する行がハイライトされる$$
 1. f2（ファンクションキー）を押して設定（macはfnボタンを押しながらTouch barでf2）
 
 ![](../画像ファイル/Pasted%20image%2020250620074953.png)
+
 $$ブレークポイント設定後の状態$$
+
 2. 別の環境（linuxなど）からメモリ破壊のエクスプロイトを実行
+
 3. Immunity debuggerに戻り、▶️（再生）ボタンを押して挙動を確認
 
 - メモリ破壊後は⏪ボタンでRestart
