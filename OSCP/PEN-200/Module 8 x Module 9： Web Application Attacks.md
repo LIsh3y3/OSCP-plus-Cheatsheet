@@ -21,29 +21,7 @@
 	- IIS Application Pool Identity（新）（※）
 		- (※：Application Pool＝Webアプリを独立して管理する仕組みで、安定性・セキュリティ向上に役立つ)
 		- 例：`IIS APPPOOL\DefaultAppPool` のような形式で、ACLを使ってアプリごとに適切な権限が付与される
-
----
-
-## 列挙の観点
-
-- Nmapの結果、80/443/8080などhttpがopenなら、詳細なWebアプリ列挙を開始する
-- Wappalyzerでテクノロジースタックにあたりをつける
-	- 使われている技術が直接脆弱性につながるわけではないが、バージョンによっては重大な脆弱性が隠れていることがある
-
-- ==すべてのリンク、アクセス可能なサイト、ボタン、ソースコードをよく観察すること==
-	- [Module 8 x Module 9： Web Application Attacks](#リンクから得られる情報例)
-![](../画像ファイル/Pasted%20image%2020250322134733.png)
-
-### リンクから得られる情報例
-
-```
-https://example.com/cms/login.php?language=en.html
-```
-- login.php というファイル名から、WebアプリケーションがPHPを使用していることがわかる。
-- language パラメータがHTMLページを指定しているため、直接https://example.com/cms/en.html にアクセスしてみるべき。
-- URL内の cms というディレクトリから、このWebアプリケーションがWebルートのサブディレクトリ内で動作していることが推測できる
-	- →`/cms/admin`などが存在するかも
-
+		
 ---
 
 ## Tips
