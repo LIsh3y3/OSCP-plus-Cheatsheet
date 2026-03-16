@@ -228,6 +228,7 @@ function xb {
 
 - ターゲット環境のAVソフトで検知があがらないことを確認するため、[Module 16：Antivirus Evasion](#理想的なAV回避テスト環境)もしくは[Module 16：Antivirus Evasion](#Kleenscanの活用)をし、検知されないことを確認する
 - 以下はVirusTotalの画面だが、今回のテストで使用しているAviraは検知ベンダーに記載なし
+
 ![](../画像ファイル/Pasted%20image%2020250702122439.png)
 $$VirusTotalでAviraは検知していない$$
 
