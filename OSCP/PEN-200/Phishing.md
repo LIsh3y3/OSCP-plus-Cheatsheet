@@ -98,7 +98,6 @@
 | PDF             | ・use-after-free脆弱性によるRCE：[CVE-2023-21608](https://nvd.nist.gov/vuln/detail/CVE-2023-21608)                                                                                                     |
 
 ---
----
 
 # MFAのバイパス
 
