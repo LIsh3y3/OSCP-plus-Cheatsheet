@@ -267,7 +267,9 @@ sudo python3 -m http.server 80
 ```
 http://localhost/<クローンされたhtmlファイル名>.html
 ```
-- ただクローンしただけでは、OWASP CSRFGuardの警告が出る
+
+>[!Warning]
+>ただクローンしただけでは、OWASP CSRFGuardの警告が出るので、ターゲットに怪しまれる。
 
 ![](../画像ファイル/Pasted%20image%2020250510094458.png)
 
@@ -278,27 +280,43 @@ $$OWASPのCSRFGuardの画面$$
 
 ## 3. クローンのクリーンアップ
 
-### 不審なJSの除去
+### OWASP CSRFGuardの削除
 
-ポップアップや外部への不審なリクエストを引き起こすJSを削除する。
-
+1. 作成したディレクトリ内のすべてのファイルをgrepで検索し、OWASPアラートのテキストが含まれているファイルを探す
 ```zsh
-# 不審なJSを含むファイルを特定する
-grep -ri "<不審なキーワード>" *
-
-# そのJSを読み込んでいるHTMLファイルを特定する
-grep "<ファイル名>" *
+grep "OWASP" *
 ```
+	↓出力例
+```sh
+csrf_js: * The OWASP CSRFGuard Project, BSD License
+csrf_js: *    3. Neither the name of OWASP nor the names of its contributors may be used
+csrf_js:                    this.setRequestHeader("X-Requested-With", "OWASP CSRFGuard Project");
+csrf_js:        alert("OWASP CSRFGuard JavaScript was included from within an unauthorized domain!");
+```
+- 上記の出力例では、`csrf_js`ファイルに記載されていることがわかった
 
-特定したら、HTMLファイルから該当の `<script>` タグを削除する。
+2. ステップ１で判明したファイルを読み込んでいるページを検索する
+```zsh
+grep "csrf_js" *
+```
+	↓出力例
+```sh
+csrf_js:        xhr.open("POST", "/csrf_js"+(typeof(resourceAccountIdRoutingURl)!="undefined"?"?"+resourceAccountIdRoutingURl:""), false);
+csrf_js:            xhr.open("POST", "/csrf_js"+(typeof(resourceAccountIdRoutingURl)!="undefined"?"?"+resourceAccountIdRoutingURl:""), false);
+signin.html:<script nonce="Sxwi1J4PRJSzTs4fu1bzvQ" src="csrf_js"></script>
+signin.orig:<script nonce="Sxwi1J4PRJSzTs4fu1bzvQ" src="/csrf_js"></script>
+```
+- 上記の出力例では、`signin.html`でOWASP CSRFGuard(`csrf_js`)が読み込まれていることがわかる
 
-> [!TIP] OWASP CSRFGuardのような外部ドメインのJSは、ポップアップを引き起こすうえ、接続先に痕跡が残るため必ず削除する。
+3. OWASP CSRFGuardを読みこんでいるラインを削除する
+	- `signin.html:<script nonce="Sxwi1J4PRJSzTs4fu1bzvQ" src="csrf_js"></script>)`
+
+4. クローンしたWebサイトをリロードし、OWASP CSRFGuardのポップアップが出ないことを確認する
 
 ### 正規サイトへのリクエストの除去
 
+正規サービス側のサーバーログに不審なアクセスとして検知されるリスクを下げるため、
 HTMLファイルを精査し、クローン元の正規ドメインへの外部リクエストが残っていないか確認する。残っている場合は削除か代替（ローカルリソース）に差し替える。
-
-> [!NOTE] 正規サービス側のサーバーログに不審なアクセスとして検知されるリスクを下げるため。
 
 ---
 
