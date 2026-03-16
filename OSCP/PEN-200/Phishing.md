@@ -361,13 +361,11 @@ cd /var/www/html
 sudo cp -f <htmlファイル> <htmlファイル>_orig
 ```
 
-2. 開発者ツールのElementsタブでログインフォームを含む `<div>` を右クリック → Copy → **Copy OuterHTML**
-    
-3. テキストエディタで空の `<div id="app">` の中に、コピーしたHTMLを貼り付けて保存する
-    
-4. 保存後リロードして正規サイトとの差異を把握し、LLMに差異の修正を依頼する
-    
+2. 開発者ツールのElementsタブでログインフォームを含む `<div>` を右クリック > Copy > Copy OuterHTML
 
+3. テキストエディタで空の `<div id="app">` の中に、コピーしたHTMLを貼り付けて保存する
+
+4. 保存後リロードして正規サイトとの差異を把握し、LLMに差異の修正を依頼する
 ```txt
 【プロンプト例】
 以下のHTMLについて、次の点を修正してください：
@@ -378,7 +376,6 @@ sudo cp -f <htmlファイル> <htmlファイル>_orig
 ### 4.4 認証情報キャプチャの仕組みを用意する
 
 サーバー側でPOSTデータを受け取り、ファイルに保存してから正規サイトにリダイレクトするスクリプトを用意する。
-
 ```txt
 【LLMへの依頼プロンプト例】
 <filename>.phpファイルのコードを作成してください。
@@ -386,10 +383,10 @@ sudo cp -f <htmlファイル> <htmlファイル>_orig
 - その後、ユーザーを "<正規サービスのURL>" にリダイレクトする
 ```
 
-> [!NOTE] LLMのポリシー上「credential」という単語を含むファイル名の作成依頼は拒否される可能性がある。別の名前を使うこと。
+> [!TIP]
+> LLMのポリシー上「credential」という単語を含むファイル名の作成依頼は拒否される可能性がある。別の名前を使うこと。
 
-生成されたPHPファイルを配置し、書き込み権限を付与する：
-
+生成されたPHPファイルを配置し、書き込み権限を付与する
 ```zsh
 sudo touch <logfile>
 sudo chmod 664 <phpファイル> <logfile>
@@ -441,22 +438,6 @@ Subject: {正規メールの件名}
 
 ## 4. クローンに悪意のある要素を注入する
 
-### 4.1. Apacheサーバーにファイルをホストする
-
-1. python webサーバーが稼働しているのであれば、停止する
-2. 現在のディレクトリ配下にあるファイルをすべてApacheのrootディレクトリ移動させる
-```zsh
-kali@kali:~/ZoomSignin$ sudo mv -f * /var/www/html
-```
-- `-f`：移動先に同名のファイルがあっても確認せずに上書き
-- `*`：現在のディレクトリにあるすべてのファイルとディレクトリを指す
-
-3. Apacheをスタートし、cdする
-```zsh
-sudo systemctl start apache2
-cd /var/www/html
-```
-
 ### 4.2.HTMLフォームの分析
 
 1. ローカルのApacheサーバにホストしているページにアクセスする
@@ -466,25 +447,6 @@ http://127.0.0.1/signin.html
 
 #### 4.2.3. HTMLフォームが動的か静的かを判断する：
 
-1.  どの`<div>`タグ内にHTMLフォームがあるかを確認するため、開発者ツールのElementsで分析する
-
-- 上の要素から順にマウスカーソルをあわせ、選択した要素がHTMLフォームをハイライトしているなら、その`<div>`タグ内にHTMLフォームがあると判断する
-
-![](../画像ファイル/Pasted%20image%2020250511154425.png)
-
-- HTMLフォームは以下のdivタグ内（`<div id="app" class="login-page">`）にあることがわかる
-```html
-<div id="nested" class="zoom-newpd">
-	<div class="mini-layout" role="main" aria-label="main content">
-	<div class="HiddenText">
-		<a id="the-main-content" tabindex="-1"></a>
-	</div>
-	<div id="app" class="login-page">
-		<header class="layout-header">...</header>
-		...
-	</div>
-</div>
-```
 
 3. 「テキストエディタ」でHTMLフォームが存在するdivタグを閲覧する
 
