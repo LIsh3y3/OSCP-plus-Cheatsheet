@@ -84,7 +84,7 @@ Get-ModifiableServiceFile
 
 1. インストール済みアプリケーションもしくはサービスで、DLL Hijackingに脆弱なアプリケーションを探す
 	- アプリケーションの列挙：[インストール済みアプリケーションの列挙](🔍Windows%20Local%20Enumeration.md#インストール済みアプリケーションの列挙)
-	- 公開エクスプロイトの探索：[SearchSploit](../../PEN-200/公開エクスプロイトの探索.md#SearchSploit)
+	- 公開エクスプロイトの探索：[SearchSploit](公開エクスプロイトの探索.md#SearchSploit)
 	- サービスの列挙：[サービスの列挙](🔍Windows%20Local%20Enumeration.md#サービスの列挙)
 
 2. [Safe DLL Search Modeの探索順序](Windowsの基礎・前提知識/Windows%20Internal.md#Safe%20DLL%20Search%20Modeの探索順序)に従って、書込み可能(W) or (M)なディレクトリを明らかにする
@@ -386,10 +386,10 @@ copy "<path_to_payload>" "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\S
 
 ３つある：
 1. アプリケーションの脆弱性
-	- → [公開エクスプロイトの探索](../../PEN-200/公開エクスプロイトの探索.md)
+	- → [公開エクスプロイトの探索](公開エクスプロイトの探索.md)
 
 2. Windows Kernelの脆弱性
-	- →[公開エクスプロイトの探索](../../PEN-200/公開エクスプロイトの探索.md)
+	- →[公開エクスプロイトの探索](公開エクスプロイトの探索.md)
 
 >[!WARNING]
 >- 🚨Kernel Exploitは簡単にシステムをクラッシュさせてしまう恐れがあるため、信頼できるソース（Exploit-DBのVerified）からダウンロードし、ターゲット環境を模した検証環境で試してからターゲット環境に使用すること

@@ -345,7 +345,7 @@ sudo rlwrap nc -lvnp 4444
 sudo apt install shellter
 ```
 
-2. wineのインストール：参照→[Module 14：Fixing Exploits](Module%2014：Fixing%20Exploits.md#クロスコンパイル環境の準備・実行)
+2. wineのインストール：参照→[公開エクスプロイトの修正](公開エクスプロイトの修正.md#クロスコンパイル環境の準備・実行)
 	- Shelterがwindows用アプリケーションなため
 
 3. インストールの確認
