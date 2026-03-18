@@ -33,3 +33,4 @@
 	- Cheatsheetまで修正済み
 	- Toolsも修正済み
 	- Miscも修正済み
+	- あとはPEN-200、Windows Internal, READMEのせいｂ

