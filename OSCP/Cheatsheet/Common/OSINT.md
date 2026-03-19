@@ -319,9 +319,7 @@ shodan host <target_IP>
 
 共有ホスティングでは1つのIPアドレスが複数のWebサーバーで共有されており、IPを逆引きすることで同じIPアドレスを使っている他のドメインを発見できる。
 
-![](Pasted%20image%2020260319124548.png)
-
-![[Pasted image 20260319123031.png]]
+![](../../画像ファイル/Pasted%20image%2020260319124824.png)
 
 $$ViewDNS.infoの結果例$$
 
@@ -333,7 +331,7 @@ $$ViewDNS.infoの結果例$$
 
 🔗[Censys Search](https://search.censys.io/)：IPアドレスとドメインに関する多くの情報を提供する。ポート80・443などに関連する情報や、同じIPを使っている他のWebサイトも確認できる。
 
-![[Pasted image 20260319123255.png]]
+![](../../画像ファイル/Pasted%20image%2020260319124846.png)
 
 $$Censys検索例$$
 
@@ -344,7 +342,8 @@ $$Censys検索例$$
 > [!NOTE] 
 > ヘッダーの欠落はそれ自体が脆弱性とは限らないが、Web開発者やサーバー管理者がハードニングに精通していない可能性を示す。
 
-![](Pasted%20image%2020260319124507.png)
+![](../../画像ファイル/Pasted%20image%2020260319124859.png)
+
 $$SecurityHeaders出力例$$
 
 ## Qualys SSL Labs
