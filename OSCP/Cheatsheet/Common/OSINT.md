@@ -92,13 +92,14 @@ dig @<name_server> <domain> AXFR
 - Googleの高度な検索と特定の用語を組み合わせることで、機密情報を含む文書や脆弱なWebサーバを発見できる
 
 関連ツール：
-
 - 🔗[DorkSearch](https://dorksearch.com/)：用意済みのdorkingがある（※AIは廃止されている）
 - 🔗[GHDB（Google Hacking Database）](https://www.exploit-db.com/google-hacking-database)：「Quick Search」よりも「Category」でフィルタリングする方が目的のDorkが見つかりやすい
 - 各検索エンジンの詳細文法：[Google Advanced Search](https://www.google.com/advanced_search) / [Google Refine Web Searches](https://support.google.com/websearch/answer/2466433) / [DuckDuckGo Search Syntax](https://help.duckduckgo.com/duckduckgo-help-pages/results/syntax/) / [Bing Advanced Search Options](https://help.bing.microsoft.com/apex/index/18/en-US/10002)
 
-> [!WARNING] 不用意にアクセスすると法的に罰せられる可能性があるので注意
+> [!WARNING]
+> 不用意にアクセスすると法的に罰せられる可能性があるので注意する。
 
+- [ ] Todo: 本当に罰せられる？
 ## Dorking syntax
 
 ### フィルタ
@@ -132,34 +133,34 @@ dig @<name_server> <domain> AXFR
 
 ## Dorking実例
 
-**管理画面探し**
+管理画面探し
 
-|目的|Dork例|
-|---|---|
-|管理画面URL探索|`inurl:admin`|
-|WordPress管理画面|`inurl:wp-admin`|
-|VPN/ネットワーク機器のログイン画面|`intitle:"VPN login"`|
+| 目的                  | Dork例                 |
+| ------------------- | --------------------- |
+| 管理画面URL探索           | `inurl:admin`         |
+| WordPress管理画面       | `inurl:wp-admin`      |
+| VPN/ネットワーク機器のログイン画面 | `intitle:"VPN login"` |
 
-**機密情報探し**
+機密情報探し
 
-|目的|Dork例|
-|---|---|
-|環境設定ファイル|`filetype:env OR filetype:conf intext:DB_PASSWORD`|
-|SQLダンプ|`filetype:sql "INSERT INTO"`|
-|機密ログ|`filetype:log "password" OR "API key"`|
-|Excelに埋め込まれたパスワード|`filetype:xls intext:password`|
-|APIキー漏洩|`intext:"API_KEY="`|
+| 目的                | Dork例                                              |
+| ----------------- | -------------------------------------------------- |
+| 環境設定ファイル          | `filetype:env OR filetype:conf intext:DB_PASSWORD` |
+| SQLダンプ            | `filetype:sql "INSERT INTO"`                       |
+| 機密ログ              | `filetype:log "password" OR "API key"`             |
+| Excelに埋め込まれたパスワード | `filetype:xls intext:password`                     |
+| APIキー漏洩           | `intext:"API_KEY="`                                |
 
-**脆弱なページ探し**
+脆弱なページ探し
 
-|目的|Dork例|備考|
-|---|---|---|
-|CGIスクリプト|`inurl:.cgi`|古いスクリプト|
-|PHPエラー画面|`intext:"Fatal error" inurl:.php`|~~`filetype:php`~~はGoogleがインデックスしないため非推奨|
-|ディレクトリリスティング|`intitle:"index of" "parent directory"`||
-|Gitリポジトリの誤公開|`inurl:.git`||
+| 目的           | Dork例                                   | 備考                                       |
+| ------------ | --------------------------------------- | ---------------------------------------- |
+| CGIスクリプト     | `inurl:.cgi`                            | 古いスクリプト                                  |
+| PHPエラー画面     | `intext:"Fatal error" inurl:.php`       | ~~`filetype:php`~~はGoogleがインデックスしないため非推奨 |
+| ディレクトリリスティング | `intitle:"index of" "parent directory"` |                                          |
+| Gitリポジトリの誤公開 | `inurl:.git`                            |                                          |
 
-**サブドメイン・関連サイト探し**
+サブドメイン・関連サイト探し
 
 |目的|Dork例|
 |---|---|
