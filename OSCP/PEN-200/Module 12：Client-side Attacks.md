@@ -333,6 +333,7 @@ for i in range(0, len(str), n):
 - `str[i:i+n]`：文字列 str の i から i+n の範囲を切り出す（部分文字列）
 
 ![](../画像ファイル/Pasted%20image%2020250517181019.png)
+
 $$Pythonスクリプト実行結果$$
 
 5. マクロ編集画面で文字列型の変数を宣言し、Base64エンコードして分割した文字列を変数で連結していく
@@ -462,7 +463,9 @@ wsgidav --host=0.0.0.0 --port=80 --root=~/Webdav --auth=anonymous
 - `--host=0.0.0.0`：すべてのインターフェースでWevDavを提供する
 - `--root`：WevDavのホームディレクトリを指定する
 - `--auth=anonymous`：認証を無効とする
+
 ![](../画像ファイル/Pasted%20image%2020250518142233.png)
+
 $$WebDavサーバ構築成功時の出力$$
 
 ### 🔹 第2段階：ライブラリファイル(.library-ms)の作成
@@ -472,7 +475,9 @@ $$WebDavサーバ構築成功時の出力$$
 
 4. File > New Text File(※)で作成し、デスクトップ上にファイルを保存（ここではファイル名を`config.library-ms`とする）
 	- ※：ファイル形式はPlain textでOK
+
 ![](../画像ファイル/Pasted%20image%2020250518144800.png)
+
 $$空白Windowsライブラリファイル$$
 
 5. `config.library-ms`ファイルにXMLで記述し、保存
