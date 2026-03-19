@@ -1,8 +1,6 @@
 - 関連ノート
 	- [Phishing](../Misc/Phishing.md)
-	- [2. WeaponizationとDelivery](../TryHackME/Red%20Teaming/2.%20Initial%20Access/2.%20WeaponizationとDelivery.md)
 
----
 ---
 
 # 前提 
@@ -28,7 +26,7 @@
 
 - 悪意あるファイルをターゲットに直接配信し、ターゲットの環境でファイルを実行させる攻撃のこと
 - 具体的な配信方法としては：
-	- Phishing：関連ノート📒（[[Module 11：Phishing Basics]]）
+	- Phishing
 	- USB Dropping
 	- 水飲み場攻撃
 
@@ -56,6 +54,8 @@
 2. ファイルをExiftoolで解析する
 
 ### Exiftool
+
+- [ ] todo: OSINTにまとめる
 
 Exiftoolのコマンド
 ```zsh
