@@ -310,7 +310,6 @@ shodan init <api_key>
 # 基本的な使い方
 shodan host <target_IP>
 ```
-
 - shodanにログイン → Account > Account Overview > API keyをコピーしてから `shodan init` を実行
 - 詳細は🔗[Shodan CLI](https://cli.shodan.io/)
 
@@ -320,9 +319,9 @@ shodan host <target_IP>
 
 共有ホスティングでは1つのIPアドレスが複数のWebサーバーで共有されており、IPを逆引きすることで同じIPアドレスを使っている他のドメインを発見できる。
 
-![](https://claude.ai/%E7%94%BB%E5%83%8F%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB/Pasted%20image%2020230609134612.png)
+![[Pasted image 20260319123031.png]]
 
-> [!NOTE] IPアドレスが必ずしも1つのWebサイトにつながるわけではない点に注意。
+$$ViewDNS.infoの結果例$$
 
 ## Threat Intelligence Platform
 
