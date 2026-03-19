@@ -133,49 +133,91 @@ dig @<name_server> <domain> AXFR
 
 ## Dorking実例
 
-管理画面探し
+**GHDB例**
 
-| 目的                  | Dork例                 |
-| ------------------- | --------------------- |
-| 管理画面URL探索           | `inurl:admin`         |
-| WordPress管理画面       | `inurl:wp-admin`      |
-| VPN/ネットワーク機器のログイン画面 | `intitle:"VPN login"` |
+| カテゴリ         | GHDB-ID                                      | 内容                                  |
+| ------------ | -------------------------------------------- | ----------------------------------- |
+| Footholds    | [6364](https://www.exploit-db.com/ghdb/6364) | Nginxのログを発見し、悪用可能なサーバーの誤設定を明らかにするかも |
+| 機密ディレクトリ     | [6768](https://www.exploit-db.com/ghdb/6768) | RSA秘密鍵が公開されているかどうかを調べる              |
+| Web Server検出 | [6876](https://www.exploit-db.com/ghdb/6876) | GlassFish Serverを探す                 |
+| 脆弱なサーバ       | [6728](https://www.exploit-db.com/ghdb/6728) | SolarWinds Orionウェブコンソールを発見         |
+| エラーメッセージ     | [5963](https://www.exploit-db.com/ghdb/5963) | エラーに関連するログファイルを検索                   |
+
+管理画面探し（Adminページ探し）
+
+|目的|Dork例|備考|
+|---|---|---|
+|管理画面URL探索|inurl:admin|超基本・よくヒット|
+|管理画面ログインページ|intitle:"管理画面" inurl:login|日本サイト向け|
+|WordPress管理画面|inurl:wp-admin|WPサイト特定に|
+|CMS管理画面|inurl:typo3  <br>inurl:joomla  <br>inurl:drupal|CMS狙い撃ち|
+|VPN/ネットワーク機器のログイン画面|intitle:"VPN login"  <br>intitle:"Firewall Login"|重要インフラ系|
+
+ログインページ探し
+
+|目的|Dork例|備考|
+|---|---|---|
+|一般的なログインページ|intitle:"login" inurl:login|汎用Dork|
+|社内システムログイン|site:example.com intitle:login|特定ドメイン向け|
+|基幹システムログイン|intitle:"ERP Login"  <br>intitle:"SAP Login"|大企業狙い撃ち|
+|クラウドサービスログイン|inurl:auth  <br>inurl:signin|SaaS系も対応|
 
 機密情報探し
 
-| 目的                | Dork例                                              |
-| ----------------- | -------------------------------------------------- |
-| 環境設定ファイル          | `filetype:env OR filetype:conf intext:DB_PASSWORD` |
-| SQLダンプ            | `filetype:sql "INSERT INTO"`                       |
-| 機密ログ              | `filetype:log "password" OR "API key"`             |
-| Excelに埋め込まれたパスワード | `filetype:xls intext:password`                     |
-| APIキー漏洩           | `intext:"API_KEY="`                                |
+| 目的         | Dork例                                            | 備考           |
+| ---------- | ------------------------------------------------ | ------------ |
+| 環境設定ファイル探し | filetype:env OR filetype:conf intext:DB_PASSWORD | クラウド・アプリ設定狙い |
+| SQLダンプ探し   | filetype:sql "INSERT INTO"                       | データベース漏洩チェック |
+| 社内文書探し     | filetype:pdf site:example.com                    | 特定企業の内部文書    |
+| 機密ログ探し     | filetype:log "password" OR "API key"             | 誤公開ログ探し      |
 
-脆弱なページ探し
+意図せず公開されたドキュメント探し
 
-| 目的           | Dork例                                   | 備考                                       |
-| ------------ | --------------------------------------- | ---------------------------------------- |
-| CGIスクリプト     | `inurl:.cgi`                            | 古いスクリプト                                  |
-| PHPエラー画面     | `intext:"Fatal error" inurl:.php`       | ~~`filetype:php`~~はGoogleがインデックスしないため非推奨 |
-| ディレクトリリスティング | `intitle:"index of" "parent directory"` |                                          |
-| Gitリポジトリの誤公開 | `inurl:.git`                            |                                          |
+|目的|Dork例|備考|
+|---|---|---|
+|社内資料のPDF|site:example.com filetype:pdf|汎用Dork|
+|Excelに埋め込まれたパスワード|filetype:xls intext:password|よくあるミス|
+|Google Drive公開ファイル|site:docs.google.com|意図せず共有されがち|
+
+コード・設定ファイル探し
+
+|目的|Dork例|備考|
+|---|---|---|
+|Gitリポジトリの誤公開|inurl:.git|.gitディレクトリ直叩き|
+|設定ファイル探し|filetype:conf OR filetype:ini|サーバー設定漏洩|
+|APIキー漏洩|intext:"API_KEY="|直書き事故チェック|
+
+脆弱なページ・古いページ探し
+
+| 目的           | Dork例                                 | 備考                                       |
+| ------------ | ------------------------------------- | ---------------------------------------- |
+| 古いページ・アーカイブ  | site:example.com before:2010          | ⚠️ `before:` は非公式オペレータのため動作が不安定          |
+| CGIスクリプト狙い   | inurl:.cgi                            | 古いスクリプト発掘                                |
+| PHPエラー画面探し   | intext:"Fatal error" inurl:.php       | ~~filetype:php~~ → Googleはインデックスしないため非推奨 |
+| ディレクトリリスティング | intitle:"index of" "parent directory" | ディレクトリ一覧が公開されているページ                      |
+
+監視カメラや機器のWebUI探し
+
+| 目的           | Dork例                                               | 備考               |
+| ------------ | --------------------------------------------------- | ---------------- |
+| 監視カメラ映像      | inurl:/view.shtml  <br>intitle:"Live View / - AXIS" | AXISカメラ          |
+| NAS管理画面      | intitle:"NAS Login"                                 | Synology, QNAPなど |
+| ルーター/モデム管理画面 | intitle:"Router Login"                              | SOHOルーターなど       |
 
 サブドメイン・関連サイト探し
 
-|目的|Dork例|
-|---|---|
-|サブドメイン洗い出し|`site:example.com -www`|
-|関連サイト洗い出し|`related:example.com`|
-
-**GHDB例**
-
-|カテゴリ|GHDB-ID|内容|
+|目的|Dork例|備考|
 |---|---|---|
-|Footholds|[6364](https://www.exploit-db.com/ghdb/6364)|Nginxのログを発見し、悪用可能なサーバーの誤設定を明らかにするかも|
-|機密ディレクトリ|[6768](https://www.exploit-db.com/ghdb/6768)|RSA秘密鍵が公開されているかどうかを調べる|
-|Web Server検出|[6876](https://www.exploit-db.com/ghdb/6876)|GlassFish Serverを探す|
-|脆弱なサーバ|[6728](https://www.exploit-db.com/ghdb/6728)|SolarWinds Orionウェブコンソールを発見|
-|エラーメッセージ|[5963](https://www.exploit-db.com/ghdb/5963)|エラーに関連するログファイルを検索|
+|サブドメイン洗い出し|site:example.com -www|サブドメイン探索|
+|関連サイト洗い出し|related:example.com|公式系列チェック|
+|サイト内検索|site:example.com "confidential"|キーワードと組み合わせ|
+
+社員リスト・名簿探し
+
+| 目的     | Dork例                                       | 備考        |
+| ------ | ------------------------------------------- | --------- |
+| 社員名簿探し | filetype:xls intext:"社員名簿" site:example.com | 内部情報流出系   |
+| 連絡先リスト | intext:@example.com filetype:csv            | メールアドレス一覧 |
 
 ---
 
@@ -184,7 +226,6 @@ dig @<name_server> <domain> AXFR
 公開されているコードリポジトリは、APIキー・パスワード・内部構造などの機密情報が誤ってコミットされていることがある。
 
 公開場所：
-
 - 🔗[GitHub](https://github.com/)
 - 🔗[GitHub Gist](https://gist.github.com/)：コードスニペットのシェア
 - 🔗[GitLab](https://about.gitlab.com/)：DevSecOpsに特化
