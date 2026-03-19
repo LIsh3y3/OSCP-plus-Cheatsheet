@@ -109,7 +109,7 @@
 | HTA             | ・HTML Application の略（`.hta`）<br>・IEエンジン上でHTML + JavaScriptやVBScriptを**Windowsアプリのように実行可能**<br>・拡張子を偽装して送ることで実行を誘導されやすい                                                         |
 | JS / JSE        | ・JScript または JavaScriptファイル（`.js`, `.jse`）<br>・Windows上ではWScriptで実行され、ファイル操作やネットワーク通信が可能<br>・`.jse` は暗号化されたスクリプト                                                               |
 | VBS / VBE       | ・VBScriptファイル（`.vbs`）とその暗号化版（`.vbe`）<br>・ユーザー操作や自動実行でコードを実行可能                                                                                                                  |
-| DOC / XLS / PPT | ・Office文書形式<br>・マクロを含むことが可能（`.docm`, `.xlsm` など）<br>・MotWがあるとマクロが自動実行されないように設計されている：[[../PEN-200/Module 12：Client-side Attacks]]                                                          |
+| DOC / XLS / PPT | ・Office文書形式<br>・マクロを含むことが可能（`.docm`, `.xlsm` など）<br>・MotWがあるとマクロが自動実行されないように設計されている：[[../PEN-200/Client-side Attacks]]                                                          |
 | RTF             | ・Rich Text Format（書式付きテキスト）<br>・埋め込みオブジェクトや脆弱性（例：CVE-2023-21716）を利用してコード実行が可能<br>・マクロ不要で実行される場合もあり危険性が高い<br>・[CVE-2023-21716](https://nvd.nist.gov/vuln/detail/CVE-2023-21716) |
 | LNK             | ・Windowsショートカットファイル<br>・見た目は普通のファイルだが、内部で任意のコマンド（EXEやスクリプト）を実行できる                                                                                                              |
 | PDF             | ・use-after-free脆弱性によるRCE：[CVE-2023-21608](https://nvd.nist.gov/vuln/detail/CVE-2023-21608)                                                                                     |

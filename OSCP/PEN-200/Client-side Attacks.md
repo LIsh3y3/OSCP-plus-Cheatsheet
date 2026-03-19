@@ -55,7 +55,7 @@
 
 ### Exiftool
 
-- [ ] todo: OSINTにまとめる
+- [ ] todo: これはOSINTにまとめる
 
 Exiftoolのコマンド
 ```zsh
