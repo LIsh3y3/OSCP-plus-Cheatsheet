@@ -319,6 +319,8 @@ shodan host <target_IP>
 
 共有ホスティングでは1つのIPアドレスが複数のWebサーバーで共有されており、IPを逆引きすることで同じIPアドレスを使っている他のドメインを発見できる。
 
+![](Pasted%20image%2020260319124548.png)
+
 ![[Pasted image 20260319123031.png]]
 
 $$ViewDNS.infoの結果例$$
@@ -342,7 +344,7 @@ $$Censys検索例$$
 > [!NOTE] 
 > ヘッダーの欠落はそれ自体が脆弱性とは限らないが、Web開発者やサーバー管理者がハードニングに精通していない可能性を示す。
 
-
+![](Pasted%20image%2020260319124507.png)
 $$SecurityHeaders出力例$$
 
 ## Qualys SSL Labs
