@@ -487,13 +487,13 @@ keys remove <key_name>           # keyの削除
 ![](https://claude.ai/%E7%94%BB%E5%83%8F%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB/Pasted%20image%2020230609165839.png)
 
 1. New > Entity Paletteに「DNS name」と入力し、エンティティをダブルクリックしてドメイン名を入力
-2. エンティティを右クリック > All Transforms > 検索タブに「IP」と入力 > 「To IP Address [DNS]」をクリック
+2. エンティティを右クリック > All Transforms > 検索タブに「IP」と入力 > 「To IP Address `[DNS]`」をクリック
 
-![](https://claude.ai/%E7%94%BB%E5%83%8F%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB/Pasted%20image%2020230609170510.png)
+![](../../画像ファイル/Pasted%20image%2020260319125208.png)
 
 3. IPアドレスが表示される
 
-![](https://claude.ai/%E7%94%BB%E5%83%8F%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB/Pasted%20image%2020230609170554.png)
+![](../../画像ファイル/Pasted%20image%2020260319125306.png)
 
 4. IPアドレスの一つを右クリックして「To DNS Name from passive DNS (Robtex)」などのトランスフォームを選択し、さらに情報を展開する
 
