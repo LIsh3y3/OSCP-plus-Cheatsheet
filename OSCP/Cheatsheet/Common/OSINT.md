@@ -344,13 +344,14 @@ $$Censys検索例$$
 
 ![[Pasted image 20260319123446.png]]
 
-$$$$
+$$SecurityHeaders出力例$$
 
 ## Qualys SSL Labs
 
 🔗[Qualys SSL Labs](https://www.ssllabs.com/ssltest/)：暗号スイートのベストプラクティスと比較してスコアリングする。
 
-> [!NOTE] 暗号スイートのベストプラクティスは頻繁に変わるものではないため、未対応の場合はセキュリティへの意識が低いと考えることができる。
+> [!NOTE] 
+> 暗号スイートのベストプラクティスは頻繁に変わるものではないため、未対応の場合はセキュリティへの意識が低いと考えることができる。
 
 ## Wayback Machine
 
@@ -399,7 +400,9 @@ recon-ng
 
 ## ① ワークスペースの作成
 
-```recon-ng
+以下、recon-ngのプロンプトで実行
+
+```sh
 workspaces create <workspace_name>
 
 # 起動時に作成済みワークスペースを使用する
@@ -408,7 +411,7 @@ recon-ng -w <workspace_name>
 
 ## ② DBにデータを挿入
 
-```recon-ng
+```sh
 # DBのテーブル名を確認
 db schema
 
@@ -440,7 +443,7 @@ db insert domains
 
 ## ④ モジュールをロードし実行
 
-```recon-ng
+```sh
 # インストール済みモジュールの一覧
 modules search
 
@@ -462,7 +465,7 @@ run
 
 ## Keys
 
-```recon-ng
+```sh
 keys list                     # keyをリストアップ
 keys add <key_name> <key_value>  # keyの追加
 keys remove <key_name>           # keyの削除

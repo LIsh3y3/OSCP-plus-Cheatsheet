@@ -46,36 +46,4 @@ dig <domain> MX
 
 ターゲットのセキュリティへの意識に関する洞察を得る。
 
-### Security Headers
-
-- 🔗[Security Headers](https://securityheaders.com/)
-- ターゲットのヘッダー情報で欠けているものを列挙する
-- ヘッダーの欠落は、それ自体が脆弱性であるとは限らないが、Web開発者やサーバー管理者がサーバーのハードニングに精通していないことを示している可能性がある
-
-![](../../画像ファイル/Pasted%20image%2020250302173940.png)
-
-### Qualys SSL Labs
-
-- 🔗[Qualys SSL Labs](https://www.ssllabs.com/ssltest/)
-- 暗号スイートのベストプラクティスと比較してスコアリングする
-- 暗号スイートのベストプラクティスは頻繁に変わるものではない
-	- →それにもかかわらず、まだ対応していないなら、セキュリティへの意識が低いと考える
-
 ---
-
-# その他OSINTツール
-
-- [Wayback Machine](https://archive.org/web/)
-	ドメイン名を検索すると、サービスが Web ページをスクレイピングしてコンテンツを保存した回数が常に表示される。このサービスは、現在の Web サイトでまだアクティブな可能性がある古いページを発見するのに役立つ。読み込んだurlなどもわかる
-
-- S3 bucket 
-	amazonのストレージサービス。設定ミスで機密情報を公開しているかも。nameのとこに会社名とかいれて　**{name}** -assets、  **{name}** -www、  **{name}** -public、  **{name}** -private など。
-
-- [SSL/TLS 証明書 - crt.sh](https://ui.ctsearch.entrust.com/ui/ctsearchui)
-	ドメインに属するサブドメインを発見することができる。→攻撃可能な範囲を広げる
-
-- [Sublist3r](https://www.kali.org/tools/sublist3r/)
-	サブドメインを列挙する
-```zsh
-sublist3r -d <domain> -t <thread> -e <search_engine>
-```
