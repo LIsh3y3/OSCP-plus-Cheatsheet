@@ -2,7 +2,7 @@
 > AV回避は**OSCP試験において主眼ではない**が、現実のテストやOSEPでは非常に重要なテクニック。
 
 - 関連ノート：
-    - [AV Evasion：PE構造とシェルコード](https://claude.ai/chat/AV%20Evasion%EF%BC%9APE%E6%A7%8B%E9%80%A0%E3%81%A8%E3%82%B7%E3%82%A7%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89.md)
+    - [PE構造とシェルコード](PE構造とシェルコード.md)
     - [AV Evasion：テクニック集](https://claude.ai/chat/AV%20Evasion%EF%BC%9A%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF%E9%9B%86.md)
     - [Web攻撃の難読化](https://claude.ai/chat/Web%E6%94%BB%E6%92%83%E3%81%AE%E9%9B%A3%E8%AA%AD%E5%8C%96.md)
 - 参考🔗：[HackTricks - AV Bypass](https://book.hacktricks.wiki/en/windows-hardening/av-bypass.html)
