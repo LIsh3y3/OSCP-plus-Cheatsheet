@@ -128,7 +128,7 @@ dig @<name_server> <domain> AXFR
 |`()`|演算子の組み合わせ|`(site:facebook.com \| site:twitter.com) & intext:"login"`|
 |`*`|0文字以上全指定|`site:*.com`|
 
-- 参考：[Google Dorking cheat sheet](https://gist.github.com/sundowndev/283efaddbcf896ab405488330d1bbc06)
+- 参考：🔗[Google Dorking cheat sheet](https://gist.github.com/sundowndev/283efaddbcf896ab405488330d1bbc06)
 
 ## Dorking実例
 
