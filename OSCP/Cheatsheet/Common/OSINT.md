@@ -342,7 +342,7 @@ $$Censys検索例$$
 > [!NOTE] 
 > ヘッダーの欠落はそれ自体が脆弱性とは限らないが、Web開発者やサーバー管理者がハードニングに精通していない可能性を示す。
 
-![[Pasted image 20260319123446.png]]
+![](Pasted%20image%2020260319124218.png)
 
 $$SecurityHeaders出力例$$
 
@@ -436,7 +436,6 @@ db insert domains
 > 
 > - "K"列に`*`があるモジュールはAPIキーが必要（→[Keys](https://claude.ai/chat/154ce50b-1d75-4193-a686-e8b12aeb24cd#Keys)）
 > - "D"列に`*`があるモジュールはサードパーティのPythonライブラリが必要
-
 
 
 
