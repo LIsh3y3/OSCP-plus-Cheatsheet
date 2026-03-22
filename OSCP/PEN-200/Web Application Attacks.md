@@ -58,17 +58,19 @@
 
 - 目的：高権限のユーザーを作成
 
-- 条件：
+- 攻撃のシチュエーション：
 	- CookieにHTTP onlyフラグが付与されていて、JavaScriptでは窃取できないとき
 	- CMSでアカウント作成等のHTTPリクエストを使用した処理が実行され、nonceが使われているとき
 
-- 参考：[How to craft an XSS payload to create an admin user in WordPress](https://shift8web.ca/craft-xss-payload-create-admin-user-in-wordpress-user/)
+- 参考：🔗[How to craft an XSS payload to create an admin user in WordPress](https://shift8web.ca/craft-xss-payload-create-admin-user-in-wordpress-user/)
 
 #### 手順
 
 1. ソースコードもしくはFuzzingでXSSに脆弱なHTTPヘッダーなどを洗い出す（BSCPノートを参照）
 	（今回はVisitorsプラグインの`user-agent`が脆弱であるとする）
+
 2. HTTPリクエストを使用した処理（ユーザー作成等）のリクエストをBurpでキャプチャしておく
+
 3. nonceの値を抽出し、そのnonceを使ってユーザーを作成するスクリプトを作成（コメントは削除して使用）
 - nonce抽出
 ```js
