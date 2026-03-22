@@ -16,7 +16,7 @@
 また、外部との境界に設置しているWebサーバ（またはそのアプリ）等の<u>技術的な脆弱性を使用した侵入の割合は非常に低い。</u>
 
 ソース:
-[2022-data-breach-investigations-report-dbir.pdf - Verizon（米大手通信会社）](https://www.verizon.com/business/resources/reports/2022/dbir/2022-data-breach-investigations-report-dbir.pdf)
+🔗[2022-data-breach-investigations-report-dbir.pdf - Verizon（米大手通信会社）](https://www.verizon.com/business/resources/reports/2022/dbir/2022-data-breach-investigations-report-dbir.pdf)
 
 よって、==Client-side Attacksの重要性が高まっている==。
 
