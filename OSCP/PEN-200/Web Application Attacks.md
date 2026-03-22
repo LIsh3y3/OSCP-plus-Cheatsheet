@@ -82,8 +82,8 @@ ajaxRequest.send();
 var nonceMatch = nonceRegex.exec(ajaxRequest.responseText);
 var nonce = nonceMatch[1];
 ```
-	 (3行目にアクション実行先のHTTPリクエスト)
-	 (4行目第三引数をfalseとすることで、同期通信になる。nonceを確実に抽出する目的)
+- 3行目にアクション実行先のHTTPリクエスト
+- 4行目第三引数をfalseとすることで、同期通信になる。nonceを確実に抽出する目的
 
 - 抽出したnonceを使用してアクションを実行するリクエストを作成する
 ```js
