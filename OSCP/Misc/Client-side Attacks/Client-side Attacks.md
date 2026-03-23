@@ -16,7 +16,7 @@
 ソース:
 🔗[2022-data-breach-investigations-report-dbir.pdf - Verizon（米大手通信会社）](https://www.verizon.com/business/resources/reports/2022/dbir/2022-data-breach-investigations-report-dbir.pdf)
 
-よって、==Client-side Attacksの重要性が高まっている==。
+よって、**攻撃者にとって、Client-side Attacksの重要性が高まっている**。
 
 ---
 
@@ -99,7 +99,7 @@
 ## Officeを使用したエクスプロイトの前提知識
 
 - 直接メールに悪意のあるファイルを添付することは、昨今のセキュリティ製品によるフィルタやセキュリティ教育によって、成功確率の低い攻撃となっている
-- 代わりに、Pretext（口実）を用意し、ダウンロードリンクなどの方法で悪意ある文書を提供する方法が使われる
+- 代わりに、Pretextを用意し、ダウンロードリンクなどの方法で悪意ある文書を提供する方法が使われる
 - ただし、外部からダウンロードされたOfficeファイルには、MotWが付与される
 
 ### MotW（Mark of the Web）
@@ -149,7 +149,7 @@
 | FAT32/NFSファイルシステム利用 | MotWはNTFSのADSに依存するため、FAT32やNFSでは保存されない。 | USBに保存してから実行させるように誘導。              |
 | IMG/VHD             | 仮想ディスク形式も、マウント後にMotWが除外されるケースがあり、悪用される。 |                                    |
 
-- 参考記事🔗：[Mark-of-the-Web Bypass - Red canary](https://redcanary.com/threat-detection-report/techniques/mark-of-the-web-bypass/)
+- 参考記事：🔗[Mark-of-the-Web Bypass - Red canary](https://redcanary.com/threat-detection-report/techniques/mark-of-the-web-bypass/)
 
 ---
 
