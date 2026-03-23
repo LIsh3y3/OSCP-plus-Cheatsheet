@@ -152,9 +152,10 @@ $$PowerShell起動$$
 
 ### ステップ3：Reverse Shell獲得マクロの作成
 
-- 🔗[PowerCat](https://github.com/besimorhino/powercat)実行コマンドをbase64でエンコードし、リテラル文字列として使う
-- 🚨注意：VBAではリテラル文字列に*255*キャラクタの制限がある
-	- 🔨対策：変数に格納し、変数同士を連結する方法をつかう
+🔗[PowerCat](https://github.com/besimorhino/powercat)実行コマンドをbase64でエンコードし、リテラル文字列として使う。
+
+
+
 
 1. 攻撃者のマシンでPowerCatファイルをコピーし、コピー先のディレクトリ上でPython webサーバーを用意しておく
 ```zsh
