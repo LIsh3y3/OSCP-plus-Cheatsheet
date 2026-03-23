@@ -29,9 +29,6 @@
 
 **2022年7月のポリシー変更**（🔗[Microsoft announce 2022/07/20](https://techcommunity.microsoft.com/blog/microsoft_365blog/helping-users-stay-safe-blocking-internet-macros-by-default-in-office/3071805)）： インターネットからダウンロードされたファイルのマクロをデフォルトで全面ブロック。Enable Contentのボタンがなくなり、代わりにLearn Moreが表示されるようになった。
 
-- マクロの実行はデフォルトで無効にするよう設定された（Offic 2013～）：
-- 
-
 ![](../../画像ファイル/Pasted%20image%2020250514071024.png)
 
 ### MotWありマクロの煩雑な実行ステップ
