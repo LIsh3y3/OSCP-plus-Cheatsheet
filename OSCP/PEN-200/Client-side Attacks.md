@@ -3,9 +3,7 @@
 
 ---
 
-# 前提 
-
-## 現実世界の攻撃の傾向
+# 現実世界の攻撃の傾向
 
 内部NWへのイニシャルアクセスへの攻撃ベクターとしては
 - １位：Credential attack（認証情報の盗難）
@@ -22,7 +20,7 @@
 
 ---
 
-## Client-side Attacksとは
+# Client-side Attacksとは
 
 - 悪意あるファイルをターゲットに直接配信し、ターゲットの環境でファイルを実行させる攻撃のこと
 - 具体的な配信方法としては：
@@ -38,28 +36,27 @@
 - 攻撃を成功させるためには、ターゲットのOSとインストールされているアプリケーションを特定する必要がある
 
 ---
----
 
-## Client Fingerprinting（識別）
+# Client Fingerprinting（識別）
 
-### Clinet Fingerprintingとは
+## Clinet Fingerprintingとは
 
 - 直接到達できない内部NWにいるターゲットの使用OS・ブラウザを明らかにすること
 - 目的は侵害前のターゲットの偵察
 - 侵害時にターゲットがMacなのに、WindowsのEXEファイルを送っても無意味
 
-### Canarytokens
+## Canarytokens
 
 - Canarytokensとは、ターゲットがブラウザで開くと、ブラウザ、IPアドレス、OSの情報が入手できるリンク（トークン含む）を生成できる
-	- （生成したリンクをクリックすると空白のページが表示される）
+	- →生成したリンクをクリックすると空白のページが表示される
 
-1. [Create a Canarytoken.](https://canarytokens.org/nest/generate)にアクセスする
+1. 🔗[Create a Canarytoken.](https://canarytokens.org/nest/generate)にアクセスする
 2. 任意の種類のトークンを選択する（ここでは例としてWeb bugを選択）
 	- 以下キャプチャ以外にも、下にスクロールすると、WordやExcel、PDFなども選択できる
 
 ![](../画像ファイル/Pasted%20image%2020250513065718.png)
 
-3. メールアドレス、コメントを入力する。任意で通知先のWebサイトも入力する。Create Canarytokenをクリック
+3. メールアドレス、コメントを入力し、任意で通知先のWebサイトも入力した上でCreate Canarytokenをクリック
 
 ![](../画像ファイル/Pasted%20image%2020250513065904.png)
 
@@ -97,8 +94,7 @@
 
 # Microsoft Officeのエクスプロイト（マクロ）
 
-- Unixシステムは、偽サイトをホストして認証情報を入力させる攻撃が現実的
-- 学習用の演習環境では、urlリンクを踏ませる + ncでリッスンしているだけで認証情報を入手できることもある(python http serverでは、postパラメタは取得できない)
+- Unixシステムの場合は、偽サイトをホストして認証情報を入力させる攻撃が現実的
 
 ## Officeを使用したエクスプロイトの前提知識
 
