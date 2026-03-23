@@ -150,9 +150,9 @@ $$編集後のマクロ$$
 
 $$PowerShell起動$$
 
-### 💥3. Reverse Shell獲得マクロの作成手順
+### ステップ3：Reverse Shell獲得マクロの作成
 
-- [PowerCat](https://github.com/besimorhino/powercat)実行コマンドをbase64でエンコードし、リテラル文字列として使う
+- 🔗[PowerCat](https://github.com/besimorhino/powercat)実行コマンドをbase64でエンコードし、リテラル文字列として使う
 - 🚨注意：VBAではリテラル文字列に*255*キャラクタの制限がある
 	- 🔨対策：変数に格納し、変数同士を連結する方法をつかう
 
