@@ -145,8 +145,6 @@ $$編集後のマクロ$$
 
 ![](../../画像ファイル/Pasted%20image%2020250516081730.png)
 
-6. Enable Contentを押下し、PowerShellが起動されることを確認
-
 ![](../../画像ファイル/Pasted%20image%2020250516081833.png)
 
 $$PowerShell起動$$
