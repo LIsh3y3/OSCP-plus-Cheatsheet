@@ -91,7 +91,7 @@
 
 以降は[macro-generator - GitHub](https://github.com/jotyGill/macro-generator)で自動化できる。
 
-1. マクロ編集画面を開いた時
+マクロ編集画面を開くと以下の初期コードが表示される。Sub〜End Sub で囲まれた部分がsubプロシージャ（関数と異なり返り値がない）。
 ```vb
 Sub MyMacro()
 '
@@ -101,9 +101,6 @@ Sub MyMacro()
 
 End Sub
 ```
-- 上記をsubプロシージャーという
-	(subプロシージャーは関数(function)と異なり返り値がない)
-- "Sub"、"End Sub"で囲われた部分がVBAのボディ
 
 2. マクロでShellオブジェクトを作成し、PowerShellを実行する
 ```vb
