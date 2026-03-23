@@ -89,9 +89,8 @@
 
 ### ステップ2：マクロの基本構造（PowerShellを自動起動する）
 
-
 > [!TIP]
-> Contents
+> 以降は🔗[macro-generator - GitHub](https://github.com/jotyGill/macro-generator)で自動化できる。
 
 マクロ編集画面を開くと以下の初期コードが表示される。Sub〜End Sub で囲まれた部分がsubプロシージャ（関数と異なり返り値がない）。
 ```vb
