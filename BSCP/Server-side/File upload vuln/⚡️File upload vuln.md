@@ -404,7 +404,7 @@ http://<TargetIP>/<path>/shell.jpg?cmd=whoami
 - *ExifTool*を使用し、メタデータ内に悪意のあるコードを含むポリグロットJPEGファイルを作成する
 	- [📕](../../Misc/📕.md#ポリグロット(polyglot)) [📕](../../Misc/📕.md#メタデータ)
 
-## Exiftoolによるpolyglot作成によるコンテンツ検証の回避実践
+## polyglot作成によるコンテンツ検証の回避実践
 
 - polyglotなJPGを作成し、拡張子がphpのファイルに記述する
 ```zsh
