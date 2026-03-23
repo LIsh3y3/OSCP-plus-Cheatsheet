@@ -154,8 +154,8 @@ $$PowerShell起動$$
 
 🔗[PowerCat](https://github.com/besimorhino/powercat)実行コマンドをbase64でエンコードし、リテラル文字列として使う。
 
-
-
+> [!Warning]
+> VBAではリテラル文字列に255文字の制限がある。PowerShellコマンドはこれを超えるため、変数に分割して連結する。
 
 1. 攻撃者のマシンでPowerCatファイルをコピーし、コピー先のディレクトリ上でPython webサーバーを用意しておく
 ```zsh
