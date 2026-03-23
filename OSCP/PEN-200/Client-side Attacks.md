@@ -155,7 +155,7 @@
 
 ## Microsoft WordマクロによるReverse shell獲得
 
-LibreOfficeの場合のマクロ設定方法は、[Proving Grounds Practice write-up - Craft](https://medium.com/@Dpsypher/proving-grounds-practice-craft-4a62baf140cc)を参照
+LibreOfficeの場合のマクロ設定方法は、🔗[Proving Grounds Practice write-up - Craft](https://medium.com/@Dpsypher/proving-grounds-practice-craft-4a62baf140cc)を参照
 
 ### 用語・前提知識
 
