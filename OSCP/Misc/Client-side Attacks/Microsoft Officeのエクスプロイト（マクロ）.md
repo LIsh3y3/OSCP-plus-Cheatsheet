@@ -62,7 +62,7 @@
 # Microsoft WordマクロによるReverse shell獲得
 
 - LibreOfficeの場合のマクロ設定方法：🔗[Proving Grounds Practice write-up - Craft](https://medium.com/@Dpsypher/proving-grounds-practice-craft-4a62baf140cc)
-
+- マクロはClient-Side Attackのアタックベクターとして2026年現在も有効
 - 関連用語
 	- [マクロ・VBA・VBScript・WSH](../用語.md#マクロ・VBA・VBScript・WSH)
 	- [ActiveX](../用語.md#ActiveX)
