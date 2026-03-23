@@ -25,12 +25,9 @@
 
 **かつての攻撃手法**： ドキュメントの一部をぼかし「すべて閲覧するためには編集を有効にする必要があります」と依頼して、ターゲットに「Enable Editing（編集を有効にする）」や「Enable Content（コンテンツを有効にする）」を押させていた。
 
-これまでMotWへの対策として攻撃者は...
-- Enable Editing（編集を有効にする）をターゲットに押下させるために、Pretext（口実）として、ドキュメントの一部を"ぼかし"、「すべて閲覧するためには編集を有効にする必要があります」と依頼した
-- Enable Contentを押させるように依頼した
-
 ![](../../画像ファイル/Pasted%20image%2020250514071005.png)
 
+2022年7月のポリシー変更（🔗Microsoft announce）： インターネットからダウンロードされたファイルのマクロをデフォルトで全面ブロック。Enable Contentのボタンがなくなり、代わりにLearn Moreが表示されるようになった。
 しかしMicrosoftの方針が変わり...
 - マクロの実行はデフォルトで無効にするよう設定された（Offic 2013～）：🔗[Microsoft announce 2022/07/20](https://techcommunity.microsoft.com/blog/microsoft_365blog/helping-users-stay-safe-blocking-internet-macros-by-default-in-office/3071805)
 - Enable Contentのボタンはなくなり、代わりにLearn Moreと表示されるようになった
