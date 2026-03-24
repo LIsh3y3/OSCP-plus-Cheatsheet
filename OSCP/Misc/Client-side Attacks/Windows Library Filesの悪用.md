@@ -80,14 +80,13 @@ $$WebDavサーバ構築成功時の出力$$
 >[!TIP] 
 >XMLはテキストファイルなので、Kaliでも作成できる。ただし、Windowsマシン（VMまたはRDP）で作業すると、ライブラリファイルや.lnkの構築・テストが非常に楽になる。
 
-VSCodeまたはメモ帳で新規テキストファイル (Plain text) を作成し、`config.library-ms` という名前でデスクトップに保存する。以下のXMLを記述して保存する。
+1. VSCodeまたはメモ帳で新規テキストファイル (Plain text) を作成し、`config.library-ms` という名前でデスクトップに保存する
 
 ![](../../画像ファイル/Pasted%20image%2020250518144800.png)
 
 $$空白Windowsライブラリファイル$$
 
-5. `config.library-ms`ファイルにXMLで記述し、保存
-	- [XMLコードの解説](#XMLコードの解説)
+2. `config.library-ms`ファイルにXMLで記述し、保存（[XMLコードの解説](#XMLコードの解説)）
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <libraryDescription xmlns="http://schemas.microsoft.com/windows/2009/library">
@@ -110,9 +109,10 @@ $$空白Windowsライブラリファイル$$
 </libraryDescription>
 ```
 
-6. 攻撃者マシンに`config.library-ms`を転送する（webdavディレクトリではないところに格納）
-7. （スキップ可）WebDav共有への接続の成功を確認するため、`config.library-ms`ファイルをダブルクリックで実行する
-	- ステップ2でWebdavディレクトリに作成した`test.txt`が表示されていたら成功
+3. 攻撃者マシンに`config.library-ms`を転送する（webdavディレクトリではないところに格納）
+
+4. （スキップ可）WebDav共有への接続の成功を確認するため、`config.library-ms`ファイルをダブルクリックで実行する
+	- [第1段階：WebDAV サーバの準備](#第1段階：WebDAV%20サーバの準備)でWebdavディレクトリに作成した`test.txt`が表示されていたら成功
 	- 💥ファイルパスにはリモートで開かれていることは明示されない
 　　
 ![](../../画像ファイル/Pasted%20image%2020250518171045.png)
