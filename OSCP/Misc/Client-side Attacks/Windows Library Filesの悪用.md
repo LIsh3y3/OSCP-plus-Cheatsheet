@@ -227,7 +227,7 @@ $$.lnk実行時の警告ポップアップ$$
 ```
 - xmlns（xml name space)：XMLにおける名前空間
 - `http://schemas.microsoft.com/windows/2009/librarye`：Microsoftのライブラリスキーマに属することを明示する
-- [[xm]]
+- [xmlnsにおけるリンク](../用語.md#xmlnsにおけるリンク)
 
 2. 「ドキュメント」のローカライズリソース（文字列・UI要素）などを参照する
 ```xml
@@ -237,10 +237,9 @@ $$.lnk実行時の警告ポップアップ$$
 - `<name>`：DLLライブラリの名前を指定
 	- 他にも`shell32.dll`が使えるが、"shell"というワードがセキュリティ製品に検知されるかもしれないので使用を避ける
 - `-34582`：ドキュメントのリソースID（ピクチャは`-34595`)
-	- ※リソースIDは[Resource Hacker](https://forest.watch.impress.co.jp/article/2001/01/29/okiniiri.html)などのツールを使う方法があるが、生成AIに聞く方が楽
-- [Module 12：Client-side Attacks](#補足：リソースID(`@windows.storage.dll,-34582`)について)
+	- リソースIDは🔗[Resource Hacker](https://forest.watch.impress.co.jp/article/2001/01/29/okiniiri.html)などのツールを使う方法があるが、生成AIに聞く方が楽
 - `<version>`：任意の数値
-- [用語](../用語.md#DLL(Dynamic%20link%20library))
+- [リソースID(`@windows.storage.dll,-34582`)について](#リソースID(`@windows.storage.dll,-34582`)について)
 
 3. ライブラリファイルの見た目を整備する
 ```xml
@@ -261,7 +260,7 @@ $$.lnk実行時の警告ポップアップ$$
 <folderType>{7d49d726-3c21-4f05-99aa-fdc2c9474656}</folderType>
 </templateInfo>
 ```
-- [Microsoft documentation](https://learn.microsoft.com/ja-jp/windows/win32/shell/schema-library-foldertype)の「フォルダーの種類」に記載されているGUIDを`<folderType>`に指定する（今回はアイコンをドキュメントにしているのでドキュメントのGUIDを指定）
+- 🔗[Microsoft documentation](https://learn.microsoft.com/ja-jp/windows/win32/shell/schema-library-foldertype)の「フォルダーの種類」に記載されているGUIDを`<folderType>`に指定する（今回はアイコンをドキュメントにしているのでドキュメントのGUIDを指定）
 	- 例えばフォルダタイプがミュージックだと、アーティスト名やトラック番号のカラムとなってしまう
 
 ![](../../画像ファイル/Pasted%20image%2020250518152940.png)
