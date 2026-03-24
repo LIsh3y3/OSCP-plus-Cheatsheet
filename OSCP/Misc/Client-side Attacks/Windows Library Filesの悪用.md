@@ -48,28 +48,28 @@
 
 ## 第1段階：WebDAV サーバの準備
 
-0. wsgidavインストール（必要に応じて）
+1. wsgidavインストール（インストール済みなら不要）
 ```zsh
 sudo apt install python3-wsgidav
 ```
 
-1. WebDAV サーバ用ディレクトリの作成
+2. WebDAV サーバ用ディレクトリの作成
 ```zsh
 sudo mkdir ~/Webdav
 ```
 
-2. （スキップ可）WebDavサーバ用ディレクトリにテスト用として任意のファイルを保存
+3. （スキップ可）WebDavサーバ用ディレクトリにテスト用として任意のファイルを保存
 ```zsh
 echo test > test.txt
 ```
 
-3. WebDAVサーバを構築
+4. WebDAVサーバを構築
 ```zsh
 wsgidav --host=0.0.0.0 --port=80 --root=~/Webdav --auth=anonymous
 ```
 - `--host=0.0.0.0`：すべてのインターフェースでWevDavを提供する
 - `--root`：WevDavのホームディレクトリを指定する
-- `--auth=anonymous`：認証を無効とする
+- `--auth=anonymous`：認証を無効にする
 
 ![](../../画像ファイル/Pasted%20image%2020250518142233.png)
 
@@ -77,10 +77,10 @@ $$WebDavサーバ構築成功時の出力$$
 
 ## 第2段階：ライブラリファイル(.library-ms)の作成
 
-3. Windowsマシン（VMを開くか、RDPで接続）で、VSCode、なければメモ帳を開く
-	- ※Windowsマシン上で構築することで、ライブラリファイルや.ショートカットファイルの構築・テストが非常に楽になる
+>[!TIP] 
+>Windowsマシン（VMまたはRDP）で作業すると、ライブラリファイルや.lnkの構築・テストが楽になる。
 
-4. File > New Text File(※)で作成し、デスクトップ上にファイルを保存（ここではファイル名を`config.library-ms`とする）
+File > New Text File(※)で作成し、デスクトップ上にファイルを保存（ここではファイル名を`config.library-ms`とする）
 	- ※：ファイル形式はPlain textでOK
 
 ![](../../画像ファイル/Pasted%20image%2020250518144800.png)
