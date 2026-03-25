@@ -50,7 +50,7 @@ $$アクションの内容が表示される様子$$
 
 1. 上部タブView -> Executable modulesをクリック
 2. Name列に実行可能ファイルやDLL等のPEフォーマットが記載されている
-	- PEフォーマットとは：[Windows Internal](../Cheatsheet/🪟Windows/Windowsの基礎・前提知識/Windows%20Internal.md#Portable%20Executable%20Format)
+	- PEフォーマットとは：[Portable Executable Format（PE形式）](../Cheatsheet/🪟Windows/Windowsの基礎・前提知識/Windows%20Internal.md#Portable%20Executable%20Format（PE形式）)
 3. Name列から目的のモジュールを探す
 
 ![](../画像ファイル/Pasted%20image%2020250609073042.png)
