@@ -1,7 +1,6 @@
 Windowsがどのように動作しているか、そのコアを理解する。
 
-- 参照🔗：[Windows Internals - TryHackMe](https://tryhackme.com/room/windowsinternals)
-- 関連ノート：[Windows APIのIntro](https://claude.ai/chat/2.%20Windows%20API%E3%81%AEIntro.md) / [Abusing Windows Internals](https://claude.ai/chat/3.%20Abusing%20Windows%20Internals.md)
+- 詳細：[Windows Internals - TryHackMe](https://tryhackme.com/room/windowsinternals)
 
 ---
 
@@ -242,6 +241,10 @@ PEデータは以下の7つの要素で構成される：
 |Section Table|実行ファイル内で利用可能なセクションとその情報を定義する|
 |Sections|ファイルの内容・データを格納する各セクション|
 
+![](../../../画像ファイル/Pasted%20image%2020230618104414.png)
+
+$$PEの構造イメージ$$
+
 ## セクションの種類
 
 |セクション|内容|
@@ -260,10 +263,10 @@ PEデータは以下の7つの要素で構成される：
 
 🔗[DIE](https://github.com/horsicq/Detect-It-Easy)：バイナリファイルの解析・ファイル種類の識別・パッカー/コンパイラの検出に使用するツール。
 
-**主な確認事項：**
+主な確認事項：
 
-- **Entry Point**：実行可能バイナリの実行開始アドレス
-- **Sections**：セクション数と各セクションの情報
+- Entry Point：実行可能バイナリの実行開始アドレス
+- Sections：セクション数と各セクションの情報
 - **PE詳細**：仮想アドレス・オフセット（ファイル内の特定位置を示す相対的な位置）
 
 ---
