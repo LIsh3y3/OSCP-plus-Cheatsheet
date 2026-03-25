@@ -80,14 +80,14 @@ Get-ModifiableServiceFile
 
 ## Service Exploits - DLL Hijacking
 
-- DLL Hijackingにあたって必要な基本的な理解：[DLL](Windowsの基礎・前提知識/Windows%20Internal.md#DLL)
+- DLL Hijackingにあたって必要な基本的な理解：[DLLとは](Windowsの基礎・前提知識/Windows%20Internal.md#DLLとは)
 
 1. インストール済みアプリケーションもしくはサービスで、DLL Hijackingに脆弱なアプリケーションを探す
 	- アプリケーションの列挙：[インストール済みアプリケーションの列挙](🔍Windows%20Local%20Enumeration.md#インストール済みアプリケーションの列挙)
 	- 公開エクスプロイトの探索：[SearchSploit](公開エクスプロイトの探索.md#SearchSploit)
 	- サービスの列挙：[サービスの列挙](🔍Windows%20Local%20Enumeration.md#サービスの列挙)
 
-2. [Safe DLL Search Modeの探索順序](Windowsの基礎・前提知識/Windows%20Internal.md#Safe%20DLL%20Search%20Modeの探索順序)に従って、書込み可能(W) or (M)なディレクトリを明らかにする
+2. [Safe DLL Search Mode の探索順序](Windowsの基礎・前提知識/Windows%20Internal.md#Safe%20DLL%20Search%20Mode%20の探索順序)に従って、書込み可能(W) or (M)なディレクトリを明らかにする
 ```powershell
 icacls '<directory_path>'
 ```
@@ -113,7 +113,7 @@ New-Service -Name "<service_name>" -BinaryPathName "<path_to_binary>" -DisplayNa
 sc.exe query "<service_name>"
 sc.exe start "<service_name>"
 ```
-- →[Safe DLL Search Modeの探索順序](Windowsの基礎・前提知識/Windows%20Internal.md#Safe%20DLL%20Search%20Modeの探索順序)を念頭に当該レコードが先にロードされることを確かめる
+- →[Safe DLL Search Mode の探索順序](Windowsの基礎・前提知識/Windows%20Internal.md#Safe%20DLL%20Search%20Mode%20の探索順序)を念頭に当該レコードが先にロードされることを確かめる
 
 ![](../../画像ファイル/Pasted%20image%2020250816122522.png)
 
