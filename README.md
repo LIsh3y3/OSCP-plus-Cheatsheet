@@ -94,8 +94,30 @@
 - [仮想マシンの設定、便利機能](OSCP/Misc/仮想マシンの設定、便利機能.md)
 - [用語](OSCP/Misc/用語.md)
 
+### Client-side Attacks
 
+- [Client-Side Attacks：概要とFingerprinting](OSCP/Misc/Client-side%20Attacks/Client-Side%20Attacks：概要とFingerprinting.md)
+- [Microsoft Officeのエクスプロイト（マクロ）](OSCP/Misc/Client-side%20Attacks/Microsoft%20Officeのエクスプロイト（マクロ）.md)
+- [Phishing](OSCP/Misc/Client-side%20Attacks/Phishing.md)
+- [Windows Library Filesの悪用](OSCP/Misc/Client-side%20Attacks/Windows%20Library%20Filesの悪用.md)
 
+## Tools
+
+- [☠️Msfvenom](OSCP/Tools/☠️Msfvenom.md)
+- [🏋️PowerShell](OSCP/Tools/🏋️PowerShell.md)
+- [🐈‍⬛Password Crack - JtR・Hashcat](OSCP/Tools/🐈‍⬛Password%20Crack%20-%20JtR・Hashcat.md)
+- [🐉THC-Hydra](OSCP/Tools/🐉THC-Hydra.md)
+- [🐙FFUF](OSCP/Tools/🐙FFUF.md)
+- [🐝RustScan](OSCP/Tools/🐝RustScan.md)
+- [🐶Bloodhound](OSCP/Tools/🐶Bloodhound.md)
+- [👻Gobuster](OSCP/Tools/👻Gobuster.md)
+- [👽Nikto](OSCP/Tools/👽Nikto.md)
+- [📓WPScan](OSCP/Tools/📓WPScan.md)
+- [🥝Mimikatz](OSCP/Tools/🥝Mimikatz.md)
+- [🦈Wireshark](OSCP/Tools/🦈Wireshark.md)
+- [🦝FeroxBuster](OSCP/Tools/🦝FeroxBuster.md)
+- [🧰Immunity debugger](OSCP/Tools/🧰Immunity%20debugger.md)
+- [🛠️Windows Sysintarnals](OSCP/Tools/🛠️Windows%20Sysintarnals.md)
 
 ---
 
