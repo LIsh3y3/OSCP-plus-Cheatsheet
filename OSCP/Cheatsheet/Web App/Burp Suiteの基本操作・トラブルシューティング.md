@@ -181,10 +181,6 @@ WebSocketの場合：
 	- Use suite scope \[defined in Target tab\]: ScopeにAddしているURLに適用したいときに
 	- Use custom scope: 1つのRequestのみにRuleを適用したいときに使用
 
-- 🎥 以下一連の流れ
-![[Burp Suite Macro How-to.mov]]
-
-
 ### トラブルシューティング
 
 パラメータの値がRequestごとに変更されたり消えたりする
@@ -195,11 +191,6 @@ BAPPのインストールが進まない
 
 - オンラインのBAPP storeから対象のBAPPをダウンロードする（[BAPP store](https://portswigger.net/bappstore)）
 - "Extensions > BApp Store > Manual install"よりインストールする
-
-### 応用的な使い方
-
-- [Burpの基本的な操作やトラブルシューティング](#Turbo%20Intruder)と合わせて使用可能
-- 詳細は[3. 多要素認証の脆弱性](../../../BSCP/Server-side/Authentication/3.%20多要素認証の脆弱性.md#CSRF%20Token%20bypass%20一定回数の入力ミスで認証コードがリセットされる場合)を確認
 
 ---
 

