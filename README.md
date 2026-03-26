@@ -128,7 +128,7 @@
 
 >[!Important]
 >**自動エクスプロイトツールの使用は試験で禁止されています。**  
->例：`sqlmap` の自動エクスプロイト機能、`LinPEAS` の自動エクスプロイト機能など。
+>例：`sqlmap` の自動エクスプロイト機能など。
 >本リポジトリに記載のツール・手法を試験で使用する場合は、必ず事前に最新の試験ガイドを確認してください。
 >- [OSCP Exam Guide](https://help.offsec.com/hc/en-us/articles/360040165632-OSCP-Exam-Guide)
 >- [Proctored Exams](https://help.offsec.com/hc/en-us/sections/360008126631-Proctored-Exams)
