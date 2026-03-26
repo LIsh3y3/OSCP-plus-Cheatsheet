@@ -11,7 +11,7 @@
 
 ## Fuzz
 
-[パラメータ・値のファジング](../../Tools/🐙FFUF.md#パラメータ・値のファジング)
+[パラメータ・値のファジング](../../Tools/🐙FFUF.md#パラメータ・値のファジング)でも可能
 
 1. 脆弱かと思われる箇所をIntruderで選択 → Add from list → Fuzzing: Path traversal（single file）を選択する
 2. 200が返ったトラバーサルシーケンスで目的のファイルを取得する
@@ -27,15 +27,19 @@
 |Unix|`../`|
 |Windows|`../` または `..\`（`\` または `%5C`）|
 
-> [!TIP] スラッシュ・バックスラッシュのどちらも試すこと。Windowsでは `C:\` の指定は不要（相対パスで辿れる）。例：`..\..\xampp\apache\logs`
+> [!TIP]
+> スラッシュ・バックスラッシュのどちらも試すこと。
+> Windowsでは `C:\` の指定は不要（相対パスで辿れる）。例：`..\..\xampp\apache\logs`
 
 ## 基本的な流れ
 
 1. 動作確認として `/etc/passwd` を検出する
     - Windowsの場合：`C:\windows\system32\drivers\etc\hosts`
+
 2. 有効なペイロード（トラバーサルシーケンス）がわかったら、目的のファイルを取得する
 
-> [!TIP] `/etc/passwd` は検出できても `/home/carlos/secret` が検出できない場合は、WAFバイパスのためにURLエンコードを試す。
+> [!TIP] 
+> `/etc/passwd` は検出できても `/home/carlos/secret` が検出できない場合は、WAFバイパスのためにURLエンコードを試す。
 > 
 > ```
 > /image?filename=<@urlencode_all>../../home/carlos/secret<@/urlencode_all>
@@ -137,28 +141,6 @@ ssh -i id_rsa <username>@<target_IP>
 ---
 ---
 
-
-# Detection
-
-#### 注目ポイント
-
-- `/image?filename=`リクエスト
-- `multipart/form-data`のファイル名のパラメータ(下記`action`)
-```html
-<form enctype="multipart/form-data" action="/upload.php" method="POST">
-```
-
----
-## Detect
-
-- `filename`パラメタの値など、脆弱かと思われる箇所をIntruderで選択してからScanする
-	- 💡File Path Manipulation(severity: Medium)と表示されたら[⚡️Command injection](../../../BSCP/Server-side/Command%20Injection/⚡️Command%20injection.md#(blind)Path%20Traversalと組み合わせ、コマンド出力を保存&取得)を考慮する
-
----
-## Fuzz
-
-1. 脆弱かと思われる箇所をIntruder -> Add from list -> Fuzzing: Path traversal(single file)
-2. 200を探し、そのtraversal sequenceで目的のファイルを取得する
 
 ---
 
