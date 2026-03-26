@@ -8,14 +8,16 @@
 2. ある程度アクセスしたら、Target → SitemapのエントリをInScope対象で右クリック → Add to scopeを選択する
 3. Proxy Settings → Request/Response Interception rules で以下の項目にチェックを入れる
 
-![ 500](../../Images/Pasted%20image%2020230311192214.png)
+![](../../Images/Pasted%20image%2020230311192214.png)
+
+$$ProxySettings$$
 
 4. Upボタンで追加したルールを最上位（最優先）に設定する
 
-> [!WARNING] 設定時に「scope外のアクセスをログに取らないように設定しますか？」というメッセージが出た場合、**Noにする**。Yesにするとscope外のサイトにアクセスしたとき、Targetに情報が記録されなくなる。
+> [!WARNING]
+>  設定時に「scope外のアクセスをログに取らないように設定しますか？」というメッセージが出た場合、**Noにする**。Yesにするとscope外のサイトにアクセスしたとき、「Target」に情報が記録されなくなる。
 
 **WebSocketの場合：**
-
 - デフォルトでは上2つにチェックが入っているが、一番下の項目にもチェックを入れる
 
 ---
