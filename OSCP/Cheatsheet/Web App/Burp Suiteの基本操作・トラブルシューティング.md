@@ -196,7 +196,7 @@ BAPPのインストールが進まない
 
 # WebSocket関連
 
-- [1. WebSocketsの基本と安全化](../../../BSCP/Client-side/WebSockets/1.%20WebSocketsの基本と安全化.md)
+
 - 詳細は[記事](https://portswigger.net/web-security/websockets#manipulating-websocket-messages-to-exploit-vulnerabilities)
 
 ## WebSocketメッセージのinterceptと変更
