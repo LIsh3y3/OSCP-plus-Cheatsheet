@@ -81,6 +81,19 @@
 
 ## Misc
 
+- [Cypher文法](OSCP/Misc/Cypher文法.md)
+- [C言語](OSCP/Misc/C言語.md)
+- [Python文法](OSCP/Misc/Python文法.md)
+- [SQL基本文法](OSCP/Misc/SQL基本文法.md)
+- [コンパイル・ビルド](OSCP/Misc/コンパイル・ビルド.md)
+- [コンピュータ・アセンブラ・バイナリの基礎知識](OSCP/Misc/コンピュータ・アセンブラ・バイナリの基礎知識.md)
+- [Living off the Land](OSCP/Misc/Living%20off%20the%20Land.md)
+- [JENKINS](OSCP/Misc/JENKINS.md)
+- [Nmap Live Host Discovery](OSCP/Misc/Nmap%20Live%20Host%20Discovery.md)
+- [Normal Informations](OSCP/Misc/Normal%20Informations.md)
+- [仮想マシンの設定、便利機能](OSCP/Misc/仮想マシンの設定、便利機能.md)
+- [用語](OSCP/Misc/用語.md)
+
 
 
 
