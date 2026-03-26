@@ -181,12 +181,11 @@ sudo proxychains smbclient -L //<target_IP>/ -U <username> --password=<password>
 ```
 
 >[!TIP]
->`proxychains nmap`の速度が遅い場合は、Proxychainsの設定で以下の２つの値を小さくする。
-```zsh
-# Some timeouts in milliseconds
-tcp_read_time_out 15000
-tcp_connect_time_out 8000
-```
+>`proxychains nmap`の速度が遅い場合は、Proxychainsの設定で以下の２つの値を小さくする。```zsh
+># Some timeouts in milliseconds
+>tcp_read_time_out 15000
+>tcp_connect_time_out 8000
+>```
 	↓
 ```zsh
 tcp_read_time_out 1200

