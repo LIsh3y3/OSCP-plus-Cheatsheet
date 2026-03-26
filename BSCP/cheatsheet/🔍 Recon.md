@@ -53,7 +53,7 @@
 - [🔍GraphQL API vuln](../Advanced/GraphQL%20API%20vuln/🔍GraphQL%20API%20vuln.md)
 - [🔍 Insecure deserialization](../Advanced/Insecure%20deserialization/🔍%20Insecure%20deserialization.md) - データ型操作によるアカウント窃取のみ
 - [⚡️Race condition](../Server-side/Race%20conditions/⚡️Race%20condition.md#Stage2)
-- [🔍API testing](../Server-side/API%20testing/🔍API%20testing.md) - 優先度低め。APIエンドポイント検出時に検討 or 手詰まりの時にSSPPを検討
+- [🔍API testing](../../OSCP/Cheatsheet/Web%20App/🔍API%20testing.md) - 優先度低め。APIエンドポイント検出時に検討 or 手詰まりの時にSSPPを検討
 - CORS([4. CORS設定の不備による脆弱性とその悪用](../Client-side/CORS/4.%20CORS設定の不備による脆弱性とその悪用.md)) - ほぼあり得ない
 
 ---

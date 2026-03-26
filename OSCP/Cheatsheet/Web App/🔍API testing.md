@@ -1,4 +1,4 @@
-[⚡️API testing](⚡️API%20testing.md)
+[💥API testing](💥API%20testing.md)
 
 #### 注目ポイント
 
@@ -25,7 +25,7 @@ username=administrator#hoge
 ```
 username=administrator&hoge
 ```
--> [⚡️API testing](⚡️API%20testing.md#Server-side%20parameter%20pollution)
+-> [💥API testing](💥API%20testing.md#Server-side%20parameter%20pollution)
 
 
 ↓その他

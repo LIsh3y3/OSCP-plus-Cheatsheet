@@ -39,7 +39,7 @@
 
 ## API Test
 
-- 基本はBSCPのAPI testingノートを参照→[🔍API testing](../../../BSCP/Server-side/API%20testing/🔍API%20testing.md)
+- 基本はBSCPのAPI testingノートを参照→[🔍API testing](🔍API%20testing.md)
 - API endpointの探索は、[👻Gobuster](../../Tools/👻Gobuster.md#Summery%20Gobuster)を参照
 
 ---
