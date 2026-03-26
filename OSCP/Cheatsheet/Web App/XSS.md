@@ -12,20 +12,22 @@
 - Check Stock機能
 - Cookieの値が `username:token` の形式
 - Remember me機能（Stay-logged-in Cookie）
-- LiveChat機能：[WebSocketの脆弱性と悪用](https://claude.ai/BSCP/Client-side/WebSockets/2.%20WebSocket%E3%81%AE%E8%84%86%E5%BC%B1%E6%80%A7%E3%81%A8%E6%82%AA%E7%94%A8.md#%E8%84%86%E5%BC%B1%E6%80%A7%E3%82%92%E6%82%AA%E7%94%A8%E3%81%99%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AEWebSocket%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8%E3%81%AE%E6%93%8D%E4%BD%9C)
+- LiveChat機能
 
 ---
 
 # Detection
 
-## XSStrike（自動検出）
+## 🔗[XSStrike](https://github.com/s0md3v/xsstrike)（自動検出）
 
 XSSに特化した検出ツール。手動のIntruder Scanより速い。
 
-> [!WARNING] XSSに脆弱でないものでも検知してしまうことがある（False positive）。certainの表示に注意すること。またペイロードは難解なものが生成されるため、**DetectにのみM使用し、Exploitには期待しない**こと。
+> [!WARNING]
+> XSSに脆弱でないものでも検知してしまうことがある（False positive）。
+> "certain"の表示に注意すること。またペイロードは難解なものが生成されるため、**Detectにのみ使用し、Exploitには期待しない**こと。
 
 ```zsh
-cd /path/to/XSStrike
+cd <path_to_XSStrike>
 
 # GET
 python3 xsstrike.py -u "<URL>"
@@ -36,33 +38,6 @@ python3 xsstrike.py -u "<URL>" --data "<bodyのパラメータと値>"
 # HTTPヘッダも追加する場合
 python3 xsstrike.py -u "<URL>" --headers
 ```
-
-## Scanner（Burp）
-
-### 反射型 XSS
-
-**Search機能：**
-
-- パラメータの値をScanする
-
-**JSファイル：**
-
-- Web cache poisoningの脆弱性も同時に検出した場合は→[🔍Web cache poisoning](https://claude.ai/BSCP/Advanced/Web%20cache%20poisoning/%F0%9F%94%8DWeb%20cache%20poisoning.md)
-
-### 持続型 XSS
-
-**Comment機能：**
-
-- Comment・Websiteのパラメータ値をScanする
-    - OAST：[XSS Comment機能の場合](https://claude.ai/chat/XSS.md#Comment%E6%A9%9F%E8%83%BD%E3%81%AE%E5%A0%B4%E5%90%88)
-
-**Cookieが `username:token` の形式の場合：**
-
-- `username` をScan selected insertion point → [XSS Cookie対応](https://claude.ai/chat/XSS.md#Cookie%E3%81%8Cusername%20token%E3%81%AE%E5%A0%B4%E5%90%88)
-
-### DOM-based XSS
-
-ScannerではDOMベースのXSSは見つからない可能性が高い。→[🔍DOM-based Vuln](https://claude.ai/BSCP/Client-side/DOM-based%20vuln/%F0%9F%94%8DDOM-based%20Vuln.md#Detect)
 
 ---
 
@@ -455,21 +430,6 @@ location = 'https://TARGET?<vuln_param>=<payload>'
 ---
 ---
 
-
-# Detect
-
-[XSS](XSS.md)
-
-🚨必ず一読：[🔍 Recon](../../../BSCP/cheatsheet/🔍%20Recon.md#⭐️URLエンコードについて)
-# 注目ポイント
-
-- Post Comment機能
-- Search機能
-- 怪しげなJavaScriptファイル
-- Check Stock機能
-- Cookieの値が`username: token`の形式
-- Remember me機能：Stay-logged-in Cookie
-- (LiveChat機能): [2. WebSocketの脆弱性と悪用](../../../BSCP/Client-side/WebSockets/2.%20WebSocketの脆弱性と悪用.md#脆弱性を悪用するためのWebSocketメッセージの操作)
 
 ---
 # Detect
