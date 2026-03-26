@@ -397,6 +397,8 @@ WebSocketの場合：
 	- Use suite scope \[defined in Target tab\]: ScopeにAddしているURLに適用したいときに
 	- Use custom scope: 1つのRequestのみにRuleを適用したいときに使用
 
+![](../../Images/Burp%20Suite%20Macro%20How-to.mov)
+
 ### トラブルシューティング
 
 パラメータの値がRequestごとに変更されたり消えたりする
