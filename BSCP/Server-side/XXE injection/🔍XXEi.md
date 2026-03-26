@@ -64,7 +64,7 @@ productId=<ssk xmlns:xi="http://www.w3.org/2001/XInclude"><xi:include href="http
 - Post Comment機能など ❗️‼️
 
 1. SVGやDOCXをアップロードしてみる
-2. 無理なら[⚡️File upload vuln](../File%20upload%20vuln/⚡️File%20upload%20vuln.md)を試す
+2. 無理なら[⚡️File upload vuln](../../../OSCP/Cheatsheet/Web%20App/⚡️File%20upload%20vuln.md)を試す
 
 ---
 #### & SQLi

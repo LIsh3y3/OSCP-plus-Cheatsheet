@@ -62,7 +62,7 @@ if 'Invalid Password' in req.responce:
 ---
 ## 応用機能
 
-- [⚡️File upload vuln](../Server-side/File%20upload%20vuln/⚡️File%20upload%20vuln.md#Turbo%20Intruderで複数リクエストを送る)
+- [⚡️File upload vuln](../../OSCP/Cheatsheet/Web%20App/⚡️File%20upload%20vuln.md#Turbo%20Intruderで複数リクエストを送る)
 
 - `multipleParameters.py`で複数パラメータを送信する方法が載っている
 

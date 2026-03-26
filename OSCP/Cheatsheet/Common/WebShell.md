@@ -481,7 +481,7 @@ Current Dir: <%= Directory.GetCurrentDirectory() %><br>
 	- aspx
 	- ashx
 	- asmx
-- 拡張子は、[サーバ設定の上書きによるバイパス](../../../BSCP/Server-side/File%20upload%20vuln/⚡️File%20upload%20vuln.md#サーバ設定の上書きによるバイパス)で変更できる可能性がある
+- 拡張子は、[サーバ設定の上書きによるバイパス](../Web%20App/⚡️File%20upload%20vuln.md#サーバ設定の上書きによるバイパス)で変更できる可能性がある
 
 #### 認証バイパス
 

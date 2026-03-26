@@ -457,7 +457,7 @@ db insert domains
 
 > [!NOTE]
 > 
-> - "K"列に`*`があるモジュールはAPIキーが必要（→[Keys](https://claude.ai/chat/154ce50b-1d75-4193-a686-e8b12aeb24cd#Keys)）
+> - "K"列に`*`があるモジュールはAPIキーが必要（→[Keys](#Keys)）
 > - "D"列に`*`があるモジュールはサードパーティのPythonライブラリが必要
 
 ![](../../Images/Pasted%20image%2020260319124934.png)

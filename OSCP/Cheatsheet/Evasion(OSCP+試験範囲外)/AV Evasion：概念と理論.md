@@ -3,8 +3,8 @@
 
 - 関連ノート：
     - [PE構造とシェルコード](PE構造とシェルコード.md)
-    - [AV Evasion：テクニック集](https://claude.ai/chat/AV%20Evasion%EF%BC%9A%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF%E9%9B%86.md)
-    - [Web攻撃の難読化](https://claude.ai/chat/Web%E6%94%BB%E6%92%83%E3%81%AE%E9%9B%A3%E8%AA%AD%E5%8C%96.md)
+    - [AV Evasionのテクニック](AV%20Evasionのテクニック.md)
+    - [Web攻撃の難読化](Web攻撃の難読化.md)
 - 参考🔗：[HackTricks - AV Bypass](https://book.hacktricks.wiki/en/windows-hardening/av-bypass.html)
 - 画像ソース：[tryhackme](https://tryhackme.com/)
 
