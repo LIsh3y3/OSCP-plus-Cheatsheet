@@ -1,4 +1,4 @@
-[💥Path traversal](💥Path%20traversal.md)
+[Path traversal](Path%20traversal.md)
 
 # Detection
 

