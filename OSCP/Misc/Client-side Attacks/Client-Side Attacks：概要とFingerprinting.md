@@ -49,31 +49,31 @@
 2. 任意の種類のトークンを選択する（ここでは例としてWeb bugを選択）
 	- 以下キャプチャ以外にも、下にスクロールすると、WordやExcel、PDFなども選択できる
 
-![](../../画像ファイル/Pasted%20image%2020250513065718.png)
+![](../../Images/Pasted%20image%2020250513065718.png)
 
 3. メールアドレス、コメントを入力し、任意で通知先のWebサイトも入力した上でCreate Canarytokenをクリック
 
-![](../../画像ファイル/Pasted%20image%2020250513065904.png)
+![](../../Images/Pasted%20image%2020250513065904.png)
 
 4. トークンURLが生成されたことを確認
 	- How to use ：概要レベルの使い方が記載
 	- Manage Canarytoken：トークンのトリガー有無、Emailアラート通知のon / offが切り替えられる
 
-![](../../画像ファイル/Pasted%20image%2020250513070140.png)
+![](../../Images/Pasted%20image%2020250513070140.png)
 
 5. Manage Canarytokenをクリック後、画面右上のALERTS HISTORYをクリック
 
-![](../../画像ファイル/Pasted%20image%2020250513070243.png)
+![](../../Images/Pasted%20image%2020250513070243.png)
 
 6. Alert Historyには、トークンをクリックしたユーザーのシステム情報が表示される。
 
 ↓誰もクリックしていない場合
 
-![](../../画像ファイル/Pasted%20image%2020250513070649.png)
+![](../../Images/Pasted%20image%2020250513070649.png)
 
 ↓クリックされた後（自分でクリックした）：CSVやJSONでダウンロード可能
 
-![](../../画像ファイル/Pasted%20image%2020250513071026.png)
+![](../../Images/Pasted%20image%2020250513071026.png)
 
 7. Alerts listに記載のエントリをクリックすると、User-Agent、位置情報など、より詳細な情報を閲覧できる
 	- User-Agentから、ターゲットのOS・ブラウザを推測できる

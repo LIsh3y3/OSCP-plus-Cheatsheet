@@ -106,7 +106,7 @@ PrimaryとImpersonationの違い：
     
 - UACプロンプトを通じてはじめてAdminトークン + High Integrityで実行される
 
-![](../../../画像ファイル/Pasted%20image%2020250722124456.png) 
+![](../../../Images/Pasted%20image%2020250722124456.png) 
 
 $$UACプロンプト$$
 - 詳細🔗：[User Account Control overview - Microsoft](https://learn.microsoft.com/en-us/windows/security/application-security/application-control/user-account-control/)

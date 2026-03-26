@@ -29,7 +29,7 @@ ssh-audit <target_IP> > ssh_audit_result.txt
 	- OSでは標準のSSHバージョンが決まっている
 	- 🔗[Ubuntu - DistroWatch.com](https://distrowatch.com/table.php?distribution=ubuntu)などでsshのバージョンを検索すると、どのOSバージョンかがわかる
 
-![](../../画像ファイル/Pasted%20image%2020251227113634.png)
+![](../../Images/Pasted%20image%2020251227113634.png)
 
 $$UbuntuバージョンごとのSSHバージョン$$
 
@@ -45,7 +45,7 @@ $$UbuntuバージョンごとのSSHバージョン$$
 
 ## 公開鍵認証
 
-![ 350](../../画像ファイル/Pasted%20image%2020250330100126.png)
+![ 350](../../Images/Pasted%20image%2020250330100126.png)
 
 $$公開鍵認証フロー$$
 
@@ -144,7 +144,7 @@ id_dsa
 id_identity
 ```
 
-![](../../画像ファイル/Pasted%20image%2020251202065433.png)
+![](../../Images/Pasted%20image%2020251202065433.png)
 
 $$IntruderでホームディレクトリとPrivate Keyを変数に抽出を試みる$$
 

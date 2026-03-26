@@ -40,7 +40,7 @@
 3. URLのcmd引数に任意のコマンドを入力する。
 	- ※ 複数クエリの場合は、`&`も使う：`index.php?path=hoge.txt&cmd=whoami`
 
-![](../../画像ファイル/Pasted%20image%2020230320131618.png)
+![](../../Images/Pasted%20image%2020230320131618.png)
 
 $$WebShell実行例$$
 
@@ -427,7 +427,7 @@ echo "Public key added successfully!";
 http://target/shell.aspx
 ```
 
-![](../../画像ファイル/Pasted%20image%2020260219000105.png)
+![](../../Images/Pasted%20image%2020260219000105.png)
 
 - Auth Keyはスクリプトの中にある（通常woanware）
 

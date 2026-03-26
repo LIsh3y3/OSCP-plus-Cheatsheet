@@ -160,7 +160,7 @@ session <Session_ID>
 ifconfig
 ```
 
-![](../../画像ファイル/Pasted%20image%2020251119071530.png)
+![](../../Images/Pasted%20image%2020251119071530.png)
 
 $$ローカルNW側インターフェースが表示されている$$
 
@@ -225,7 +225,7 @@ listener_add --addr 0.0.0.0:<agent_listen_port(任意)> --to 127.0.0.1:<attacker
 listener_list
 ```
 
-![](../../画像ファイル/Pasted%20image%2020251120124523.png)
+![](../../Images/Pasted%20image%2020251120124523.png)
 
 $$Agentが1234ポートでリッスンし、通信を攻撃者のマシンの4321ポートにリダイレクト$$
 
@@ -327,7 +327,7 @@ Non-authoritative answer:
 <domain>      text = "<string>"
 ```
 
-![](../../画像ファイル/Pasted%20image%2020260315104051.png)
+![](../../Images/Pasted%20image%2020260315104051.png)
 
 $$DNSリゾルバを介してデータが漏洩・侵入するイメージ$$
 

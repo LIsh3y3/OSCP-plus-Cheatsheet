@@ -28,7 +28,7 @@
 1. Admin権限で動作しているプロセスなどを選択できるようにするため、Run as administratorで開く
 2. File -> Attach -> 分析対象のプロセスを選択 -> Attach、で以下のような画面が開く
 
-![](../画像ファイル/Pasted%20image%2020250609065800.png)
+![](../Images/Pasted%20image%2020250609065800.png)
 
 $$Attach後のImmunityDebugger$$
 
@@ -40,7 +40,7 @@ $$Attach後のImmunityDebugger$$
 
 - 上部タブのさまざまなボタンのアクション内容は、下部に記載（画像赤枠同士対応）
 
-![](../画像ファイル/Pasted%20image%2020250621090653.png)
+![](../Images/Pasted%20image%2020250621090653.png)
 
 $$アクションの内容が表示される様子$$
 
@@ -53,7 +53,7 @@ $$アクションの内容が表示される様子$$
 	- PEフォーマットとは：[Portable Executable Format（PE形式）](../Cheatsheet/🪟Windows/Windowsの基礎・前提知識/Windows%20Internal.md#Portable%20Executable%20Format（PE形式）)
 3. Name列から目的のモジュールを探す
 
-![](../画像ファイル/Pasted%20image%2020250609073042.png)
+![](../Images/Pasted%20image%2020250609073042.png)
 
 $$View->Executable　modules画面$$
 
@@ -68,14 +68,14 @@ $$View->Executable　modules画面$$
 !mona modules
 ```
 
-![](../画像ファイル/Pasted%20image%2020250609065800.png)
+![](../Images/Pasted%20image%2020250609065800.png)
 
 $$Attach後のImmunityDebugger$$
 
 2. ASLRなどのセキュリティ保護機能が有効（True）か無効（False）かが表示される
 	- [!mona modulesの結果解説](#!mona%20modulesの結果解説)
 
-![](../画像ファイル/Pasted%20image%2020250615092757.png)
+![](../Images/Pasted%20image%2020250615092757.png)
 
 $$ASLRなどのセキュリティ保護機構の有無表示$$
 
@@ -83,13 +83,13 @@ $$ASLRなどのセキュリティ保護機構の有無表示$$
 
 4. Ctrl + Fで任意の命令（多くの場合JMP ESP）を検索する
 
-![](../画像ファイル/Pasted%20image%2020250615101645.png)
+![](../Images/Pasted%20image%2020250615101645.png)
 
 $$Find　Command$$
 
 ↓
 
-![](../画像ファイル/Pasted%20image%2020250615101717.png)
+![](../Images/Pasted%20image%2020250615101717.png)
 
 $$該当する行がハイライトされる$$
 
@@ -131,7 +131,7 @@ $$該当する行がハイライトされる$$
 
 1. f2（ファンクションキー）を押して設定（macはfnボタンを押しながらTouch barでf2）
 
-![](../画像ファイル/Pasted%20image%2020250620074953.png)
+![](../Images/Pasted%20image%2020250620074953.png)
 
 $$ブレークポイント設定後の状態$$
 

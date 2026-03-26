@@ -271,7 +271,7 @@ http://localhost/<クローンされたhtmlファイル名>.html
 >[!Warning]
 >ただクローンしただけでは、OWASP CSRFGuardの警告が出るので、ターゲットに怪しまれる。
 
-![](../../画像ファイル/Pasted%20image%2020250510094458.png)
+![](../../Images/Pasted%20image%2020250510094458.png)
 
 $$OWASPのCSRFGuardの画面$$
 
@@ -459,7 +459,7 @@ set:webattack> Enter the url to clone: [URL]
 
 5. サイトがクローンされ、リクエストをキャプチャする状態となる
 
-![](../../画像ファイル/Pasted%20image%2020250510160554.png)
+![](../../Images/Pasted%20image%2020250510160554.png)
 
 $$SETで認証情報のキャプチャに成功した様子$$
 

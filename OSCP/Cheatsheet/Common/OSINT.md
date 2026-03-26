@@ -309,7 +309,7 @@ gitleaks detect -v
 
 使い方：「Search DNS」を開いてターゲットのhostnameを入力 → Site Reportに構成技術が表示される
 
-![](../../画像ファイル/Pasted%20image%2020250302145854.png)
+![](../../Images/Pasted%20image%2020250302145854.png)
 
 ## Shodan
 
@@ -320,9 +320,9 @@ gitleaks detect -v
 - `hostname:<target_domain>` を検索バーに入力
 - 結果をクリックしてレポートを確認（open portで絞り込みも可能）
 
-![](../../画像ファイル/Pasted%20image%2020250302172845.png)
+![](../../Images/Pasted%20image%2020250302172845.png)
 
-![](../../画像ファイル/Pasted%20image%2020250302173035.png)
+![](../../Images/Pasted%20image%2020250302173035.png)
 
 **CLI の使い方：**
 
@@ -342,7 +342,7 @@ shodan host <target_IP>
 
 共有ホスティングでは1つのIPアドレスが複数のWebサーバーで共有されており、IPを逆引きすることで同じIPアドレスを使っている他のドメインを発見できる。
 
-![](../../画像ファイル/Pasted%20image%2020260319124824.png)
+![](../../Images/Pasted%20image%2020260319124824.png)
 
 $$ViewDNS.infoの結果例$$
 
@@ -354,7 +354,7 @@ $$ViewDNS.infoの結果例$$
 
 🔗[Censys Search](https://search.censys.io/)：IPアドレスとドメインに関する多くの情報を提供する。ポート80・443などに関連する情報や、同じIPを使っている他のWebサイトも確認できる。
 
-![](../../画像ファイル/Pasted%20image%2020260319124846.png)
+![](../../Images/Pasted%20image%2020260319124846.png)
 
 $$Censys検索例$$
 
@@ -365,7 +365,7 @@ $$Censys検索例$$
 > [!NOTE] 
 > ヘッダーの欠落はそれ自体が脆弱性とは限らないが、Web開発者やサーバー管理者がハードニングに精通していない可能性を示す。
 
-![](../../画像ファイル/Pasted%20image%2020260319124859.png)
+![](../../Images/Pasted%20image%2020260319124859.png)
 
 $$SecurityHeaders出力例$$
 
@@ -460,7 +460,7 @@ db insert domains
 > - "K"列に`*`があるモジュールはAPIキーが必要（→[Keys](https://claude.ai/chat/154ce50b-1d75-4193-a686-e8b12aeb24cd#Keys)）
 > - "D"列に`*`があるモジュールはサードパーティのPythonライブラリが必要
 
-![](../../画像ファイル/Pasted%20image%2020260319124934.png)
+![](../../Images/Pasted%20image%2020260319124934.png)
 
 ## ④ モジュールをロードし実行
 
@@ -509,16 +509,16 @@ keys remove <key_name>           # keyの削除
 
 1. New > Entity Paletteに「DNS name」と入力し、エンティティをダブルクリックしてドメイン名を入力
 
-![](../../画像ファイル/Pasted%20image%2020260319125327.png)
+![](../../Images/Pasted%20image%2020260319125327.png)
 
 2. エンティティを右クリック > All Transforms > 検索タブに「IP」と入力 > 「To IP Address `[DNS]`」をクリック
 
-![](../../画像ファイル/Pasted%20image%2020260319125208.png)
+![](../../Images/Pasted%20image%2020260319125208.png)
 
 3. IPアドレスが表示される
 
-![](../../画像ファイル/Pasted%20image%2020260319125933.png)
+![](../../Images/Pasted%20image%2020260319125933.png)
 
 4. IPアドレスの一つを右クリックして「To DNS Name from passive DNS (Robtex)」などのトランスフォームを選択し、さらに情報を展開する
 
-![](../../画像ファイル/Pasted%20image%2020260319125949.png)
+![](../../Images/Pasted%20image%2020260319125949.png)

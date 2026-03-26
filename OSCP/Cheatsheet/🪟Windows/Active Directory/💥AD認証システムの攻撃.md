@@ -74,7 +74,7 @@ netexec <network_protocol(e.g.smb|rdp|winrm|ldap)> <TargetSubnet(192.168.xx.0/24
 ```
 - →"Pwn3d!"と表示されたらadmin権限をもつという意味だが、一般ユーザーの可能性もある
 
-![](../../../画像ファイル/Pasted%20image%2020260105104135.png)
+![](../../../Images/Pasted%20image%2020260105104135.png)
 
 $$Using Credentials- NetExec doc$$
 
@@ -82,7 +82,7 @@ $$Using Credentials- NetExec doc$$
     - ログインが失敗した
     - ユーザーが存在しなかった
 
-![](../../../画像ファイル/Pasted%20image%2020251129101219.png)
+![](../../../Images/Pasted%20image%2020251129101219.png)
 
 $$rdp,smb,winrmでログイン試行した結果、rdpでPwn3d!と表示されている（実際には一般ユーザ）$$
 

@@ -204,7 +204,7 @@ PSReadlineモジュールのログ記録パス表示
 		- （※）PowerShellが関与するものすべての記録。デフォルトでは無効。
 	- もしくは、Find：ScriptBlockで検索
 
-![](../../../画像ファイル/Pasted%20image%2020250804074835.png)
+![](../../../Images/Pasted%20image%2020250804074835.png)
 
 $$EventViewerのイメージ$$
 
@@ -276,7 +276,7 @@ impacket-secretsdump -sam <SAMデータベースのファイルフルパス> -sy
 
 1. Task Managerを開く -> Detailsタブへ -> lsass.exeファイルを右クリック -> Create dump file
  
- ![ 380](../../../画像ファイル/Pasted%20image%2020230602114024.png)
+ ![ 380](../../../Images/Pasted%20image%2020230602114024.png)
  
 
 2.  ダンプされたプロセスをMimikatzフォルダにコピー
@@ -316,7 +316,7 @@ vaultcmd /list
 - デフォルトでは、Windowsには2つのvaultがあり、1つはWeb用、もう1つはWindowsマシンCreds用
 - GUIでは、Control Panel -> User Accounts -> Credential Managerからアクセスできる
 
-![](../../../画像ファイル/Pasted%20image%2020230602142505.png)
+![](../../../Images/Pasted%20image%2020230602142505.png)
 
 
 2. Web Credentials vaultに保存されているクレデンシャルがあるかどうかを確認する
@@ -338,7 +338,7 @@ Get-WebCredentials
 ```
 - ↓出力例
 
-![](../../../画像ファイル/Pasted%20image%2020230602143342.png)
+![](../../../Images/Pasted%20image%2020230602143342.png)
 
 ### 補足：Credentials Managerとは
 
@@ -424,7 +424,7 @@ Find-AdmPwdExtendedRights -Identity <OU_Target>
 ```
 - 利用可能なすべての OU を一覧表示するには、`-Identity *` を使用
 
-![](../../../画像ファイル/Pasted%20image%2020230602175950.png)
+![](../../../Images/Pasted%20image%2020230602175950.png)
 
 3. ExtendedRightHoldersをもつグループのメンバーを確認する
 ```powershell
@@ -465,12 +465,12 @@ Descriptionにメモとしてパスワードを残していることがある。
 1. Toolsタブ >   Active Directory Users and Computersを選択
 	- Toolsの中にはEvent Viewerなど、さまざまなツールがある
  
- ![ 400](../../../画像ファイル/Pasted%20image%2020230421110906.png)
+ ![ 400](../../../Images/Pasted%20image%2020230421110906.png)
  
 
 2. Descriptionの中にサービスアカウントのパスワードがある
 
-![ 500](../../../画像ファイル/Pasted%20image%2020230421111143.png)
+![ 500](../../../Images/Pasted%20image%2020230421111143.png)
 
 ---
 

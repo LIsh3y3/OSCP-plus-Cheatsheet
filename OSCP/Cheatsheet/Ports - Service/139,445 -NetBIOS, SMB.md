@@ -77,7 +77,7 @@
 | r   | Reparse point | シンボリックリンクやマウントポイント等                       |
 | T   | Temporary     | 一時ファイル                                    |
 
-![](../../画像ファイル/Pasted%20image%2020250525181048.png)
+![](../../Images/Pasted%20image%2020250525181048.png)
 
 $$smbclientで接続後ls実施した画面$$
 

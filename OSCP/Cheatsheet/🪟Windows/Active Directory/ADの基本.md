@@ -81,7 +81,7 @@
 - デフォルトでBuiltin, Computersなどのコンテナが存在
 - OUには１ユーザーは１つだけ所属できる
 
-![](../../../画像ファイル/Pasted%20image%2020230409150913.png)
+![](../../../Images/Pasted%20image%2020230409150913.png)
 
 ## User管理
 
@@ -122,7 +122,7 @@
 4. User Configuration -> Administrative Templates -> Control Panel -> Prohibit Access をEnable
 5. 部門OUにリンク
 
-![](../../../画像ファイル/Pasted%20image%2020230410135945.png)
+![](../../../Images/Pasted%20image%2020230410135945.png)
 
 ---
 
@@ -155,7 +155,7 @@
 	- TGTは*krgtgt* hashという、サービスアカウントがTGTを発行するための鍵を内部に保持している = TGTはkrbtgtアカウントのパスワードハッシュを使用して暗号化されているため、ユーザーはTGTの内容を復号できない
 	- 💥krbtgtアカウントのパスワードが漏洩した場合、悪意のある攻撃者はWindowsドメイン内のすべてのアカウントにアクセスできる可能性がある→攻撃者に狙われやすい
 
-![](../../../画像ファイル/Pasted%20image%2020230410155451.png)
+![](../../../Images/Pasted%20image%2020230410155451.png)
 
 $$TGTのレスポンス$$
 
@@ -167,7 +167,7 @@ $$TGTのレスポンス$$
 	- TGSは、サービス所有者がTGSを復号することでアクセスできるように、中身（暗号化されたコンテンツ）にSvc session keyのコピーをもつ
 		- Svc＝Serviceの略
 
-![](../../../画像ファイル/Pasted%20image%2020230410161109.png)
+![](../../../Images/Pasted%20image%2020230410161109.png)
 
 $$TGSのレスポンス$$
 
@@ -176,7 +176,7 @@ $$TGSのレスポンス$$
 	- Svc Session Keyを使って、クライアントから送られてきた暗号化されたAuthenticator（UsernameとTimestamp）を復号する
 	- 復号した内容（UsernameとTimestamp）を検証する
 
-![](../../../画像ファイル/Pasted%20image%2020230410162330.png)
+![](../../../Images/Pasted%20image%2020230410162330.png)
 
 $$TGSでサービスの使用要求$$
 - [Silver Ticket](../../../Tools/🥝Mimikatz.md#Silver%20Ticket)にもあるように、Silver Ticket攻撃のステルス性が高いのは、TGSはKDCのTGSにより発行されるが、検証するのはKDCではなくSRVなので、偽造されたTGSがSRVに送られてもKDCのASで検証できないから。要はTGSは認証サーバに送られないから。
@@ -195,7 +195,7 @@ $$TGSでサービスの使用要求$$
 	- PACはKDC LT Keyによって署名され、ユーザーの権限を検証するために使用される
 	- これにより、サービスが都度DCに問い合わせることなく、チケットの情報から必要な権限を持つかどうかを確認できる
 
-![](../../../画像ファイル/Pasted%20image%2020230413150630.png)
+![](../../../Images/Pasted%20image%2020230413150630.png)
 
 $$TGTのイメージ$$
 
@@ -203,7 +203,7 @@ $$TGTのイメージ$$
 
 - Service LT Key：[ADの基本](#Kerberos認証ステップ)でservice owner hashとあるもので、サービスチケットを暗号化する
 
-![](../../../画像ファイル/Pasted%20image%2020230413150522.png)
+![](../../../Images/Pasted%20image%2020230413150522.png)
 
 $$TGSのイメージ$$
 
@@ -211,7 +211,7 @@ $$TGSのイメージ$$
 
 - 出力形式：`[<セッションID>]-x-x-<フラグ>-<ClientName>@<ServiceName>-<TargetName>.kirbi`
 
-![](../../../画像ファイル/Pasted%20image%2020260106093049.png)
+![](../../../Images/Pasted%20image%2020260106093049.png)
 
 $$ticket出力例$$
 
@@ -236,7 +236,7 @@ $$ticket出力例$$
 - NetNTLMも利用可能だが、パスワードハッシュのクラックにそこまで時間は掛からないうえ、PtH攻撃が可能なため、非推奨とされている
 - しかし、現実にはKerberosに対応していないマシンなどもあり、停止することによる他システムへの影響などから大掛かりな準備が必要であるため、今もなおNTLM認証が有効な組織は多い
 
-![](../../../画像ファイル/Pasted%20image%2020230410163456.png)
+![](../../../Images/Pasted%20image%2020230410163456.png)
 
 $$NetNTLMの認証フロー$$
 
@@ -251,14 +251,14 @@ $$NetNTLMの認証フロー$$
 - 下図ではthm.localがルートドメイン
 - Enterprise Admins（ツリー全体の管理者）、Domain Admins（単一ドメインの管理者）という権限階層がある
 
-![](../../../画像ファイル/Pasted%20image%2020230410164027.png)
+![](../../../Images/Pasted%20image%2020230410164027.png)
 
 ## Forest
 
 - 異なる名前空間を持つ複数Treeを統合したもの
 - 自動で権限は共有されず、Trust関係が必要
 
-![](../../../画像ファイル/Pasted%20image%2020230410164545.png)
+![](../../../Images/Pasted%20image%2020230410164545.png)
 
 ## Trust
 
@@ -267,6 +267,6 @@ $$NetNTLMの認証フロー$$
 - 単方向または双方向の設定が可能
 - Trust関係があっても自動で全リソースにアクセスできるわけではない
 
-![](../../../画像ファイル/Pasted%20image%2020230410164755.png)
+![](../../../Images/Pasted%20image%2020230410164755.png)
 
 ---

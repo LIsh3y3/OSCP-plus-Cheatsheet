@@ -219,7 +219,7 @@ xxxx | Out-Host -Paging
 Get-ChildItem | Select-Object -Property Mode, Name
 ```
 
-![](../画像ファイル/Pasted%20image%2020230604094002.png)
+![](../Images/Pasted%20image%2020230604094002.png)
 
 ```powershell
 # 最初の3つのファイルの名前とサイズを取得する
@@ -237,7 +237,7 @@ Get-ChildItem | Select-Object -First 3 Name, Length
 <cmd> /fo csv | ConvertFrom-Csv | Select-Object <Property>
 ```
 
-![](../画像ファイル/Pasted%20image%2020260107140211.png)
+![](../Images/Pasted%20image%2020260107140211.png)
 
 ### オブジェクトのフィルタリング（Where-Object）
 
@@ -386,7 +386,7 @@ certutil -decode "<path_to_encoded file>" <output_file>
 - PowerShellスクリプトは通常 `.ps1` というファイル拡張子を持つ
 - スクリプトを実行するには、PowerShellからファイルを実行するか、ISEの緑のボタンを押して実行する
 
-![ 400](../画像ファイル/Pasted%20image%2020230604162232.png)
+![ 400](../Images/Pasted%20image%2020230604162232.png)
 
 ### ルールや記述方法
 

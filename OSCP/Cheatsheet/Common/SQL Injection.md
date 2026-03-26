@@ -190,7 +190,7 @@ admin') or (1=1 -- #
 	- phpinfoの確認ができるのであれば、`$_SERVER['DOCUMENT_ROOT']`にWeb rootディレクトリが記載されているので、そこに保存する
 - `Uncaught type error`が返ることがあるが、返り値が意図されていたデータ型と異なるだけで、webshellの書き込みには影響はない
 
-![](../../画像ファイル/Pasted%20image%2020250420091519.png)
+![](../../Images/Pasted%20image%2020250420091519.png)
 
 $$書き込み時のレスポンス例$$
 
@@ -307,7 +307,7 @@ user=offsec' AND (SELECT username FROM users WHERE username = 'administrator' AN
 - Attack Type: sniper
 - Payload Type: Numbers
 
-![](../../画像ファイル/Pasted%20image%2020250420094746.png)
+![](../../Images/Pasted%20image%2020250420094746.png)
 
 $$Number　rangeの例$$
 
@@ -339,7 +339,7 @@ user=offsec' AND SUBSTRING((SELECT password FROM users WHERE username = 'adminis
 
 6. IntruderのLength列を降順にソートし、レスポンスに条件が正の時のメッセージが記載されているペイロードを抽出していく>
 
-![](../../画像ファイル/Pasted%20image%2020250420095001.png)
+![](../../Images/Pasted%20image%2020250420095001.png)
 
 $$IntruderにてLengthでソートする例$$
 
@@ -360,7 +360,7 @@ SELECT IF(<条件文>=1,SLEEP(3),'false')
 - 参考: RDBごとの文法[SQL cheet sheet Time delays & Conditional Time delays](https://portswigger.net/web-security/sql-injection/cheat-sheet#:~:text=a%20MySQL%20database.-,Time%20delays,-You%20can%20cause)
 - Burp SuiteのRepeaterの右下にレスポンスタイムが記載
 
-![](../../画像ファイル/Pasted%20image%2020250420100807.png)
+![](../../Images/Pasted%20image%2020250420100807.png)
 
 $$BurpSuite右下レスポンス記載あり$$
 

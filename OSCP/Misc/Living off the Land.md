@@ -61,7 +61,7 @@
 	- コマンドプロンプト
 - ツールを使うには、ダウンロードするか、Sysinternals Liveのパス `\\live.sysinternals.com\tools` をWindows Explorer（File Explorer）に入力する
 
-![](../画像ファイル/Pasted%20image%2020230623122205.png)
+![](../Images/Pasted%20image%2020230623122205.png)
 
 - Sysinternalsについてさらに学びたい場合は[こちら](https://docs.microsoft.com/en-us/sysinternals/resources/)
 
@@ -84,7 +84,7 @@
 - Microsoftが署名した組み込みツール（バイナリ・スクリプト・ライブラリ）を集め、文書化することを目的としたプロジェクト
 - Binary・Functions・スクリプト・ATT&CK情報に基づいて検索可能
 
-![](../画像ファイル/Pasted%20image%2020260308170929.png)
+![](../Images/Pasted%20image%2020260308170929.png)
 
 
 ## 検索方法
@@ -303,7 +303,7 @@ bash.exe -c <path-to-payload>
 
 - MITRE ATT&CK：Indirect Command Execution（🔗[T1202](https://attack.mitre.org/techniques/T1202/)）
 
-![600](../画像ファイル/Pasted%20image%2020230623172928.png)
+![600](../Images/Pasted%20image%2020230623172928.png)
 
 > [!NOTE]
 > `bash.exe` を使用するには、Windows 10でWindows Subsystem for Linuxが有効かつインストールされている必要がある。
@@ -325,7 +325,7 @@ bash.exe -c <path-to-payload>
 	- Regsvr32
 	- Executable on disk
 
-![200](../画像ファイル/Pasted%20image%2020230623173348.png)
+![200](../Images/Pasted%20image%2020230623173348.png)
 
 - 上図の例では、攻撃者がExcelのショートカットのTarget:を変更し、`rundll32.exe` を使って `calc.exe` を実行させている
 - ターゲットがExcelのショートカットアイコンをクリックすると、`calc.exe` が実行される

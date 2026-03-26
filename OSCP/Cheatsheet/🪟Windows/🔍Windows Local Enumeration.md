@@ -157,7 +157,7 @@ Where-Object { $_.Description -eq "Security Update" }
 - インストールされたセキュリティパッチをメモし、ターゲットのOSを🔗[Microsoft Security Response Center](https://msrc.microsoft.com/update-guide/deployments)のページで検索し、未修正の脆弱性を明らかにする
 	- 日付範囲は１年のみ選択可能
 
-![](../../画像ファイル/Pasted%20image%2020250823155239.png)
+![](../../Images/Pasted%20image%2020250823155239.png)
 
 $$MSRCの検索結果$$
 
@@ -201,7 +201,7 @@ ipconfig /all
 >- 異なるサブネットに属する複数のNICを持つ場合は、内部NWへの足がかりとして使える可能性あり
 >- たとえば次の画像では、サブネットが異なるIPが確認できるので、このホストを使ってポートフォワーディングすれば、別のネットワークにアクセスできる可能性がある
 
-![](../../画像ファイル/Pasted%20image%2020251118082433.png)
+![](../../Images/Pasted%20image%2020251118082433.png)
 
 $$ipconfigの結果例$$
 
@@ -517,7 +517,7 @@ reg query "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\Firewa
 
 ## ルーティングテーブルの見方
 
-![](../../画像ファイル/Pasted%20image%2020250724124100.png)
+![](../../Images/Pasted%20image%2020250724124100.png)
 
 $$ルーティングテーブルの例$$
 

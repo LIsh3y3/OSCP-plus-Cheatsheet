@@ -9,7 +9,7 @@
 1. Burpを起動し、Interceptはoffのままで、診断対象のwebサイトにアクセスする
 2. ある程度アクセスしたら、TargetのSitemapのエントリから診断したいエントリを右クリックで選択し、Add to scopeを選択する
 3. Proxy Settings->Request|Responce Interception rulesの下記項目にチェックを入れる
-![ 500](../../OSCP/画像ファイル/Pasted%20image%2020230311192214.png)
+![ 500](../../OSCP/Images/Pasted%20image%2020230311192214.png)
 
 4. upボタンで追加したルールを最上位（最優先)に設定する
 
@@ -72,7 +72,7 @@ WebSocketの場合：
 2. Battering Ram
 	- sniperと同じく一つのアイテム(payload set)を使用するが、違いは、各ポジションに一斉に同じ値を代入するところ
 	- ↓下イメージみたいに、どこが壊れるかみるために一斉にぶつけるイメージ
-	![ 150](../../OSCP/画像ファイル/Pasted%20image%2020230312164020.png)
+	![ 150](../../OSCP/Images/Pasted%20image%2020230312164020.png)
 
 3. Pitch fork
 	- sniperの次によく使われるattack type
@@ -82,7 +82,7 @@ WebSocketの場合：
 	- 理想的にはペイロードの数は同じくらいがいい
 	- なぜなら、100行と90行のリストがあった時、intruderは90回しかリクエストしない。何か一つのリストが終了したらintruderはテストをやめてしまう
 	- ポジションは上から下、左から右の順番でpayloadsetを選択してpayload settingsを変更する
-	 ![ 150](../../OSCP/画像ファイル/Pasted%20image%2020230312164332.png)
+	 ![ 150](../../OSCP/Images/Pasted%20image%2020230312164332.png)
 
  4. Cluseter Bomb
 	 - pitch forkと同様に複数のpayload setを使用可能
@@ -98,7 +98,7 @@ WebSocketの場合：
 	- 自動でURLエンコードされてしまうので、ペイロードの動作のために、エンコードしないようにすることも可能
 
 - payloadに設定して攻撃し、以下の画像のようにStatusやLengthを見比べて他と異なるレスポンスを返すリクエストをみる。（この場合Length 592)
-![](../../OSCP/画像ファイル/Pasted%20image%2020230313134935.png)
+![](../../OSCP/Images/Pasted%20image%2020230313134935.png)
 
 - ログインフォームを突破しようとしたとき、ログインフォームに適当な値を入力してキャプチャすると、ユーザ名とパスワードだけでなく、*リクエスト毎に*異なるセッションクッキーやCSRFトークン（正規のページからアクセスが行われてることを証明するための値）がレスポンスに見られることがある。
 	- この場合、ユーザ名とパスワードはpitch fork攻撃などで割り出せるが、セッションクッキーとCSRFトークンは割りだせない
