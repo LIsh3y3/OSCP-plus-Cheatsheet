@@ -66,7 +66,7 @@ SELECT * FROM テーブル名 WHERE 条件 OR　条件
 | ------ | ------------ |
 | %      | 任意の0文字以上の文字列 |
 | _      | 任意の１文字       |
-|        |              |
+
 
 例：カラムの値に「1月」の前後に任意の０文字以上の文字列がついているレコードの指定
 ```sql
@@ -108,17 +108,19 @@ SELECT * FROM テーブル名 ORDER BY 1
 
 先頭から数行だけ取得する
 ```sql
-SELECT * FROM <table_name> ORDER BY <amount> DESC LIMIT 3 OFFSET 2
+SELECT * FROM テーブル名 ORDER BY 金額 DESC LIMIT 3 OFFSET 2
 ```
 OFFSETをつけると（指定の数字+1）番目のデータを取得してくれる。
 
 ### UNION
 
-- 和集合：２つの検索結果を足し合わせたもの
-（UNIONの左右のクエリでカラム数が一致していないといけない）
+和集合：２つの検索結果を足し合わせたもの
 ```sql
 SELECT ユーザー名, 年齢, 住所　FROM　ユーザー１ UNION SELECT ユーザー名, 年齢, 住所　FROM　ユーザー2
 ```
+
+>[!NOTE]
+>UNIONの左右のクエリでカラム数が一致していないといけない
 
 ## 演算子と関数
 
@@ -127,7 +129,6 @@ SELECT ユーザー名, 年齢, 住所　FROM　ユーザー１ UNION SELECT ユ
 - データの抽出時に使える条件分岐演算子
 
 演算子（例）
-
 ```
 SELECT ユーザー名, 
        CASE 年齢 WHEN　年齢 < 20　THEN　'未成年'
@@ -139,8 +140,7 @@ SELECT ユーザー名,
 
 ### SUBSTRING
 
-- 文字列の一部を抽出する関数
-（Blind-based SQLiで使われる）
+文字列の一部を抽出する関数
 ```sql
 SELECT * FROM ユーザー WHERE SUBSTRING(ユーザー名, 1, 3) LIKE '%hoge%'
 ```
@@ -148,7 +148,7 @@ SELECT * FROM ユーザー WHERE SUBSTRING(ユーザー名, 1, 3) LIKE '%hoge%'
 
 ### CAST
 
-- データ型を置換する
+データ型を置換する
 ```sql
 SELECT CAST(出金額 AS VARCHAR(20)) + '円' AS 出金額（円）FROM 家計簿
 ```
