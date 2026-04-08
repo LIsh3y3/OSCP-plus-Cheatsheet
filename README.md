@@ -1,4 +1,5 @@
-![](Images/Pasted%20image%2020260326124528.png)
+<img width="628" height="485" alt="image" src="https://github.com/user-attachments/assets/558e2e0e-5cae-41d3-a6ef-18078820fb45" />
+
 
 # OSCP+チートシート
 
