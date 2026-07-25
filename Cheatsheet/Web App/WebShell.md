@@ -100,9 +100,6 @@ sudo nc -lvnp 4444
 
 # Webアプリのソースコードを取得する考え方と手法概要
 
-- 関連ノート：
-	- [Summary - Apex](../../Proving_Grounds_WriteUp/Summary%20-%20Apex.md)
-
 ## 目的
 
 - Webアプリ（PHP / ASP / ASPX など）のサーバーサイドソースコードを入手し、ソース内に記載された以下の機密情報を取得すること
