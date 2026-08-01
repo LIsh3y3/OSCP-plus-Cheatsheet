@@ -605,13 +605,13 @@ Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | S
 ## Windows用列挙ツール一覧
 
 >[!TIP]
->AVに検知される場合は、[Antivirus Evasion](../AV%20Evasion/Antivirus%20Evasion.md)のテクニックを使用したり、他のツールを試したりする
+>AVに検知される場合は、[AV Evasionのテクニック](../Evasion(OSCP+試験範囲外)/AV%20Evasionのテクニック.md)を使用したり、他のツールを試したりする
 
-| ツール名                                                                                   | 説明                                                                                                                                               |
-| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [Sysinternals Suite](https://docs.microsoft.com/en-us/sysinternals/downloads/)         | Windowsの詳細情報を取得するためのユーティリティ集                                                                                                                     |
-| [Seatbelt](https://github.com/GhostPack/Seatbelt)                                      | 権限昇格ベクターの自動列挙<br>すでにコンパイル済みのexeファイル：[Ghostpack-CompiledBinaries](https://github.com/r3motecontrol/Ghostpack-CompiledBinaries?tab=readme-ov-file) |
-| [JAWS](https://github.com/411Hall/JAWS)                                                | 権限昇格ベクターの自動列挙                                                                                                                                    |
-| [PowerUp.ps1](https://github.com/cmdMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1) | 権限昇格ベクターの自動列挙・一部PrivEsc実行                                                                                                                        |
-| [SharpUp.exe](https://github.com/GhostPack/SharpUp)                                    | PowerUpをC#に移行したもの<br>権限昇格ベクターの自動列挙のみ可能                                                                                                           |
-| ⭐️[WinPEAS](https://github.com/peass-ng/PEASS-ng/releases/tag/20250124-6ec1269f)       | 権限昇格ベクターの自動列挙(最も有名でまずはこれを使う)                                                                                                                     |
+| ツール名                                                                             | 説明                                                                                                                                               |
+| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [Sysinternals Suite](https://docs.microsoft.com/en-us/sysinternals/downloads/)   | Windowsの詳細情報を取得するためのユーティリティ集                                                                                                                     |
+| [Seatbelt](https://github.com/GhostPack/Seatbelt)                                | 権限昇格ベクターの自動列挙<br>すでにコンパイル済みのexeファイル：[Ghostpack-CompiledBinaries](https://github.com/r3motecontrol/Ghostpack-CompiledBinaries?tab=readme-ov-file) |
+| [JAWS](https://github.com/411Hall/JAWS)                                          | 権限昇格ベクターの自動列挙                                                                                                                                    |
+| [PowerUp.ps1](https://powersploit.readthedocs.io/en/latest/Privesc/)             | 権限昇格ベクターの自動列挙・一部PrivEsc実行                                                                                                                        |
+| [SharpUp.exe](https://github.com/GhostPack/SharpUp)                              | PowerUpをC#に移行したもの<br>権限昇格ベクターの自動列挙のみ可能                                                                                                           |
+| ⭐️[WinPEAS](https://github.com/peass-ng/PEASS-ng/releases/tag/20250124-6ec1269f) | 権限昇格ベクターの自動列挙(最も有名でまずはこれを使う)                                                                                                                     |
