@@ -337,7 +337,7 @@ cat /etc/resolv.conf
     - （PrivEscの攻撃ベクターとしてよく利用される）
 - 💥ワイルドカートが使われていれば、GTFObinsで検索
 	-  chown, chmod, tar, rsyncなど
-- [💥Linux Privilege Escalation](💥Linux%20Privilege%20Escalation.md#Cronを利用したPrivEsc)
+- [Cronを利用したPrivEsc](💥Linux%20Privilege%20Escalation.md#Cronを利用したPrivEsc)
 
 ## Cronの列挙コマンド
 
