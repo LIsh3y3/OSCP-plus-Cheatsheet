@@ -2,7 +2,6 @@
 	- [🐉THC-Hydra](../../Tools/🐉THC-Hydra.md)
 	- [🐈‍⬛Password Crack - JtR・Hashcat](../../Tools/🐈‍⬛Password%20Crack%20-%20JtR・Hashcat.md)
 	- [💥AD認証システムの攻撃](../🪟Windows/Active%20Directory/💥AD認証システムの攻撃.md#Password%20Spray)
-	- [コースの一般的な情報や特殊コマンド](../../PEN-200/コースの一般的な情報や特殊コマンド.md#⭐️28.2.6.%20パスワード攻撃について)
 
 ---
 
@@ -402,7 +401,7 @@ sudo rlwrap nc -lvnp <port>
 
 ### Credential Guardの前提知識
 
-- [LSA](../../Misc/用語.md#LSA)
+- [LSA（Local Security Authority）](../../Misc/用語.md#LSA（Local%20Security%20Authority）)
 
 #### Virtualization-based Security (VBS) 概要
 
