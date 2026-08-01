@@ -1,5 +1,5 @@
 - 関連ノート
-	- [80 or 443 - HTTP or HTTPS](80%20or%20443%20-%20HTTP%20or%20HTTPS.md#SQLi)
+	- [SQL Injection](../Web%20App/SQL%20Injection.md)
 
 - 🔗参考リンク
 	- [MSSQL Injection Cheat sheet - pentestmonkey](https://pentestmonkey.net/cheat-sheet/sql-injection/mssql-sql-injection-cheat-sheet)
@@ -53,7 +53,7 @@ SELECT SYSTEM_USER;
 ```sql
 SELECT IS_SRVROLEMEMBER('sysadmin');
 ```
-- 出力が1 → [xm_cmdshellの利用手順](#xm_cmdshellの利用手順)
+- 出力が1 → [xp_cmdshellの利用手順](#xp_cmdshellの利用手順)
 
 パスワードハッシュの列挙
 ```sql
