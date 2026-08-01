@@ -6,7 +6,7 @@
  本リポジトリは、🔗[OSCP+](https://www.offsec.com/courses/pen-200/)（PEN-200）学習を軸に、ペネトレーションテストの 技術・手法をまとめた**日本語チートシート・学習ノート集**です。 試験対策だけでなく、実際のペネトレーションテスト業務でも参照できるよう、コマンドや手順を体系的に整理しています。
 
 >[!TIP]
->本リポジトリをローカルにクローンし、[Obsidian](https://obsidian.md/)で開くと使いやすいかと思います。
+>本リポジトリをローカルにクローンし、🔗[Obsidian](https://obsidian.md/)で開くと使いやすいかと思います。
 
 ---
 
@@ -156,5 +156,5 @@
 >**自動エクスプロイトツールの使用は試験で禁止されています。**  
 >例：`sqlmap` の自動エクスプロイト機能など。
 >本リポジトリに記載のツール・手法を試験で使用する場合は、必ず事前に最新の試験ガイドを確認してください。
->- [OSCP Exam Guide](https://help.offsec.com/hc/en-us/articles/360040165632-OSCP-Exam-Guide)
->- [Proctored Exams](https://help.offsec.com/hc/en-us/sections/360008126631-Proctored-Exams)
+>- 🔗[OSCP Exam Guide](https://help.offsec.com/hc/en-us/articles/360040165632-OSCP-Exam-Guide)
+>- 🔗[Proctored Exams](https://help.offsec.com/hc/en-us/sections/360008126631-Proctored-Exams)
