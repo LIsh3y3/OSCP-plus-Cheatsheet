@@ -59,6 +59,28 @@
 - [公開エクスプロイトの探索](Cheatsheet/Common/公開エクスプロイトの探索.md)
 - [公開エクスプロイトの修正](Cheatsheet/Common/公開エクスプロイトの修正.md)
 
+### Ports - Service
+
+- [21 - FTP](Cheatsheet/Ports%20-%20Service/21%20-%20FTP.md)
+- [22 - SSH](Cheatsheet/Ports%20-%20Service/22%20-%20SSH.md)
+- [25,465,587 - SMTP](Cheatsheet/Ports%20-%20Service/25,465,587%20-%20SMTP.md)
+- [53 - DNS](Cheatsheet/Ports%20-%20Service/53%20-%20DNS.md)
+- [79 - Finger](Cheatsheet/Ports%20-%20Service/79%20-%20Finger.md)
+- [80 or 443 - HTTP or HTTPS](Cheatsheet/Ports%20-%20Service/80%20or%20443%20-%20HTTP%20or%20HTTPS.md)
+- [110,995 - POP](Cheatsheet/Ports%20-%20Service/110,995%20-%20POP.md)
+- [111 - RPCbind](Cheatsheet/Ports%20-%20Service/111%20-%20RPCbind.md)
+- [135,593 - MSRPC](Cheatsheet/Ports%20-%20Service/135,593%20-%20MSRPC.md)
+- [139,445 -NetBIOS, SMB](Cheatsheet/Ports%20-%20Service/139,445%20-NetBIOS,%20SMB.md)
+- [143,993 - IMAP](Cheatsheet/Ports%20-%20Service/143,993%20-%20IMAP.md)
+- [161,162 - SNMP](Cheatsheet/Ports%20-%20Service/161,162%20-%20SNMP.md)
+- [389,636,3268 - LDAP](Cheatsheet/Ports%20-%20Service/389,636,3268%20-%20LDAP.md)
+- [1433 - MSSQL](Cheatsheet/Ports%20-%20Service/1433%20-%20MSSQL.md)
+- [3128 - Squid](Cheatsheet/Ports%20-%20Service/3128%20-%20Squid.md)
+- [3306 - MySQL](Cheatsheet/Ports%20-%20Service/3306%20-%20MySQL.md)
+- [3389 - RDP](Cheatsheet/Ports%20-%20Service/3389%20-%20RDP.md)
+- [5432,5433 - PostgreSQL](Cheatsheet/Ports%20-%20Service/5432,5433%20-%20PostgreSQL.md)
+- [5985(WinRM), 47001(WMI) - HTTP](Cheatsheet/Ports%20-%20Service/5985(WinRM),%2047001(WMI)%20-%20HTTP.md)
+
 ### Port Redirection
 
 - [HTTP・DNSトンネリング（Chisel, Ligolo-ng, Dnscat2）](Cheatsheet/Port%20Redirection/HTTP・DNSトンネリング（Chisel,%20Ligolo-ng,%20Dnscat2）.md)
