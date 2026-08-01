@@ -1,5 +1,3 @@
----
----
 - 関連ノート：
 	- [🥝Mimikatz](../../../Tools/🥝Mimikatz.md)
 	- [🔍Windows Local Enumeration](../🔍Windows%20Local%20Enumeration.md)
@@ -83,7 +81,7 @@ nxc smb <target_IP> -u <username> -p <pw> --dpapi
 	- →ゴミ情報が多いので、**ルートディレクトリから探索は避ける**
 - 以下のディレクトリで検索すること
 	- ①ユーザーのホームディレクトリ
-	- ②[🔍 Credentials Harvesting](#インストール済みアプリケーションの列挙)で判明したアプリケーションの`Install Location`
+	- ②[インストール済みアプリケーションの列挙](../🔍Windows%20Local%20Enumeration.md#インストール済みアプリケーションの列挙)で判明したアプリケーションの`Install Location`
 	- ③ユーザーのホームディレクトリから一階層上がったディレクトリ→さらに一階層あがったディレクトリ...
 	- ④`C:\`ディレクトリ：==通常の構成と異なるディレクトリがあれば==要注目
 - 興味深い情報がエンコードされていて簡単に読み取れない可能性もある
@@ -471,17 +469,3 @@ Descriptionにメモとしてパスワードを残していることがある。
 2. Descriptionの中にサービスアカウントのパスワードがある
 
 ![ 500](../../../Images/Pasted%20image%2020230421111143.png)
-
----
-
-# Other Attacks
-
-## SMB Relay Attack
-
-- [Exploiting Authentication Relays](../../../TryHackME/Offensive%20Pentesting/Active%20Directory/5.%20Exploiting%20Active%20Directory.md#Exploiting%20Authentication%20Relays)
-
-## LLMNR/NBNS Poisoning
-
-[Authentication Relays](../../../TryHackME/Offensive%20Pentesting/Active%20Directory/2.%20Breaching%20Active%20Directory.md#Authentication%20Relays)
-
-- SMBリレーやLLMNR/NBNSポイズニング攻撃の最終目標は、被害者の認証NTLMハッシュを取得し、被害者のアカウントやマシンへのアクセス権を取得すること
