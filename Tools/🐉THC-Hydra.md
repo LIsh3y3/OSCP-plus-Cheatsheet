@@ -17,7 +17,7 @@ Administrator:Administrator
 
 ---
 
-# Summery
+# Summary
 
 Webログインフォームへのパスワードアタック(POST)
 	（[🐉THC-Hydra](#構成要素)を確認（特にFailure Message））
@@ -116,7 +116,7 @@ hydra -U http-post-form
 
 - リクエスト内容を把握する必要があり、そのためにBurp Suiteなどでフォームの構造を確認する。
 ```zsh
-hydra -l <username> -P <wordlist> <target_ip> http-post-form "/<URL_path>:<クエリ文字列>:F=<Failure_Messeage>"
+hydra -l <username> -P <wordlist> <target_ip> http-post-form "/<URL_path>:<クエリ文字列>:F=<Failure_Message>"
 ```
 
 #### 構成要素
