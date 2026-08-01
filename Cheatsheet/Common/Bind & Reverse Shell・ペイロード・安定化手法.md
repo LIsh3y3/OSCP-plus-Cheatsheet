@@ -357,7 +357,7 @@ nc -nv <target_IP> <port>
 - ❌文法が難しく、デフォルトでインストールされていない
 - ❌**Windowsではあまり意味がない**（netcatと変わらない）
 - 関連ノート：
-	- [Port Redirection & SSH Port Forwarding](../Port%20Redirection/Port%20Redirection%20&%20SSH%20Port%20Forwarding.md#LinuxツールによるPort%20Forwading(Socat))
+	- [LinuxツールによるPort Forwading w/Socat](../Port%20Redirection/Port%20Redirection%20&%20SSH%20Port%20Forwarding.md#LinuxツールによるPort%20Forwading%20w/Socat)
 
 ### Linuxシェルの安定化 w/ Socat
 
@@ -472,7 +472,7 @@ Metasploitフレームワークの `exploit/multi/handler` モジュールは、
 - ✅ ファイルのアップロード・ダウンロードなど多くの機能を内蔵している
 - ❌ Meterpreterシェルは必ずMetasploit経由の通信が必要（通常のシェルペイロードはncでも受信可能）
 
-**Meterpreterシェルを使用したい場合は必須。** ステージドペイロードを使用する場合も、このハンドラを使用する（[☠️Msfvenom](Bind%20&%20Reverse%20Shell・ペイロード・安定化手法.md#) 参照）。
+**Meterpreterシェルを使用したい場合は必須。** ステージドペイロードを使用する場合も、このハンドラを使用する。
 
 >[!Info]
 >Meterpreterシェルとは、Metasploit独自の高機能シェル。
