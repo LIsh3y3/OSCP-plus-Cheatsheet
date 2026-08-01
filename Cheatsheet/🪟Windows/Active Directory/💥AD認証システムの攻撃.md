@@ -22,7 +22,7 @@ kerbrute userenum --dc <DC_IP> -d <domain> <wordlist>
 ```
 
 SMBが有効(TCP 445 open)であれば、攻撃者のマシンからNetExecでユーザーの列挙（guestが有効である必要あり）：
-	[アカウントの列挙](../../Ports%20-%20Service/139,445%20-NetBIOS,%20SMB.md#アカウントの列挙)
+	[ユーザーの列挙](../../Ports%20-%20Service/139,445%20-NetBIOS,%20SMB.md#ユーザーの列挙)
 
 ## 2. アカウントロックポリシーの確認
 
