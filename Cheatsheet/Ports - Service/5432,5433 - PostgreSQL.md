@@ -1,9 +1,9 @@
 - 関連ノート：    
-    - [80 or 443 - HTTP or HTTPS](80%20or%20443%20-%20HTTP%20or%20HTTPS.md#SQLi)
+    - [SQL Injection](../Web%20App/SQL%20Injection.md)
 
 - 🔗 参考リンク：
 	- [PostgreSQL SQL Injection Cheat Sheet - pentestmonkey](https://pentestmonkey.net/cheat-sheet/sql-injection/postgres-sql-injection-cheat-sheet) 
-	- [PostgreSQL - HackTricks](https://www.google.com/search?q=https://book.hacktricks.xyz/network-services-pentesting/pentesting-postgresql)
+	- [PostgreSQL - HackTricks](https://hacktricks.wiki/en/network-services-pentesting/pentesting-postgresql.html)
 
 ---
 
