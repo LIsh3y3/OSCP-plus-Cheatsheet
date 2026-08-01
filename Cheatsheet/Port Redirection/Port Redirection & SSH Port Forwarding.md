@@ -73,7 +73,7 @@ SSHセッションで通信を==カプセル化（暗号化）==してポート�
 	- インタラクティブなシェルが使える
 		- WinRM接続中など、インタラクティブなシェルが使えない場合は、
 			- (a) Unix系：`python3 -c 'import pty; pty.spawn("/bin/sh")'`
-			- (b) Windows：[Plink](Port%20Redirection%20&%20SSH%20Port%20Forwarding.md#Plink)や[Netsh](Port%20Redirection%20&%20SSH%20Port%20Forwarding.md#Netsh)を使う
+			- (b) Windows：[Plink](#Plink)や[Netsh](#Netsh)を使う
 
 - ✅通常のネットワークトラフィックと見分けがつきにくい
 - ❌近年のFWに実装されているDeep Packet Inspection(DPI)機能により、悪意ある通信は検知され遮断されてしまう
@@ -359,7 +359,9 @@ Application     ssh.exe 8.1.0.1    C:\Windows\System32\OpenSSH\ssh.exe
 
 3. あとは[SSH Remote Dynamic Port Forwarding](Port%20Redirection%20&%20SSH%20Port%20Forwarding.md#SSH%20Remote%20Dynamic%20Port%20Forwarding)のステップ３以降と同じ(`ssh -N...`)
 
-## 🔗[Plink](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+## Plink
+
+🔗[Plink](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 
 - ssh.exeが使えない場合や、インタラクティブなシェルが使えないとき(WinRM接続中など）に使用を検討
 - 条件：足場のマシンへのCLIアクセスが可能なとき使用可能
@@ -395,7 +397,9 @@ C:\Windows\Temp\plink.exe -ssh -l <attacker_ssh_username> -pw <password> -R 127.
 mysql -h 127.0.0.1 -P <SSH_server_listen_port> -u <username> -p
 ```
 
-## 🔗[Netsh](https://learn.microsoft.com/ja-jp/windows-server/administration/windows-commands/netsh)
+## Netsh
+
+🔗[Netsh](https://learn.microsoft.com/ja-jp/windows-server/administration/windows-commands/netsh)
 
 - NetshはWindows OS標準の機能で、SSHクライアントに使えるツールが何もないときなど、特に制限が厳しいときに使用する
 - 条件：
