@@ -450,7 +450,7 @@ find / -writable -type d 2>/dev/null
 cat /etc/fstab 
 ```
 - ここにないドライブをマウントしている可能性もあるので、`mount`による列挙も必須
-- [🔍Linux Enumeration](#fstabの結果の見方)
+- [fstabの結果の見方](#fstabの結果の見方)
 
 ![](../../Images/Pasted%20image%2020250827123908.png)
 
@@ -482,7 +482,7 @@ lsblk -f
 
 - `fstab`(マウントのルール)に記載があるのに、`mount`(マウントの現状)には存在しない
 	-  `noauto`オプションにより手動でマウントすべきものがマウントされていない可能性アリ
-	- →`user`オプションもあれば、マウントして利用できるかも([🔍Linux Enumeration](#fstabの結果の見方))
+	- →`user`オプションもあれば、マウントして利用できるかも([fstabの結果の見方](#fstabの結果の見方))
 ```zsh
 # マウント具体例：mount /media/usb0
 # マウントできない場合は、攻撃者のマシンに<fstabのfile_system>を転送してローカルでマウント
@@ -503,7 +503,7 @@ cd <fstabのmount_point>
 
 ### fstabの結果の見方
 
-- UUID：一意の場所を指定（[権限関連の知識、コマンド](../Common/権限関連の知識、コマンド.md#IDの一覧表)）
+- UUID：一意の場所を指定（[IDの一覧表](../Common/権限関連の知識、コマンド.md#IDの一覧表)）
 - file system：マウント対象のディスク・パーティション（マウント元）
 - mount point：file systemをどこに接続するか（マウント先）
 - option：マウントオプション
@@ -523,7 +523,7 @@ cd <fstabのmount_point>
 - SUID/SGID、Capability が設定された実行ファイルを探し、権限昇格に利用できる可能性を調査
 - root 所有の SUID バイナリを悪用できれば、root 権限を奪取できる
 - SGIDバイナリはグループの権限で動作可能なため、同じグループの他ユーザーへのLatMovにつながる
-	- →[💥Linux Privilege Escalation](💥Linux%20Privilege%20Escalation.md#SUIDとCapabilityを利用したPrivEsc)
+	- →[SUIDとCapabilityを利用したPrivEsc](💥Linux%20Privilege%20Escalation.md#SUIDとCapabilityを利用したPrivEsc)
 
 ## SUID / SGIDバイナリの列挙コマンド
 
@@ -564,7 +564,7 @@ find / -type f \( -perm -2000 \) -exec ls -la {} \; 2>/dev/null
 
 - 保存されたパスワードやキャッシュされた資格情報を取得する
 	- そのまま**ダイレクトに**LatMovやPrivEscにつなげる
-	- 発見した認証情報をもとに、新たなパスワードリストを作成してブルートフォースを実施する[Password Attack](../Common/Password%20Attack.md)
+	- 発見した認証情報をもとに、新たなパスワードリストを作成してブルートフォースを実施する（[Password Attack](../Common/Password%20Attack.md)）
 
 - 💡Googleで、`<service> where is [database] password stored`と検索するのもよい手段
 
@@ -592,7 +592,7 @@ SSHキーの確認
 ```zsh
 ls -la ~/.ssh/
 ```
-- →秘密鍵があった場合：[💥Linux Privilege Escalation](💥Linux%20Privilege%20Escalation.md#Misc)
+- →秘密鍵があった場合：[SSHキーによるPrivEsc](💥Linux%20Privilege%20Escalation.md#SSHキーによるPrivEsc)
 
 中身に認証情報の記載があるファイルを探す ([EvilTree](https://github.com/t3l3machus/eviltree)）
 ```zsh
@@ -672,7 +672,7 @@ sudo tcpdump -i <intarface> -vvv -w output.pcap
 ```zsh
 systemctl list-units --type=service
 ```
-- 怪しいデーモン([Normal Informations](../../Misc/Normal%20Informations.md#デーモン))が動作していないかを確認→[💥Linux Privilege Escalation](💥Linux%20Privilege%20Escalation.md#Serviceを利用したPrivEsc)
+- 怪しいデーモン([Normal Informations](../../Misc/Normal%20Informations.md#デーモン))が動作していないかを確認→[Serviceを利用したPrivEsc](💥Linux%20Privilege%20Escalation.md#Serviceを利用したPrivEsc)
 
 起動時に自動起動されるデーモンの確認
 ```zsh
@@ -713,7 +713,7 @@ snmpwalk -v1 -c public localhost
 
 - 利用中のカーネルモジュールやドライバのバージョンを把握
 - 既知の脆弱性に対してエクスプロイトを紐づけるための情報を収集する
-	- [💥Linux Privilege Escalation](💥Linux%20Privilege%20Escalation.md#主なカーネルエクスプロイト)にも情報収集方法あり
+	- [主なカーネルエクスプロイト](💥Linux%20Privilege%20Escalation.md#主なカーネルエクスプロイト)にも情報収集方法あり
 
 ## ドライバ・モジュール関連コマンド
 
@@ -759,5 +759,3 @@ ps aux | grep -i "virus\|clam\|sophos\|mcafee\|symantec\|kaspersky\|eset"
 
 - インストールされているAVの名前
 - AVのバージョンや状態
-
----
